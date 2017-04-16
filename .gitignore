@@ -1,2 +1,33 @@
 .DS_Store
 ips-phd-thesis-eng-apa.pdf
+
+# LaTeX temporary files
+*.aux
+*.log
+*.toc
+
+# Latexmk
+*.fdb_latexmk
+
+# SyncTeX
+*.synctex.gz
+
+# LaTeX Beamer
+*.snm
+*.vrb
+*.nav
+*.out
+
+# BibTeX
+*.bbl
+*.blg
+
+#rest
+*.bcf
+*.idx
+*.ilg
+*.ind
+*.loa
+*.lof
+*.lot
+*.run.xml
