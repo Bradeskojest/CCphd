@@ -17,10 +17,10 @@
 %--------------------------------------------------------------------------------------------------
 \documentclass[phd,eng,apa]{ipsthesis}
 %
-%--------------------------------------------------------------------------------------------------
+%-------------------------------------------------------------------------------
 %  
 % PREAMBULE
-%--------------------------------------------------------------------------------------------------
+%-------------------------------------------------------------------------------
 %
 % Files with bibliographies 
 \addbibresource{references.bib}
@@ -28,6 +28,7 @@
 % Define here all other packages and commands you need for your thesis, for example:
 \usepackage{color}
 \usepackage{longtable}
+\usepackage{todonotes}
 %--------------------------------------------------------------------------------------------------
 %  
 % DOCUMENT
@@ -105,8 +106,19 @@
 %
 % Fourth chapter 
 \input{text-eng/main-chapter-4}
+%
+% Fifth chapter 
+\input{text-eng/main-chapter-5}
 
+%
+% If parts are used, the \chapteroutsidepart command must be called before final chapters that 
+% regard all parts
+%\chapteroutsidepart 
+%
+% Conclusions
+\input{text-eng/main-conclusions}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Template Introduction
 \input{text-eng/template-introduction-phd}
 %
@@ -126,14 +138,8 @@
 
 %
 % Fifth chapter 
-\input{text-eng/main-chapter-5-apa}
-%
-% If parts are used, the \chapteroutsidepart command must be called before final chapters that 
-% regard all parts
-%\chapteroutsidepart 
-%
-% Conclusions
-\input{text-eng/main-conclusions}
+\input{text-eng/template-chapter-5}
+
 %--------------------------------------------------------------------------------------------------
 %
 % APPENDICES (optional)
