@@ -23,24 +23,25 @@
 %-------------------------------------------------------------------------------
 %
 % Files with bibliographies 
-\addbibresource{references.bib}
+\addbibresource{Moje-2017 - PhD citations.bib}
 %
 % Define here all other packages and commands you need for your thesis, for example:
 \usepackage{color}
+\usepackage{soul} %\hl command
 \usepackage{longtable}
 \usepackage{todonotes}
-%--------------------------------------------------------------------------------------------------
+%-------------------------------------------------------------------------------
 %  
 % DOCUMENT
-%--------------------------------------------------------------------------------------------------
+%-------------------------------------------------------------------------------
 \begin{document}
 %--------------------------------------------------------------------------------------------------
 %
 % The cover page and spine are created separately using two .doc files provided by IPS.
-%--------------------------------------------------------------------------------------------------
+%-------------------------------------------------------------------------------
 %
 % FRONT MATTER
-%--------------------------------------------------------------------------------------------------
+%-------------------------------------------------------------------------------
 %
 \frontmatter
 %
@@ -84,10 +85,10 @@
 %
 % Glossary (optional)
 \input{text-eng/front-glossary}
-%--------------------------------------------------------------------------------------------------
+%-------------------------------------------------------------------------------
 %
 % MAIN MATTER
-%--------------------------------------------------------------------------------------------------
+%-------------------------------------------------------------------------------
 %
 \mainmatter
 %
@@ -140,10 +141,10 @@
 % Fifth chapter 
 \input{text-eng/template-chapter-5}
 
-%--------------------------------------------------------------------------------------------------
+%-------------------------------------------------------------------------------
 %
 % APPENDICES (optional)
-%--------------------------------------------------------------------------------------------------
+%-------------------------------------------------------------------------------
 %
 \appendix
 \begin{appendices}
@@ -152,10 +153,10 @@
 \input{text-eng/appendix-proofs}
 %
 \end{appendices}
-%--------------------------------------------------------------------------------------------------
+%-------------------------------------------------------------------------------
 %
 % BACK MATTER
-%--------------------------------------------------------------------------------------------------
+%-------------------------------------------------------------------------------
 %
 \backmatter
 %
@@ -172,19 +173,3 @@
 \printmyindex
 %--------------------------------------------------------------------------------------------------
 \end{document}
-%--------------------------------------------------------------------------------------------------
-%
-% MODIFICATION HISTORY
-%--------------------------------------------------------------------------------------------------
-% Version 1.3:
-%  - Removed the sorting option from \printbibliography in IEEE bibliographies due to a new warning.
-% Version 1.2: 
-%  - Modified the symbols and abbreviations example to adjust the vertical positioning of the text
-% Version 1.1: 
-%  - Removed slovene.lbx and slovene-apa.lbx from accompanying files as they are now included in 
-%    the latest biblatex version.
-%  - Modified the bibliography example to include publications not referenced before.
-%  - Modified the references example to show DOI should be used only for articles not yet published. 
-%  - Modified the symbols and abbreviations example to accommodate long lines and long lists.
-%  - Added pdf bookmarks for Acknowledgments, Abstract and Povzetek. 
-%--------------------------------------------------------------------------------------------------
