@@ -1,0 +1,14 @@
+%-------------------------------------------------------------------------------
+\chapter{Background and Related Work}
+
+In this chapter we will give an overview of approaches and related works on broader knowledge acquisition research field, information extraction, crowdsourcing and geo-spatial context mining. 
+
+Knowledge Acquisition has been addressed from different perspectives by many researchers in Artificial Intelligence over decades, starting already in 1970 as a sub-discipline of AI research (\hl{Feigenbaum}), and since then resulting in a big number of types and implementations of approaches and technologies/algorithms. In more recent survey of KA approaches \parencite{Zang2013}, authors categorize all of the KA approaches into four main groups, regarding the source and way the knowledge is acquired:
+\begin{itemize}
+	\item \emph{Labour Acquisition.} This approach uses human minds as the knowledge source. This usually involves expert ontologists manually coding the knowledge.
+	\item \emph{Interaction Acquisition.} As in Labour Acquisition, the source of the knowledge is human minds, but in this case the KA is wrapped in a facilitated interaction with the system, and is sometimes implicit rather than explicit.
+	\item \emph{Reasoning Acquisition.} In this approach, new knowledge is automatically inferred from the existing knowledge using logical rules and machine inference.
+	\item \emph{Mining Acquisition.} In this approach, the knowledge is extracted from some large textual corpus or corpora.
+\end{itemize}
+
+We believe this categorization most accurately reflects the current state of machine (computer) based knowledge acquisition, and we decided to use it as well when structuring our related work descriptions. According to this classification, our work which is presented in this thesis, fits into a hybrid approach combining all four groups, with main focus on interaction and reasoning. We address the problem by combining the labour and interaction acquisition (users answering questions as part of NL interaction aimed at some higher level goal, such as helping the user), adding unique features of using user context and existing knowledge in combination with reasoning to produce a practically unlimited number of potential interaction acquisition tasks, going into the field of crowd-sourcing because we can address many users simultaneously.

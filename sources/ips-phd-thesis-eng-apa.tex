@@ -35,9 +35,6 @@
 % DOCUMENT
 %-------------------------------------------------------------------------------
 \begin{document}
-%--------------------------------------------------------------------------------------------------
-%
-% The cover page and spine are created separately using two .doc files provided by IPS.
 %-------------------------------------------------------------------------------
 %
 % FRONT MATTER
@@ -47,59 +44,52 @@
 %
 \selectlanguage{american}
 \pagestyle{fancy}
-%
+
 % Title pages
 \input{text-eng/front-title-pages}
-%
+
 % Dedication (optional)
 \input{text-eng/front-dedication}
-%
+
 % Acknowledgments
 \input{text-eng/front-acknowledgments}
-% 
+ 
 % English abstract
 \input{text-eng/front-abstract-eng}
-%
+
 % Slovene abstract, switch to slovene
 \selectlanguage{slovene}
 \input{text-eng/front-abstract-slo}
 \selectlanguage{american}
-%
+
 % Contents
 \maketoc
-%
 % List of figures (required if the thesis contains figures)
 \makelof
-%
 % List of tables (required if the thesis contains tables)
 \makelot
-%
 % List of algorithms (required if the thesis contains algorithms)
 \makeloa
-%
 % Abbreviations (optional)
 \input{text-eng/front-abbreviations}
-%
 % Symbols (optional)
 \input{text-eng/front-symbols}
-%
 % Glossary (optional)
 \input{text-eng/front-glossary}
+
 %-------------------------------------------------------------------------------
-%
 % MAIN MATTER
 %-------------------------------------------------------------------------------
-%
 \mainmatter
-%
+
 % Introduction
-\input{text-eng/main-introduction-phd}
-%
+\input{text-eng/01-introduction}
+
 % If needed, the thesis can consist of parts (not encouraged)
 %\part{First Part of the Thesis}
-%
+
 % Second chapter 
-\input{text-eng/main-chapter-2}
+\input{text-eng/02-background}
 %
 %
 % Third chapter 
