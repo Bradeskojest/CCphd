@@ -26,8 +26,9 @@ Previous works that can compares to our solution is divided into the systems tha
 		\hline
 		System & Ref. & Cat. & Source & Repr. & PK &  CS & C \\
 		\hline
-		Cyc project (Cycorp) & \parencite{Lenat1995} & Labour & Knowledge Entry & CycL & / & / & / \\
-		51 & 2234 & 97 & X & ? \\
+		Cyc project (Cycorp) & \parencite{Lenat1995} & Labour & KE & CycL & / & / & / \\
+		ThoughtTrasure(Signiform) & \parencite{Mueller2003} & Labour & KE & LAGS & / & / & / \\
+		HowNet (Keen.) & \parencite{Lenat1995} & Labour & KE & KDML & / & / & / \\
 		\hline
 	\end{tabular}
 \end{table}
@@ -35,8 +36,12 @@ Previous works that can compares to our solution is divided into the systems tha
 \section{Labour Acquisition}
 This category consists of KA approaches which rely on explicit human work to collect the knowledge. A number of expert (or also untrained) ontologists or knowledge engineers is employed to codify the knowledge by hand into the given knowledge representation (formal language). 
 
- \emph{Cyc.} The most famous and also most comprehensive and expensive knowledge acquired this way, is Cyc KB, which is part of Cyc AI system \parencite{Lenat1995}. It started in 1984 as a research project, with a premise that in order to be able to think like humans do, the computer needs to have knowledge about the world and the language like humans do, and there is no other way than to teach them, one concept at a time, by hand. Since 1994, the project continued through Cycorp Inc. company, which is still continuing the effort. Through the years Cyc Inc. employed computer scientists, knowledge engineers, philosophers, ontologists, linguists and domain experts, to codify the knowledge in the formal higher order logic language CycL (\hl{Cyc Language}). As of 2006   \parencite{Matuszek2006}, the effort of making Cyc was 900 non-crowdsourced human years which resulted in 7 million assertions connecting 500.000 terms and 17.000 predicates/relations \parencite{Zang2013}, structured into consistent sub-theories (Microtheories) and connected to the Cyc Inference engine and Natural Language generation. Since the implemtentation of our approach is based on Cyc, we give a more detailed description of the KB and its connected systems in \autoref{section:Cyc} on page \pageref{section:Cyc}.
+\emph{Cyc.} The most famous and also most comprehensive and expensive knowledge acquired this way, is Cyc KB, which is part of Cyc AI system \parencite{Lenat1995}. It started in 1984 as a research project, with a premise that in order to be able to think like humans do, the computer needs to have knowledge about the world and the language like humans do, and there is no other way than to teach them, one concept at a time, by hand. Since 1994, the project continued through Cycorp Inc. company, which is still continuing the effort. Through the years Cyc Inc. employed computer scientists, knowledge engineers, philosophers, ontologists, linguists and domain experts, to codify the knowledge in the formal higher order logic language CycL (\hl{Cyc Language}). As of 2006   \parencite{Matuszek2006}, the effort of making Cyc was 900 non-crowdsourced human years which resulted in 7 million assertions connecting 500,000 terms and 17,000 predicates/relations \parencite{Zang2013}, structured into consistent sub-theories (Microtheories) and connected to the Cyc Inference engine and Natural Language generation. Since the implemtentation of our approach is based on Cyc, we give a more detailed description of the KB and its connected systems in \autoref{section:Cyc} on page \pageref{section:Cyc}. Cyc Project is still work in progress and continues to live and expand through various research and commercial projects.
 
+\emph{ThoughtTreasure.} Approximately at the same time as Cyc Inc. company was formed (1994), Eric Mueller started to work on a similar system, which was inspired by Cyc and is similar in having a combination of common sense knowledge concepts connected to their natural language presentations. The main differentiator from Cyc is, that it tries to use simpler representation compared to first-order logic as is used in Cyc. Additionally, some parts of ThoughtTreasure knowledge can be presented also with finite automata, grids and scripts \parencite{Mueller1999,Mueller2003}. In 2003 the knowledge of this system consisted of 25,000 concepts and 50,000 assertions. ThoughtTreasure was not so successfull as Cyc and ceased all developments in 2000 and was open-sourced on Github in 2015.
+ 
+\emph{ThoughtTreasure.} Dada
+ 
 \section{Interaction Acquisition}
 adada
 \subsection{Games}
