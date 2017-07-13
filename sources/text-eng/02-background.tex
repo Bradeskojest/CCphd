@@ -1,20 +1,58 @@
 %-------------------------------------------------------------------------------
 \chapter{Background and Related Work}
 
-In this chapter we will give an overview of approaches and related works on broader knowledge acquisition research field, information extraction, crowdsourcing and geo-spatial context mining. 
+In this chapter we will give an overview of approaches and related works on
+broader knowledge acquisition research field, information extraction, 
+crowdsourcing and geo-spatial context mining. 
 
-Knowledge Acquisition has been addressed from different perspectives by many researchers in Artificial Intelligence over decades, starting already in 1970 as a sub-discipline of AI research, and since then resulting in a big number of types and implementations of approaches and technologies/algorithms. The difficulty of acquiring and maintaining the knowledge was soon noticed and was coined as \emph{Knowledge Acquisition Bottleneck} in 1977\parencite{Feigenbaum1977}. In more recent survey of KA approaches \parencite{Zang2013}, authors categorize all of the KA approaches into four main groups, regarding the source of the data and the way knowledge is acquired:
+Knowledge Acquisition has been addressed from different perspectives by many 
+researchers in Artificial Intelligence over decades, starting already in 1970 
+as a sub-discipline of AI research, and since then resulting in a big number of 
+types and implementations of approaches and technologies/algorithms. The 
+difficulty of acquiring and maintaining the knowledge was soon noticed and was 
+coined as \emph{Knowledge Acquisition Bottleneck} in 
+1977\parencite{Feigenbaum1977}. In more recent survey of KA approaches 
+\parencite{Zang2013}, authors categorize all of the KA approaches into four main
+groups, regarding the source of the data and the way knowledge is acquired:
 \begin{itemize}
-	\item \emph{Labour Acquisition.} This approach uses human minds as the knowledge source. This usually involves human (expert) ontologists manually entering and encoding the knowledge.
-	\item \emph{Interaction Acquisition.} As in Labour Acquisition, the source of the knowledge is coming from humans, but in this case the KA is wrapped in a facilitated interaction with the system, and is sometimes implicit rather than explicit.
-	\item \emph{Reasoning Acquisition.} In this approach, new knowledge is automatically inferred from the existing knowledge using logical rules and machine inference.
-	\item \emph{Mining Acquisition.} In this approach, the knowledge is extracted from some large textual corpus or corpora.
+	\item \emph{Labour Acquisition.} This approach uses human minds as the 
+    knowledge source. This usually involves human (expert) ontologists manually 
+    entering and encoding the knowledge.
+	\item \emph{Interaction Acquisition.} As in Labour Acquisition, the source 
+    of the knowledge is coming from humans, but in this case the KA is wrapped 
+    in a facilitated interaction with the system, and is sometimes implicit 
+    rather than explicit.
+	\item \emph{Reasoning Acquisition.} In this approach, new knowledge is 
+    automatically inferred from the existing knowledge using logical rules and 
+    machine inference.
+	\item \emph{Mining Acquisition.} In this approach, the knowledge is 
+    extracted from some large textual corpus or corpora.
 \end{itemize}
 
-We believe this categorization most accurately reflects the current state of machine (computer) based knowledge acquisition, and we decided to use the same classification when structuring our related work, focusing more on closely related approaches and extending where necessary. According to this classification, our work presented in this thesis, fits into a hybrid approach combining all four groups, with main focus on interaction and reasoning. We address the problem by combining the labour and interaction acquisition (users answering questions as part of NL interaction aimed at some higher level goal, such as helping the user with various tasks), adding unique features of using user context and existing knowledge in combination with reasoning to produce a practically unlimited number of potential interaction acquisition tasks, going into the field of crowd-sourcing by sending these generated tasks to many users simultaneously.
+We believe this categorization most accurately reflects the current state of 
+machine (computer) based knowledge acquisition, and we decided to use the same 
+classification when structuring our related work, focusing more on closely 
+related approaches and extending where necessary. According to this 
+classification, our work presented in this thesis, fits into a hybrid approach 
+combining all four groups, with main focus on interaction and reasoning. We 
+address the problem by combining the labour and interaction acquisition (users 
+answering questions as part of NL interaction aimed at some higher level goal, 
+such as helping the user with various tasks), adding unique features of using 
+user context and existing knowledge in combination with reasoning to produce a 
+practically unlimited number of potential interaction acquisition tasks, going 
+into the field of crowd-sourcing by sending these generated tasks to many users 
+simultaneously.
 
 \todo{Fix this, reference to chapters instead to specifici works.} 
-Previous works that can compare with our solution is divided into the systems that exploit existing knowledge (generated anew during acquisition or pre-existing from before in other sources) \parencite{Singh2002a,Witbrock2003,Forbus2007,Kvo2010,Sharma2010,Mitchel2015}, reasoning \parencite{Witbrock2003,Speer2007,Speer2008,Kuo2010}, crowdsourcing \parencite{Singh2002,Speer2009, Kuo2010, Pedro2012a, Pedro2013}, acquisition through interaction \parencite{Speer2009,Pedro2012,Pedro2013}, acquisition through labour(\hl{add, probably rather refer to subsections}) \parencite{} and natural language conversation\parencite{Pedro2012, Speer2007,Speer2009, Witbrock2003,Kuo2010}.
+Previous works that can compare with our solution is divided into the systems 
+that exploit existing knowledge (generated anew during acquisition or 
+pre-existing from before in other sources) \parencite{Singh2002a,Witbrock2003,
+Forbus2007,Kvo2010,Sharma2010,Mitchel2015}, reasoning \parencite{Witbrock2003,
+Speer2007,Speer2008,Kuo2010}, crowdsourcing \parencite{Singh2002,Speer2009, 
+Kuo2010, Pedro2012a, Pedro2013}, acquisition through interaction 
+\parencite{Speer2009,Pedro2012,Pedro2013}, acquisition through labour(\hl{add, 
+probably rather refer to subsections}) \parencite{} and natural language 
+conversation\parencite{Pedro2012, Speer2007,Speer2009, Witbrock2003,Kuo2010}.
 
 \hl{Test referencing table} (see \tablename~\ref{tab:related}).
 
@@ -22,53 +60,211 @@ Previous works that can compare with our solution is divided into the systems th
 	\caption{Structured overview of related KA systems}
 	\label{tab:related}
 	\centering
-	\begin{tabular}{cccccccc}
+	\begin{tabular}{ccccccccc}
 		\hline
-		System & Ref. & Cat. & Source & Repr. & PK &  CS & C \\
+		System & Parent & Ref. & Cat. & Source & Repr. & PK &  CS & C \\
 		\hline
-		Cyc project (Cycorp) & \parencite{Lenat1995} & Labour & K. Exp. & CycL & / & / & / \\
-		ThoughtTrasure(Signiform) & \parencite{Mueller2003} & Labour & K. Exp. & LAGS & / & / & / \\
-		HowNet (Keen.) & \parencite{Dong2010} & Labour & K. Exp. & KDML & / & / & / \\
-		OMCS (MIT) & \parencite{Singh2002a} & Labour & G. Public & ? & / & \checkmark & / \\
-		KRAKEN (Cycorp) & \parencite{Panton2002a} & Interaction & Experts & CycL & \checkmark & / & / \\
-		UIA (Cycorp) & \parencite{Witbrock2003UIA} & Interaction & Experts & CycL & \checkmark & / & / \\
-		Factivore (Cycorp) & \parencite{Witbrock2005} & Interaction & Experts & CycL & \checkmark & / & / \\
-		Predicate Populator (Cycorp) & \parencite{Witbrock2005} & Interaction & Experts & CycL & \checkmark & / & / \\
-		\hline
+		Cyc project (Cycorp) & / & \parencite{Lenat1995} & Labour & K. Exp. & CycL & / & / & / \\
+		ThoughtTrasure(Signiform) & / & \parencite{Mueller2003} & Labour & K. Exp. & LAGS & / & / & / \\
+		HowNet (Keen.) & / & \parencite{Dong2010} & Labour & K. Exp. & KDML & / & / & / \\
+		OMCS (MIT) & / & \parencite{Singh2002a} & Labour & Public & ConceptNet & / & \checkmark & / \\
+		KRAKEN (Cycorp) & Cyc & \parencite{Panton2002a} & Interaction & Experts & CycL & \checkmark & / & / \\
+		UIA (Cycorp) & Cyc & \parencite{Witbrock2003UIA} & Interaction & Experts & CycL & \checkmark & / & / \\
+		Factivore (Cycorp) & Cyc & \parencite{Witbrock2005} & Interaction & Experts & CycL & \checkmark & / & / \\
+		Predicate Populator (Cycorp) & Cyc & \parencite{Witbrock2005} & Interaction & Experts & CycL & \checkmark & / & / \\
+		CURE (Cycorp) & Cyc & \parencite{Witbrock2010} & Interaction & Experts & CycL & \checkmark & / & / \\
+		OMCommons (MIT) & OMCS & \parencite{Speer2007} & Interaction & Public & ConceptNet & \checkmark & ? \\
+        \hline
 	\end{tabular}
 \end{table}
 
 \section{Labour Acquisition}
 \label{section:LabourAcquisition}
-This category consists of KA approaches which rely on explicit human work to collect the knowledge. A number of expert (or also untrained) ontologists or knowledge engineers is employed to codify the knowledge by hand into the given knowledge representation (formal language). Labour acquisition is the most expensive acquisition type, but it gives a high quality knowledge. It is often a crucial initial step in other KA types as well, since it can help to have some pre-existing knowledge to be able to check the consistency of the newly acquired knowledge. Labour Acquisition is often present in other KA types, even if not explicitly mentioned, since it is implicitly done when defining internal workings and structures of other KA processes. While we checked other well known systems that are result of Labour Acquisition, Cyc (mentioned below) is the most comprehensive of them and was picked as a starting point and main background knowledge and implementation base for this work.
+This category consists of KA approaches which rely on explicit human work to 
+collect the knowledge. A number of expert (or also untrained) ontologists or 
+knowledge engineers is employed to codify the knowledge by hand into the given 
+knowledge representation (formal language). Labour acquisition is the most 
+expensive acquisition type, but it gives a high quality knowledge. It is often a
+crucial initial step in other KA types as well, since it can help to have some 
+pre-existing knowledge to be able to check the consistency of the newly acquired
+knowledge. Labour Acquisition is often present in other KA types, even if not 
+explicitly mentioned, since it is implicitly done when defining internal 
+workings and structures of other KA processes. While we checked other well 
+known systems that are result of Labour Acquisition, Cyc (mentioned below) is 
+the most comprehensive of them and was picked as a starting point and main 
+background knowledge and implementation base for this work.
 
-\emph{Cyc.} The most famous and also most comprehensive and expensive knowledge acquired this way, is Cyc KB, which is part of Cyc AI system \parencite{Lenat1995}. It started in 1984 as a research project, with a premise that in order to be able to think like humans do, the computer needs to have knowledge about the world and the language like humans do, and there is no other way than to teach them, one concept at a time, by hand. Since 1994, the project continued through Cycorp Inc. company, which is still continuing the effort. Through the years Cyc Inc. employed computer scientists, knowledge engineers, philosophers, ontologists, linguists and domain experts, to codify the knowledge in the formal higher order logic language CycL (\hl{Cyc Language}). As of 2006   \parencite{Matuszek2006}, the effort of making Cyc was 900 non-crowdsourced human years which resulted in 7 million assertions connecting 500,000 terms and 17,000 predicates/relations \parencite{Zang2013}, structured into consistent sub-theories (Microtheories) and connected to the Cyc Inference engine and Natural Language generation. Since the implemtentation of our approach is based on Cyc, we give a more detailed description of the KB and its connected systems in \autoref{section:Cyc} on page \pageref{section:Cyc}. Cyc Project is still work in progress and continues to live and expand through various research and commercial projects.
+\emph{Cyc.} The most famous and also most comprehensive and expensive knowledge 
+acquired this way, is Cyc KB, which is part of Cyc AI system 
+\parencite{Lenat1995}. It started in 1984 as a research project, with a premise 
+that in order to be able to think like humans do, the computer needs to have 
+knowledge about the world and the language like humans do, and there is no other
+way than to teach them, one concept at a time, by hand. Since 1994, the project 
+continued through Cycorp Inc. company, which is still continuing the effort. 
+Through the years Cyc Inc. employed computer scientists, knowledge engineers, 
+philosophers, ontologists, linguists and domain experts, to codify the knowledge
+in the formal higher order logic language CycL (\hl{Cyc Language}). As of 2006
+\parencite{Matuszek2006}, the effort of making Cyc was 900 non-crowdsourced 
+human years which resulted in 7 million assertions connecting 500,000 terms and 
+17,000 predicates/relations \parencite{Zang2013}, structured into consistent 
+sub-theories (Microtheories) and connected to the Cyc Inference engine and 
+Natural Language generation. Since the implemtentation of our approach is based
+on Cyc, we give a more detailed description of the KB and its connected systems
+in \autoref{section:Cyc} on page \pageref{section:Cyc}. Cyc Project is still 
+work in progress and continues to live and expand through various research and
+commercial projects.
 
-\emph{ThoughtTreasure.} Approximately at the same time(1994) as Cyc Inc. company was formed, Eric Mueller started to work on a similar system, which was inspired by Cyc and is similar in having a combination of common sense knowledge concepts connected to their natural language presentations. The main differentiator from Cyc is, that it tries to use simpler representation compared to first-order logic as is used in Cyc. Additionally, some parts of ThoughtTreasure knowledge can be presented also with finite automata, grids and scripts \parencite{Mueller1999,Mueller2003}. In 2003 the knowledge of this system consisted of 25,000 concepts and 50,000 assertions. ThoughtTreasure was not so successfull as Cyc and ceased all developments in 2000 and was open-sourced on Github in 2015. \hl{link as footnote}.
+\emph{ThoughtTreasure.} Approximately at the same time(1994) as Cyc Inc. company
+was formed, Eric Mueller started to work on a similar system, which was inspired
+by Cyc and is similar in having a combination of common sense knowledge concepts
+connected to their natural language presentations. The main differentiator from 
+Cyc is, that it tries to use simpler representation compared to first-order 
+logic as is used in Cyc. Additionally, some parts of ThoughtTreasure knowledge 
+can be presented also with finite automata, grids and scripts 
+\parencite{Mueller1999,Mueller2003}. In 2003 the knowledge of this system 
+consisted of 25,000 concepts and 50,000 assertions. ThoughtTreasure was not so 
+successfull as Cyc and ceased all developments in 2000 and was open-sourced on 
+Github in 2015. \hl{link as footnote}.
 
-\emph{HowNet} started in 1999 and is an on-line common-sense knowledge base unveiling inter-conceptual relationships and inter-attribute relationships of concepts as connoting in lexicons of the Chinese and their English equivalents . As of 2010 it had 115,278 concepts annotated with Chinese representation, 121,262 concepts with English representation, and 662,877 knowledge base records including other concepts and attributes \parencite{Dong2010}. HowNet knowledge is stored in the form of concept relationships and attribute relationships and is formally structured in KDML (Knowledge Database Mark-up Language), consisting of concepts (called semens in KDML) and their semantic roles.
+\emph{HowNet} started in 1999 and is an on-line common-sense knowledge base 
+unveiling inter-conceptual relationships and inter-attribute relationships of 
+concepts as connoting in lexicons of the Chinese and their English equivalents. 
+As of 2010 it had 115,278 concepts annotated with Chinese representation, 
+121,262 concepts with English representation, and 662,877 knowledge base records
+including other concepts and attributes \parencite{Dong2010}. HowNet knowledge 
+is stored in the form of concept relationships and attribute relationships and 
+is formally structured in KDML (Knowledge Database Mark-up Language), consisting
+of concepts (called semens in KDML) and their semantic roles.
  
-\emph{Open Mind Common Sense (OMCS)} is a crowdsourcing knowledge acquisition project that started in 1999 at the MIT Media Lab\parencite{Singh2002a}. Together with initial seed and example knowledge, the system was put online with a knowledge entry interface, so the entry was crowd-sourced and anyone interested could enter and codify the knowledge. OMCS supported collecting knowledge in multiple languages. It's main difference from the systems described above (Cyc, HowNet, ThoughtTreasure) is, that it used deliberate crowdsourcing and that it's knowledge base and representation is not strictly formal logic, but rather inter-connected pieces of natural language statements. As of 2013 \parencite{Zang2013}, OMCS produced second biggest KB after Cyc, consisting of English (1,040,067 statements), Chinese (356,277), Portuguese (233,514), Korean (14,955), Japanese (14,546), Dutch (5,066), etc. Initial collection was done by specifying 25 human activities, where each activity got it's own user interface for free form natural language entry and also pre-defined patterns like "A hammer is for \underline{\hspace{1.5cm}}", where participants can enter the knowledge. Although OMCS started to build KB from scratch it shares a similarity to our CC system in a sense that it is using crowd-sourcing and also natural language patterns with empty slots to fill in missing parts. OMCS was later used in many other KA approaches as a prior knowledge, similar way as we use Cyc. After a few versions, OMCS was taken from public access and merged with multiple KBs and KA approaches into an ConceptNet KB\footnote{http://conceptnet.io/} \parencite{Speer2016}, which is now (in 2017) part of Linked Open Data (LOD) and maintained as open-source project.
+\emph{Open Mind Common Sense (OMCS)} is a crowdsourcing knowledge acquisition 
+project that started in 1999 at the MIT Media Lab\parencite{Singh2002a}. 
+Together with initial seed and example knowledge, the system was put online with
+a knowledge entry interface, so the entry was crowd-sourced and anyone 
+interested could enter and codify the knowledge. OMCS supported collecting 
+knowledge in multiple languages. It's main difference from the systems described
+above (Cyc, HowNet, ThoughtTreasure) is, that it used deliberate crowdsourcing
+and that it's knowledge base and representation is not strictly formal logic, 
+but rather inter-connected pieces of natural language statements. As of 2013 
+\parencite{Zang2013}, OMCS produced second biggest KB after Cyc, consisting of 
+English (1,040,067 statements), Chinese (356,277), Portuguese (233,514), 
+Korean (14,955), Japanese (14,546), Dutch (5,066), etc. Initial collection was
+done by specifying 25 human activities, where each activity got it's own user 
+interface for free form natural language entry and also pre-defined patterns 
+like "A hammer is for \underline{\hspace{1.5cm}}", where participants can enter
+the knowledge. Although OMCS started to build KB from scratch it shares a 
+similarity to our CC system in a sense that it is using crowd-sourcing and also
+natural language patterns with empty slots to fill in missing parts. OMCS was
+later used in many other KA approaches as a prior knowledge, similar way as we 
+use Cyc. After a few versions, OMCS was taken from public access and merged with
+multiple KBs and KA approaches into an ConceptNet 
+KB\footnote{http://conceptnet.io/} \parencite{Speer2016}, which is now (in 2017)
+part of Linked Open Data (LOD) and maintained as open-source project.
  
 \section{Interaction Acquisition}
-Similarly as with Labour KA, interaction Acquisition gets the knowledge from human minds, but in this case the acquisition is an intended side effect, while users are interacting with the software as part of some other activity/task, or as part of a motivation scheme, such as knowledge acquisition games. Besides games, the interaction could be some other user interface for solving specific tasks, or a Natural Language Conversation. This type of acquisition is most strongly correlated with the approach described in this thesis, since Curious Cat uses points (gaming), to motivate users and it interacts with user in NL, while discussing various topics (concepts). It uses the conversation to set up the context and acquire (remember) user's responses and places them properly in to the KB. Sometimes the acquired knowledge is paraphrased and presented back to user to show the 'understanding', which was first tried in OSMC (\autoref{section:LabourAcquisition}, \parencite{Singh2002b}), but there only in non-conversational way as part of the input forms.
+Similarly as with Labour KA, interaction Acquisition gets the knowledge from 
+human minds, but in this case the acquisition is an intended side effect, while
+users are interacting with the software as part of some other activity/task, or
+as part of a motivation scheme, such as knowledge acquisition games. Besides 
+games, the interaction could be some other user interface for solving specific
+tasks, or a Natural Language Conversation. This type of acquisition is most 
+strongly correlated with the approach described in this thesis, since Curious 
+Cat uses points (gaming), to motivate users and it interacts with user in NL, 
+while discussing various topics (concepts). It uses the conversation to set up
+the context and acquire (remember) user's responses and places them properly in
+to the KB. Sometimes the acquired knowledge is paraphrased and presented back to
+user to show the 'understanding', which was first tried in OSMC (
+\autoref{section:LabourAcquisition}, \parencite{Singh2002b}), but there only in
+non-conversational way as part of the input forms.
  
 \subsection{Interactive User Interfaces}
-Interactive user interfaces are the most common representation of interaction acquisition, where the user interface is constructed in a way to help user enter the data and thus make the acquisition much faster and cheaper. Historically, these systems were developed to help the labour acquisition systems, or on top of them, after parent systems reached some sort of maturity and initial knowledge stability. This is the reason why all of these systems rely or are build on top of labour acquisition (\autoref{section:LabourAcquisition}) or mining acquisition (\autoref{section:MiningAcquisition}) systems.
+Interactive user interfaces are the most common representation of interaction 
+acquisition, where the user interface is constructed in a way to help user enter
+the data and thus make the acquisition much faster and cheaper. Historically, 
+these systems were developed to help the labour acquisition systems, or on top
+of them, after parent systems reached some sort of maturity and initial 
+knowledge stability. This is the reason why all of these systems rely or are 
+build on top of labour acquisition (\autoref{section:LabourAcquisition}) or 
+mining acquisition (\autoref{section:MiningAcquisition}) systems.
 
-\emph{KRAKEN} system was a knowledge entry tool which allows domain experts to make meaningful additions to CYC knowledge base, without the training in the areas of artificial intelligence, ontology development, or knowledge representation\parencite{Panton2002a}. It was developed as part of DARPA's Rapid Knowledge Formation (RKF) project in 2000. As its goal was to allow knowledge entry to non-trained experts, it started to use natural language entry and is as this, a first pre-cursor to Curious Cat system and a seed idea for it. It consists of creators, selectors, modifiers of Cyc KB building blocks, tools for consistency checks and tools for using existing knowledge to infer new things to ask. This tool, together with it's derived solutions was later re-written and integrated into Cyc as CURE system (see below). While KRAKEN and later CURE already used Natural Language generation and parsing, and started with the idea of natural language dialogue for doing the KA, the interaction, it was missing user context (user's had to select or search the concept of interest), and also crowdsourcing aspects. Kraken was also missing rules for explicit question asking. The questions were all related to the selected concept and given as a list of natural language forms.
+\emph{KRAKEN} system was a knowledge entry tool which allows domain experts to
+make meaningful additions to CYC knowledge base, without the training in the 
+areas of artificial intelligence, ontology development, or knowledge
+representation\parencite{Panton2002a}. It was developed as part of DARPA's
+Rapid Knowledge Formation (RKF) project in 2000. As its goal was to allow
+knowledge entry to non-trained experts, it started to use natural language 
+entry and is as this, a first pre-cursor to Curious Cat system and a seed idea
+for it. It consists of creators, selectors, modifiers of Cyc KB building blocks,
+tools for consistency checks and tools for using existing knowledge to infer new
+things to ask. This tool, together with it's derived solutions was later 
+re-written and integrated into Cyc as CURE system (see below). While KRAKEN and
+later CURE already used Natural Language generation and parsing, and started 
+with the idea of natural language dialogue for doing the KA, the interaction, it
+was missing user context (user's had to select or search the concept of 
+interest), and also crowdsourcing aspects. Kraken was also missing rules for
+explicit question asking. The questions were all related to the selected concept
+and given as a list of natural language forms.
 
-\emph{User Interaction Agenda (UIA)} was a web  based user interface for KRAKEN KA tool\parencite{Panton2002a,Witbrock2003UIA}. It worked inside a browser and it worked as responsive web-app (in 2001) by automatically triggering refresh functionality of the browser. It
+\emph{User Interaction Agenda (UIA)} was a web  based user interface for KRAKEN
+KA tool\parencite{Panton2002a,Witbrock2003UIA}. It worked inside a browser and 
+it worked as responsive web-app (in 2001) by automatically triggering refresh 
+functionality of the browser. It
 consisted of a menu of tools that is organized according to the recommended
-steps of the KE process, text entry box (query, answer, statement), center screen for the main interaction with the current tool, and a summary with a set of colored steps needed to complete current interaction. Similarly as KRAKEN itself, this interface was later improved and integrated into main Cyc system as part of CURE tool. 
+steps of the KE process, text entry box (query, answer, statement), center 
+screen for the main interaction with the current tool, and a summary with a set
+of colored steps needed to complete current interaction. Similarly as KRAKEN 
+itself, this interface was later improved and integrated into main Cyc system as
+part of CURE tool. 
 
-\emph{Factivore} was a Java Applet user interface for an extended KRAKEN system, meant for quick facts entering \parencite{Witbrock2005}. On the back-end it used the same mechanisms and logical templates, while in the front-end it only allowed facts entering, as opposed to UIA, which also allowed rules (which ended up as not being useful).
+\emph{Factivore} was a Java Applet user interface for an extended KRAKEN system,
+meant for quick facts entering \parencite{Witbrock2005}. On the back-end it used
+the same mechanisms and logical templates, while in the front-end it only
+allowed facts entering, as opposed to UIA, which also allowed rules (which
+ended up as not being useful).
 
-\emph{Predicate Populator} is a similar tool as \emph{Factivore}, which instead of only collecting instances, allows to add general knowledge about classes. For example, instead of describing facts for a specific restaurant, it can collect general knowledge that is true for all restaurants \parencite{Witbrock2005}. The context of the KA in this case, is given by class concept, a predicate and a web-site which is parsed into CycL concepts. These are then filtered out if they do not match argument constraints of the predicate and then shown to user for selection. As part of the validation, this tool had some problems with correctly acquired knowledge. One of the proposed solutions (never implemented), was to start using volunteers to vote about the correctness. This is already a pre-cursor idea for crowd-sourced voting mechanisms that we used in Curious Cat.
+\emph{Predicate Populator} is a similar tool as \emph{Factivore}, which instead
+of only collecting instances, allows to add general knowledge about classes. For
+example, instead of describing facts for a specific restaurant, it can collect
+general knowledge that is true for all restaurants \parencite{Witbrock2005}. The
+context of the KA in this case, is given by class concept, a predicate and a 
+web-site which is parsed into CycL concepts. These are then filtered out if they
+do not match argument constraints of the predicate and then shown to user for 
+selection. As part of the validation, this tool had some problems with correctly
+acquired knowledge. One of the proposed solutions (never implemented), was to
+start using volunteers to vote about the correctness. This is already a 
+pre-cursor idea for crowd-sourced voting mechanisms that we used in Curious Cat.
 
-\emph{CURE (Content Understanding, Review and Entry)} is an extended and improved version of \emph{KRAKEN} and it's GUI tools (\emph{UIA, Factivore and Predicate Populator}), which is now integrated directly into CYC web-interface as part of internal knowledge entry tools. Similarly as Curious Cat, CURE can use existing knowledge to check for consistencies, and inference engine with rules to generate new questions. While CURE and Curious-Cat were co-developed through years 2002-2003 and share a lot of similar ideas, the main differences are that CURE is a list of natural language questions (patterns), it doesn't support crowd-sourcing and pro-active behavior, doesn't take user context into the consideration and it only have concept based direct question generating rules (asking about predicates for specific classes/subclasses of concepts)\footnote{At the time of CC development it didn't have these}. On the other side Curious Cat have much wider and more complex rules triggering questions based on user context, previous answers and also missing knowledge indirectly related to the topic. It also uses crowd-sourcing for additional correctness check and the questions and answers are presented in sequence so user have a conversation with the system.
+\emph{CURE (Content Understanding, Review and Entry)} is an extended and 
+improved version of \emph{KRAKEN} and it's GUI tools (\emph{UIA, Factivore and
+Predicate Populator}), which is now integrated directly into CYC web-interface
+as part of internal knowledge entry tools. Similarly as Curious Cat, CURE can
+use existing knowledge to check for consistencies, and inference engine with
+rules to generate new questions. While CURE and Curious-Cat were co-developed
+through years 2002-2003 and share a lot of similar ideas, the main differences
+are that CURE is a list of natural language questions (patterns), it doesn't
+support crowd-sourcing and pro-active behavior, doesn't take user context into
+the consideration and it only have concept based direct question generating
+rules (asking about predicates for specific classes/subclasses of 
+concepts)\footnote{At the time of CC development it didn't have these}. On the
+other side Curious Cat have much wider and more complex rules triggering
+questions based on user context, previous answers and also missing knowledge
+indirectly related to the topic. It also uses crowd-sourcing for additional 
+correctness check and the questions and answers are presented in sequence so
+user have a conversation with the system.
 
-\emph{OMCommons} is a crowdsourcing knowledge acqui
+\emph{OMCommons (Open Mind Commons)} is an interactive interface to OMCS which
+can respond with a feedback to user answers and maintain dialogue 
+\parencite{Speer2007}. This is similar approach as we do with Curious Cat and
+shows understanding of the knowledge users enter. The mechanisms behind is
+by using inference engine to make analogical inferences based on the existing 
+knowledge and new entry. Then it generates some relevant questions and asks 
+user to confirm them. For example, as given from the original paper, 
+\emph{OMCommons} asks: "A bicycle would be found on the street. Is this common 
+sense?". This is then displayed to the user with the justification for the 
+question: "A bicycle is similar to a car. I have been told that a car would 
+be found on the street". Users then click on "Yes/No" buttons to confirm or
+reject the inferred statement. The interactive interface also allows its users 
+to refine the knowledge entered by other users and see the ratings. Users can 
+also explore what new inferences are result of their new contributions.
 
 \emph{Freebase} is a crowdsourcing knowledge acqui
 
