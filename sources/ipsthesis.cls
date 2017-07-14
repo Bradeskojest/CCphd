@@ -527,7 +527,7 @@
 %
 \RequirePackage[style=american]{csquotes}
 \ifapa
-	\RequirePackage[backend=biber,style=apa,doi=true,url=true]{biblatex}[2014/06/25]
+	\RequirePackage[backend=biber,style=authoryear,doi=true,url=true,maxcitenames=1]{biblatex}[2014/06/25]
 	\DeclareLanguageMapping{american}{american-apa}
 	\DeclareLanguageMapping{slovene}{slovene-apa}
 \else

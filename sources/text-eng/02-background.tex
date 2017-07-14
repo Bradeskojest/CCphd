@@ -56,27 +56,30 @@ conversation\parencite{Pedro2012, Speer2007,Speer2009, Witbrock2003,Kuo2010}.
 
 \hl{Test referencing table} (see \tablename~\ref{tab:related}).
 
-\begin{table}[htb]
+\begin{landscape}
+	\begin{table}[htb]
 	\caption{Structured overview of related KA systems}
 	\label{tab:related}
 	\centering
-	\begin{tabular}{ccccccccc}
+	\begin{tabular}{lclcccccc}
 		\hline
-		System & Parent & Ref. & Cat. & Source & Repr. & PK &  CS & C \\
+		System & Parent & Reference & Category & Source & Representation & Prior K. &  Crowds. & Context \\
 		\hline
 		Cyc project (Cycorp) & / & \parencite{Lenat1995} & Labour & K. Exp. & CycL & / & / & / \\
 		ThoughtTrasure(Signiform) & / & \parencite{Mueller2003} & Labour & K. Exp. & LAGS & / & / & / \\
 		HowNet (Keen.) & / & \parencite{Dong2010} & Labour & K. Exp. & KDML & / & / & / \\
 		OMCS (MIT) & / & \parencite{Singh2002a} & Labour & Public & ConceptNet & / & \checkmark & / \\
-		KRAKEN (Cycorp) & Cyc & \parencite{Panton2002a} & Interaction & Experts & CycL & \checkmark & / & / \\
-		UIA (Cycorp) & Cyc & \parencite{Witbrock2003UIA} & Interaction & Experts & CycL & \checkmark & / & / \\
-		Factivore (Cycorp) & Cyc & \parencite{Witbrock2005} & Interaction & Experts & CycL & \checkmark & / & / \\
-		Predicate Populator (Cycorp) & Cyc & \parencite{Witbrock2005} & Interaction & Experts & CycL & \checkmark & / & / \\
-		CURE (Cycorp) & Cyc & \parencite{Witbrock2010} & Interaction & Experts & CycL & \checkmark & / & / \\
-		OMCommons (MIT) & OMCS & \parencite{Speer2007} & Interaction & Public & ConceptNet & \checkmark & ? \\
-        \hline
+		KRAKEN (Cycorp) & Cyc & \parencite{Panton2002a} & Interaction & D. Exp & CycL & \checkmark & / & / \\
+		UIA (Cycorp) & Cyc & \parencite{Witbrock2003UIA} & Interaction & D. Exp & CycL & \checkmark & / & / \\
+		Factivore (Cycorp) & Cyc & \parencite{Witbrock2005} & Interaction & D. Exp & CycL & \checkmark & / & / \\
+		Predicate Populator (Cycorp) & Cyc & \parencite{Witbrock2005} & Interaction & D. Exp & CycL & \checkmark & / & / \\
+		CURE (Cycorp) & Cyc & \parencite{Witbrock2010} & Interaction & D. Exp & CycL & \checkmark & / & / \\
+		OMCommons (MIT) & OMCS & \parencite{Speer2007} & Interaction & Public & ConceptNet & \checkmark & \checkmark & / \\
+		Freebase (Metaweb/Google) & / & \parencite{Bollacker2008} & Interaction & Public & RDF & / & / & / \\
+		\hline
 	\end{tabular}
 \end{table}
+\end{landscape}
 
 \section{Labour Acquisition}
 \label{section:LabourAcquisition}
@@ -103,7 +106,7 @@ way than to teach them, one concept at a time, by hand. Since 1994, the project
 continued through Cycorp Inc. company, which is still continuing the effort. 
 Through the years Cyc Inc. employed computer scientists, knowledge engineers, 
 philosophers, ontologists, linguists and domain experts, to codify the knowledge
-in the formal higher order logic language CycL (\hl{Cyc Language}). As of 2006
+in the formal higher order logic language CycL \parencite{Matuszek2006a}. As of 2006
 \parencite{Matuszek2006}, the effort of making Cyc was 900 non-crowdsourced 
 human years which resulted in 7 million assertions connecting 500,000 terms and 
 17,000 predicates/relations \parencite{Zang2013}, structured into consistent 
@@ -266,7 +269,16 @@ reject the inferred statement. The interactive interface also allows its users
 to refine the knowledge entered by other users and see the ratings. Users can 
 also explore what new inferences are result of their new contributions.
 
-\emph{Freebase} is a crowdsourcing knowledge acqui
+\emph{Freebase} started in 2007\parencite{Bollacker2008} and was a large (mostly
+instance based) crowd-sourced graph database for structured general human 
+knowledge. Initially it was acquired from multiple public sources, mostly 
+Wikipedia. The initial seed was then constantly updated and corrected by the 
+community. On the user interface side, Freebase provides an AJAX/Web based 
+UI for humans and an HTTP/JSON based API for software access. For finding
+knowledge and also software based editing, it uses Metaweb Query Language 
+(MQL). A company behind freebase was bought by Google in 2010 and incorporated
+into a Google Knowledge Graph. In 2016 Freebase was incorporated into the 
+Wikidata platform and shut down by Google and is no longer maintained.
 
 \subsection{Games}
 adada
