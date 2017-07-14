@@ -76,6 +76,7 @@ conversation\parencite{Pedro2012, Speer2007,Speer2009, Witbrock2003,Kuo2010}.
 		CURE (Cycorp) & Cyc & \parencite{Witbrock2010} & Interaction & D. Exp & CycL & \checkmark & / & / \\
 		OMCommons (MIT) & OMCS & \parencite{Speer2007} & Interaction & Public & ConceptNet & \checkmark & \checkmark & / \\
 		Freebase (Metaweb/Google) & / & \parencite{Bollacker2008} & Interaction & Public & RDF & / & / & / \\
+		20 Questions (MIT) & OMCS & \parencite{Speer2009} & Game & Public & ConceptNet & / & / & / \\
 		\hline
 	\end{tabular}
 \end{table}
@@ -210,13 +211,12 @@ and given as a list of natural language forms.
 \emph{User Interaction Agenda (UIA)} was a web  based user interface for KRAKEN
 KA tool\parencite{Panton2002a,Witbrock2003UIA}. It worked inside a browser and 
 it worked as responsive web-app (in 2001) by automatically triggering refresh 
-functionality of the browser. It
-consisted of a menu of tools that is organized according to the recommended
-steps of the KE process, text entry box (query, answer, statement), center 
-screen for the main interaction with the current tool, and a summary with a set
-of colored steps needed to complete current interaction. Similarly as KRAKEN 
-itself, this interface was later improved and integrated into main Cyc system as
-part of CURE tool. 
+functionality of the browser. It consisted of a menu of tools that is organized
+according to the recommended steps of the KE process, text entry box (query, 
+answer, statement), center screen for the main interaction with the current 
+tool, and a summary with a set of colored steps needed to complete current 
+interaction. Similarly as KRAKEN itself, this interface was later improved
+and integrated into main Cyc system as part of CURE tool. 
 
 \emph{Factivore} was a Java Applet user interface for an extended KRAKEN system,
 meant for quick facts entering \parencite{Witbrock2005}. On the back-end it used
@@ -236,23 +236,16 @@ acquired knowledge. One of the proposed solutions (never implemented), was to
 start using volunteers to vote about the correctness. This is already a 
 pre-cursor idea for crowd-sourced voting mechanisms that we used in Curious Cat.
 
-\emph{CURE (Content Understanding, Review and Entry)} is an extended and 
-improved version of \emph{KRAKEN} and it's GUI tools (\emph{UIA, Factivore and
-Predicate Populator}), which is now integrated directly into CYC web-interface
-as part of internal knowledge entry tools. Similarly as Curious Cat, CURE can
-use existing knowledge to check for consistencies, and inference engine with
-rules to generate new questions. While CURE and Curious-Cat were co-developed
-through years 2002-2003 and share a lot of similar ideas, the main differences
-are that CURE is a list of natural language questions (patterns), it doesn't
-support crowd-sourcing and pro-active behavior, doesn't take user context into
-the consideration and it only have concept based direct question generating
-rules (asking about predicates for specific classes/subclasses of 
-concepts)\footnote{At the time of CC development it didn't have these}. On the
-other side Curious Cat have much wider and more complex rules triggering
-questions based on user context, previous answers and also missing knowledge
-indirectly related to the topic. It also uses crowd-sourcing for additional 
-correctness check and the questions and answers are presented in sequence so
-user have a conversation with the system.
+\emph{Freebase} started in 2007\parencite{Bollacker2008} and was a large (mostly
+instance based) crowd-sourced graph database for structured general human 
+knowledge. Initially it was acquired from multiple public sources, mostly 
+Wikipedia. The initial seed was then constantly updated and corrected by the 
+community. On the user interface side, Freebase provides an AJAX/Web based 
+UI for humans and an HTTP/JSON based API for software access. For finding
+knowledge and also software based editing, it uses Metaweb Query Language 
+(MQL). A company behind freebase was bought by Google in 2010 and incorporated
+into a Google Knowledge Graph. In 2016 Freebase was incorporated into the 
+Wikidata platform and shut down by Google and is no longer maintained.
 
 \emph{OMCommons (Open Mind Commons)} is an interactive interface to OMCS which
 can respond with a feedback to user answers and maintain dialogue 
@@ -269,23 +262,26 @@ reject the inferred statement. The interactive interface also allows its users
 to refine the knowledge entered by other users and see the ratings. Users can 
 also explore what new inferences are result of their new contributions.
 
-\emph{Freebase} started in 2007\parencite{Bollacker2008} and was a large (mostly
-instance based) crowd-sourced graph database for structured general human 
-knowledge. Initially it was acquired from multiple public sources, mostly 
-Wikipedia. The initial seed was then constantly updated and corrected by the 
-community. On the user interface side, Freebase provides an AJAX/Web based 
-UI for humans and an HTTP/JSON based API for software access. For finding
-knowledge and also software based editing, it uses Metaweb Query Language 
-(MQL). A company behind freebase was bought by Google in 2010 and incorporated
-into a Google Knowledge Graph. In 2016 Freebase was incorporated into the 
-Wikidata platform and shut down by Google and is no longer maintained.
-
 \subsection{Games}
-adada
+Games are a specific sub-section of interaction acquisition, where the actual
+acquisition is hidden or transformed into much more enjoyable process, 
+maximizing the entertainment of the users.
 
+\emph{20Q (20 Questions)} is a game with intentional knowledge acquisition task
+which focuses to the most salient properties of concepts. The game itself is
+a standard 20 questions game which aims to make one player figure out the 
+concept of discussion by asking yes/no questions and then infer from the 
+answers what the concept could be. The only difference is that the player which
+is asking is a computer based on OMCS knowledge base. It generates questions in
+NL, and according to what a player answers, it attempts to guess the concept.
+To decide what questions to ask, it uses statistical classification methods
+\parencite{Speer2009}, to discover the most informative attributes of concepts
+in OMCS KB. After the user answers all the questions, including whether the
+detected concept was right or not, the concept and the answers will be assigned
+to proper cluster and thus the characteristics of the object are learned.
 
 \subsection{Interactive Natural Language Conversation}
-dada
+dada. Describe also which Games goes under this category. But this should mostly be about chatbots
 
 \section{Reasoning Acquisition}
 adad dada
