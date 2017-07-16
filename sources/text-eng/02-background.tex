@@ -77,8 +77,8 @@ conversation\parencite{Pedro2012, Speer2007,Speer2009, Witbrock2003,Kuo2010}.
 		OMCommons (MIT) & OMCS & \parencite{Speer2007} & Interaction & Public & ConceptNet & \checkmark & \checkmark & / \\
 		Freebase (Metaweb/Google) & / & \parencite{Bollacker2008} & Interaction & Public & RDF & / & / & / \\
 		20 Questions (MIT) & OMCS & \parencite{Speer2009} & Game & Public & ConceptNet & / & / & / \\
-		Verbosity (CMU) &   &   & Game &   &   &   &   &   \\
-		Rapport &   &   & Game &   &   &   &   &   \\
+		Verbosity (CMU) &   & \parencite{VonAhn2006a}  & Game & Public & /  & /  & \checkmark  & /  \\
+		Rapport &   &   & Game & Semi-public  &   &   &   &   \\
 		Virtual Pet &   &   & Game &   &   &   &   &   \\
 		GOKC &   &   & Game &   &   &   &   &   \\
 		\hline
@@ -167,6 +167,8 @@ use Cyc. After a few versions, OMCS was taken from public access and merged with
 multiple KBs and KA approaches into an ConceptNet 
 KB\footnote{http://conceptnet.io/} \parencite{Speer2016}, which is now (in 2017)
 part of Linked Open Data (LOD) and maintained as open-source project.
+
+\emph{Mindpixel}. \todo{write this: https://en.wikipedia.org/wiki/Mindpixel}
  
 \section{Interaction Acquisition}
 Similarly as with Labour KA, interaction Acquisition gets the knowledge from 
@@ -286,7 +288,20 @@ in OMCS KB. After the user answers all the questions, including whether the
 detected concept was right or not, the concept and the answers will be assigned
 to proper cluster and thus the characteristics of the object are learned.
 
-\emph{Verbosity}. Similarly as Q20 above, Verbosity is a spoken game for two persons. One player  (narrator), picks a secret word (concept) and is allowed to give hints about the word, and other player (guesser) must figure out the word (concept) behind the hints.
+\emph{Verbosity}. Similarly as Q20 above, Verbosity is a spoken game for two 
+persons randomly selected online. It was inspired by Taboo board 
+game\parencite{TabooGame} which required players to state common sense facts
+without mentioning the secret concept. While having similar game-play as 
+aforementioned board game, Verbositywas developed with the intent to collect
+common sense knowledge \parencite{VonAhn2006a}. One player (narrator), gets
+a secret word concept and needs to give hints about the word to the other 
+player (guesser), who must figure out the word that is described the hints.
+The hints take the form of sentence templates with blanks to be filled in. 
+For example, if the word is "CAR", the narrator could say "it has wheels."
+In the experiments, a total of 267 people played the game and collected
+7,871 facts. While these facts were mostly a good quality and it was proven
+that the game can be used successfully, these facts were natural language 
+snippets and were not incorporated into any kind of structure or formal KB. 
 
 \emph{Rapport}
 
