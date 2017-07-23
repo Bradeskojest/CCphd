@@ -78,9 +78,10 @@ conversation\parencite{Pedro2012, Speer2007,Speer2009, Witbrock2003,Kuo2010}.
 		Freebase (Metaweb/Google) & / & \parencite{Bollacker2008} & Interaction & Public & RDF & / & / & / \\
 		20 Questions (MIT) & OMCS & \parencite{Speer2009} & Game & Public & ConceptNet & / & / & / \\
 		Verbosity (CMU) &   & \parencite{VonAhn2006a}  & Game & Public & /  & /  & \checkmark  & /  \\
-		Rapport (NTU) & OMCS &  \parencite{Kuo2009}  & Game & public  & ConceptNet  & /  & \checkmark  & /  \\
-		Virtual Pet (NTU) & OMCS  &  \parencite{Kuo2009}  & Game &  public & ConceptNet  & /  & \checkmark  & /  \\
-		GOKC &   &   & Game &   &   &   &   &   \\
+		Rapport (NTU) & ConceptNet &  \parencite{Kuo2009}  & Game & public  & ConceptNet  & /  & \checkmark  & /  \\
+		Virtual Pet (NTU) & ConceptNet  &  \parencite{Kuo2009}  & Game &  public & ConceptNet  & /  & \checkmark  & /  \\
+		GOKC (NTU) & ConceptNet  & \parencite{Kuo2010}  & Game & Public  & ConceptNet  & \checkmark  & \checkmark  & /  \\
+		Collabio (MS) & /  & \parencite{Bernstein2010}  & Game & Public  & /  & /  & \checkmark  & /  \\
 		\hline
 	\end{tabular}
 \end{table}
@@ -335,8 +336,31 @@ but through the virtual pet, so they were less careful whether answers are
 correct or not.
 
 
-\emph{GOKC}
+\emph{Goal Oriented Knowledge Collection (GOKC)}. This game builds on the
+findings and approach of \emph{Virtual Pet} KA game. The main improvement
+is to try and actually make use of the new knowledge inside a given domain
+(picked by the initial seed questions), to infer new questions. With this
+the authors tried to fix a drawback of \emph{Virtual Pet}, that through
+time, the questions and answers become saturated, and the number of new
+questions and answers falls exponentially through time, with respect
+to the number of already collected knowledge peaces.
+This approach is also aligned with the CC approach, which uses existing+
+context and new knowledge, to drive the questions. First part of the \emph{GOKC}
+paper describes analysis of the knowledge collected by \emph{Virutal Pet} game. 
+The second part is a description and evaluation of  GOKC KA approach, where 
+authors did 1 week experiment to show that the approach works. During that 
+week the system inferred created 755 new questions, out of which, 12 were
+reported as bad. Out of these questions 10,572 answers were collected where
+9,734 were voted as good. This results in the 92,07\% precision. Compared
+to the game without question expansion (\emph{Virtual Pet}), which has
+precision of 80.58\%, this is an improvement.
 
+\emph{Collabio (Collbaorative Biography)}. This is also a Facebook based game, with the intention to
+collect user's tags. While the gathered knowledge is more a set of person's 
+tags than knowledge, it served as an inspiration to \emph{Rapport} and 
+\emph{Virtual Pet}. During the experiment, \emph{Collabio} users tagged
+3,800 persons with accurate tags with information that cannot be found 
+otherwise\parencite{Bernstein2009, Bernstein2010}.
 
 \subsection{Interactive Natural Language Conversation}
 dada. Describe also which Games goes under this category. But this should mostly be about chatbots
