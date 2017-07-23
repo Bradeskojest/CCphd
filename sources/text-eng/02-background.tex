@@ -68,7 +68,7 @@ conversation\parencite{Pedro2012, Speer2007,Speer2009, Witbrock2003,Kuo2010}.
 		Cyc project (Cycorp) & / & \parencite{Lenat1995} & Labour & K. Exp. & CycL & / & / & / \\
 		ThoughtTrasure(Signiform) & / & \parencite{Mueller2003} & Labour & K. Exp. & LAGS & / & / & / \\
 		HowNet (Keen.) & / & \parencite{Dong2010} & Labour & K. Exp. & KDML & / & / & / \\
-		OMCS (MIT) & / & \parencite{Singh2002a} & Labour & Public & ConceptNet & / & \checkmark & / \\
+		OMCS/ConceptNet (MIT) & / & \parencite{Singh2002a} & Labour & Public & ConceptNet & / & \checkmark & / \\
 		KRAKEN (Cycorp) & Cyc & \parencite{Panton2002a} & Interaction & D. Exp & CycL & \checkmark & / & / \\
 		UIA (Cycorp) & Cyc & \parencite{Witbrock2003UIA} & Interaction & D. Exp & CycL & \checkmark & / & / \\
 		Factivore (Cycorp) & Cyc & \parencite{Witbrock2005} & Interaction & D. Exp & CycL & \checkmark & / & / \\
@@ -78,8 +78,8 @@ conversation\parencite{Pedro2012, Speer2007,Speer2009, Witbrock2003,Kuo2010}.
 		Freebase (Metaweb/Google) & / & \parencite{Bollacker2008} & Interaction & Public & RDF & / & / & / \\
 		20 Questions (MIT) & OMCS & \parencite{Speer2009} & Game & Public & ConceptNet & / & / & / \\
 		Verbosity (CMU) &   & \parencite{VonAhn2006a}  & Game & Public & /  & /  & \checkmark  & /  \\
-		Rapport &   &   & Game & Semi-public  &   &   &   &   \\
-		Virtual Pet &   &   & Game &   &   &   &   &   \\
+		Rapport (NTU) & OMCS &  \parencite{Kuo2009}  & Game & public  & ConceptNet  & /  & \checkmark  & /  \\
+		Virtual Pet (NTU) & OMCS  &  \parencite{Kuo2009}  & Game &  public & ConceptNet  & /  & \checkmark  & /  \\
 		GOKC &   &   & Game &   &   &   &   &   \\
 		\hline
 	\end{tabular}
@@ -303,9 +303,37 @@ In the experiments, a total of 267 people played the game and collected
 that the game can be used successfully, these facts were natural language 
 snippets and were not incorporated into any kind of structure or formal KB. 
 
-\emph{Rapport}
+\emph{Rapport} is a KA game based on Chinese OMCS questions, but implemented as a 
+Facebook game to make use of the social connections inside social network. 
+The Game helps users to make new friends or enhance connections with their 
+existing social network by asking and answering questions and matching the 
+answers to other users\parencite{Kuo2009}. This game aims to enhance the 
+experience and community engagement and thus functionality of aforementioned 
+\emph{Verbosity} game, by employing simultaneous  interaction between all the 
+players versus only 1 to 1 interaction between 2 community members. For 
+evaluation, the answers where multiple users answered the same were considered 
+valid. This game had a similarity with Curious Cat in a sense that it employed
+the voting mechanism for the same answers, and the repetitive questioning of
+the same question to multiple users. Authors found out that the agreement 
+between same answers of the repetitive question and voting is 80\% or more 
+after at least 2 repetitions of the same question. In 6 months, \emph{Rapport}
+collected 14,001 unique statements from 1,700 users. Normalized, this is
+8.2 answers per user.
 
-\emph{Virtual Pet}
+\emph{Virtual Pet} is a similar game as \emph{Rapport} in a sense that it
+uses \emph{OMCS} patterns, is in Chinese and is developed by the same authors
+\parencite{Kuo2009}. Instead of Facebook platform, \emph{Virtual Pet} uses
+PTT (Taiwanese bulleting board system in Chinese language). Instead of direct
+interaction between the users themselves, users interact with virtual pet and
+can ask it questions and answer it's questions. In the back-end, the questions
+the pet asks, are actually questions from other users. This game in 6 months 
+collected 511,734 unique pieces of knowledge from 6,899 users. Normalized this
+is 74,1 answers per user. While this game attracted much more answers than 
+\emph{Rapport}, the quality of the answers was slightly lower. Authors
+argue that the reasons behind both is, that users didn't interact directly,
+but through the virtual pet, so they were less careful whether answers are
+correct or not.
+
 
 \emph{GOKC}
 
