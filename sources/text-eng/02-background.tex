@@ -82,6 +82,7 @@ conversation\parencite{Pedro2012, Speer2007,Speer2009, Witbrock2003,Kuo2010}.
 		Virtual Pet (NTU) & ConceptNet  &  \parencite{Kuo2009}  & Game &  public & ConceptNet  & /  & \checkmark  & /  \\
 		GOKC (NTU) & ConceptNet  & \parencite{Kuo2010}  & Game & Public  & ConceptNet  & \checkmark  & \checkmark  & /  \\
 		Collabio (MS) & /  & \parencite{Bernstein2010}  & Game & Public  & /  & /  & \checkmark  & /  \\
+		AIML & /  & \parencite{Wallace2003}  & / & /  & /  & /  & /  & /  \\
 		\hline
 	\end{tabular}
 \end{table}
@@ -335,7 +336,6 @@ argue that the reasons behind both is, that users didn't interact directly,
 but through the virtual pet, so they were less careful whether answers are
 correct or not.
 
-
 \emph{Goal Oriented Knowledge Collection (GOKC)}. This game builds on the
 findings and approach of \emph{Virtual Pet} KA game. The main improvement
 is to try and actually make use of the new knowledge inside a given domain
@@ -363,20 +363,46 @@ tags than knowledge, it served as an inspiration to \emph{Rapport} and
 otherwise\parencite{Bernstein2009, Bernstein2010}.
 
 \subsection{Interactive Natural Language Conversation}
-Natural Language Knowledge Acquisition are special case of Interaction Acquisition
+Natural Language Knowledge Acquisition methods are special case of Interaction Acquisition
 systems. While almost all of the approaches already described above (under 
 Interactive User Interfaces and Games subsections) use natural language to some
-extent, the language processing used is based on relatively small amount of 
-pre-defined textual patterns with missing words (concepts) that needs to be 
-filled in. Common denominator of these systems is that they intentionally 
-try to acquire knowledge and then use natural language to help. As a side
+extent, the language processing used is based on relatively small amount of
+ textual patterns, or statements which are not necessary connected into a conversation. Common denominator of these systems is that they intentionally 
+try to acquire knowledge and then use natural language statements to do this. As a side
 effect and as motivation for users, sometimes consequent questions and 
 answers give a feeling of conversation. 
-On the other side
+On the other side chat-bots, start with the intention to maintain an interesting conversation
+with the users, and have to do knowledge acquisition only to remember facts and parts of
+the past conversations to be able to be smart enough, so users do not lose interest.
+Starting with Eliza\parencite{Weizenbaum1966}, these systems evolved, mostly directed
+by Turning Tests\parencite{Turing?}, implemented as Loebner competitions, trying to pass it\footnote{http://www.loebner.net}. Through the measure of these 
+tests\parencite{Bradesko2012}, among a few propriatery chat-bots, two technologies evolved (\emph{AIML, ChatScript}) to be general enough and can
+be used for conversational engine (chat-bot) construction and also NL knowledge acquisition.
 
-Describe also which Games goes under this category. But this should mostly be about chatbots
+\emph{AIML(Artificial Intelligence Mark-up Language} is an XML based natural language
+patterns scripting language. It allows developers of chat-bots, to construct a pre-defined
+natural language patterns and their responses. These definitions are then fed into an AIML
+engine, which can match user inputs with the patterns and figure out what response to write. 
 
-\emph{AIML} DAda
+AIMLs syntax is XML based and consists mostly of input rules (categories) with appropriate 
+output. The pattern must cover the entire input and is case insensitive. It is possible to use 
+a wildcard (*) which binds to one or more words. The simplest example of it can be written 
+like seen on  \tablename~\ref{tab:aiml_example}
+
+\begin{table}[htb]
+\caption{AIML Example}
+\label{tab:aiml_example}
+\centering
+\begin{tabular}{l}
+\hline
+\lstset{language=XML,breaklines=true}
+\begin{lstlisting}
+<Category>    <pattern> Do you have * on the menu </pattern>    <template>
+      We have everything on the menu.   </template> </Category>
+\end{lstlisting}  \\
+\hline
+\end{tabular}
+\end{table}
 
 \emph {CHatSccript}
 
