@@ -85,7 +85,9 @@ conversation\parencite{Pedro2012, Speer2007,Speer2009, Witbrock2003,Kuo2010}.
 		AIML (Alice foundation) & /  & \parencite{Wallace2003}  & Chatbot & /  & AIML  & /  & /  & /  \\
 		Chatscript (Brilligunderstanding) & /  & \parencite{Wilcox2011}  & Chatbot & /  & ChatScript  & /  & /  & /  \\
 		CyN (Daxtron Labs) & Cyc+AIML  & \parencite{Wilcox2011}  & Chatbot & /  & AIML+Cyc  & \checkmark  & /  & /  \\
-	    PCW (Cycorp) & Cyc  & \parencite{Matuszek2004}  & Mining & /  & AIML+Cyc  & \checkmark  & /  & /  \\
+	    PCW (Cycorp) & Cyc  & \parencite{Matuszek2004}  & Mining & Web Search  & AIML+Cyc  & \checkmark  & /  & /  \\
+ 		Learning Reader (NU) & Cyc & \parencite{Forbus2007} & Mining & Web & CycL & \checkmark & / & / \\
+		NELL (CMU) & \ & \parencite{Mitchell2015} & Mining & Web & Predicate l. & \checkmark & \checkmark & / \\ 
 		\hline
 	\end{tabular}
 \end{table}
@@ -529,16 +531,21 @@ Similarly, example from \tablename~\ref{tab:aiml_ka2} in ChatScript looks like:
 		\lstset{breaklines=true}
 		\begin{lstlisting}
 t: What did you order?
-	a: (_*) $menuItem=_0 Was it good?
+	a: (_*) \$menuItem=_0 Was it good?
 		\end{lstlisting}  \\
 		\hline
 	\end{tabular}
 \end{table}
 
-While the above examples repeats the functionality of AIML, ChatScript is more powerful and can remember facts in the shape of (subject verb object) and act on them. This is done with using \emph{\^createfact} and \emph{\^findfact} functions.
+While the above examples repeats the functionality of AIML, ChatScript is more 
+powerful and can remember facts in the shape of (subject verb object) and act on
+them. This is done with using \emph{\^createfact} and \emph{\^findfact} 
+functions.
 
 
-\subsection {CyN} is an AIML interpreter implementation with additional functionality
+\subsection {CyN} 
+\label{section:rw_CyN}
+CyN is an AIML interpreter implementation with additional functionality
 to be able to access Cyc inference engine and KB for both, storing the knowledge 
 and also for querying\parencite{Coursey2004}. This was done by introduction of new AIML tags:
 \begin{itemize}
@@ -586,6 +593,61 @@ due to inconsistency, 566 rejected by search engine (not same results), 384 were
 already known to Cyc, and finally 61 new consistent facts were detected as valid.
 After human review, the findings were that only 32 facts were actually correct.
 
+\subsection{Learning Reader}
+\label{section:rw_LR}
+Learning Reader\parencite{Forbus2007} is a prototype knowledge mining system
+that combines NLP, large KB (CycKB) and analogical inference into an automated 
+knowledge extraction system that works on simplified language texts. The system
+uses Direct Memory Access Parsing (DMAP\parencite{Martin1986}) to parse text
+and convert it into CycL concepts which are then checked by the inference engine
+whether they can form correct CycL statements. The prototype consisted of
+30,000 NDAP patterns (a quick approximation would be to imagine CyN patterns-
+chapter \ref{section:rw_CyN}). After parsing and syntax checks, found CycL 
+sentences were checked by the inference within CycKB, whether knowledge is new
+or not. Only new logical statements were then asserted. Additional feature of
+this prototype system is that it includes question answering mechanism, which 
+can be used by evaluators to check what the system learned. This same mechanism
+is also used to try to generate new facts (elaborate) and also questions based
+on newly acquired knowledge. The experiment on 62 written stories improved the
+recall from 10\% to 37\% and kept the accuracy as 99.7\% compared to original 
+100\%. By using additional inference and conjecture based inference, the recall
+raised to 60\% while accuracy dropped to 90.8\%.
+
+\subsection{Never Ending Language Learner (NELL)}
+\label{section_rw_NELL}
+NELL\parencite{Mitchell2015} is a text mining KA system running 24/7 with the
+goal to extract knowledge, use this knowledge to improve itself and extract
+more knowledge. NELL was started in January 2010 and as of 2015 acuired
+80 million confidence weighted new beliefs. NELL consists of many different
+learning tasks (for different types of knowledge), where each task also consist
+of the performance metrics, so the system can asses itself and check if the 
+learning task itself is also improving through time. In 2015 it consisted of
+2500 learning tasks. Some of learning task examples:
+\begin{itemize}
+	\item Category Classification
+	\item Relation Classification
+	\item Entity Resolution
+	\item Inference Rules among belief triples
+\end{itemize}
+After learning tasks, there is a \emph{Coupling Constraings} component, which
+combines results of learning tasks. The potentially useful knowledge gets
+asserted into the KB as candidates, where the assertions are checked by knowledge
+integrator module which integrates the assertions into the KB, or rejects them.
+
+After some initail initial KB had been gathered, the CMU text-mining knowledge 
+NELL also started to apply a crowdsourcing approach\parencite{Pedro2012a},
+using natural language questions to validate its KB. In a similar
+fashion as Curious Cat, NELL can use newly acquired knowledge, to 
+formulate new representations and learning tasks. There is, however, a 
+distinct difference between the approaches of NELL and Curious Cat. 
+NELL uses information extraction to populate its KB from the web, 
+then sends the acquired knowledge to Yahoo Answers, or some other Q/A site, 
+where the knowledge can be confirmed or rejected. 
+By contrast, Curious Cat formulates its questions directly to users 
+(and these questions can have many forms, not just facts to validate), 
+and only then sends the new knowledge to other users for validation. 
+Additionally, Curious Cat is able to use context to target specific users who 
+have a very high chance of being able to answer a question.
 
 \section{Reasoning Acquisition}
 adad dada
