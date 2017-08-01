@@ -88,6 +88,7 @@ conversation\parencite{Pedro2012, Speer2007,Speer2009, Witbrock2003,Kuo2010}.
 	    PCW (Cycorp) & Cyc  & \parencite{Matuszek2004}  & Mining & Web Search  & AIML+Cyc  & \checkmark  & /  & /  \\
  		Learning Reader (NU) & Cyc & \parencite{Forbus2007} & Mining & Web & CycL & \checkmark & / & / \\
 		NELL (CMU) & \ & \parencite{Mitchell2015} & Mining & Web & Predicate l. & \checkmark & \checkmark & / \\ 
+		KnowItAll(UW) & \ & \parencite{Etzioni2004} & Mining & Web Search & text & / & / & / \\
 		\hline
 	\end{tabular}
 \end{table}
@@ -109,8 +110,8 @@ known systems that are result of Labour Acquisition, Cyc (mentioned below) is
 the most comprehensive of them and was picked as a starting point and main 
 background knowledge and implementation base for this work.
 
-\subsection{Cyc} The most famous and also most comprehensive and expensive knowledge 
-acquired this way, is Cyc KB, which is part of Cyc AI system 
+\subsection{Cyc} The most famous and also most comprehensive and expensive 
+knowledge acquired this way, is Cyc KB, which is part of Cyc AI system 
 \parencite{Lenat1995}. It started in 1984 as a research project, with a premise 
 that in order to be able to think like humans do, the computer needs to have 
 knowledge about the world and the language like humans do, and there is no other
@@ -571,7 +572,7 @@ using various NLP techniques, which are often combined with existing knowledge
 to correct mistakes and check consistency.
 
 \subsection{Populating Cyc from the Web (PCW)}
-\label{section:PCW}
+\label{section:rw_PCW}
 Since whole idea of Cyc system is to gain enough knowledge through manual work,
 to be able to learn on itself after some point, the Cyc team is looking int into 
 other means of knowledge acquisition which can automatize or speed-up the KA process.
@@ -614,7 +615,7 @@ recall from 10\% to 37\% and kept the accuracy as 99.7\% compared to original
 raised to 60\% while accuracy dropped to 90.8\%.
 
 \subsection{Never Ending Language Learner (NELL)}
-\label{section_rw_NELL}
+\label{section:rw_NELL}
 NELL\parencite{Mitchell2015} is a text mining KA system running 24/7 with the
 goal to extract knowledge, use this knowledge to improve itself and extract
 more knowledge. NELL was started in January 2010 and as of 2015 acuired
@@ -648,6 +649,28 @@ By contrast, Curious Cat formulates its questions directly to users
 and only then sends the new knowledge to other users for validation. 
 Additionally, Curious Cat is able to use context to target specific users who 
 have a very high chance of being able to answer a question.
+
+\subsection{KnowItAll}
+\label{section:rw_KnowItAll}
+KnowItAll\parencite{Etzioni2004} is a domain independent web fact extraction 
+system that s specific search engine queries to find new instances of specific
+classes. It starts it extraction with a small seed of class names and NL patterns
+like "NP1 such as NP2". The classes and patterns are then used to find instances,
+new classes and also new extraction phrases by analyzing the results of the 
+web search engines. For example, Googling: "Cities such as *", will return 
+a lot of statements with instances of cities. After these cities are extracted,
+the names can be used for furhter Googling and by analyzing the phrases in which
+these cities appear, new patterns can be found, and so on. As part of the
+experiment, KnowItAll ran for 5 days and extracted over 50,000 instances of
+cities, states, countries, actors and films.
+To asses the correctnes of the extractions, the system can fill-in the instances
+into the various patterns and check the hit-count returned by the search engine./
+This then compares by the hit-count of the instance itself and uses this to
+asses the probability of the instance really belonging to the detected class.
+For example: comparing the hit-count of "Ljubljana", "Cities such as Ljubljana"
+and "Planets such us Ljubljana", the system can figure out that Ljubljana is
+most likely indeed an instance of the class city.
+
 
 \section{Reasoning Acquisition}
 adad dada
