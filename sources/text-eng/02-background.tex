@@ -89,6 +89,7 @@ conversation\parencite{Pedro2012, Speer2007,Speer2009, Witbrock2003,Kuo2010}.
  		Learning Reader (NU) & Cyc & \parencite{Forbus2007} & Mining & Web & CycL & \checkmark & / & / \\
 		NELL (CMU) & \ & \parencite{Mitchell2015} & Mining & Web & Predicate l. & \checkmark & \checkmark & / \\ 
 		KnowItAll(UW) & \ & \parencite{Etzioni2004} & Mining & Web Search & text & / & / & / \\
+		Probase (MSR) & \ & \parencite{Wu2012} & \\
 		\hline
 	\end{tabular}
 \end{table}
@@ -671,6 +672,12 @@ For example: comparing the hit-count of "Ljubljana", "Cities such as Ljubljana"
 and "Planets such us Ljubljana", the system can figure out that Ljubljana is
 most likely indeed an instance of the class city.
 
+KnowItAll was the first of the systems that inspired an \emph{Open Information
+Extraction (Open IE)} paradigm\parencite{Etzioni2011} which resulted in many 
+other IE systems such us TextRunner, ReVerb and R2A2. The main ide of this
+paradigm is to avoid hand labeled examples and domain specific verbs and nouns
+when approaching textual patterns which can lead to open (without specifying the
+targets) knowledge extraction on a web scale.
 
 \section{Reasoning Acquisition}
 adad dada
