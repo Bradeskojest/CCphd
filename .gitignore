@@ -31,3 +31,6 @@ ips-phd-thesis-eng-apa.pdf
 *.lof
 *.lot
 *.run.xml
+
+#vim
+*.swp

@@ -93,7 +93,7 @@ conversation\parencite{Pedro2012, Speer2007,Speer2009, Witbrock2003,Kuo2010}.
 		KnowItAll(UW) & / & \parencite{Etzioni2004} & Mining & Web Search & text & / & / & / \\
 		Probase (MSR) & / & \parencite{Wu2012}  & Mining & Web & Propriatery & / & / & / \\
         TextRunner (UW) & / & \parencite{Soderland2007} & Mining & Web & text & / & / & / \\
-		ReVerb (UW) & / \\
+		ReVerb (UW) & / & \parencite{Fader2011} & Mining & Web & text & / & / & / \\
 		\hline
 	\end{tabular}
 	\end{adjustbox}
@@ -728,6 +728,19 @@ each retained tuple, based on the probabilistic model or redundancy
 
 \subsection{ReVerb}
 \label{section:rw_ReVerb}
+With  the experiments done with \emph{TextRunner} and \emph{WAE}, it became
+obvious that OIE systems have a lot of noise and inconistencies in the results.
+For this reason two syntactical and lexical constraints were introduced in
+\emph{ReVerb} OIE system\parencite{Fader2011}. This helps with removing
+the incoherent extractions such as "recalled began" which was extracted from
+sentence "They recalled that Nungesser began his career as precint leader", or
+uninformative extractions like "Faust, made a deal" extracted from "Faust
+made a deal with the devil".\parencite{Fader2011}.
+When started, \emph{ReVerb} first identifies relation phrases that match the
+constraints, then if finds approriate pair of appropriate noun phrase rguments
+for each identified phrase. The resulting extractions are then given a 
+confidence score using logistic regression classifier.
+
 
 \section{Reasoning Acquisition}
 adad dada
