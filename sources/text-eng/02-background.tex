@@ -61,6 +61,8 @@ conversation\parencite{Pedro2012, Speer2007,Speer2009, Witbrock2003,Kuo2010}.
 	\caption{Structured overview of related KA systems}
 	\label{tab:related}
 	\centering
+	\begin{adjustbox}{width=1.6\textwidth}
+	
 	\begin{tabular}{lclcccccc}
 		\hline
 		System & Parent & Reference & Category & Source & Representation & Prior K. &  Crowds. & Context \\
@@ -87,11 +89,14 @@ conversation\parencite{Pedro2012, Speer2007,Speer2009, Witbrock2003,Kuo2010}.
 		CyN (Daxtron Labs) & Cyc+AIML  & \parencite{Wilcox2011}  & Chatbot & /  & AIML+Cyc  & \checkmark  & /  & /  \\
 	    PCW (Cycorp) & Cyc  & \parencite{Matuszek2004}  & Mining & Web Search  & AIML+Cyc  & \checkmark  & /  & /  \\
  		Learning Reader (NU) & Cyc & \parencite{Forbus2007} & Mining & Web & CycL & \checkmark & / & / \\
-		NELL (CMU) & \ & \parencite{Mitchell2015} & Mining & Web & Predicate l. & \checkmark & \checkmark & / \\ 
-		KnowItAll(UW) & \ & \parencite{Etzioni2004} & Mining & Web Search & text & / & / & / \\
-		Probase (MSR) & \ & \parencite{Wu2012} & \\
+		NELL (CMU) & / & \parencite{Mitchell2015} & Mining & Web & Predicate l. & \checkmark & \checkmark & / \\ 
+		KnowItAll(UW) & / & \parencite{Etzioni2004} & Mining & Web Search & text & / & / & / \\
+		Probase (MSR) & / & \parencite{Wu2012}  & Mining & Web & Propriatery & / & / & / \\
+        TextRunner (UW) & / & \parencite{Soderland2007} & Mining & Web & text & / & / & / \\
+		ReVerb (UW) & / \\
 		\hline
 	\end{tabular}
+	\end{adjustbox}
 \end{table}
 \end{landscape}
 
@@ -678,6 +683,51 @@ other IE systems such us TextRunner, ReVerb and R2A2. The main ide of this
 paradigm is to avoid hand labeled examples and domain specific verbs and nouns
 when approaching textual patterns which can lead to open (without specifying the
 targets) knowledge extraction on a web scale.
+
+\subsection{Probase}
+\label{section:rw_Probase}
+Probase is a probabilistic taxonomy of concepts and instances consisting of
+2.7 million of concepts extracted from 1.68 billion of web pages
+\parencite{Wu2012}. The main difference between Probase and other KBs is that
+Probase is probabilistic as opposed of "black and white" KB. On the other hand,
+even if it has much more concepts, it is sparse in the knowledge, since it only
+uses isA relation (taxonomy). Probase was compared to other taxonomies such as
+WordNet, YAGO and Freebase in the sense of recall and precition of isA 
+relations. Probase was found to be most comprehensive (biggest recall), while
+losing at precision measure against YAGO (92.8\% vs 95\%). 
+
+Probase was later renamed as \emph{Microsoft Concept Graph}, and has accessible
+API\footnote{https://concept.research.microsoft.com} which in 2017 consists of
+5,401,933 concepts, 12,551,613 instances and 87,603,947 isA relations. 
+
+\subsection {TextRunner}
+\label{section:rw_TextRunner}
+TextRunner is a successor of KnowItAll system \parencite{Soderland2007} and is
+the first to introduce Open Information Extraction (OIE) paradigm, which's main
+idea is that it is open-ended and can extract information autonomously without
+any human intervention which would fix the system to some specific domain or set
+of concepts/relations.
+\emph{TextRunner} was ran through over 9 million of web pages, and compared to
+\emph{KnowItAll} reduced the error rate for 33\% on comparable set of 
+extractions. Throughout the experiments, \emph{TextRunner} collected 11mio
+of high probability tuples and 1 mio concrete facts. \emph{TextRunner} consists
+of three components.
+
+\emph{Self-Supervised Learner} is a component started first which takes a small
+corpus of documents as an input and then outputs a classifier that can detect
+candidate extractions and classify them as trustworthy or not.
+
+\emph{Single-Pass Extractor} is a component that makes a single pass through
+the full corpus and extracts tuples for all possible relations. These tuples
+are then sent to the classifier trained before, which then marks them as
+trustworthy or not. Only trustworthy tuples are retained.
+
+\emph{Redundancy-Based Assesor} is the last step which assigns a probability to
+each retained tuple, based on the probabilistic model or redundancy
+\parencite{Downey2005}.
+
+\subsection{ReVerb}
+\label{section:rw_ReVerb}
 
 \section{Reasoning Acquisition}
 adad dada
