@@ -96,6 +96,7 @@ conversation\parencite{Pedro2012, Speer2007,Speer2009, Witbrock2003,Kuo2010}.
 		ReVerb (UW) & TextRunner & \parencite{Fader2011} & Mining & Web & text & / & / & / \\
 		R2A2 (UW) & ReVerb & \parencite{Etzioni2011} & Mining & Web & text & / & / & / \\
 		ConceptMiner (MIT) & ConceptNet & \parencite{Eslick2006} &Mining & Web Search & ConceptNet & \checkmark & / & / \\ 
+		DBPedia () & Wikipedia & \parencite{Lehmann2015} & Mining & Wikipedia &  RDF & / &\checkmark & / \\
 		\hline
 	\end{tabular}
 	\end{adjustbox}
@@ -766,6 +767,48 @@ on the prior volunteer knowledge from \emph{ConceptNet} and tests its
 hipothesis with experimental extractions of knowledge aroun three semantic
 relations: desire, effect and capability.
 
+As a first step, the systemn uses knowledge around predicates \emph{DesireOf},
+\emph{EffectOf} and \emph{CapableOf} from \emph{ConceptNet}, to construct 
+web-search queries. The results of these are then used to derive general
+patterns for aforementioned relations. For example an existing knowledge
+\emph{(DesireOf "dog" "attention")}, when converted to search engine query:
+"dog * bark", results in  patterns like:
+\begin{itemize}
+	\item "My/PRP\$ dog/NN loves/VBZ attention/NN ./."
+	\item "Horseback/NN riding /VBG dog /NN attracts/VBZ attention/NN."
+\end{itemize}
+
+While not all of the patterns are of the same quality, with the sheer number of
+repetitions, it is possible to extract more probable ones. This then results
+in general patterns such as \emph{<X>/NN loves/VBZ <Y>/NN}. These can be then
+used to issue a lot of search queries with various combinations of wors, to 
+extract instances of 'who desires what'. These potential instances then go
+into the last step (filtering). As part of this step, \emph{ConceptMiner} 
+removes badly formed statements, concepts not included in \emph{ConceptNet} KB,
+and concepts with low PMI score (see abbreviations and glossary).
+
+\subsection{DBPedia}
+\label{section_rw:dbpedia}
+\emph{DBPedia} is crowd-sourced RDF KB, extracted from Wikipedia pages and made
+publicly available\parenciteP{Lehmann2015}. As of 2017 the English DBPedia contains 4.58 million 
+knowledge pieces, out of which 4.22 million in a consistent ontology, 
+including 1,445,000 persons, 735,000 places, 411,000 creative works
+(123,000 music albums, 87,000 films and 19,000 video games), 
+241,000 organizations (58,000 companies, 49,000 educational institutions), 
+251,000 species and 6,000 diseases\footnote{http://wiki.dbpedia.org/about}.
+\emph{DBPedia} is also localized into 125 languages, so all-together it 
+consists of 38.3 million knowledge pieces. It is also linked to YAGO categories.
+
+Acquisition mechanism is automatic and consists of the following steps:
+\begin{itemize}
+\item Wikipedia pages are downloaded from dumps or through API and parsed into
+an Abstract Syntax Tree (AST)
+\item  AST is forwarded to various extractor modules. For example, extractor
+module can find labels, coordinates, etc. Each of the extractor modules can
+convert it's part of AST into RDF triples.
+\item The collection of RDF statements as returned from the extractors is 
+written into an RDF sink, supporting various format such as NTriples, etc.
+\end{itemize}
 
 \section{Reasoning Acquisition}
 adad dada
