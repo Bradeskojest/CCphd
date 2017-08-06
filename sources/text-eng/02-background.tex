@@ -92,8 +92,10 @@ conversation\parencite{Pedro2012, Speer2007,Speer2009, Witbrock2003,Kuo2010}.
 		NELL (CMU) & / & \parencite{Mitchell2015} & Mining & Web & Predicate l. & \checkmark & \checkmark & / \\ 
 		KnowItAll(UW) & / & \parencite{Etzioni2004} & Mining & Web Search & text & / & / & / \\
 		Probase (MSR) & / & \parencite{Wu2012}  & Mining & Web & Propriatery & / & / & / \\
-        TextRunner (UW) & / & \parencite{Soderland2007} & Mining & Web & text & / & / & / \\
-		ReVerb (UW) & / & \parencite{Fader2011} & Mining & Web & text & / & / & / \\
+        TextRunner (UW) & KnowItAll & \parencite{Soderland2007} & Mining & Web & text & / & / & / \\
+		ReVerb (UW) & TextRunner & \parencite{Fader2011} & Mining & Web & text & / & / & / \\
+		R2A2 (UW) & ReVerb & \parencite{Etzioni2011} & Mining & Web & text & / & / & / \\
+		ConceptMiner (MIT) & ConceptNet & \parencite{Eslick2006} &Mining & Web Search & ConceptNet & \checkmark & / & / \\ 
 		\hline
 	\end{tabular}
 	\end{adjustbox}
@@ -740,6 +742,29 @@ When started, \emph{ReVerb} first identifies relation phrases that match the
 constraints, then if finds approriate pair of appropriate noun phrase rguments
 for each identified phrase. The resulting extractions are then given a 
 confidence score using logistic regression classifier.
+
+\subsection{R2A2}
+\label{section:rw_R2A2}
+R2A2 is another improvement in OIE paradigm, since previous systems assumed that
+relation arguments are only simple noun phrases. Analysis of \emph{ReVerb}
+errors showed that 65\% of errors is on the arguments side (the relation was ok).
+To fix this, \emph{R2A2} system goes somehow into the direction of kb based
+KA sytems like Curious Cat with argument constraings.\parencite{Etzioni2011}. 
+The difference is that 
+\emph{R2A2} is not using hard logic and inference, but rather statistical
+classifier to detects class constraints (bounds) of the arguments. Compared to
+\emph{ReVerb}, \emph{R2A2} has much higher precision and recall.
+
+\subsection{ConceptMiner}
+\label{section:rw_ConceptMiner}
+\emph{ConceptMiner} is a KA system built by Ian Scott Eslick as part of his
+master thesis\parencite{Eslick2006}, with the main hipothesis that the seed
+knowledge collected from vounteers can be then used to bootstrap automatic 
+knowledge acquisition. \emph{ConceptMiner} specifically focuses on binary
+semantic relationships such as cause, effect, intent and time. The system relies
+on the prior volunteer knowledge from \emph{ConceptNet} and tests its 
+hipothesis with experimental extractions of knowledge aroun three semantic
+relations: desire, effect and capability.
 
 
 \section{Reasoning Acquisition}
