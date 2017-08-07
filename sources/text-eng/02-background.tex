@@ -96,8 +96,8 @@ conversation\parencite{Pedro2012, Speer2007,Speer2009, Witbrock2003,Kuo2010}.
 		ReVerb (UW) & TextRunner & \parencite{Fader2011} & Mining & Web & text & / & / & / \\
 		R2A2 (UW) & ReVerb & \parencite{Etzioni2011} & Mining & Web & text & / & / & / \\
 		ConceptMiner (MIT) & ConceptNet & \parencite{Eslick2006} &Mining & Web Search & ConceptNet & \checkmark & / & / \\ 
-		DBPedia (UL&UoM) & Wikipedia & \parencite{Lehmann2015} & Mining & Wikipedia &  RDF & / &\checkmark & / \\
-		YAGO (?) & Wikipedia & \parencite{TBW} & Mining & Wikipedia &  RDF & / &\checkmark & / \\
+		DBPedia (UL\&UoM) & Wikipedia & \parencite{Lehmann2015} & Mining & Wikipedia &  RDF & / &\checkmark & / \\
+		YAGO (MPI) & Wikipedia & \parencite{Suchanek2008} & Mining & Wikipedia &  RDF & \checkmark & / & / \\
 		\hline
 	\end{tabular}
 	\end{adjustbox}
@@ -791,7 +791,7 @@ and concepts with low PMI score (see abbreviations and glossary).
 \subsection{DBPedia}
 \label{section_rw:dbpedia}
 \emph{DBPedia} is crowd-sourced RDF KB, extracted from Wikipedia pages and made
-publicly available\parenciteP{Lehmann2015}. As of 2017 the English DBPedia contains 4.58 million 
+publicly available\parencite{Lehmann2015}. As of 2017 the English DBPedia contains 4.58 million 
 knowledge pieces, out of which 4.22 million in a consistent ontology, 
 including 1,445,000 persons, 735,000 places, 411,000 creative works
 (123,000 music albums, 87,000 films and 19,000 video games), 
@@ -810,6 +810,20 @@ convert it's part of AST into RDF triples.
 \item The collection of RDF statements as returned from the extractors is 
 written into an RDF sink, supporting various format such as NTriples, etc.
 \end{itemize}
+
+\subsection{YAGO (Yet Another Great Ontology)}
+\label{section_rw:YAGO}
+\emph{YAGO} is an ontology built automatically from \emph{WordNet} and 
+\emph{Wikipedia}\parencite{Suchanek2008}. Latest version \emph{YAGO3} is built
+from multiple languages and as of 2015 consist of 4,595,906 entities, 
+8,936,324 facts, 15,611,709 taxonimy facts and 1,398,837 labels
+\parencite{Mahdisoltani2015}.
+The facts were extracted from Wikipedia category system and info boxes, using
+a combination of rule-based and heuristic methods, and then enriched with 
+hierarchy (taxonomic) relations taken from WordNet. Since building
+YAGO is automatized, each next run of the script can use existing knowledge
+for type and consistency checking. This kind of type checking helps YAGO to
+maintain its precision at 95\%\parencite{Suchanek2008}.
 
 \section{Reasoning Acquisition}
 adad dada
