@@ -98,6 +98,8 @@ conversation\parencite{Pedro2012, Speer2007,Speer2009, Witbrock2003,Kuo2010}.
 		ConceptMiner (MIT) & ConceptNet & \parencite{Eslick2006} &Mining & Web Search & ConceptNet & \checkmark & / & / \\ 
 		DBPedia (UL\&UoM) & Wikipedia & \parencite{Lehmann2015} & Mining & Wikipedia &  RDF & / &\checkmark & / \\
 		YAGO (MPI) & Wikipedia & \parencite{Suchanek2008} & Mining & Wikipedia &  RDF & \checkmark & / & / \\
+		KNEXT (MPI) & \ & \parencite{Schuber2002} & Mining & Penn Treebank &  / & / & / & / \\
+	    P. Populator+FOIL (Cyc) & Predicate Populator & \parencite{Witbrock2005} & Reasoning & Induction &  CycL & \checkmark & / & / \\
 		\hline
 	\end{tabular}
 	\end{adjustbox}
@@ -129,8 +131,8 @@ way than to teach them, one concept at a time, by hand. Since 1994, the project
 continued through Cycorp Inc. company, which is still continuing the effort. 
 Through the years Cyc Inc. employed computer scientists, knowledge engineers, 
 philosophers, ontologists, linguists and domain experts, to codify the knowledge
-in the formal higher order logic language CycL \parencite{Matuszek2006a}. As of 2006
-\parencite{Matuszek2006}, the effort of making Cyc was 900 non-crowdsourced 
+in the formal higher order logic language CycL \parencite{Matuszek2006a}. As of 
+2006 \parencite{Matuszek2006}, the effort of making Cyc was 900 non-crowdsourced 
 human years which resulted in 7 million assertions connecting 500,000 terms and 
 17,000 predicates/relations \parencite{Zang2013}, structured into consistent 
 sub-theories (Microtheories) and connected to the Cyc Inference engine and 
@@ -140,17 +142,17 @@ in \autoref{section:Cyc} on page \pageref{section:Cyc}. Cyc Project is still
 work in progress and continues to live and expand through various research and
 commercial projects.
 
-\subsection{ThoughtTreasure.} Approximately at the same time(1994) as Cyc Inc. company
-was formed, Eric Mueller started to work on a similar system, which was inspired
-by Cyc and is similar in having a combination of common sense knowledge concepts
-connected to their natural language presentations. The main differentiator from 
-Cyc is, that it tries to use simpler representation compared to first-order 
-logic as is used in Cyc. Additionally, some parts of ThoughtTreasure knowledge 
-can be presented also with finite automata, grids and scripts 
-\parencite{Mueller1999,Mueller2003}. In 2003 the knowledge of this system 
-consisted of 25,000 concepts and 50,000 assertions. ThoughtTreasure was not so 
-successfull as Cyc and ceased all developments in 2000 and was open-sourced on 
-Github in 2015. \hl{link as footnote}.
+\subsection{ThoughtTreasure.} Approximately at the same time(1994) as Cyc Inc. 
+company was formed, Eric Mueller started to work on a similar system, which was
+inspired by Cyc and is similar in having a combination of common sense knowledge
+concepts connected to their natural language presentations. The main 
+differentiator from Cyc is, that it tries to use simpler representation compared
+to first-order logic as is used in Cyc. Additionally, some parts of 
+\emph{ThoughtTreasure} knowledge can be presented also with finite automata, 
+grids and scripts\parencite{Mueller1999,Mueller2003}. In 2003 the knowledge of
+this system consisted of 25,000 concepts and 50,000 assertions. ThoughtTreasure 
+was not so successfull as Cyc and ceased all developments in 2000 and was 
+open-sourced on Github in 2015. \hl{link as footnote}.
 
 \subsection{HowNet} started in 1999 and is an on-line common-sense knowledge base 
 unveiling inter-conceptual relationships and inter-attribute relationships of 
@@ -825,10 +827,90 @@ YAGO is automatized, each next run of the script can use existing knowledge
 for type and consistency checking. This kind of type checking helps YAGO to
 maintain its precision at 95\%\parencite{Suchanek2008}.
 
+\subsection{KNEXT}
+\label{section_rw:KNEXT}
+With the premise that there is a lot of general knowledge available in texts,
+which lays beneath explicit assertional content, Schubert build \emph{KNEXT} KA
+system\parencite{Schubert2002} which extracts \emph{general "possibilistic"
+propositions} from text. The main difference towards other KA mining systems is
+that before combining meanings from a phrase, the meanings are abstracted
+(generalized) and simplified. For example, abstraction of "a long, dak corridor"
+yields "a corridor". Or "a small office at the end of a long dark corridor" 
+yields "an office". This kind of abstraction, together with weakening of 
+relations into a possibilistic form, starts to represent presumptios about the
+world. 
+The extraction follows five steps:
+\begin{itemize}
+    \item Pre-process and POS tag the input
+    \item Apply a set of ordered patterns to the POS tree recursively
+    \item For each successfully matched subtree, abstract the interpretations
+          using semantic rule patterns
+    \item Collect the phrases expected to hold general "possibilistic" 
+        propositions
+    \item Formulate the propositiions and output these together with simple
+        English representations.
+\end{itemize}
+From an example input statement "Blanche knew something must be causing 
+Stanley's new, strange behavior but she never once connected it with Kitti 
+Walker.", the output looks like this:
+
+\lstset{breaklines=true}
+\begin{lstlisting}
+A female-individual may know a preposition 
+(:Q DET FEMALE-INDIVIDUAL) KNOW[V] (:Q DET PROPOS) 
+something may cause a behavior
+(:F K SOMETHING[N]) CAUSE[V] (:Q THE BEHAVIOR[N])
+a male-individual may have a behavior
+(:Q DET MALE-INDIVIDUAL) HAVE[V] (:Q DET BEHAVIOR[N])
+a behavior can be new
+(:Q DET BEHAVIOR[N]) NEW[A])
+a behavior can be strange
+(:Q DET BEHAVIOR[N]) STRANGE[A])
+a female-individual may connect a thing-reffered-to with a female-individual
+(:Q DET FEMALE-INDIVIDUAL) CONNECT[V] 
+(:Q DET THING-REFERRED-TO) 
+(:P WITH[P] (:Q DET FEMALE-INDIVIDUAL)))
+\end{lstlisting}
+
+The authors position their system as an addition to systems like \emph{Cyc}, and
+conducted their KA experiments on Treebank corpora resulting in around 60\% of
+propositions marked as "reasonable general claims"\parencite{Schubert2003}. 
+
 \section{Reasoning Acquisition}
-adad dada
+Compared to other types of KA, \emph{Reasoning Acquisition} in its essence,
+doesn't need any external data-sources, but it uses existing knowledge and
+machine inference to automatically infer additional facts from the existing
+knowledge. While deductive reasoning can come with new facts from the premises 
+and rules, the reasoning that has a chance to produce higher value (non obvious)
+findings is inductive and analogical resasoning. Analogical reasoning can find
+new facts of some concept based on properties of similar concepts. On the other
+side, infuctive reasoning can find find new probable rules based on current 
+observations of the KB.
 
+\subsection {Cyc Rule generation}
+With the initial experiments conducted from Labour Rule Acquisition done as part
+of \emph{Factivore} and \emph{Predicate Populator}\parencite{Witbrock2005}, it 
+was found that getting inference rules from crowdsourcing and untrained
+human labour is ineffective and slow. For this reason, inductive logic 
+inference mechanism based on FOIL (First Order Inductive Learner) approach
+\parencite{Quinlan1995} was added to the systen. Experiments were conducted on
+a set of 10 predicates from the KB, which generated 300 new rules. Of these
+rules, 7.5\% were found to be correct and 35\% correct with minor editing to
+make them well formed (assertible to Cyc). This way, rule acquisition was speed
+up for quite a lot, since previous experiments showed that human experts produce
+rules with the rate around three per hour, while with FOIL, they can review
+and double check for correctnes around twenty rules per hour.
 
+\subsection {SKS}
+dada
+
+\subsection{Cyc Wiki}
+dada
+
+\subsection{AnalogySpace}
+dada
+
+\subsection {PIP}
 
 \section{Acquistion of Geospatial Context}
 adad
