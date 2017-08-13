@@ -100,6 +100,7 @@ conversation\parencite{Pedro2012, Speer2007,Speer2009, Witbrock2003,Kuo2010}.
 		YAGO (MPI) & Wikipedia & \parencite{Suchanek2008} & Mining & Wikipedia &  RDF & \checkmark & / & / \\
 		KNEXT (MPI) & \ & \parencite{Schuber2002} & Mining & Penn Treebank &  / & / & / & / \\
 	    P. Populator+FOIL (Cyc) & Predicate Populator & \parencite{Witbrock2005} & Reasoning & Induction &  CycL & \checkmark & / & / \\
+	    PIP (NU) & PIP & \parencite{Sharma2010} & Reasoning & Induction &  CycL & \checkmark & / & / \\
 		\hline
 	\end{tabular}
 	\end{adjustbox}
@@ -887,7 +888,7 @@ new facts of some concept based on properties of similar concepts. On the other
 side, infuctive reasoning can find find new probable rules based on current 
 observations of the KB.
 
-\subsection {Cyc Rule generation}
+\subsection {Cyc Predicate Populatro + FOIL}
 With the initial experiments conducted from Labour Rule Acquisition done as part
 of \emph{Factivore} and \emph{Predicate Populator}\parencite{Witbrock2005}, it 
 was found that getting inference rules from crowdsourcing and untrained
@@ -901,6 +902,17 @@ up for quite a lot, since previous experiments showed that human experts produce
 rules with the rate around three per hour, while with FOIL, they can review
 and double check for correctnes around twenty rules per hour.
 
+\subsection {Plausible Inference Patterns (PIP)}
+
+\label{section:rw_PIP}
+The main idea of \emph{PIP} system is to learn new plausible inference rules 
+(patterns of plausible reasoning) by combining existing knowledge and 
+reinforcement learning and thus improve the system's question answering
+abilities. It is based on \emph{Cyc} knowledge and also uses \emph{CycL} as the 
+main representation language. The system is best described using the concrete
+example, taken from the original paper by A. Sharma and K. 
+Forbus\parencite{Sharma2010}:
+
 \subsection {SKS}
 dada
 
@@ -910,7 +922,6 @@ dada
 \subsection{AnalogySpace}
 dada
 
-\subsection {PIP}
 
 \section{Acquistion of Geospatial Context}
 adad
