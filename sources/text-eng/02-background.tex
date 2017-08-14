@@ -908,10 +908,20 @@ and double check for correctnes around twenty rules per hour.
 The main idea of \emph{PIP} system is to learn new plausible inference rules 
 (patterns of plausible reasoning) by combining existing knowledge and 
 reinforcement learning and thus improve the system's question answering
-abilities. It is based on \emph{Cyc} knowledge and also uses \emph{CycL} as the 
-main representation language. The system is best described using the concrete
-example, taken from the original paper by A. Sharma and K. 
-Forbus\parencite{Sharma2010}:
+abilities\parencite{Sharma2010}. It is based on \emph{Cyc} knowledge base,
+especially its predicate hierarchy represented by \emph{genlPred} predicate, and
+\emph{PredicateType} which represents second order collection of predicates that
+can be grouped together by some common features.For example
+\emph{(genlPreds holds touches)}, means that each time something is holding 
+something else, it is also touching it. The system scans the KB for rules 
+containing predicates and tries to generate \emph{PIPs} out of them, meaning
+that it tries to replace the predicates in the rules with the appropriate
+\emph{PredicateType} which is linked to prior predicate. If there are more
+than 5 ways to generate the same PIP (from various predicate instances), then
+this new rule is accepted as 'valid'. Example of such "PIP" is:
+
+$((familyRelationsSlot(x,y)) \land (familyRelationSlot(y,z)) \implies 
+(personalAssociationPredicate(y,z))$
 
 \subsection {SKS}
 dada
