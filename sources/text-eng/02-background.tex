@@ -100,7 +100,7 @@ conversation\parencite{Pedro2012, Speer2007,Speer2009, Witbrock2003,Kuo2010}.
 		YAGO (MPI) & Wikipedia & \parencite{Suchanek2008} & Mining & Wikipedia &  RDF & \checkmark & / & / \\
 		KNEXT (MPI) & \ & \parencite{Schuber2002} & Mining & Penn Treebank &  / & / & / & / \\
 	    P. Populator+FOIL (Cyc) & Predicate Populator & \parencite{Witbrock2005} & Reasoning & Induction &  CycL & \checkmark & / & / \\
-	    PIP (NU) & PIP & \parencite{Sharma2010} & Reasoning & Induction &  CycL & \checkmark & / & / \\
+	    PIP (NU) & Cyc & \parencite{Sharma2010} & Reasoning & Induction &  CycL & \checkmark & / & / \\
 		\hline
 	\end{tabular}
 	\end{adjustbox}
@@ -909,19 +909,41 @@ The main idea of \emph{PIP} system is to learn new plausible inference rules
 (patterns of plausible reasoning) by combining existing knowledge and 
 reinforcement learning and thus improve the system's question answering
 abilities\parencite{Sharma2010}. It is based on \emph{Cyc} knowledge base,
-especially its predicate hierarchy represented by \emph{genlPred} predicate, and
-\emph{PredicateType} which represents second order collection of predicates that
-can be grouped together by some common features.For example
-\emph{(genlPreds holds touches)}, means that each time something is holding 
-something else, it is also touching it. The system scans the KB for rules 
+especially its predicate hierarchy represented by \emph{\#\$genlPred} predicate, 
+and \emph{PredicateType} which represents second order collection of predicates 
+that can be grouped together by some common features. For example
+\emph{(\#\$genlPreds \#\$holds \#\$touches)}, means that each time something is 
+holding something else, it is also touching it. The system scans the KB for rules 
 containing predicates and tries to generate \emph{PIPs} out of them, meaning
 that it tries to replace the predicates in the rules with the appropriate
 \emph{PredicateType} which is linked to prior predicate. If there are more
 than 5 ways to generate the same PIP (from various predicate instances), then
-this new rule is accepted as 'valid'. Example of such "PIP" is:
+this new rule is accepted as "valid". Example of such PIP is:
+\begin{gather*}
+(\#\$familyRelationsSlot(?x,?y) \land \#\$familyRelationSlot(?y,?z)) \\
+\implies \\ 
+\#\$personalAssociationPredicate(?y,?z)
+\end{gather*}
 
-$((familyRelationsSlot(x,y)) \land (familyRelationSlot(y,z)) \implies 
-(personalAssociationPredicate(y,z))$
+where \emph{\#\$familyRelationsSlot} and \emph{\#\$personalAssociationPredicate}
+are instances of \emph{\#\$PredicateType} and thus collections of other 
+predicates, and \emph{?x,?y,?z} are variables representing other concepts
+\parencite{sharma2010}. This PIP or inference rule, tells the special inference
+algorithm that two predicates of type \emph{\#\$familyRelationsSlot} cand
+imply \emph{\#\$personalAssociationPredicate}, whent a proper combination
+of antecedent bindings on \emph{?x,?y, ?z} is can be proved. Part of the 
+\emph{PIP} system is also an inference algorithm (FPEQ), which can make use of 
+the above rule and come up with the possible solutions. As the first step, it 
+constructs a graph connected to the concepts used in the Q/A query. Then, the
+algorithm searches for the assertions in the graph matching a set of existing
+PIP inference rules. As the last steps, it returns the maches (i.e. filled-in
+PIPs with specific predicates and concepts) which can answer the query.
+As an additional step, authors introduuced reinforcement learning, where a small
+amount of user feedback (+1 or -1 voting) for final answers, can improve the
+PIP selection and also the level of generalizations when generating PIPs.
+Overall, the experiments showed that the approach increased Q/A recall for 
+quite a lot (120\% improvement), while minimally reduced the precision (94\% of
+the baseline)\parencite{Zang2013}.
 
 \subsection {SKS}
 dada
