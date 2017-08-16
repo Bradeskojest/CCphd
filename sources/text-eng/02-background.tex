@@ -946,15 +946,37 @@ Overall, the experiments showed that the approach increased Q/A recall for
 quite a lot (120\% improvement), while minimally reduced the precision (94\% of
 the baseline)\parencite{Zang2013}.
 
+\subsection{AnalogySpace}
+This system is meant to work over big, but unexact knowledge bases 
+(such as OMCS), where the need it to be able to make rough conclusions based
+on similarities, as opposed on hard and absolute logical facts. 
+\emph{AnalogySpace} does just that, by performing analogical closure by
+dimensionality reduction of semantic network (KB graph)\parencite{Speer2008}. 
+This system tried to represent a new synthesis between a standard symbolic 
+reasoning and statistical methods. For this, a similar technique to Latent
+Semantic Analysis (LSA) is being used, where strong assertions are used as
+opposed to weak semantics of word co-occurences in the document. In the 
+LSA matrix, on one axis are concepts from \emph{OMCS}, and on the other
+axis a features of these concepts, which yelds a sparse matrix of very
+high dimension. Then Singular Value Decomposition (SVD) is used on the matrix
+to reduce the dimensionality. This results in \emph{principal components},
+which represent the most important aspects of the knowledge. Then semantic
+similarity can be determined using linear operations over the resulting vectors.
+In a sense, this dimensionality reduction is acting as a generalization process
+for the kb. This way it is easier to calculate similarities between resulting
+concept vectors and can thus make generalizations based on these similarities,
+even if original concept didn't have some of the exact assertions that would
+enable inference engine to use it in the inference process and thus come with
+good answer. 
+Results of experminents have shown that more than 70\% of the resulting 
+assertions were marked as true by human validators.
+
+
 \subsection {SKS}
 dada
 
 \subsection{Cyc Wiki}
 dada
-
-\subsection{AnalogySpace}
-Results of experminents have shown that more than 70\% of the resulting 
-assertions were marked as true.
 
 
 \section{Acquistion of Geospatial Context}
