@@ -71,6 +71,7 @@ conversation\parencite{Pedro2012, Speer2007,Speer2009, Witbrock2003,Kuo2010}.
 		ThoughtTrasure(Signiform) & / & \parencite{Mueller2003} & Labour & K. Exp. & LAGS & / & / & / \\
 		HowNet (Keen.) & / & \parencite{Dong2010} & Labour & K. Exp. & KDML & / & / & / \\
 		OMCS/ConceptNet (MIT) & / & \parencite{Singh2002a} & Labour & Public & ConceptNet & / & \checkmark & / \\
+	    SKSI (Cycorp) & Cyc & \parencite{Masters2007} & Labour/Integration & K. Exp. &  Structured & \checkmark & / & / \\
 		KRAKEN (Cycorp) & Cyc & \parencite{Panton2002a} & Interaction & D. Exp & CycL & \checkmark & / & / \\
 		UIA (Cycorp) & Cyc & \parencite{Witbrock2003UIA} & Interaction & D. Exp & CycL & \checkmark & / & / \\
 		Factivore (Cycorp) & Cyc & \parencite{Witbrock2005} & Interaction & D. Exp & CycL & \checkmark & / & / \\
@@ -80,8 +81,8 @@ conversation\parencite{Pedro2012, Speer2007,Speer2009, Witbrock2003,Kuo2010}.
 		Freebase (Metaweb/Google) & / & \parencite{Bollacker2008} & Interaction & Public & RDF & / & / & / \\
 		20 Questions (MIT) & OMCS & \parencite{Speer2009} & Game & Public & ConceptNet & / & / & / \\
 		Verbosity (CMU) &   & \parencite{VonAhn2006a}  & Game & Public & /  & /  & \checkmark  & /  \\
-		Rapport (NTU) & ConceptNet &  \parencite{Kuo2009}  & Game & public  & ConceptNet  & /  & \checkmark  & /  \\
-		Virtual Pet (NTU) & ConceptNet  &  \parencite{Kuo2009}  & Game &  public & ConceptNet  & /  & \checkmark  & /  \\
+		Rapport (NTU) & ConceptNet &  \parencite{Kuo2009}  & Game & Public  & ConceptNet  & /  & \checkmark  & /  \\
+		Virtual Pet (NTU) & ConceptNet  &  \parencite{Kuo2009}  & Game &  Public & ConceptNet  & /  & \checkmark  & /  \\
 		GOKC (NTU) & ConceptNet  & \parencite{Kuo2010}  & Game & Public  & ConceptNet  & \checkmark  & \checkmark  & /  \\
 		Collabio (MS) & /  & \parencite{Bernstein2010}  & Game & Public  & /  & /  & \checkmark  & /  \\
 		AIML (Alice foundation) & /  & \parencite{Wallace2003}  & Chatbot & /  & AIML  & /  & /  & /  \\
@@ -191,7 +192,37 @@ KB\footnote{http://conceptnet.io/} \parencite{Speer2016}, which is now (in 2017)
 part of Linked Open Data (LOD) and maintained as open-source project.
 
 \subsection{Mindpixel}. \todo{write this: https://en.wikipedia.org/wiki/Mindpixel}
- 
+
+\subsection{Semantic Knowledge Source Integration (SKSI)}
+No matter how big the underlying knowledge base is, there will always be some
+missing knowledge, that exists somewhere else. While with knowledge acquisition
+it is possible to add these missing peaces, sometimes it makes more sense to
+keep this knowledge externally and only link it properly so it can be used.
+This is especially true for fast changing data such as stock values, weather
+forecast information, real-time measurements of traffic/ production line, etc.
+In such cases it is beneficial if one can link and address this data in the 
+same way as it would have been included in the original KB. This is the goal
+of \emph{SKS}\parencite{Masters2007}
+In order to connect the external source, a "wapper" knowledge needs to be
+defined in \emph{Cyc} KB, which describes which concepts and instances external
+source represents, and how to access them (http request, SQL Query, etc.).
+
+In \emph{SKS} system, this "wrapper" knowledge is asserted as normal \emph{CycL}
+assertions using special predicates and concepts. The descriptions are 
+structured into three layers, where first (access layer) describes 
+how to access the data (ie. how to connect, send queries and retrieve the 
+content). Then the second (physical schema layer), describes how the data is
+structured inside the original source. The third layer (logical schema) 
+describes in \emph{CycL}, how  the data connects to \emph{CycKB}. Example
+of the logical layer is semantics on how specific columns translate into the KB.
+For example, table \emph{Securities}, column \emph{Name}, translates into
+instance of Cyc concept \emph{\#\$Equity-Security} with the 
+\emph{\#\$nameString} linked to the value of the table cell.
+With this approach, it is possible to seamlessly link the existing KB with
+external sources, and use \emph{Cyc} inference engine and querying mechanisms
+on externally connected data without even noticing it's external.
+
+
 \section{Interaction Acquisition}
 Similarly as with Labour KA, interaction Acquisition gets the knowledge from 
 human minds, but in this case the acquisition is an intended side effect, while
@@ -970,10 +1001,6 @@ enable inference engine to use it in the inference process and thus come with
 good answer. 
 Results of experminents have shown that more than 70\% of the resulting 
 assertions were marked as true by human validators.
-
-
-\subsection {SKS}
-dada
 
 \subsection{Cyc Wiki}
 dada
