@@ -99,6 +99,7 @@ conversation\parencite{Pedro2012, Speer2007,Speer2009, Witbrock2003,Kuo2010}.
 		ConceptMiner (MIT) & ConceptNet & \parencite{Eslick2006} &Mining & Web Search & ConceptNet & \checkmark & / & / \\ 
 		DBPedia (UL\&UoM) & Wikipedia & \parencite{Lehmann2015} & Mining & Wikipedia &  RDF & / &\checkmark & / \\
 		YAGO (MPI) & Wikipedia & \parencite{Suchanek2008} & Mining & Wikipedia &  RDF & \checkmark & / & / \\
+		Cyc+Wiki (TUW) & Cyc/Wikipedia & \parencite{Medelyan2008} & Mining & Wikipedia &  CycL & / &\checkmark & / \\
 		KNEXT (MPI) & \ & \parencite{Schuber2002} & Mining & Penn Treebank &  / & / & / & / \\
 	    P. Populator+FOIL (Cyc) & Predicate Populator & \parencite{Witbrock2005} & Reasoning & Induction &  CycL & \checkmark & / & / \\
 	    PIP (NU) & Cyc & \parencite{Sharma2010} & Reasoning & Induction &  CycL & \checkmark & / & / \\
@@ -1003,7 +1004,23 @@ Results of experminents have shown that more than 70\% of the resulting
 assertions were marked as true by human validators.
 
 \subsection{Cyc Wiki}
-dada
+Given that Wikipedia contains a lot of knowledge which is not structured in 
+a way to be useful for inference engines directly, it makes sense to either try
+to structure it (as was done with \emph{YAGO}), or link it with some existing
+ontology such as \emph{CycKB}, which was done as part of this research task
+\parencite{Medelyan2008}.
+Authors first filtered out of pootential pool of Cyc concepts all non-common 
+sense concepts, which ended with 83,897 of them. Then these concepts were
+string matched with Wikipedia concept names based on their name directly,
+or based on \emph{\#\$nameString} predicate. For example, Cyc concept
+\emph{\#\$Virgo-Constellation} would be mathced to Wikipeadia page 
+\emph{Virgo (Constellation)}. After this step, the mappings that have 1 to 1
+relationship with Wikipedia pages and do not point to Wiki disambiguation pages,
+are considered properly aligned. But the mappings that have more than 1 
+Wikipedia result then go into the disambiguation phase. With this approach,
+authors were able to get the precision of 96.2\% and recall 64.0\% when no 
+disambiguation was needed, and precision 93\% and recall 86.3\% with the 
+disambiguation part.
 
 
 \section{Acquistion of Geospatial Context}
