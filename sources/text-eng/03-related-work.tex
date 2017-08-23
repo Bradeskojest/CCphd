@@ -1066,6 +1066,7 @@ acquisition, but more a custom data-mining solutions which support our
 proposed KA approach.
 
 \subsection{Extracting Places from Traces of Locations}
+\label{section:SPD1}
 This is one of the first papers/approaches that started to mine the raw GPS data
 into more user friendly notion of location - place.\parencite{Kang2005} The main
 idea of the algorithm is to be able to cluster the raw GPS locations into the
@@ -1115,10 +1116,20 @@ While the above alogorithm robustly detects stay-points, it completely ignores
 paths between. Additional weak-point is that it doesn't hadndle well when more
 than one GPS coordinate wrongly jumps due to GPS accuracy. This was fixed by
 the improved algorithm we developed as part of \emph{Curious Cat} system, and
-simultanously as well by the algorithm described below (\autoref{section:SPD2}).
+simultanously, the GPS accuracy part as well by the algorithm described 
+below (\autoref{section:SPD2}).
 
-\subsection{Discovery of Personal Semantic Places based on Trajectory Data Mining}
+\subsection{Discovery of Personal Semantic Places based on Trajectory Data 
+Mining}
 \label{section:SPD2}
+This work\parencite{Lv2016} builds on top of the first \emph{SPD} algoritm 
+described in 
+\autoref{section:SPD1}, improves the stay-point detection and incorporates it 
+into the broader system which is able to map particular visits into the exact 
+places (points of interest - POIs) and then additionally able to predict next 
+locations of tracked users. With this functionality (especially mapping to exact
+points of interest), this approach shares a lot of similarities with the context
+mining approach that is employed within the \emph{Curious Cat} system.
 
 \subsection{Applying Commonsense Reasoning to Place Identification}
 dada
