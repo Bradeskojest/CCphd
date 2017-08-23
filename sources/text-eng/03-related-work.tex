@@ -1067,7 +1067,8 @@ proposed KA approach.
 
 \subsection{Extracting Places from Traces of Locations}
 \label{section:SPD1}
-This is one of the first papers/approaches that started to mine the raw GPS data
+This algorithm (we refer to it as SPD1 - Staypoint Detection), is one of the 
+first papers/approaches that started to mine the raw GPS data
 into more user friendly notion of location - place.\parencite{Kang2005} The main
 idea of the algorithm is to be able to cluster the raw GPS locations into the
 particular places (home, work, specific restaurant, etc.) that user visited. 
@@ -1122,14 +1123,54 @@ below (\autoref{section:SPD2}).
 \subsection{Discovery of Personal Semantic Places based on Trajectory Data 
 Mining}
 \label{section:SPD2}
-This work\parencite{Lv2016} builds on top of the first \emph{SPD} algoritm 
-described in 
-\autoref{section:SPD1}, improves the stay-point detection and incorporates it 
-into the broader system which is able to map particular visits into the exact 
-places (points of interest - POIs) and then additionally able to predict next 
-locations of tracked users. With this functionality (especially mapping to exact
-points of interest), this approach shares a lot of similarities with the context
-mining approach that is employed within the \emph{Curious Cat} system.
+This work\parencite{Lv2016}(SPD2), builds on top of the first \emph{SPD} algoritm 
+described in \autoref{section:SPD1}. It improves the stay-point detection and 
+incorporates it into the broader system which is able to map particular visits i
+nto the exact places (points of interest - POIs) and then additionally able to 
+predict next locations of tracked users. With this functionality (especially 
+mapping to exact points of interest), this approach shares a lot of similarities
+with the context mining approach that is employed within the \emph{Curious Cat} 
+system. 
+The main improvement of this algorithm, is that it takes into the account the
+discontinuous characteristics of phone GPS signal (it gets lost inside buildings,
+its accuracy drops under the trees). This is done by introducing a second
+$T_dt$ threshold, which is must be higher than $T_d$, and sets a tolerated
+distance between two consequent stay-points to be merged on the fly. 
+Additionally, these thresholds are not fixed, but dynamically calculated based
+on the distribution of distances between raw GPS points.
+
+\begin{algorithm}[htb]
+\caption{Staypoint Detection Algorithm 2}
+\label{alg:spd2}
+
+\vspace{5pt}
+\KwData{raw GPS coordinates}
+\KwResult{cluster representing one staypoint}
+\vspace{5pt}
+\eIf{distance(cl, loc) < $D_t$}{
+    add loc to cl\;
+    clear plocs\;
+}
+{
+    \eIf{plocs.length > 1}{
+        \If{duration(cl) > $T_t$}{
+            add cl to Places\;
+        }
+        clear cl\;
+        add plocs.end to cl\;
+        clear plocs\;
+        \eIf{distance(cl,loc) < $D_t$}{
+            add loc to c\;
+            clear plocs\;
+        }{
+            add loc to plocs\;
+        }
+    }{
+        add loc to plocs\;
+    }
+}
+\end{algorithm}
+
 
 \subsection{Applying Commonsense Reasoning to Place Identification}
 dada
