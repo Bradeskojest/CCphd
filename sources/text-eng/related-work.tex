@@ -1183,4 +1183,19 @@ Similarly as \emph{SPD1}, also \emph{SPD2} has a prblem of ignoring the GPS
 coordinates that are part of paths (or moves) between stay-points.
 
 \subsection{Applying Commonsense Reasoning to Place Identification}
-dada
+\label{section:MarcoMamei}
+Clustering raw sensor data into locations, paths, activities and travel modes
+is often not enough. Besides knowing the location, time of arrival and duration
+of stay, contextual knowledge benefits from the information about the type of
+place and name, or even the exact ID from some database, where additional 
+information can be looked up. This is part of the \emph{CuriousCat} system, 
+which was inspired by and is based on the related work of Marco 
+Mamei\parencite{Mamei2010}.
+In this work, the author shows how \emph{Cyc} knowledge base can be used to
+improve automatic place identification. The approach is using probabilistic
+ranking the list of candidates (retrieved from \emph{Foursquare} in consideration
+of the common sense likelihood, which is based on the user profile, features of
+the day (exact time, noon, afternoon, morning, midday,...), previous visits
+and type of probable place. The approach was validated and given that the
+GPS accuracy of N95 phones (used in the experiment) is worse than that of phones
+in 2017, it achieved the accuracy of 75\% for business type of places.
