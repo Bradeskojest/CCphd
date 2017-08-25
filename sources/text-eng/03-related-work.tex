@@ -1147,28 +1147,15 @@ on the distribution of distances between raw GPS points.
 \KwData{raw GPS coordinates}
 \KwResult{cluster representing one staypoint}
 \vspace{5pt}
-\eIf{distance(cl, loc) < $D_t$}{
+\uIf{distance(cl, loc) < $D_t$}{
     add loc to cl\;
-    clear plocs\;
 }
-{
-    \eIf{plocs.length > 1}{
-        \If{duration(cl) > $T_t$}{
-            add cl to Places\;
-        }
-        clear cl\;
-        add plocs.end to cl\;
-        clear plocs\;
-        \eIf{distance(cl,loc) < $D_t$}{
-            add loc to c\;
-            clear plocs\;
-        }{
-            add loc to plocs\;
-        }
-    }{
-        add loc to plocs\;
-    }
+\uElseIf{dada}{
+dada\;
 }
+\Else{dada\;}
+
+
 \end{algorithm}
 
 
