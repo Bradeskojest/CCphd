@@ -1,3 +1,47 @@
 %-------------------------------------------------------------------------------
 \chapter{Background and Problem Definition}
+This chapter describes the challenges and components that Knowledge Acquisition 
+system such is presented in this work (\emph{Curious Cat}) have to address and 
+bring together into a working workflow in order to be a coherent KA system able 
+to satisfy the goals of general (common) Knowledge Acquisition. 
+
+\emph{Curious Cat} is a KA system making use of existing knowledge, 
+logical inference, crowd-sourcing and mobile context, to trigger natural language
+questions at user-appropriate moments and then incorporate the answers consistently
+into the existing KB. To successfully do this, there are many inter connected
+steps addressing a broad range of as yet not completely solved problems from
+multiple fields of artificial intelligence, machine learning, natural language
+processing and human computer interaction. Additionally to that, given
+that the approach uses crowd-sourcing, there is an additional complexity
+of technical implementation and scalability. 
+
+For more structured explanation of the approach and challenges involved, this
+section is grouped into sub-sections describing main challenges. Each section
+then references our approach to it (implementation) and also related works that
+gives overview of similar approaches.
+
+\emph{Curiois Cat} is knowledge driven, meaning that knowledge is connecting
+all of the components, including the user interaction, and storing of the
+results into the KB.
+ 
+ User context is obtained through a real world application that monitors the user’s activity and location through mobile GPS and accelerometer sensors. This raw context data must be corrected, clustered, classified and enriched (as described in sections 2.2.1 and 4.4.1) to obtain activities and locations. The results of this analysis are then asserted into the KB as contextual knowledge. Thus the KB needs to have a rich enough knowledge representation and vocabulary (section 2.1.1, 2.1.3 and 4.3) to be able to store the data. The newly asserted context can trigger forward chaining operation of the inference engine (section 2.1.2) which can result in the generation of a logical formula representing a comment or a question (section 2.3.1) that the system intends to show to the user. This logical formula is converted to natural language (sections 2.4.1 and 4.5.1) and communicated to the user. The user’s answer that is obtained in natural language, is converted back to logic (sections 2.4.2 and 4.5.2), checked against the existing KB for consistency, and inserted as new knowledge into the KB (sections 2.3.2 and 4.6). After this initial interaction, the system can determine whether to continue the conversational path with the user or not (section 2.4.3). New knowledge inserted in the KB can be used to drive the production of new questions/comments/suggestions, or to check with other users whether an answer is valid (sections 2.5 and 4.7). Other users then unknowingly vote for the validity of the existing knowledge by answering questions directed at themdada
+
+\section{Knowledge Representation, Engineering and Inference}
+\label{section:bg:knowledge}
+dada
+
+\section{Context (Information) Extraction}
+\label{section:bg:context}
+dada
+
+\section{Knowledge Acquisition}
+\label{section:bg:ka}
+dada
+
+\section{Natural Language Processing}
+\label{section:bg:nlp}
+dada
+
+\section{Crowdsourcing}
+\label{section:bg:crowdsourcing}
 dada
