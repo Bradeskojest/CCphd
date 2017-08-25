@@ -1081,28 +1081,35 @@ wihtout knowing the number of clusters in front (as is necessary with more
 standard clustering approaches). The core of the algorithm has a benefit
 to be really simple and can be easily ran on the phone.
 
+The algorithm pseudocode is shown below (algorithm \ref{alg:spd1}), where $CL$ 
+represents currently 
+detecting cluster (staypoint), $VP$ is detected cluster (staypoint or Visit 
+Point) and $plocs$ is temporal locations to be discarded or added to cluster
+later. Regarding the thresholds, $T_t$ is Time threshold, $T_d$ is distance 
+treshold.
+
 \begin{algorithm}[htb]
-\caption{Staypoint Detection Algorithm 1}
+\caption{Staypoint Detection Algorithm 1 (SPD1)}
 \label{alg:spd1}
 
 \vspace{5pt}
 \KwData{raw GPS coordinates}
 \KwResult{cluster representing one staypoint}
 \vspace{5pt}
-\eIf{distance(cl, loc) < $D_t$}{
-    add loc to cl\;
+\eIf{distance(CL, loc) < $D_t$}{
+    add loc to CL\;
     clear plocs\;
 }
 {
     \eIf{plocs.length > 1}{
         \If{duration(cl) > $T_t$}{
-            add cl to Places\;
+            add CL to VP\;
         }
-        clear cl\;
-        add plocs.end to cl\;
+        clear CL\;
+        add plocs.end to CL\;
         clear plocs\;
-        \eIf{distance(cl,loc) < $D_t$}{
-            add loc to c\;
+        \eIf{distance(CL,loc) < $D_t$}{
+            add loc to CL\;
             clear plocs\;
         }{
             add loc to plocs\;
@@ -1125,8 +1132,8 @@ Mining}
 \label{section:SPD2}
 This work\parencite{Lv2016}(SPD2), builds on top of the first \emph{SPD} algoritm 
 described in \autoref{section:SPD1}. It improves the stay-point detection and 
-incorporates it into the broader system which is able to map particular visits i
-nto the exact places (points of interest - POIs) and then additionally able to 
+incorporates it into the broader system which is able to map particular visits 
+into the exact places (points of interest - POIs) and then additionally able to 
 predict next locations of tracked users. With this functionality (especially 
 mapping to exact points of interest), this approach shares a lot of similarities
 with the context mining approach that is employed within the \emph{Curious Cat} 
@@ -1134,30 +1141,46 @@ system.
 The main improvement of this algorithm, is that it takes into the account the
 discontinuous characteristics of phone GPS signal (it gets lost inside buildings,
 its accuracy drops under the trees). This is done by introducing a second
-$T_dt$ threshold, which is must be higher than $T_d$, and sets a tolerated
+$T_{dt}$ threshold, which is must be higher than $T_d$, and sets a tolerated
 distance between two consequent stay-points to be merged on the fly. 
 Additionally, these thresholds are not fixed, but dynamically calculated based
-on the distribution of distances between raw GPS points.
+on the distribution of distances between raw GPS points. 
+
+The simplified algorithm (removed unnecessary if/else statements) is shown 
+below (algorithm \ref{alg:spd2}), where $CL$
+represents currently detecting cluster (staypoint), $PC$ is previous cluster and
+$VP$ is detected cluster (staypoint or Visit Point). Regarding the thresholds,
+$T_t$ is Time threshold, $T_d$ is distance treshold and $T_{dt}$ is tolerated
+distance threshold for later merging.
 
 \begin{algorithm}[htb]
-\caption{Staypoint Detection Algorithm 2}
+\caption{Staypoint Detection Algorithm 2 (SPD2)}
 \label{alg:spd2}
 
 \vspace{5pt}
 \KwData{raw GPS coordinates}
 \KwResult{cluster representing one staypoint}
 \vspace{5pt}
-\uIf{distance(cl, loc) < $D_t$}{
-    add loc to cl\;
+\uIf{distance(CL, loc) < $T_d$}{
+    add loc to CL\;
 }
-\uElseIf{dada}{
-dada\;
+\uElseIf{duration(CL)>$T_t$}{
+    append CL to VP\;
+    CL = 0, PC = 0\;
 }
-\Else{dada\;}
-
-
+\uElseIf{interval(CL, PC) > $T_t$ {\bf and} distance(CL,PC)< $T_dt$}{
+    CL = combine (CL, PC)\;
+    append CL to VP\;
+    PC = 0\;
+}
+\Else{
+    PC=CL\;
+    CL=0\;
+}
 \end{algorithm}
 
+Similarly as \emph{SPD1}, also \emph{SPD2} has a prblem of ignoring the GPS 
+coordinates that are part of paths (or moves) between stay-points.
 
 \subsection{Applying Commonsense Reasoning to Place Identification}
 dada
