@@ -22,9 +22,26 @@ gives overview of similar approaches.
 
 \emph{Curiois Cat} is knowledge driven, meaning that knowledge is connecting
 all of the components, including the user interaction, and storing of the
-results into the KB.
- 
- User context is obtained through a real world application that monitors the user’s activity and location through mobile GPS and accelerometer sensors. This raw context data must be corrected, clustered, classified and enriched (as described in sections 2.2.1 and 4.4.1) to obtain activities and locations. The results of this analysis are then asserted into the KB as contextual knowledge. Thus the KB needs to have a rich enough knowledge representation and vocabulary (section 2.1.1, 2.1.3 and 4.3) to be able to store the data. The newly asserted context can trigger forward chaining operation of the inference engine (section 2.1.2) which can result in the generation of a logical formula representing a comment or a question (section 2.3.1) that the system intends to show to the user. This logical formula is converted to natural language (sections 2.4.1 and 4.5.1) and communicated to the user. The user’s answer that is obtained in natural language, is converted back to logic (sections 2.4.2 and 4.5.2), checked against the existing KB for consistency, and inserted as new knowledge into the KB (sections 2.3.2 and 4.6). After this initial interaction, the system can determine whether to continue the conversational path with the user or not (section 2.4.3). New knowledge inserted in the KB can be used to drive the production of new questions/comments/suggestions, or to check with other users whether an answer is valid (sections 2.5 and 4.7). Other users then unknowingly vote for the validity of the existing knowledge by answering questions directed at themdada
+results into the KB (section \ref{section:bg:knowledge}). Its user context is 
+obtained through a mobile sensor mining in a real world application that 
+monitors the user’s activity and location through mobile GPS and accelerometer 
+sensors. This raw data is then corrected, clustered, classified and enriched 
+before inserted into the KB as knowledge (section \ref{section:bg:context}.
+The newly asserted context can trigger forward chaining operation of the 
+inference engine (section \ref{section:bg:knowledge}) which can results in
+logical representation of a new question (section \ref{section:bg:ka}) or a 
+statement that the system intends to show to the user. The aforementioned  
+logical formula is then converted to natural language (sections 
+\ref{section:bg:nlp}) and presented to the user through a mobile app. 
+When the user answers, his NL answer is converted back to logic 
+(section \ref{section:bg:nlp}), checked by the inference engine agains the 
+existing knowledge for consistency, and inserted as new peace of knowledge into 
+the KB (section \ref{section:bg:ka}). After iteraction like that, the
+system determines whether to continue the conversational path with the user or
+ not. Newly acquired knowledge is then used to check with other users for
+validity (section \ref{section:bg:crowdsourcing}) and is then used by the 
+inference to produce new questions/comments/suggestions (section 
+\ref{section:bg:ka}).
 
 \section{Knowledge Representation, Engineering and Inference}
 \label{section:bg:knowledge}
