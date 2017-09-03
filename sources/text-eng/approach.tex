@@ -173,15 +173,49 @@ This is represented on \autoref{fig:interaction} with a blue arrow on the
 inner circle, marked with 1a. The presentation is handled by the client and 
 can be in a written form, or through the text-to-speech interface. User can then 
 answer this question and thus close the interaction loop (blue arrow marked with
-1b), possibly causing a new one with her answer.
-The intference triggering, language rules and mechanisms for context detection
+1b), possibly causing a new one with her answer. 
+
+For easier answering, the KA system can use existing KB to generate a set of 
+possible answers at the qustion generation time. These can be then picked by
+the user instead of writing. THe guidance can consis of variations of these:
+\begin{itemize}
+	\item A fixed set of pre-defined options that user can pick from, generated
+	from the KB.
+	\item A set of pre-defined options with an additional free text field when
+	the set of possible answers is big or inifite. In this cases the text field
+	is connected to the KB providing auto-complete options for valid answers.
+	\item Completely free text were user can write anything. This is essentially
+	the same as for the HMI interaction described below (\autoref{section:hmi}).
+\end{itemize}
+
+The example of mediated answer guidance can be seen in \hl{Fig. 3}, where the 
+system presented a set of possible answers while still allowing a free text 
+which will be autocompleted with the food types that the system knows about. 
+If the user enters something new, the system will accept that (\hl{as was shown 
+in the step 6 in Table I)}.
+
+The inference triggering, language rules and mechanisms for context detection
 are described in more detail in sections \hl{ref, ref, ref} respectively. This
 type of the interaction is where the users answer questions and is thus part of
 the main research topic of this thesis.
 
 \subsubsection{Human to Machine Interaction (HMI)}
 \label{section:hmi}
-dada
+The second type of interaction is, when user initiates the conversation. 
+If this is done at some point as the answer to an old question, the process is 
+the same as described above in \autoref{section:mhi}. But users can also enter a 
+free text, asking a question or stating something. In this case, this goes 
+through the \emph{NL to Logic Converter} module which tries to convert the
+text into logical query or assertion. The complexity of converting NL into logic 
+is a lot higher than in the opposite direction, since the language is not
+as exact. In CC implementation \hl{ref to CC converter}, we handled this to
+some extent by using SCG system \parencite{Schneider2015}, where the text
+is matched to NL patterns which are linked to appropriate logical structures.
+\hl{This would be used for example, when user, instead of simple Pizza Deluxe 
+(step 5 in Table I), would say They sell pizzas or something even more complex 
+(see section 4.5.2)}. After the text is converted into logic, inference engine 
+can use it to query it against the KB, and show the answers back to user, again 
+converted into NL through \emph{Logic to NL Converter} module.
 
 \subsubsection{Machine Mediated Human to Human Interaction (MMHHI)}
 \label{section:mmhhi}
