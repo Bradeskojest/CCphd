@@ -215,11 +215,38 @@ is matched to NL patterns which are linked to appropriate logical structures.
 (step 5 in Table I), would say They sell pizzas or something even more complex 
 (see section 4.5.2)}. After the text is converted into logic, inference engine 
 can use it to query it against the KB, and show the answers back to user, again 
-converted into NL through \emph{Logic to NL Converter} module.
+converted into NL through \emph{Logic to NL Converter} module. This type of
+interaction is depicted on \autoref{fig:interaction} by the middle arrow circle
+started by humans (arrow 2a), where machine provides the response (arrow 2b).
 
 \subsubsection{Machine Mediated Human to Human Interaction (MMHHI)}
 \label{section:mmhhi}
-dada
+Both of the interactions described in sections \ref{section:mhi} and 
+\ref{section:hmi} pre-supposes that the receipient of the query, knows how to
+answer it, or respond otherwise. In the cases when, let's say machine doesn't
+have any answer (The NL question gets converted into the logical query, which doesn't retrieve any aswers from within the KB). It could respond with 
+"I don't know", which is a valid response.
+Thile this allows for the conversation to continue, it doesn't help the user
+to get the answer, also does not benefit to knowledge acquisition. The only 
+thing the system can learn from this, is that user is interested in the object
+of the question. This doesn't have to end there though, since CC has access to
+other users and knowledge about their past and current contexts. Based on the
+topic of interes from the user query, the system can easily find users which
+might know the answer (inferred from their past whereabouts, answers, etc.).
+Once such an user is deteced, the original question can simply be forwarded to
+him, as it would be asked by CC itself. Once he, or one of the users answers,
+CC can forward it to the original user. On top of that, CC can parse the answer
+the same way as described above for HMI and MHI (sections \ref{section:mhi},
+\ref{section:hmi}), and remember it, placing it into the KB. In the cases when
+the language of the answer is too complex, it can be stored in its original
+format, for later text-mining apporach which can lead to learning of new-patterns
+as well as the knowledge hiding in the answers. On top of this, CC can also
+remember the question itself, and place it on specific type of concepts, as an
+important quetsion to ask. On \autoref{fig:interaction},
+MMHHI approach is depicted by the outer circle of arrows, where 3a is original 
+user's question, which is forwarded to other users when CC doesn't know how to 
+answer (3b). After one or more of the users answer, the answer is forwarded back
+to the original user (3c).
 
 \section{Knowledge Base}
 Internally KB has three components. The main part, which should in any real implementation of the system also be the biggest, is the common-sense knowledge and its upper ontology over which we operate. This part of the system contributes the most to the ability to check the answers for consistency. The more knowledge already exists, the easier becomes to assess the answers. The second part is the user Context KB, which stores the contextual knowledge about the user. This covers the knowledge that the user has provided about himself (section 4.4.2) and the knowledge obtained by mining raw mobile sensors (section 4.4.1). This is represented as the orange arrow, pointing into the context part of the KB. The sensor based context allows the system to proactively target the right users at the right time and thus improve the efficiency and accuracy and also stickiness of the KA process.The third KB part, is the meta-knowledge and KA rules that drive the dialog and knowledge acquisition process (section 4.3.3). Although in our implementation we used Cyc KB and tested Umko KB, the approach is not fixed to any particular knowledge base. But it needs to be expressive enough to be able to cover the intended knowledge acquisition tasks and meta-knowledge needed for the system?s internal workings. After the KB, the second most important part of the architecture is an inference engine (in Fig. 2 marked in red and letter B), which is tightly connected to the knowledge base.  The inference engine needs to be able to operate with the concepts, assertions and rules from the KB and should also be capable of meta-reasoning about the knowledge base?s internal knowledge structures. As the individual components (indicated with red color in Fig. 2) suggest, the inference engine is used for:?	Checking the consistency of the users? answers (e.g., can you order a car in a restaurant if it?s not food?). ?	Placement of new knowledge inside the KB.?	Querying the KB to answer possible questions.?	Using knowledge and meta-rules to produce responses based on the user and her/his context input (similar in function to the scripts in script-based conversational agents).
