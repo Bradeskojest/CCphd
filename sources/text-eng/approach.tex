@@ -249,6 +249,60 @@ answer (3b). After one or more of the users answer, the answer is forwarded back
 to the original user (3c).
 
 \section{Knowledge Base}
-Internally KB has three components. The main part, which should in any real implementation of the system also be the biggest, is the common-sense knowledge and its upper ontology over which we operate. This part of the system contributes the most to the ability to check the answers for consistency. The more knowledge already exists, the easier becomes to assess the answers. The second part is the user Context KB, which stores the contextual knowledge about the user. This covers the knowledge that the user has provided about himself (section 4.4.2) and the knowledge obtained by mining raw mobile sensors (section 4.4.1). This is represented as the orange arrow, pointing into the context part of the KB. The sensor based context allows the system to proactively target the right users at the right time and thus improve the efficiency and accuracy and also stickiness of the KA process.The third KB part, is the meta-knowledge and KA rules that drive the dialog and knowledge acquisition process (section 4.3.3). Although in our implementation we used Cyc KB and tested Umko KB, the approach is not fixed to any particular knowledge base. But it needs to be expressive enough to be able to cover the intended knowledge acquisition tasks and meta-knowledge needed for the system?s internal workings. After the KB, the second most important part of the architecture is an inference engine (in Fig. 2 marked in red and letter B), which is tightly connected to the knowledge base.  The inference engine needs to be able to operate with the concepts, assertions and rules from the KB and should also be capable of meta-reasoning about the knowledge base?s internal knowledge structures. As the individual components (indicated with red color in Fig. 2) suggest, the inference engine is used for:?	Checking the consistency of the users? answers (e.g., can you order a car in a restaurant if it?s not food?). ?	Placement of new knowledge inside the KB.?	Querying the KB to answer possible questions.?	Using knowledge and meta-rules to produce responses based on the user and her/his context input (similar in function to the scripts in script-based conversational agents).
+As visible in \autoref{fig:Architecture}, Knowledge Base is the central part
+of the proposed KA system. Internally KB has three components. The main part, 
+which should in any real implementation of the system also be the biggest, is 
+the common-sense knowledge, and its upper ontology over which we operate. 
+This part of the system contributes the most to the ability to check the 
+answers for consistency. The more knowledge already exists, the easier becomes 
+to assess the answers, come up with new questions and also propose possible
+answers in the guided interaction(\hl{ref}).
 
-Fig. 2. General Architecture of the KA system, with a simple interaction loopAt both ends of the stacked chain in Fig. 2, there are natural language processing components (marked in blue and with letter E), which are responsible for logic-to-language and language-to-logic conversion (sections 2.4 and 4.5). These are crucial if we want to interact with users in a natural way and thus avoid the need for users to be experts in first order logic. This module and its components are described in more detail in section 4.5.  Besides the main interaction loop, which implicitly uses crowdsourcing while it interacts with the users, there is an additional component (marked in green and with letter F). This ?crowdsourcing and voting? component handles and decides, which elements of knowledge (logical assertions) can be safely asserted and made ?visible? to all the users and which are questionable and should stay visible only to the authors of the knowledge. If the piece of knowledge is questionable, the system marks it as such and then the question formulation process will check with other users whether it?s true or not. This is described in more detail in section 4.7.In addition to logic-based components presented above, there is a functional driver system (marked in orange), which glues everything together, forwards the results of inference to the NL converters, accepts and asserts the context into the KB, handles the synchronization between the instances of the systems, etc.
+The second part is the user Context KB, which stores the contextual knowledge 
+about the user. This covers the knowledge that the user has provided about 
+himself (\hl{ref}) and the knowledge obtained by mining raw mobile sensors 
+(\hl{ref}). On \autoref{fig:Architecture}, This part of the KB is represented 
+as the left-most KB, sitting between the main KB and the 
+\emph{Procedural Module}.The sensor based context allows the system to 
+proactively target the right users at the right time and thus improve the 
+efficiency and accuracy and also stickiness of the KA process.
+
+The third KB part, is the meta-knowledge and KA rules that drive the dialog and 
+knowledge acquisition process (\hl{ref}). Although in our implementation we 
+used Cyc KB (\hl{ref} and also tested Umko KB (\hl{ref}), the approach is not 
+fixed to any particular knowledge base. But the KB needs needs to be expressive
+enough to be able to cover the intended knowledge acquisition tasks and 
+meta-knowledge needed for the system's internal workings. 
+
+Because the full Curious Cat system including the KB is too big and complex to 
+be fully explained here (the KA Meta Knowledge alone consists of 12,353 
+assertions and rules), we will focus on the fundamentals of the idea and 
+approach, and define the simplest possible logic to explain the workings 
+through the examples given in the \hl{ref} and  \hl{ref Table II}. 
+
+The logic examples are given in formal higher order predicate logic, which we 
+later replace with a more compact notation, with a slight change in the way the 
+variables are presented. For better readability, instead of $x, y, z$, we mark 
+variables with a question mark ($?$) followed by a name that represents the 
+expected type of the concepts the variable represents. For example, when we see 
+a variable in a logical formula like $CCUser(?PERSON)$, we immediately know that
+$?PERSON$ can be replaced with instance or subclass of the concept $Person$. 
+We start predicate names with a small letter ($predicate$) and the rest of the 
+concepts with a capital letter ($Concept$). At this point it is worth noting 
+that while our logical definitions and formalization are strongly influenced by 
+Cyc\parencite{Lenat1995}, and while the approach is based on the Cyc upper 
+ontology, the approach is general and not bound to any particular 
+implementation, and our notation below reflects but is not tightly bound to 
+that of OpenCyc. \todo{Add footnotes as in the paper}
+
+\subsection{Upper Ontology}
+\label{section:upperOnto}
+First we introduce the terms (concepts) that will allow us to construct the
+upper ontology which is the glue of any knowledge base that can be used for 
+machine inference:
+
+\begin{equation}
+Something, Class, Predicate, subclass, is, arity, argClass, argIs
+\end{equation}
+
+Then...
