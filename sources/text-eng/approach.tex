@@ -286,8 +286,9 @@ variables are presented. For better readability, instead of $x, y, z$, we mark
 variables with a question mark ($?$) followed by a name that represents the 
 expected type of the concepts the variable represents. For example, when we see 
 a variable in a logical formula like $CCUser(?PERSON)$, we immediately know that
-$?PERSON$ can be replaced with instance or subclass of the concept $Person$. 
-We start predicate names with a small letter ($predicate$) and the rest of the 
+$?PERSON$ can be only replaced with (bound to) instance or subclasses of the 
+concept $Person$. We start predicate names with a small letter 
+($predicate$) and the rest of the 
 concepts with a capital letter ($Concept$). At this point it is worth noting 
 that while our logical definitions and formalization are strongly influenced by 
 Cyc\parencite{Lenat1995}, and while the approach is based on the Cyc upper 
@@ -297,12 +298,39 @@ that of OpenCyc. \todo{Add footnotes as in the paper}
 
 \subsection{Upper Ontology}
 \label{section:upperOnto}
-First we introduce the terms (concepts) that will allow us to construct the
-upper ontology which is the glue of any knowledge base that can be used for 
-machine inference:
-
+First we introduce the vocabulary or terms (constants/concepts) that will allow 
+us to construct the upper ontology which is the glue of any knowledge base that 
+can be used for machine inference:
 \begin{equation}
-Something, Class, Predicate, subclass, is, arity, argClass, argIs
+Constants = \{Something, Class, Predicate, subclass, is, arity, argClass, argIs\}
 \end{equation}
 
-Then...
+In the standard \emph{predicate logic}, $P(x)$ notation tells us that whathever 
+the $x$ stands for, it has the property defined by the predicate $P$. 
+For example, the following propositional function:
+\begin{equation}
+Person(x)
+\end{equation}
+is stating that something ($x$) is a person, or more precisely, $x$ is an instance
+of a class $Person$. In order to be able to construct logical statements ranging
+over classes and their instances in a more controlled and transparent way, we
+use a constant $is$, and define it as a predicate defining that something is an
+instance of some class.
+\begin{definition}[predicate "$is$"]
+\label{const:is}
+Predicate $is(x,y)$ denotes that $x$ is an instance of $y$.
+\end{definition}
+Now, to make things clearer and more precise, instead of writing instance
+relation through custom predicate $Person(x)$, we can use more precise syntax, 
+which allow us to specify what is instance of which class: $is(x,Person)$.
+
+In this sense, everything that we write as a predicate in any similar 
+atomic formula, can be
+used for a predicate. This is not a desired behavior in our KA approach, since
+we need more control of what can be used where, if we want to be able to
+check for consistencies and have control of our KB with the inference engine.
+
+For this reason, we enforce a constraint (rule), that everything that we want 
+to use as a predicate, must be first defined as a predicate. In order  to be
+able to say that, we first need to define a way of defining that something ca
+be defined as something.
