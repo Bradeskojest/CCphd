@@ -335,10 +335,22 @@ need more control of what can be used where, if we want to be able to
 check for consistencies and have control of our KB with the inference engine.
 For this reason, we enforce a constraint (rule).
 
-\begin{definition}[Predicate Constraint]
+\begin{definition}[Predicate Constraint]\label{constraint:predicate}
 Everything that we want to use in the KB as a predicate, must first be defined
 as an instance of the $Predicate$ class:
-$\forall x \in S_{Predicates}: is(x,Predicate)$.
+$\forall x \in S_{Predicates}: is(x,Predicate)$. From the other side, set of
+predicates can be defined as $S_{Predicates}=\{x:is(x,Predicate)\}$.
 \end{definition}
 
-tBW.
+Now, careful reader might notice, that we actually cannot use $is$ as a 
+predicate, since nowhere in our KB is stated that this is actually a 
+predicate. To fix this error and make our KB consistent with its constraints,
+we need to add an assertion defining what term $is$ stands for:
+\begin{equation}\label{as:is_is}
+is(is, Predicate)
+\end{equation}
+Now, at the time the above assertion (Assertion \ref{as:is_is}) is asserted
+into the KB, it also becomes valid assertion, since it complies with the
+constraint defined in \autoref{constraint:predicate}. After this assertin is in
+the KB, $is$ can be used as a predicate because it is an instance of the 
+term $Predicate$ and complies with our constraints.
