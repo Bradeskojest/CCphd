@@ -303,7 +303,7 @@ us to construct the upper ontology which is the glue of any knowledge base that
 can be used for machine inference:
 \begin{equation}
 S_{Constants} = \{Something, Class, Predicate, subclass, is, arity, argClass, 
-aargIs\}
+argIs\}
 \end{equation}
 
 In the standard \emph{predicate logic}, $P(x)$ notation tells us that whathever 
@@ -349,8 +349,27 @@ we need to add an assertion defining what term $is$ stands for:
 \begin{equation}\label{as:is_is}
 is(is, Predicate)
 \end{equation}
-Now, at the time the above assertion (Assertion \ref{as:is_is}) is asserted
+At the time the above assertion (Assertion \ref{as:is_is}) is asserted
 into the KB, it also becomes valid assertion, since it complies with the
-constraint defined in \autoref{constraint:predicate}. After this assertin is in
-the KB, $is$ can be used as a predicate because it is an instance of the 
-term $Predicate$ and complies with our constraints.
+constraint defined in Definition \autoref{constraint:predicate}. After this 
+assertion is in the KB, $is$ can be used as a predicate because it is an 
+instance of the term $Predicate$ and complies with our constraints. 
+
+At this point we can define the rest of our predicates:
+\begin{equation}
+\begin{gathered}
+is(subclass, Predicate) \land is(arity,Predicate) \land is(argClass,Predicate)\\
+\land is(argIs,Predicate)
+\end {gathered}
+\end{equation}
+And also the rest of our terms, which we define as instances of term $Class$.
+\begin{equation}
+\begin{gathered}
+is(Something,Class) \land is(Class,Class) \land is(Predicate,Class)
+\end {gathered}
+\end{equation}
+
+In Predicate logic, predicates have a property called arity, which defines 
+number of arguments that the predicate can have. For example, if predicate
+$P$ has arity of 1, then it can only take one operand (variable or term). In 
+this case only $P(x)$ or $P(a)$ are valid statements, and not $P(x,y)$.
