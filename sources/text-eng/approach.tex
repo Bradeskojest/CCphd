@@ -344,7 +344,7 @@ predicates can be defined as $S_{Predicates}=\{x:is(x,Predicate)\}$.
 This constraint can be inserted into our KB as a \emph{material implication}
 rule, which needs to be true at all times, to serve as a constraint:
 \begin{equation}\label{rule:pred_constraint}
-\forall P \forall x_1...x_n (P(x_1...x_n) \implies is(P,Predicate))
+\forall P \forall x_{1...n} (P(x_1...x_n) \implies is(P,Predicate))
 \end{equation}
 \end{definition}
 
@@ -398,8 +398,28 @@ All assertions in CC KB are valid only, when the predicates used in the
 assertion have the same number of arguments as defined with their $arity$ 
 assertions:
 \begin{equation}\label{rule:arity_constraint}
-\forall P \forall n \forall x_1...x_n:(P(x_1,...,x_n) \implies arity(P,n))
+\forall P \forall n \forall x_{1...n}:(P(x_1,...,x_n) \implies arity(P,n))
+\end{equation}
+\end{definition}
+
+After we add the above rule (Constraint Rule \ref{rule:arity_constraint}), our 
+KB is not consistant anymore, since all the $is(x,y)$ assertions (Assertions 
+\ref{as:is_is}, \ref{as:predicates}) violate the constraint. We fix this by adding
+the following assertion:
+
+\begin{equation}\label{as:arity_is}
+arity(arity,2) \land arity(is,2)
+\end{equation}
+This makes the KB consistant again, because we defined all the arities of
+predicates $arity$ and $is$, which we used so far, as well as defined them with
+$is(x, Predicate)$ assertions. We can now continue with defining the arities
+of the rest of the predicates:
+
+\begin{equation}\label{as:arity_predicates}
+\begin{gathered}
+arity(subclass, Predicate) \land is(arity,Predicate) \land is(argClass,Predicate)\\
+\land is(argIs,Predicate)
+\end {gathered}
 \end{equation}
 
-\end{definition}
 
