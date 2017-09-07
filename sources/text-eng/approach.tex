@@ -342,7 +342,7 @@ as an instance of the $Predicate$ class:
 $\forall x \in S_{Predicates}: is(x,Predicate)$. From the other side, set of
 predicates can be defined as $S_{Predicates}=\{x:is(x,Predicate)\}$.
 This constraint can be inserted into our KB as a \emph{material implication}
-rule:
+rule, which needs to be true at all times, to serve as a constraint:
 \begin{equation}\label{rule:pred_constraint}
 \forall P \forall x_1...x_n (P(x_1...x_n) \implies is(P,Predicate))
 \end{equation}
@@ -357,7 +357,8 @@ is(is, Predicate)
 \end{equation}
 At the time the above assertion (Assertion \ref{as:is_is}) is asserted
 into the KB, it also becomes valid assertion, since it complies with the
-constraint defined in Definition \autoref{constraint:predicate}. After this 
+constraint defined in Definition \autoref{constraint:predicate} and thus our
+Constraint Rule \ref{rule:pred_constraint} is true. After this 
 assertion is in the KB, $is$ can be used as a predicate because it is an 
 instance of the term $Predicate$ and complies with our constraints. 
 
@@ -393,8 +394,12 @@ limit the assertions, to "obey" the predicate arities. For this reason our KB
 has additional constraint.
 
 \begin{definition}[Arity Constraint]\label{constraint:arity}
-All assertions in CC KB are only valid, when the predicates used in the 
+All assertions in CC KB are valid only, when the predicates used in the 
 assertion have the same number of arguments as defined with their $arity$ 
-assertions. the KB are only valid in statemen
+assertions:
+\begin{equation}\label{rule:arity_constraint}
+\forall P \forall n \forall x_1...x_n:(P(x_1,...,x_n) \implies arity(P,n))
+\end{equation}
+
 \end{definition}
 
