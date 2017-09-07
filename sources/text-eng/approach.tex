@@ -318,6 +318,7 @@ statements ranging
 over classes and their instances in a more controlled and transparent way, we
 use a constant $is$, and define it as a predicate denoting that something is an
 instance of some class.
+
 \begin{definition}[predicate "$is$"]
 \label{const:is}
 Predicate $is(x,y)$ denotes that $x$ is an instance of $y$.
@@ -340,6 +341,11 @@ Everything that we want to use in the KB as a predicate, must first be defined
 as an instance of the $Predicate$ class:
 $\forall x \in S_{Predicates}: is(x,Predicate)$. From the other side, set of
 predicates can be defined as $S_{Predicates}=\{x:is(x,Predicate)\}$.
+This constraint can be inserted into our KB as a \emph{material implication}
+rule:
+\begin{equation}\label{rule:pred_constraint}
+\forall P \forall x_1...x_n (P(x_1...x_n) \implies is(P,Predicate))
+\end{equation}
 \end{definition}
 
 Now, careful reader might notice, that we actually cannot use $is$ as a 
@@ -356,7 +362,7 @@ assertion is in the KB, $is$ can be used as a predicate because it is an
 instance of the term $Predicate$ and complies with our constraints. 
 
 At this point we can define the rest of our predicates:
-\begin{equation}
+\begin{equation}\label{as:predicates}
 \begin{gathered}
 is(subclass, Predicate) \land is(arity,Predicate) \land is(argClass,Predicate)\\
 \land is(argIs,Predicate)
@@ -372,4 +378,23 @@ is(Something,Class) \land is(Class,Class) \land is(Predicate,Class)
 In Predicate logic, predicates have a property called arity, which defines 
 number of arguments that the predicate can have. For example, if predicate
 $P$ has arity of 1, then it can only take one operand (variable or term). In 
-this case only $P(x)$ or $P(a)$ are valid statements, and not $P(x,y)$.
+this case only $P(x)$ or $P(a)$ are valid statements, and $P(x,y)$ is not.
+In our KB, arity is defined using $arity$ predicate, which itself was defined
+in Assertion \ref{as:predicates}.
+
+\begin{definition}[predicate "$arity$"]\label{def:arity}
+Predicate $arity(x,y)$ denotes that predicate $x$ has arity of $y$.
+\end{definition}
+
+Similarly, as with the constraint that all predicates need to be defined as
+such (Definition \autoref{constraint:predicate}), we gain more control over 
+KB and make things easier for the inference engine and KA approach, if we 
+limit the assertions, to "obey" the predicate arities. For this reason our KB
+has additional constraint.
+
+\begin{definition}[Arity Constraint]\label{constraint:arity}
+All assertions in CC KB are only valid, when the predicates used in the 
+assertion have the same number of arguments as defined with their $arity$ 
+assertions. the KB are only valid in statemen
+\end{definition}
+
