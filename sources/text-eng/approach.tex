@@ -321,7 +321,8 @@ instance of some class.
 
 \begin{definition}[predicate "$is$"]
 \label{const:is}
-Predicate $is(x,y)$ denotes that $x$ is an instance of $y$.
+Predicate $is(x,y)$ denotes that $x$ is an instance of $y$. For example, 
+stating $is(Luka, Human)$ defines Luka as one instance of the class of humans.
 \end{definition}
 Now, to make things clearer and more precise, instead of writing instance
 relation through custom predicate $Person(x)$, we can use more precise syntax, 
@@ -411,15 +412,30 @@ the following assertion:
 arity(arity,2) \land arity(is,2)
 \end{equation}
 This makes the KB consistant again, because we defined all the arities of
-predicates $arity$ and $is$, which we used so far, as well as defined them with
-$is(x, Predicate)$ assertions. We can now continue with defining the arities
-of the rest of the predicates:
+predicates $arity$ and $is$, which we have used so far in our KB, as well as 
+defined them with $is(x, Predicate)$ assertions. We can now continue with 
+defining the arities of the rest of the predicates:
 
 \begin{equation}\label{as:arity_predicates}
 \begin{gathered}
-arity(subclass, Predicate) \land is(arity,Predicate) \land is(argClass,Predicate)\\
+arity(subclass, 2) \land arity(argClass,3) \land arity(argIs,3)\\
 \land is(argIs,Predicate)
 \end {gathered}
 \end{equation}
+We can see now that the arity of $is$ predicate is defined as 2 (same as for 
+$subclass$ and $arity$, which can be used to define arity of itself), and can 
+confirm that all the logical formulas in the definitions up to now are correct.
 
+To be able to describe the world in more detail, we define the $subclass$ 
+predicate, which handles the hierarchy relations between multiple classes 
+(unlike $is$, which handles relationships between classes and their instances).
+\begin{definition}[predicate "$subclass$"]\label{def:pred_subclass}
+Predicate sublcass(x,y) denotes that x is a subclass of y. For example, 
+asserting $subclass(Dog, Animal)$, is spcifying all dogs, to be a sub-class of
+animals.
+\end{definition}
+
+Because we want to be able to prevet our system from acquiring incorrect 
+knowledge, we need to limit the domains and ranges of the predicates 
+(arguments).
 
