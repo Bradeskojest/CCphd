@@ -64,7 +64,6 @@ core KA operations, which can be separated into the following modules:
    \item \emph{Response Formulation} module, which employs the KA meta-knowledge
    and do inference about what to say/ask next. Results of this module are then
    forwarded to the Logic to NL converter and then to the user.
-
 \end{itemize}
 
 Tightly integrated with the knowledge base and inference engine is a 
@@ -437,5 +436,39 @@ animals.
 
 Because we want to be able to prevet our system from acquiring incorrect 
 knowledge, we need to limit the domains and ranges of the predicates 
-(arguments).
+(arguments). This could be done by adding a speciic constraint rules
+(material implication rule without the power to make new assertions). For 
+example, to lf both $subclass$ arguments, to only allow
+instances of a $Class$, we could assert:
+\begin{equation}\label{as:domain_example}
+  \forall x_1 \forall x_2: (subclass(x_1,x_2) \implies (is(x_1,Class) \land 
+  is(x_2,Class))
+\end{equation}
+Because the rule (Rule \ref{as:domain_example} is only true if the right part
+(the consequent) is true, or the left part (the antecedent) is false, its
+inclusion in the KB (as with other constraint rules) forces the KB to not allow
+the arguments of subclass to be anything else than an instance of a class 
+$Class$. It would be hard to construct a large KB, by writing the rule
+like this for each of the thousands potential predicates. To make this easier,
+following Cyc practice\parencite{Lenat1995}, we will introduce $argIs$ 
+predicate (\hl{ref to def}). To make this definition more understandable, let's
+first expand the example (Rule \ref{as:domain_example} above:
+
+\begin{equation}\label{as:domain_ext_example}
+\begin{gathered}
+  \forall x_1 \forall x_2: (subclass(x_1,x_2) \implies (is(x_1,Class) \land is(x_2,Class)) \\ 
+  \iff \\
+  argIs(subclass,1,Class) \land argIs(subclass,2,Class))
+\end{gathered}
+\end{equation}
+This rule above (Rule \ref{as:domain_ext_example} states, that the constraint
+rule (Rule \ref{as:domain_example} can be written as 2 $argIs$ assertions.
+Instead of writing full rule, this constraint for the argunent of $subclass$
+
+\begin{definition}[predicate "$argIs$"]\label{def:pred_subclass}
+Predicate sublcass(x,y) denotes that x is a subclass of y. For example, 
+asserting $subclass(Dog, Animal)$, is spcifying all dogs, to be a sub-class of
+animals.
+\end{definition}
+
 
