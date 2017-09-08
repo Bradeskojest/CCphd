@@ -451,7 +451,7 @@ the arguments of subclass to be anything else than an instance of a class
 $Class$. It would be hard to construct a large KB, by writing the rule
 like this for each of the thousands potential predicates. To make this easier,
 following Cyc practice\parencite{Lenat1995}, we will introduce $argIs$ 
-predicate (\hl{ref to def}). To make this definition more understandable, let's
+predicate (Definition \ref{def:pred_subclass}). To make this definition more understandable, let's
 first expand the example (Rule \ref{as:domain_example} above:
 
 \begin{equation}\label{as:domain_ext_example}
@@ -463,12 +463,25 @@ first expand the example (Rule \ref{as:domain_example} above:
 \end{equation}
 This rule above (Rule \ref{as:domain_ext_example} states, that the constraint
 rule (Rule \ref{as:domain_example} can be written as 2 $argIs$ assertions.
-Instead of writing full rule, this constraint for the argunent of $subclass$
+Instead of writing full rule, the constraint for the argunent of $subclass$ can
+be written simply as $argIs(subclass,1,Class)$. To make this hold for all the
+combinations of predicates (not just $subclass$ from example), we can
+re-phrase the rule to be general, and also define the $argIs$ predicate.
 
 \begin{definition}[predicate "$argIs$"]\label{def:pred_subclass}
-Predicate sublcass(x,y) denotes that x is a subclass of y. For example, 
-asserting $subclass(Dog, Animal)$, is spcifying all dogs, to be a sub-class of
-animals.
+Predicate argIs(x,y,z) denotes that the $y-th$ argument of predicate $x$, must
+be an instance of $z$. For example, asserting \\$argIs(subclass,1, Class)$, states
+that the first argument of predicate $subclass$ must be an instance of $Class$.
+This is enforced by the following constraint rule:
+\begin{equation}\label{as:domain_isa_constraint}
+\begin{gathered}
+  \forall P \forall n \forall x_1...x_n \forall C_{1...m}: \\
+  ((arity(P,n) \land P(x_1,...,x_n)) \implies (is(x_1,C_{1...m}) \land ... \land is(x_n,C_{1...m})) \\ 
+  \iff \\
+  argIs(x_1,1,C_{1...m}) \land ... \land argIs(x_n,n,C_{1...m}))
+\end{gathered}
+\end{equation}
+T
 \end{definition}
 
 
