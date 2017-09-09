@@ -612,29 +612,55 @@ argIs(is,1, Something)
 But this assertion above (\ref{as:is_arg1_domain}), invalidates the correctnes
 of all of our $is$ assertions, since none of the current first arguments are
 instances o $Something$ (see Assertions \ref{as:is_is}, \ref{as:predicates} and 
-\ref{as:numbers}).
+\ref{as:numbers}). To fix this, we need to be able at least to say that things 
+are instances of $Something$ ($is(x,Something)$). According to the $is$ argument
+constraint assertion above (\ref{as:is_arg2_domain}), $Something$ must be an 
+instance of a $Class$. So we define it as so:
 
-Now, to be able to say that things are 
-instances of $Something$ ($is(x,Something)$, according to the constraint 
-assertion above (\ref{as:is_arg2_domain}), $Something$ must be an instance of 
-a $Class$. So we define it as so:
 \begin{equation}\label{as:is_something}
 	is(Something,Class)
 \end{equation}
+Now, as a consequence of this, we could assert for all of the arguments that
+are used in $is$ ($is$, $Class$, $Predicate$, $Number$, $\mathbb{N}$), that 
+they are an instances of the $Something$. This would
+be highly unpractical, since we would need to do this for every future constant
+to be used by $is$ predicate (especially unpractical for infinite number of
+$\mathbb{N}$).
 
-\begin{equation}\label{as:is_domain}
+Instead, since we know that $Something$ is an instance of a $Class$, we can use 
+it in our $subclass$ assertions (a consequence of constraint Assertion 
+\ref{as:subclass_is_constraint}) and state that $Class$ is a subclass of 
+$Something$:
+\begin{equation}\label{as:subclass_something}
+	subclass(Class, Something)
+\end{equation}
+A consequence of this assertion is (because of inference rule 
+\ref{rule:subclass_transitivity}), that
+every sub-class of anything that exists in our KB (because we can only use 
+instances of $Class$ in $subclass$ assertions), is a sub-class of $Something$ as
+well. This doesn't yet seem to help us make our 1st $is$ predicate arguments 
+instances of $Something$, but it will, after we address another weaknes in our
+current KB. 
+Consider the continuation of the example we started in $subclass$ 
+definition (Definition \ref{def:pred_subclass}, where a terrier is a sub-class
+of dog, and dog is a sub-class of animals ($subclass(Dog,Animal)$, 
+$subclass(Terrier,Dog)$). If we introduce an instance of the
+class $Terrier$, let's say, a real dog named "Spot" ($is(Spot,Terrier$)), we can
+see that there is a logical problem, since Spot is a terrier in our KB, but
+not a dog, or even an animal (there is nothing to support $is(Spot,Animal)$ 
+assertion. This can be fixed by introducing the following Inference Rule:
+
+\begin{equation}\label{rule:is_transfer}
 \begin{gathered}
-argIs(is,1,Something) \land argIs(is,2,Class) \land\\
-argIs(subclass,1,Class) \land argIs(is,2,Class) \land argIs(arity,1,Predicate) \land\\
-argIs(arity,2, Number) \land argClass(argIs,3,Something)
+  \forall x \forall y \forall z: ((is(x,y) \land subclass(y,z)) \implies is(x,z))
 \end{gathered}
 \end{equation}
-
-\begin{equation}\label{as:alldomains}
-\begin{gathered}
-argIs(argClass,1,Predicate) \land argIs(argClass,2,Number) \land \\
-argIs(argClass,3,Class) \land argIs(is,1,Something) \land argIs(is,2,Class) \land\\
-argIs(subclass,1,Class) \land argIs(is,2,Class) \land argIs(arity,1,Predicate) \land\\
-argIs(arity,2, Number) \land argClass(argIs,3,Something)
-\end{gathered}
-\end{equation}
+This rule is basically saying, that if there is an instance of a class, and this
+class is a sub-class of another class, then this instance is also an instance of
+the other class. Now, this inference rule (\ref{rule:is_transfer}), together 
+with the fact that $Class$ is a sub-class of $Something$, and the $subclass$
+transitivity inference rule (\ref{rule:subclass_transitivity}), makes everything
+ that is instance of a 
+class, or its sub-class (which is everything in our KB), also an instance of
+$Something$, and thus proving the assertion \ref{as:is_arg1_domain} correct and 
+consequently our KB fully consistant again.
