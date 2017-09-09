@@ -130,7 +130,6 @@ previous conversation or simply starting a new one.
 	\label{fig:interaction}
 \end{figure}
 
-
 According to the interactions described above, the proposed KA system have two 
 options for the interaction. Human to machine (HMI), when users initiate 
 interaction, and machine to human (MHI), when the system initiates the 
@@ -301,8 +300,10 @@ First we introduce the vocabulary or terms (constants/concepts) that will allow
 us to construct the upper ontology which is the glue of any knowledge base that 
 can be used for machine inference:
 \begin{equation}
-S_{Constants} = \{Something, Class, Predicate, subclass, is, arity, argClass, 
-argIs\}
+\begin{gathered}
+S_{Constants} = \{Something, Class, Number, Predicate, subclass, \\
+	is, arity, argClass, argIs\}
+\end{gathered}
 \end{equation}
 
 In the standard \emph{predicate logic}, $P(x)$ notation tells us that whathever 
@@ -321,7 +322,7 @@ instance of some class.
 \begin{definition}[predicate "$is$"]
 \label{const:is}
 Predicate $is(x,y)$ denotes that $x$ is an instance of $y$. For example, 
-stating $is(Luka, Human)$ defines Luka as one instance of the class of humans.
+stating $is(John, Human)$ defines John as one instance of the class of humans.
 \end{definition}
 Now, to make things clearer and more precise, instead of writing instance
 relation through custom predicate $Person(x)$, we can use more precise syntax, 
@@ -359,10 +360,10 @@ At the time the above assertion (Assertion \ref{as:is_is}) is asserted
 into the KB, it also becomes valid assertion, since it complies with the
 constraint defined in Definition \autoref{constraint:predicate} and thus our
 Constraint Rule \ref{rule:pred_constraint} is true. After this 
-assertion is in the KB, $is$ can be used as a predicate because it is an 
+assertion is in the KB, $ir$ can be used as a predicate because it is an 
 instance of the term $Predicate$ and complies with our constraints. 
 
-At this point we can define the rest of our predicates:
+At this point we can define(assert) the rest of our predicates:
 \begin{equation}\label{as:predicates}
 \begin{gathered}
 is(subclass, Predicate) \land is(arity,Predicate) \land is(argClass,Predicate)\\
@@ -370,9 +371,10 @@ is(subclass, Predicate) \land is(arity,Predicate) \land is(argClass,Predicate)\\
 \end {gathered}
 \end{equation}
 And also the rest of our terms, which we define as instances of term $Class$.
-\begin{equation}
+\begin{equation}\label{as:is_class}
 \begin{gathered}
-is(Something,Class) \land is(Class,Class) \land is(Predicate,Class)
+is(Something,Class) \land is(Class,Class) \land is(Predicate,Class)\\ 
+\land is(Number, Class)
 \end {gathered}
 \end{equation}
 
@@ -417,8 +419,7 @@ defining the arities of the rest of the predicates:
 
 \begin{equation}\label{as:arity_predicates}
 \begin{gathered}
-arity(subclass, 2) \land arity(argClass,3) \land arity(argIs,3)\\
-\land is(argIs,Predicate)
+arity(subclass, 2) \land arity(argClass,3) \land arity(argIs,3)
 \end {gathered}
 \end{equation}
 We can see now that the arity of $is$ predicate is defined as 2 (same as for 
@@ -489,7 +490,7 @@ of a $Class$, but its subclasses, we can define similar predicate and its
 constraint rules also fro $argClass$:
 
 \begin{definition}[predicate "$argClass$"]\label{def:pred_argClass}
-Predicate argClass(x,y,z) denotes that the $y-th$ argument of predicate $x$, 
+Predicate $argClass(x,y,z)$ denotes that the $y-th$ argument of predicate $x$, 
 must be a subclass of $z$. For example, asserting 
 \\$argClass(servesCuisine, 2, Restaurant)$, states that the first argument of 
 predicate $servesCuisine$ must be a subclass of $Restaurant$.
@@ -505,6 +506,57 @@ for $argClass$):
 \end{equation}
 \end{definition}
 
+Before we can assign argument constraints to our existing predicates and have
+all the KB valid, we need to define a special class $Number$:
 
+\begin{definition}[class $Number$ and its instances]\label{def:number}
+All natural numbers are instances of the class $Number$. Formally, this can be
+asserted into a KB as:
+\begin{equation}\label{as:numbers}
+	\forall x \in \mathbb{N}:is(x,Number)
+\end{equation}
+\end{definition}
 
+This now allows us to use $argIs$ and $argClass$ predicates instead of 
+complicated rules, to define types of arguments inside any predicate used in the
+KB. By using these two newly defined predicates, we can now proceeed to assert 
+the argument limits of the $argIsa$ predicate itself: 
 
+\begin{equation}\label{as:argIs_domain}
+\begin{gathered}
+argIs(argIs,1,Predicate) \land argIs(argIs,2,Number) \land argIs(argIs,3,Class) 
+\end{gathered}
+\end{equation}
+We can see that the first argument must be an instance of $Predicate$, which 
+holds in all three cases ($argIs$ is a first argument of the Assertion 
+\ref{as:argIs_domain} above), since it was defined in Assertion 
+\ref{as:predicates}. Similary, the second argument is a valid number, in all 
+three cases as defined in Definition \ref{def:number}. Also the third arguments
+($Predicate$, $Number$,$Class$), are all instances of the $Class$ as defined in
+Assertion \ref{as:is_class}, so the assertion \ref{as:argIs_domain} can be asserted
+and it doesn't invalidate itself throigh argument contraint rule (Constraint 
+\ref{as:domain_isa_constraint}).
+
+Similary, we can now proceed to define our $is$ predicate constraints, which is
+a bit more complicated. If we look at our existing  $is$ assertions 
+(\ref{as:is_is}, \ref{as:predicates}, \ref{as:numbers}), we can
+see that as a second argument we always have an instance of a $Class$ 
+($Predicate$,$Class$), but
+for the first argument we can actually put in everything ($is$, $Class$, 
+$Something$, $Predicate$,  $Number$, $\mathbb{N}$).
+\begin{equation}\label{as:is_domain}
+\begin{gathered}
+argIs(is,1,Something) \land argIs(is,2,Class) \land\\
+argIs(subclass,1,Class) \land argIs(is,2,Class) \land argIs(arity,1,Predicate) \land\\
+argIs(arity,2, Number) \land argClass(argIs,3,Something)
+\end{gathered}
+\end{equation}
+
+\begin{equation}\label{as:alldomains}
+\begin{gathered}
+argIs(argClass,1,Predicate) \land argIs(argClass,2,Number) \land \\
+argIs(argClass,3,Class) \land argIs(is,1,Something) \land argIs(is,2,Class) \land\\
+argIs(subclass,1,Class) \land argIs(is,2,Class) \land argIs(arity,1,Predicate) \land\\
+argIs(arity,2, Number) \land argClass(argIs,3,Something)
+\end{gathered}
+\end{equation}
