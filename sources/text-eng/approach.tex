@@ -299,7 +299,7 @@ that of OpenCyc. \todo{Add footnotes as in the paper}
 First we introduce the vocabulary or terms (constants/concepts) that will allow 
 us to construct the upper ontology which is the glue of any knowledge base that 
 can be used for machine inference:
-\begin{equation}
+\begin{equation}\label{set:terms}
 \begin{gathered}
 S_{Constants} = \{Something, Class, Number, Predicate, subclass, \\
 	is, arity, argClass, argIs\}
@@ -309,6 +309,7 @@ S_{Constants} = \{Something, Class, Number, Predicate, subclass, \\
 In the standard \emph{predicate logic}, $P(x)$ notation tells us that whathever 
 the $x$ stands for, it has the property defined by the predicate $P$. 
 For example, the following propositional function:
+
 \begin{equation}\label{eq:examplepred}
 Person(x)
 \end{equation}
@@ -353,6 +354,7 @@ Now, careful reader might notice, that we actually cannot use $is$ as a
 predicate, since nowhere in our KB is stated that this is actually a 
 predicate. To fix this error and make our KB consistent with its constraints,
 we need to add an assertion defining what term $is$ stands for:
+
 \begin{equation}\label{as:is_is}
 is(is, Predicate)
 \end{equation}
@@ -364,6 +366,7 @@ assertion is in the KB, $ir$ can be used as a predicate because it is an
 instance of the term $Predicate$ and complies with our constraints. 
 
 At this point we can define(assert) the rest of our predicates:
+
 \begin{equation}\label{as:predicates}
 \begin{gathered}
 is(subclass, Predicate) \land is(arity,Predicate) \land is(argClass,Predicate)\\
@@ -373,7 +376,7 @@ is(subclass, Predicate) \land is(arity,Predicate) \land is(argClass,Predicate)\\
 And also the rest of our terms, which we define as instances of term $Class$.
 \begin{equation}\label{as:is_class}
 \begin{gathered}
-is(Something,Class) \land is(Class,Class) \land is(Predicate,Class)\\ 
+	is(Class,Class) \land is(Predicate,Class)\\ 
 \land is(Number, Class)
 \end {gathered}
 \end{equation}
@@ -429,18 +432,31 @@ confirm that all the logical formulas in the definitions up to now are correct.
 To be able to describe the world in more detail, we define the $subclass$ 
 predicate, which handles the hierarchy relations between multiple classes 
 (unlike $is$, which handles relationships between classes and their instances).
+
 \begin{definition}[predicate "$subclass$"]\label{def:pred_subclass}
-Predicate sublcass(x,y) denotes that x is a subclass of y. For example, 
-asserting $subclass(Dog, Animal)$, is spcifying all dogs, to be a sub-class of
-animals.
+Predicate $sublcass(x,y)$ denotes that $x$ is a subclass of $y$. For example, 
+asserting $subclass(Dog, Animal)$, is specifying all dogs, to be a sub-class of
+animals, and $subclass(Terrier,Dog)$ is speficfying that all terriers are 
+sub-class of dogs. At this point we might notice that while it is logical to us
+that terriers are also a sub-class of animals, there is no way for the machine
+inference to figure that out. For this reason we need to introduce a
+"subclass transitivity" inference rule:
+\begin{equation}\label{rule:subclass_transitivity}
+\begin{gathered}
+  \forall x \forall y \forall z: ((subclass(x,y) \land subclass(y,z)) \implies subclass(x,z))
+\end{gathered}
+\end{equation}
+The rule above is basically saying that if a first thing is a sub-class of a
+the second thing, and then thesecond thing is a subclass of the thirdthing,
+then the third thing is a sub-class of the first thing as well. 
 \end{definition}
 
 Because we want to be able to prevet our system from acquiring incorrect 
 knowledge, we need to limit the domains and ranges of the predicates 
 (arguments). This could be done by adding a speciic constraint rules
 (material implication rule without the power to make new assertions). For 
-example, to lf both $subclass$ arguments, to only allow
-instances of a $Class$, we could assert:
+example, for both $subclass$ arguments, to only allow instances of a $Class$, 
+we could assert:
 \begin{equation}\label{as:domain_example}
   \forall x_1 \forall x_2: (subclass(x_1,x_2) \implies (is(x_1,Class) \land 
   is(x_2,Class))
@@ -537,13 +553,75 @@ Assertion \ref{as:is_class}, so the assertion \ref{as:argIs_domain} can be asser
 and it doesn't invalidate itself throigh argument contraint rule (Constraint 
 \ref{as:domain_isa_constraint}).
 
-Similary, we can now proceed to define our $is$ predicate constraints, which is
+Similary, we can now proceed to define the rest of our predicates. Starting with
+the most similar $argClass$:
+\begin{equation}\label{as:argClass_domain}
+\begin{gathered}
+	argIs(argClass,1,Predicate) \land argIs(argClass,2,Number) \\
+	\land argIs(argClass,3,Class) 
+\end{gathered}
+\end{equation}
+Since we didn't yet assert any direct $argClass$ constraint, this predicate
+at this point defines the constraints, without any danger to invalidate our
+current KB. 
+
+Continuing with $subclass$. On the Definition \ref{def:pred_subclass}, 
+we can see that this
+predicate defines sub-class relationships between the classes. For this reason
+it makes sense to only allow instances of $Class$ for its arguments:
+\begin{equation}\label{as:subclass_is_constraint}
+	argIs(subclass,1,Class) \land argIs(subclass,2,Class)
+\end{equation}
+Same as with the Assertion \ref{as:argClass_domain}, we didn't yet assert any 
+direct assertions about something being a sub-class of something, this assertion
+doesn't affect yet the validity of our KB, while prevents future assertions of 
+$subclass$ predicate on anything but $Class$ instances.
+
+For the $arity$ predicate, we can check our existing assertions 
+(\ref{as:arity_is}, \ref{as:arity_predicates}), and
+see that as the first argument we always have an instance of $Predicate$, while
+as the second argument we have an instance of a $Number$. According to this, it
+serves our purpose and is safe to limit the arguments of $arity$ to:
+\begin{equation}\label{as:arity_is_constraint}
+	argIs(arity,1,Predicate) \land argIs(arity,2,Number)
+\end{equation}
+
+
+We can now proceed to define our last ($is$) predicate constraints, which is
 a bit more complicated. If we look at our existing  $is$ assertions 
 (\ref{as:is_is}, \ref{as:predicates}, \ref{as:numbers}), we can
 see that as a second argument we always have an instance of a $Class$ 
-($Predicate$,$Class$), but
-for the first argument we can actually put in everything ($is$, $Class$, 
-$Something$, $Predicate$,  $Number$, $\mathbb{N}$).
+($Predicate$, $Class$), but
+for the first argument we can actually put in anything ($is$, $Class$, 
+$Predicate$,  $Number$, $\mathbb{N}$). From instance of a $Class$,
+instance of a $Predicate$, to an instance of a $Number$. For the second argument
+we can imediatelly asert
+
+\begin{equation}\label{as:is_arg2_domain}
+argIs(is,2, Class)
+\end{equation}
+
+In order to be able to say that some argument can be anything, we followed a 
+Cyc example and introduce term $Something$, first mentioned in the set of our 
+terms in Assertion \ref{set:terms}. We set this as the constraint for the first
+argument of $is$ predicate:
+
+\begin{equation}\label{as:is_arg1_domain}
+argIs(is,1, Something)
+\end{equation}
+But this assertion above (\ref{as:is_arg1_domain}), invalidates the correctnes
+of all of our $is$ assertions, since none of the current first arguments are
+instances o $Something$ (see Assertions \ref{as:is_is}, \ref{as:predicates} and 
+\ref{as:numbers}).
+
+Now, to be able to say that things are 
+instances of $Something$ ($is(x,Something)$, according to the constraint 
+assertion above (\ref{as:is_arg2_domain}), $Something$ must be an instance of 
+a $Class$. So we define it as so:
+\begin{equation}\label{as:is_something}
+	is(Something,Class)
+\end{equation}
+
 \begin{equation}\label{as:is_domain}
 \begin{gathered}
 argIs(is,1,Something) \land argIs(is,2,Class) \land\\
