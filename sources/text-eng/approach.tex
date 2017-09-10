@@ -6,11 +6,32 @@
 This chapter defines the terms, formal structure and steps that form our 
 proposed KA approach. First it introduces the general architecture and 
 interaction loop that defines the sequence of interactions and steps
-involved in the process(\autoref{section:Architecture}). In the second part, it formalizes 
-the upper ontology and logical constructs required for the KA approach 
-(\hl{ref to chapter}). After that, each of the crucial steps is described in 
-more detail through examples and additions to the core logical structure 
-defined earlier.
+involved in the process(\autoref{section:Architecture}). In the second part, it
+formalizes the upper ontology and logical constructs required for the KA 
+approach (\autoref{section:kb}). After that, each of the crucial steps is 
+described in more detail through examples and additions to the core logical 
+structure defined earlier.
+
+To make it easier to explain, formalize and understand the proposed approach 
+for automated knowledge acquisition with prior knowledge, user context and 
+conversational crowdsourcing, we will guide the explanations and formalizations
+through an example KA conversation depicted in tables \hl{ref1, ref2}.
+
+%Add tbles here
+%\begin{tabular}[]{}
+%\end{tabular}
+
+The resulting implementation (described at the end in \hl{ref}) of the described
+approach, named Curious Cat has a
+multi objective goal, KA is the primary goal, while having an intelligent 
+assistant and a conversational agent are secondary goals. The aim is to perform
+knowledge acquisition effortlessly and accurately as a side effect, while having
+a conversation about concepts which have some connection to the user.
+At the same time, the approach allows the system (or the user) to follow the 
+links in the conversation to other connected topics, covering and collecting
+more knowledge. For illustration see the example conversation sketch in 
+]hl{Table I}, where the topic changes from a specific restaurant to a type of 
+dish.
 
 \section{Architecture}
 \label{section:Architecture}
@@ -249,6 +270,7 @@ to the original user (3c).
 
 %SECTION
 \section{Knowledge Base}
+\label{section:kb}
 As visible in \autoref{fig:Architecture}, Knowledge Base is the central part
 of the proposed KA system. Internally KB has three components. The main part, 
 which should in any real implementation of the system also be the biggest, is 
