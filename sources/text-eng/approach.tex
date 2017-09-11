@@ -15,9 +15,9 @@ structure defined earlier.
 To make it easier to explain, formalize and understand the proposed approach 
 for automated knowledge acquisition with prior knowledge, user context and 
 conversational crowdsourcing, we will guide the explanations and formalizations
-through an example KA conversation depicted in tables \hl{ref1, ref2}.
+through an example KA conversation depicted in tables \ref{tab:conversation1}
+and \ref{tab:conversation2}.
 
-%Add tbles here
 \begin{table}[h!]
 \centering
 \caption{Minimal example of Curious Cat and user interaction.}
@@ -50,9 +50,36 @@ through an example KA conversation depicted in tables \hl{ref1, ref2}.
 \end{tabular}
 \end{table}
 
-The resulting implementation (described at the end in \hl{ref}) of the described
-approach, named Curious Cat has a
-multi objective goal, KA is the primary goal, while having an intelligent 
+When the system is convesing with the user, it uses all the knowledge gathered 
+in prior conversations, other user's conversations and also this conversation, 
+and is able to use it to further generate new comments and related questions. 
+This is evident in the interaction step number 4 in \autoref{tab:conversation1}. 
+At the same time, or later, when some other user is in a similar context, 
+the knowledge can be double checked with another user, as shown in 
+\autoref{tab:conversation2}. Based on the votes (confirmations or rejections) 
+from the crowd (other users), the system can decide whether to believe the new 
+knowledge in general, or only when it interacts with this particular user.
+This is explained in more detail in section \hl{ref}.
+
+\begin{table}[h!]
+\centering
+\caption{Minimal example of Truth checking interaction with the help of crowdsourcing.}
+\label{tab:conversation2}
+\begin{tabular}{|c|l|l|}
+	\hline
+	\multirow{2}{2em}{Step num.} & \multicolumn{2}{c|}{Interaction}\\\cline{2-3}
+	& \multicolumn{1}{c|}{Curious Cat} & User2 \\
+	\hline
+	1 & \makecell[l]{Where are we? \\Are we at Joe's Pizza restaurant?} & Yes.\\
+    \hline
+	2 & \makecell[l]{We've never been here before.\\ What kind of place this is?} & Restaurant.\\
+    \hline
+\end{tabular}
+\end{table}
+
+The resulting implementation (described at the end in 
+\autoref{chapter:implementation}) of the described approach, named Curious Cat 
+has a multi objective goal, KA is the primary goal, while having an intelligent 
 assistant and a conversational agent are secondary goals. The aim is to perform
 knowledge acquisition effortlessly and accurately as a side effect, while having
 a conversation about concepts which have some connection to the user.
@@ -719,8 +746,26 @@ class, or its sub-class (which is everything in our KB), also an instance of
 $Something$, and thus proving the assertion \ref{as:is_arg1_domain} correct and 
 consequently our KB fully consistant again.
 
-\hl{At this point the Upper ontology is defined. Does this sub-chapter need 
-some conclusions, or explanation?}
+At this point our Upper Ontology is defined (it is visually presented on
+\autoref{fig:upperOnto}) and ready to build upon as will be
+described in the next chapters. Since Curious Cat main implementation is based
+on Cyc, and it was inspired by the way Cyc ontology is constructed and being 
+used, this upper ontology reflects the main part of Cyc upper ontology 
+(see Chapter \ref{chapter:implementation}, implementation on how this 
+formalization maps to Cyc). While our upper ontology logical definitions and 
+formalizations are strongly influenced by Cyc, the approach is general and not 
+bound to any particular implementation, and our notation reflects but is not 
+tightly bound to that of Cyc. For example, the usage of $argIs$ and $argClass$
+can be replaced by $domain$ and $range$ when using a RDF schema, such as was 
+done in our RDF prototype implenentation\parencite{Bradesko2012a}.
+
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=0.8\textwidth]{figures/upperOntology.png}
+	\caption{Upper ontology terms, with 'is' and 'subclass' relations.}
+	\label{fig:upperOnto}
+\end{figure}
+
 
 %SUBSECTION
 \subsection{Existing Knowledge}
