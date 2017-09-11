@@ -20,16 +20,16 @@ through an example KA conversation depicted in tables \hl{ref1, ref2}.
 %Add tbles here
 \begin{table}[h!]
 \centering
-\caption{This is caption}
+\caption{Minimal example of Curious Cat and user interaction.}
 \label{tab:conversation1}
 \begin{tabular}{|c|l|l|}
 	\hline
-	\multirow{2}{*}{Step num.} & \multicolumn{2}{c|}{Interaction}\\\cline{2-3}
-	& \multicolumn{1}{|c|}{Curious Cat} & User1 \\
+	\multirow{2}{2em}{Step num.} & \multicolumn{2}{c|}{Interaction}\\\cline{2-3}
+	& \multicolumn{1}{c|}{Curious Cat} & User1 \\
 	\hline
-	1 & Where are we? Are we at Joe's Pizza restaurant? & Yes.\\
+	1 & \makecell[l]{Where are we? \\Are we at Joe's Pizza restaurant?} & Yes.\\
     \hline
-	2 & We've never been here before. What kind of place  this is? & Restaurant.\\
+	2 & \makecell[l]{We've never been here before.\\ What kind of place this is?} & Restaurant.\\
     \hline
     3 & Does Joe's Pizza have Wi-Fi? & Yes. \\
     \hline
@@ -37,7 +37,16 @@ through an example KA conversation depicted in tables \hl{ref1, ref2}.
     \hline
     5 & What's on the menu in Joe's Pizza? & Pizzas.\\
 	\hline
-    ... & Some time passes while user eats...\\
+    \multicolumn{3}{|c|}{...Some time passes while the user eats...}\\
+	\hline
+	6 & What did you order? & A car. \\
+	\hline
+	7 & \makecell[l]{I've never heard of food called 'car' before. \\ Are you sure it's a type of food?} & No. \\
+	\hline
+	8 & What did you order then? & Pizza Deluxe \\
+	\hline
+	9 & \makecell[l]{I've never heard of 'Pizza Deluxe' before.\\What kind of thing is it?} & Pizza. \\
+	\hline 
 \end{tabular}
 \end{table}
 
