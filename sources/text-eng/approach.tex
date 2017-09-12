@@ -778,19 +778,44 @@ than a fixed ontology that needs to be implemented.
 This sub-chapter extends our upper ontology example with additional knowledge
 that allows us to explain the system through the examples given in 
 \autoref{tab:conversation1} and \autoref{tab:conversation2}. 
-\hl{Add some more description here, why/what existing knowledge is useful for}
 
-The main 
-\emph{Curious Cat} implementation, uses an extended full Cyc ontology and KB, 
-similar to that released as ResearchCyc, as a common sense knowledge base. 
-This is far too big (millions of assertions), to be explained in any detail 
-here with the approach (it is explained in more detail in Chapter 
-\ref{chapter:implementation}, Implementation). In this chapter we define only 
-the concepts and predicates that are necessary for explaining the proposed 
-approach.
+As also visible in the Architecture schematic (\autoref{fig:architecture},
+KB with background knowledge is one of the most crucial elements of proposed 
+approach. It serves both, as the driving force behind the source of the 
+questions, since with the help of contextual knowledge triggers the infrence to
+produce logical queries for the missing parts of the knowledge. At the same time
+it is the drive behind the proactive user interaction, sarting either as a
+question or a suggestion. Finally, the background knowledge is also used for 
+validation of answered questions. If the answers are not consistent according
+to the existing KB, users are required to re-formulate, or repeat the answer.
 
-The set of new concepts is defined on top of existing Upper Ontology as 
-follows:
+The main \emph{Curious Cat} implementation, uses an extended 
+full Cyc ontology and KB, similar to that released as ResearchCyc, as a 
+common sense and background knowledge base. This is far too big (millions of 
+assertions), to be explained in any detail here with the general approach (it 
+is explained in more detail in Chapter \ref{chapter:implementation}, 
+Implementation). In this chapter we define only the concepts and predicates 
+and thus construct the minimal example KB that is necessary for explaining the p
+roposed system.
+
+First we introduce the set of new concepts that we need for the food part
+of the ontology. These concepts are defined on top of the existing Upper 
+Ontology, so the new parts of the KB should maintain the consistency of the
+already described parts. The set of terms $S_{Food} $, needed to describe this 
+part of the KB is as follows:
+
+\begin{equation}\label{set:foodTerms}
+\begin{gathered}
+S_{Food} = \{FoodOrDrink,Food,Bread,Baguette,Drink,Coffee\}
+\end{gathered}
+\end{equation}
+Where each of these terms is an instance of a $Class$:
+\begin{equation}\label{set:foodTermsClass}
+\begin{gathered}
+\forall x \in S_{Food}: isa(x,Class)
+\end{gathered}
+\end{equation}
+dada
 
 \begin{equation}\label{set:existingTerms}
 \begin{gathered}
@@ -813,7 +838,28 @@ proceed and define what these terms are. First the classes:
 	is(Car,Class)\land is(Visit,Class) \land is(Coffee,Class)
 \end{gathered}
 \end{equation}
-w
+
+Which are connected into the appropriate $subclass$ hierarchy:
+
+\begin{equation}\label{as:kbSubclasses}
+\begin{gathered}
+	subclass(PublicPlace,Place) \land subclass(Restaurant,PublicPlace) \land \\
+    subclass(Drink,FoodOrDrink) \land subclass(Coffee,Drink) \land \\
+	subclass(Food,FoodOrDrink) \land subclass(Bread,Food) \land \\
+	is(Baguete, Bread)
+\end{gathered}
+\end{equation}
+
+
+
+Then, each predicate needs a little bit more of logic, since we also want to
+represent the constraints which will serve for the inference engine to check
+the validity of the answers.
+
+\begin{definition}[predicate "$probableUserLocation$"]
+\label{pred:probableUserLocation}
+Dada
+\end{definition}
 %SUBSECTION
 \subsection{KA Knowledge}
 dada
