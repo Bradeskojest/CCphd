@@ -63,7 +63,8 @@ This is explained in more detail in section \hl{ref}.
 
 \begin{table}[h!]
 \centering
-\caption{Minimal example of Truth checking interaction with the help of crowdsourcing.}
+\caption{Minimal example of Truth checking interaction with the help of 
+	crowdsourcing.}
 \label{tab:conversation2}
 \begin{tabular}{|c|l|l|}
 	\hline
@@ -380,6 +381,7 @@ that of OpenCyc. \todo{Add footnotes as in the paper}
 First we introduce the vocabulary or terms (constants/concepts) that will allow 
 us to construct the upper ontology which is the glue of any knowledge base that 
 can be used for machine inference:
+
 \begin{equation}\label{set:terms}
 \begin{gathered}
 S_{Constants} = \{Something, Class, Number, Predicate, subclass, \\
@@ -773,7 +775,31 @@ than a fixed ontology that needs to be implemented.
 %SUBSECTION
 \subsection{Existing Knowledge}
 \label{section:existingKB}
-Dada
+This sub-chapter extends our upper ontology example with additional knowledge
+that allows us to explain the system through the examples given in 
+\autoref{tab:conversation1} and \autoref{tab:conversation2}. 
+\hl{Add some more description here, why/what existing knowledge is useful for}
+
+The main 
+\emph{Curious Cat} implementation, uses an extended full Cyc ontology and KB, 
+similar to that released as ResearchCyc, as a common sense knowledge base. 
+This is far too big (millions of assertions), to be explained in any detail 
+here with the approach (it is explained in more detail in Chapter 
+\ref{chapter:implementation}, Implementation). In this chapter we define only 
+the concepts and predicates that are necessary for explaining the proposed 
+approach.
+
+The set of new concepts is defined on top of existing Upper Ontology as 
+follows:
+
+\begin{equation}\label{set:existingTerms}
+\begin{gathered}
+S_{Constants} = S_{Constants} + \{User,Place,PublicPlace,Restaurant,\\
+	FoodOrDrink,Food,Drink,	WirelessService,Service,Vehicle,\\
+	Car,Visit,Coffee,Restaurant1,User1,User2\}
+\end{gathered}
+\end{equation}
+
 
 %SUBSECTION
 \subsection{KA Knowledge}
