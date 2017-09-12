@@ -800,8 +800,20 @@ S_{Constants} = S_{Constants} + \{User,Place,PublicPlace,Restaurant,\\
 	probableUserLocation,userLocation,menuItem,providesServiceType\}
 \end{gathered}
 \end{equation}
+we can see that these terms add on top of the existing set of terms from 
+upper ontology ($S_{Constants} = S_{upper} \cup S_{existing}$). Now we can 
+proceed and define what these terms are. First the classes:
 
-
+\begin{equation}\label{as:kbClasses}
+\begin{gathered}
+	is(User,Class) \land is(Place,Class) \land is(PublicPlace,Class) \land\\
+	is(Restaurant,Class) \land is(FoodOrDrink,Class) \land is(Food,Class)\land\\
+	is(Bread,Class)\land is(Baguette,Class)\land is (Drink,Class) \land \\
+	is(WirelessService,Class)\land is(Service,Class)\land is(Vehicle,Class)\land\\
+	is(Car,Class)\land is(Visit,Class) \land is(Coffee,Class)
+\end{gathered}
+\end{equation}
+w
 %SUBSECTION
 \subsection{KA Knowledge}
 dada
