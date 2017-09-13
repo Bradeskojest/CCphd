@@ -833,6 +833,69 @@ Which is also presented graphically on \autoref{fig:foodSubclass} below.
 	\label{fig:foodSubclass}
 \end{figure}
 
+The second part of ontology (KB) constructing knowledge about places consist
+of the following terms:
+
+\begin{equation}\label{set:placeTerms}
+\begin{gathered}
+S_{Place} = \{Placa,PublicPlace,PrivatePlace,Restaurant\}
+\end{gathered}
+\end{equation}
+Where each of these terms is also an instance of a $Class$:
+\begin{equation}\label{set:placeTermsClass}
+\begin{gathered}
+\forall x \in S_{Place}: isa(x,Class)
+\end{gathered}
+\end{equation}
+Then, these classes are connected into a class-hierarchy, which is done with
+a $subclass$ predicate:
+
+\begin{equation}\label{as:kbPlaceSubclasses}
+\begin{gathered}
+    subclass(PrivatePlace,Place) \land subclass(PublicPlace,Place) \land \\
+	subclass(Restaurant,PublicPlace) \land subclass(Home,PrivatePlace)
+\end{gathered}
+\end{equation}
+Which is also presented graphically on \autoref{fig:placeOntology} below.
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=0.6\textwidth]{figures/placeOntology.png}
+	\caption{Hierarchy of place related terms, specified by subclass predicates.}
+	\label{fig:placeOntology}
+\end{figure}
+
+Then the last part (excluding predicates which are defined separately),
+of our \emph{Existing Knowledge} consist of the following terms:
+
+\begin{equation}\label{set:otherTerms}
+\begin{gathered}
+S_{Place} = \{Service,WirelessService,Vehicle,Car\}
+\end{gathered}
+\end{equation}
+Where each of these terms is also an instance of a $Class$:
+\begin{equation}\label{set:placeTermsClass}
+\begin{gathered}
+\forall x \in S_{Place}: isa(x,Class)
+\end{gathered}
+\end{equation}
+Then, these classes are connected into a class-hierarchy, which is done with
+a $subclass$ predicate:
+
+\begin{equation}\label{as:kbPlaceSubclasses}
+\begin{gathered}
+    subclass(PrivatePlace,Place) \land subclass(PublicPlace,Place) \land \\
+	subclass(Restaurant,PublicPlace) \land subclass(Home,PrivatePlace)
+\end{gathered}
+\end{equation}
+Which is also presented graphically on \autoref{fig:placeOntology} below.
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=0.6\textwidth]{figures/placeOntology.png}
+	\caption{Hierarchy of place related terms, specified by subclass predicates.}
+	\label{fig:placeOntology}
+\end{figure}
+
+
 
 
 \begin{equation}\label{set:existingTerms}
