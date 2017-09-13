@@ -1,4 +1,4 @@
-%-------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
 % 
 \chapter{Knowledge Acquisition Approach}
 %-------------------------------------------------------------------------------
@@ -815,7 +815,25 @@ Where each of these terms is an instance of a $Class$:
 \forall x \in S_{Food}: isa(x,Class)
 \end{gathered}
 \end{equation}
-dada
+Then, these classes are connected into a class-hierarchy, which is done with
+a $subclass$ predicate:
+
+\begin{equation}\label{as:kbFoodSubclasses}
+\begin{gathered}
+    subclass(Drink,FoodOrDrink) \land subclass(Coffee,Drink) \land \\
+	subclass(Food,FoodOrDrink) \land subclass(Bread,Food) \land \\
+	subclass(Baguete, Bread)
+\end{gathered}
+\end{equation}
+Which is also presented graphically on \autoref{fig:foodSubclass} below.
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=0.6\textwidth]{figures/foodOntology.png}
+	\caption{Hierarchy of food related terms, specified by subclass predicates.}
+	\label{fig:foodSubclass}
+\end{figure}
+
+
 
 \begin{equation}\label{set:existingTerms}
 \begin{gathered}
@@ -849,8 +867,6 @@ Which are connected into the appropriate $subclass$ hierarchy:
 	is(Baguete, Bread)
 \end{gathered}
 \end{equation}
-
-
 
 Then, each predicate needs a little bit more of logic, since we also want to
 represent the constraints which will serve for the inference engine to check
