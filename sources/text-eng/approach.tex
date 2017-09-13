@@ -669,7 +669,6 @@ serves our purpose and is safe to limit the arguments of $arity$ to:
 	argIs(arity,1,Predicate) \land argIs(arity,2,Number)
 \end{equation}
 
-
 We can now proceed to define our last ($is$) predicate constraints, which is
 a bit more complicated. If we look at our existing  $is$ assertions 
 (\ref{as:is_is}, \ref{as:predicates}, \ref{as:numbers}), we can
@@ -905,10 +904,48 @@ also want to represent the constraints which will serve for the inference
 engine to check the validity of the answers (as explained in 
 \hl{ref to constraints def. in UpperOnto}).
 
+\begin{definition}[predicate $menuItem$]\label{def:menuItem}
+Predicate $menuItem(x,y)$ denotes that place $x$ has a menu item $y$ on its 
+menu.Formally it is defined as:
+\begin{equation}\label{as:pred_menuItem}
+\begin{gathered}
+    is(menuItem,Predicate) \land \\
+	argIs(menuItem,1,Restaurant) \land\\
+	argClass(menuItem,2,FoodOrDrink)
+\end{gathered}
+\end{equation}
+\end{definition}
+As we see defined above (assertion \ref{as:pred_menuItem}), this predicate
+constraints allow us to only use instances of class $Restaurant$ for the first
+argument, and sub-classes of class $FoodOrDrink$ for the second. Besides the 
+items on the menu, to explain our examples, we also need a way to tell that
+a place provides some services.
+
+\begin{definition}[predicate $providesServiceType$]\label{def:serviceType}
+Predicate $providesServiceType(x,y)$ denotes that place $x$ provides service 
+$y$. Formally it is defined as:
+\begin{equation}\label{as:providesServiceType}
+\begin{gathered}
+    is(providesServiceType,Predicate) \land \\
+	argIs(providesServiceType,1,Place) \land\\
+	argClass(providesServiceType,2, Service)
+\end{gathered}
+\end{equation}
+\end{definition}
+As defined in the Assertion \ref{as:providesServiceType}, $providesServiceType$
+constraints allow us to only use instances of class $Place$ (Public,Private,
+Home,Restaurant for the current stage of the KB) for the first argument, and 
+sub-classes of class $Service$ for the second. 
+a place provides some services.
+
+
+
 \begin{definition}[predicate "$probableUserLocation$"]
 \label{pred:probableUserLocation}
-Dada
+Dada\hl{Maybe define this one at the end, since it could also be defined in the
+Context section}
 \end{definition}
+
 %SUBSECTION
 \subsection{KA Knowledge}
 dada
