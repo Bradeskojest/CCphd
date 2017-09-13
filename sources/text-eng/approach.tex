@@ -869,71 +869,41 @@ of our \emph{Existing Knowledge} consist of the following terms:
 
 \begin{equation}\label{set:otherTerms}
 \begin{gathered}
-S_{Place} = \{Service,WirelessService,Vehicle,Car\}
+S_{Reest} = \{Service,WirelessService,Vehicle,Car,Animal,Duck,\\
+	Human,User\}
 \end{gathered}
 \end{equation}
 Where each of these terms is also an instance of a $Class$:
-\begin{equation}\label{set:placeTermsClass}
+\begin{equation}\label{set:restTermsClass}
 \begin{gathered}
-\forall x \in S_{Place}: isa(x,Class)
+\forall x \in S_{Rest}: isa(x,Class)
 \end{gathered}
 \end{equation}
-Then, these classes are connected into a class-hierarchy, which is done with
-a $subclass$ predicate:
+And a class-hierarchy:
 
 \begin{equation}\label{as:kbPlaceSubclasses}
 \begin{gathered}
-    subclass(PrivatePlace,Place) \land subclass(PublicPlace,Place) \land \\
-	subclass(Restaurant,PublicPlace) \land subclass(Home,PrivatePlace)
+    subclass(Car,Vehicle) \land subclass(WirelessService,Service)\land\\
+	subclass(Duck,Animal)\land subclass(Human,Animal)\land \\
+	subclass(User,Human)
 \end{gathered}
 \end{equation}
-Which is also presented graphically on \autoref{fig:placeOntology} below.
+Which is also presented graphically on \autoref{fig:restOntology} below.
 \begin{figure}[H]
 	\centering
-		\includegraphics[width=0.6\textwidth]{figures/placeOntology.png}
-	\caption{Hierarchy of place related terms, specified by subclass predicates.}
-	\label{fig:placeOntology}
+		\includegraphics[width=0.9\textwidth]{figures/restOntology.png}
+	\caption{Hierarchy of the rest of the terms from our \emph{existing 
+	knowledge.}}
+	\label{fig:restOntology}
 \end{figure}
+We can see that all these new terms add on top of the existing set of terms from 
+upper ontology ($S_{Constants} = S_{upper} \cup S_{Food} \cup S_{Place} 
+\cup S_{Rest}$). 
 
-
-
-
-\begin{equation}\label{set:existingTerms}
-\begin{gathered}
-S_{Constants} = S_{Constants} + \{User,Place,PublicPlace,Restaurant,\\
-	FoodOrDrink,Food,Bread, Baguette, Drink, WirelessService,\\
-	Service,Vehicle,Car,Visit,Coffee,Restaurant1,User1,User2,\\
-	probableUserLocation,userLocation,menuItem,providesServiceType\}
-\end{gathered}
-\end{equation}
-we can see that these terms add on top of the existing set of terms from 
-upper ontology ($S_{Constants} = S_{upper} \cup S_{existing}$). Now we can 
-proceed and define what these terms are. First the classes:
-
-\begin{equation}\label{as:kbClasses}
-\begin{gathered}
-	is(User,Class) \land is(Place,Class) \land is(PublicPlace,Class) \land\\
-	is(Restaurant,Class) \land is(FoodOrDrink,Class) \land is(Food,Class)\land\\
-	is(Bread,Class)\land is(Baguette,Class)\land is (Drink,Class) \land \\
-	is(WirelessService,Class)\land is(Service,Class)\land is(Vehicle,Class)\land\\
-	is(Car,Class)\land is(Visit,Class) \land is(Coffee,Class)
-\end{gathered}
-\end{equation}
-
-Which are connected into the appropriate $subclass$ hierarchy:
-
-\begin{equation}\label{as:kbSubclasses}
-\begin{gathered}
-	subclass(PublicPlace,Place) \land subclass(Restaurant,PublicPlace) \land \\
-    subclass(Drink,FoodOrDrink) \land subclass(Coffee,Drink) \land \\
-	subclass(Food,FoodOrDrink) \land subclass(Bread,Food) \land \\
-	is(Baguete, Bread)
-\end{gathered}
-\end{equation}
-
-Then, each predicate needs a little bit more of logic, since we also want to
-represent the constraints which will serve for the inference engine to check
-the validity of the answers.
+For defining the predicates, we need a bit more detailed definitions, since we 
+also want to represent the constraints which will serve for the inference 
+engine to check the validity of the answers (as explained in 
+\hl{ref to constraints def. in UpperOnto}).
 
 \begin{definition}[predicate "$probableUserLocation$"]
 \label{pred:probableUserLocation}
