@@ -936,9 +936,21 @@ As defined in the Assertion \ref{as:providesServiceType}, $providesServiceType$
 constraints allow us to only use instances of class $Place$ (Public,Private,
 Home,Restaurant for the current stage of the KB) for the first argument, and 
 sub-classes of class $Service$ for the second. 
-a place provides some services.
 
-
+\begin{definition}[predicate $userLocation$]\label{def:userLocation}
+Predicate $userLocation(x,y)$ denotes that user $x$ is located at place 
+$y$. Formally it is defined as:
+\begin{equation}\label{as:userLocation}
+\begin{gathered}
+    is(userLocation,Predicate) \land \\
+	argIs(userLocation,1,User) \land\\
+	argIs(userLocation,2, Place)
+\end{gathered}
+\end{equation}
+\end{definition}
+As defined in the Assertion \ref{as:userLocation}, $userLocation$
+constraints allow us to only use instances of class $User$ for the first
+argument, and instances of $Place$ as a second.
 
 \begin{definition}[predicate "$probableUserLocation$"]
 \label{pred:probableUserLocation}
