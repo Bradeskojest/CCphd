@@ -108,7 +108,6 @@ understanding of the system.
 	\label{fig:Architecture}
 \end{figure}
 
-
 On \autoref{fig:Architecture} these modules are represented with the boxes,
 and their functionality groups are presented with the colors (see the figure
 legend). Arrows represent the interaction and workflow order and initiation 
@@ -492,8 +491,8 @@ assertions:
 
 After we add the above rule (Constraint Rule \ref{rule:arity_constraint}), our 
 KB is not consistant anymore, since all the $is(x,y)$ assertions (Assertions 
-\ref{as:is_is}, \ref{as:predicates}) violate the constraint. We fix this by adding
-the following assertion:
+\ref{as:is_is}, \ref{as:predicates}) violate the constraint. We fix this by 
+adding the following assertion:
 
 \begin{equation}\label{as:arity_is}
 arity(arity,2) \land arity(is,2)
@@ -969,7 +968,36 @@ the only relations are of $is$ (represented by blue arrows) and $subclass$
 
 %SUBSECTION
 \subsection{KA Knowledge}
-dada
+\label{section:kakb}
+In the previous two sections we defined the upper ontology
+(Section \ref{section:upperOnto}) and then using its vocabulary to define the 
+pre-existing knowledge (Section \ref{section:existingKB}). This will suffice to
+support the explanation of the proposed KA approach. Similar as with the other
+parts of the KB, listing full set of 
+\emph{Curious Cat} KA rules would not fit in the paper. Instead we define an 
+example set of the KB, sufficient for describing the approach and keeping the 
+explanation as simple as possible. 
+
+As a starting point, we need to define a main KA meta-class $Formula$, which’s 
+is a special class (like $Number$).
+\begin{definition}[class $Formula$ and its instances]\label{def:formula}
+All logical formulas (assertions, queries) are instances of the class $Formula$.
+Formally, this can be represented as:
+\begin{equation}\label{as:formulas}
+\begin{gathered}
+	\forall P\forall x_{1...n}:is(P(x_1,...,x_n),Formula)
+\end{gathered}
+\end{equation}
+Basically all of the content of the KB and queries are instances of $Formula$.
+For example,assertion $userLocation(User1,Ljubljana)$ is an instance of 
+$Formula$ and consequentially the statement
+\begin{equation*}
+is(userLocation(User1,Ljubljana),Formula)
+\end{equation*}
+is true.
+\end{definition}
+or simplicity we will be referring to the using string (") operator. 
+For example: 
 
 \subsection{Context}
 \begin{definition}[predicate "$probableUserLocation$"]
