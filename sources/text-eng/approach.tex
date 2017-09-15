@@ -734,8 +734,7 @@ assertion. This can be fixed by introducing the following Inference Rule:
 \begin{equation}\label{rule:is_transfer}
 \begin{gathered}
   \forall x \forall y \forall z: ((is(x,y) \land subclass(y,z)) \implies is(x,z))
-\end{gathered}
-\end{equation}
+\end{gathered} \end{equation}
 This rule is basically saying, that if there is an instance of a class, and this
 class is a sub-class of another class, then this instance is also an instance of
 the other class. Now, this inference rule (\ref{rule:is_transfer}), together 
@@ -768,7 +767,6 @@ than a fixed ontology that needs to be implemented.
 	\caption{Upper ontology terms, with 'is' and 'subclass' relations.}
 	\label{fig:upperOnto}
 \end{figure}
-
 
 %SUBSECTION
 \subsection{Existing Knowledge}
@@ -989,15 +987,44 @@ Formally, this can be represented as:
 \end{gathered}
 \end{equation}
 Basically all of the content of the KB and queries are instances of $Formula$.
-For example,assertion $userLocation(User1,Ljubljana)$ is an instance of 
-$Formula$ and consequentially the statement
-\begin{equation*}
-is(userLocation(User1,Ljubljana),Formula)
-\end{equation*}
-is true.
+For example, assertion $userLocation(User1,Ljubljana)$ is an instance of 
+$Formula$ and consequentially the statement $is(userLocation(User1,Ljubljana),
+Formula)$ is true.
 \end{definition}
-or simplicity we will be referring to the using string (") operator. 
-For example: 
+
+Then we need to define additional KA meta predicates:
+
+\begin{definition}[predicate "$known$"]\label{def:pred_known}
+Special meta-predicate $known(x)$ denotes that the formula $x$ can be proven 
+in the KB. This predicate is non-assertible, meaning that it cannot be used
+to add things into the KB, but it can be used in inference rules. For example,
+since the Assertion \ref{as:is_something} is already asserted in the KB and 
+true, the query/un-assertible statement $known(is(Something,Class))$ is also 
+true. The predicate is formally defined as follows:
+\begin{equation}\label{as:known}
+\begin{gathered}
+	is(known,Predicate) \land arity(known,1) \land argIs(known,1,Formula)
+\end{gathered}
+\end{equation}
+\end{definition}
+
+In a similar fashion as predicate $known$, we define $unknown$ predicate.
+
+\begin{definition}[predicate "$known$"]\label{def:pred_known}
+Special meta-predicate $known(x)$ denotes that the formula $x$ can be proven 
+in the KB. This predicate is non-assertible, meaning that it cannot be used
+to add things into the KB, but it can be used in inference rules. For example,
+since the Assertion \ref{as:is_something} is already asserted in the KB and 
+true, the query/un-assertible statement $known(is(Something,Class))$ is also 
+true. The predicate is formally defined as follows:
+\begin{equation}\label{as:known}
+\begin{gathered}
+	is(known,Predicate) \land arity(known,1) \land argIs(known,1,Formula)
+\end{gathered}
+\end{equation}
+\end{definition}
+
+
 
 \subsection{Context}
 \begin{definition}[predicate "$probableUserLocation$"]
