@@ -18,6 +18,10 @@ conversational crowdsourcing, we will guide the explanations and formalizations
 through an example KA conversation depicted in tables \ref{tab:conversation1}
 and \ref{tab:conversation2}.
 
+%Define step counter for chat steps
+\newcounter{stepno}
+\newcommand{\step}[1]{\refstepcounter{stepno}\label{#1}}
+
 \begin{table}[h!]
 \centering
 \caption{Minimal example of Curious Cat and user interaction.}
@@ -27,7 +31,7 @@ and \ref{tab:conversation2}.
 	\multirow{2}{2em}{Step num.} & \multicolumn{2}{c|}{Interaction}\\\cline{2-3}
 	& \multicolumn{1}{c|}{Curious Cat} & User1 \\
 	\hline
-	1 & \makecell[l]{Where are we? \\Are we at Joe's Pizza restaurant?} & Yes.\\
+	\step{step:where} 1& \makecell[l]{Where are we? \\Are we at Joe's Pizza restaurant?} & Yes.\\
     \hline
 	2 & \makecell[l]{We've never been here before.\\ What kind of place this is?} & Restaurant.\\
     \hline
@@ -71,9 +75,9 @@ This is explained in more detail in section \hl{ref}.
 	\multirow{2}{2em}{Step num.} & \multicolumn{2}{c|}{Interaction}\\\cline{2-3}
 	& \multicolumn{1}{c|}{Curious Cat} & User2 \\
 	\hline
-	1 & \makecell[l]{Where are we? \\Are we at Joe's Pizza restaurant?} & Yes.\\
+	10 & \makecell[l]{Where are we? \\Are we at Joe's Pizza restaurant?} & Yes.\\
     \hline
-	2 & \makecell[l]{We've never been here before.\\ What kind of place this is?} & Restaurant.\\
+	11 & \makecell[l]{We've never been here before.\\ What kind of place this is?} & Restaurant.\\
     \hline
 \end{tabular}
 \end{table}
@@ -1010,16 +1014,38 @@ true. The predicate is formally defined as follows:
 
 In a similar fashion as predicate $known$, we define $unknown$ predicate.
 
-\begin{definition}[predicate "$known$"]\label{def:pred_known}
-Special meta-predicate $known(x)$ denotes that the formula $x$ can be proven 
-in the KB. This predicate is non-assertible, meaning that it cannot be used
-to add things into the KB, but it can be used in inference rules. For example,
-since the Assertion \ref{as:is_something} is already asserted in the KB and 
-true, the query/un-assertible statement $known(is(Something,Class))$ is also 
-true. The predicate is formally defined as follows:
-\begin{equation}\label{as:known}
+\begin{definition}[predicate "$unkknown$"]\label{def:pred_unknown}
+Special meta-predicate $unknown(x)$ denotes that the formula $x$ can 
+\textbf{not} be proven in the KB. This predicate is non-assertible, meaning that it cannot be used to add things into the KB, but it can be used in inference 
+rules. Building on the example given in the Definition \ref{def:pred_known}
+($known$ predicate), the query $unkown(is(Something,Class))$ is 
+\textbf{not true}, since the assertion exist an is known. On the other hand,
+$unknown(is(Human,Duck))$ is true, since there is no knowledge in the KB which
+would support the encapsulated $is$ statement. The predicate is formally defined as follows:
+\begin{equation}\label{as:unknown}
 \begin{gathered}
-	is(known,Predicate) \land arity(known,1) \land argIs(known,1,Formula)
+	is(unknown,Predicate) \land arity(unknown,1) \land argIs(unknown,1,Formula)
+\end{gathered}
+\end{equation}
+\end{definition}
+
+And now one of the main KA predicates, which is used to provide the CC system
+with the formulas which need to be converted to NL and presented to the user.
+\begin{definition}[predicate "$ccWantsToAsk$"]\label{def:pred_ccWantsToAsk}
+One of the main KA predicates written as $ccWantsToAsk(x,y)$, denotes that the 
+\emph{Curious Cat} system wants to ask user $x$ a question represented by the
+formula $y$. For example, assertion 
+\begin{equation*}
+ccWantsToAsk(User1, userLocation(User1,x))
+\end{equation*}
+tells CC system to ask user the question $userLocation(User1,x)$, which,
+after it goes through logic to NL conversion \hl{ref} is paraphrased as
+"Where are we?", as hinted in the step \ref{step:where} in the \autoref{tab:conversation1}.
+ The predicate is formally defined as follows:
+\begin{equation}\label{as:ccWantsToAsk}
+\begin{gathered}
+	is(ccWantsToAsk,Predicate) \land arity(ccWantsToAsk,2) \land\\ 
+	argIs(ccWantsToAsk,1,User) \land argIs(ccWantsToAsk,2,Formula)
 \end{gathered}
 \end{equation}
 \end{definition}
