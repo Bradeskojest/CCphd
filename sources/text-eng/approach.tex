@@ -1040,8 +1040,8 @@ ccWantsToAsk(User1, userLocation(User1,x))
 \end{equation*}
 tells CC system to ask user the question $userLocation(User1,x)$, which,
 after it goes through logic to NL conversion \hl{ref} is paraphrased as
-"Where are we?", as hinted in the step \ref{step:where} in the \autoref{tab:conversation1}.
- The predicate is formally defined as follows:
+"Where are we?", as hinted in the step \ref{step:where} in the 
+\autoref{tab:conversation1}. The predicate is formally defined as follows:
 \begin{equation}\label{as:ccWantsToAsk}
 \begin{gathered}
 	is(ccWantsToAsk,Predicate) \land arity(ccWantsToAsk,2) \land\\ 
@@ -1050,8 +1050,28 @@ after it goes through logic to NL conversion \hl{ref} is paraphrased as
 \end{equation}
 \end{definition}
 
+Now, after we have supporting predicates, we can define an example of KA rule, 
+KA rules can written specifically to enable the production of questions for a 
+narrow context, or generally, covering broad scope of questions as the
+following:
 
+\begin{equation}\label{as:generalRule}
+\begin{gathered}
+\forall i_1 \forall c \forall i_2 \exists s_2 \forall u:is(i_1,c) \land P(i_1,s) \land is(i_2,c)\land unknown(P(i_2,s_2)) \\ 
+	\implies \\
+ccWantsToAsk(u,P(i_2,\$x))
+\end{gathered}
+\end{equation}
+This rather complicated material implication causes generation of question 
+intents whenever there is an instance of a class that was used in an arity 2 
+predicate, and there is another instance of the same class which doesn’t have 
+any assertion using this predicate. When the antecedent of this rule is true,
+then the consequent is a $ccWantsToAsk$ predicate representing an open
+ended logical query (NL question) asking for the things that can fullfill the
+predicate $P$ for instances of aforementioned class. \hl{maybe add/explain
+list of suggestions as well}.
 
+% SUBCHAPTER
 \subsection{Context}
 \begin{definition}[predicate "$probableUserLocation$"]
 \label{pred:probableUserLocation}
