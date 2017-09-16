@@ -893,6 +893,11 @@ And a class-hierarchy:
 	subclass(User,Human)
 \end{gathered}
 \end{equation}
+And an instance of the $User$ class representing one CC user.
+\begin{equation}
+	is(User1,User)
+\end{equation}
+
 Which is also presented graphically on \autoref{fig:restOntology} below.
 \begin{figure}[H]
 	\centering
@@ -1096,12 +1101,17 @@ is(Restaurant1,Restaurant) \land menuItem(Restaurant1,Coffee)\land \\
 \end{equation}
 Because all of the above premises are true, including the $unknown$ part
 (there is no support in the KB for the formula inside $unknown$ predicate - see 
-Definition \hl{def for unknown}), this rule produces the following consequent:
+Definition \hl{def for unknown}), this rule in our KB up to now produces the 
+following consequent:
 \begin{equation}\label{as:generalRuleConsequent}
 \begin{gathered}
 	ccWantsToAsk(User1,menuItem(JoesPizza,x))
 \end{gathered}
 \end{equation}
+representing an intent of CC system to ask user the question 
+$menuItem(JoesPizza,x)$, which converted to NL comes out as "What is on the menu
+in Joe's Pizza", which matches the step \ref{step:menu} from the \autoref{tab:conversation1}.
+
 B\hl{Emphasise how \$x got transferred, tehn continue with the explanation}
 
 % SUBCHAPTER
