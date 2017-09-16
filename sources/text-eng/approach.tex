@@ -33,13 +33,13 @@ and \ref{tab:conversation2}.
 	\hline
 	\step{step:where} 1& \makecell[l]{Where are we? \\Are we at Joe's Pizza restaurant?} & Yes.\\
     \hline
-	2 & \makecell[l]{We've never been here before.\\ What kind of place this is?} & Restaurant.\\
+	\step{step:kind} 2 & \makecell[l]{We've never been here before.\\ What kind of place this is?} & Restaurant.\\
     \hline
-    3 & Does Joe's Pizza have Wi-Fi? & Yes. \\
+    \step{step:wifi} 3 & Does Joe's Pizza have Wi-Fi? & Yes. \\
     \hline
-    4 & Is it fast enough to make Skype calls? & I don't know.\\
+    \step{step:fast} 4 & Is it fast enough to make Skype calls? & I don't know.\\
     \hline
-    5 & What's on the menu in Joe's Pizza? & Pizzas.\\
+    \step{step:menu} 5 & What's on the menu in Joe's Pizza? & Pizzas.\\
 	\hline
     \multicolumn{3}{|c|}{...Some time passes while the user eats...}\\
 	\hline
@@ -856,10 +856,15 @@ a $subclass$ predicate:
 	subclass(Restaurant,PublicPlace) \land subclass(Home,PrivatePlace)
 \end{gathered}
 \end{equation}
-Which is also presented graphically on \autoref{fig:placeOntology} below.
+And, in order to have some "real-world" knowledge, we also add an example 
+instance of a real restaurant represented as term $Restaurant1$.
+\begin{equation}\label{as:restaurant1}
+	is(Restaurant1,Restaurant)
+\end{equation}
+This is all presented graphically on \autoref{fig:placeOntology} below.
 \begin{figure}[H]
 	\centering
-		\includegraphics[width=0.6\textwidth]{figures/placeOntology.png}
+		\includegraphics[width=0.5\textwidth]{figures/placeOntology.png}
 	\caption{Hierarchy of place related terms, specified by subclass predicates.}
 	\label{fig:placeOntology}
 \end{figure}
@@ -918,7 +923,15 @@ menu.Formally it is defined as:
 \end{definition}
 As we see defined above (assertion \ref{as:pred_menuItem}), this predicate
 constraints allow us to only use instances of class $Restaurant$ for the first
-argument, and sub-classes of class $FoodOrDrink$ for the second. Besides the 
+argument, and sub-classes of class $FoodOrDrink$ for the second. Example of this
+is the following assertion that we use to have an example restauratn instance
+in our KB (to continue the definition of Assertion \ref{as:restaurant1}), saying
+that Restaurant1 has coffee on the menu:
+\begin{equation}
+menuItem(Restaurant1,Coffee)
+\end{equation}
+
+Besides the 
 items on the menu, to explain our examples, we also need a way to tell that
 a place provides some services.
 
@@ -960,13 +973,13 @@ argument, and instances of $Place$ as a second.
 	\label{fig:existingKB}
 \end{figure}
 
-At tjhis point we have a formal KB structure representing a minimal 
+At this point we have a formal KB structure representing a minimal 
 \emph{existing knowledge} required to explan the examples from 
 \autoref{tab:conversation1} and \autoref{tab:conversation2}. The KB is
 graphically presented on the \autoref{fig:existingKB}, where the upper ontology
 is presented in lighter color and new KB parts in darker. Due to lack of space,
-the only relations are of $is$ (represented by blue arrows) and $subclass$ 
-(represented with black arrows) predicates.
+the only relations are of $is$ (represented by blue arrows), $subclass$ 
+(represented with black arrows) and $menuItem$ (orange arrow) predicates.
 
 %SUBSECTION
 \subsection{KA Knowledge}
@@ -1071,6 +1084,10 @@ ended logical query (NL question) asking for the things that can fullfill the
 predicate $P$ for instances of aforementioned class. \hl{maybe add/explain
 list of suggestions as well}.
 
+If we take our example KB (\autoref{fig:existingKB}) and imagine we assert
+an additional instance of a $Restaurant$ (Restaurant2: "Joe’s Pizza", as wis 
+done in the example conversation in \autoref{tab:conversation1}, 
+step \ref{step:where}, the premises of the rule can get satisfied like this:
 % SUBCHAPTER
 \subsection{Context}
 \begin{definition}[predicate "$probableUserLocation$"]
