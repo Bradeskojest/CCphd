@@ -1092,7 +1092,7 @@ list of suggestions as well}.
 If we take our example KB (\autoref{fig:existingKB}) and imagine we assert
 an additional instance of a $Restaurant$ (Restaurant2: "Joe’s Pizza", as was 
 done in the example conversation in \autoref{tab:conversation1}, 
-step \ref{step:where}, the premises of the rule can get satisfied like this:
+step \ref{step:kind}, the premises of the rule can get satisfied like this:
 \begin{equation}\label{as:generalRuleantecedent}
 \begin{gathered}
 is(Restaurant1,Restaurant) \land menuItem(Restaurant1,Coffee)\land \\
@@ -1114,11 +1114,52 @@ in Joe's Pizza", which matches the step \ref{step:menu} from the
 \autoref{tab:conversation1}. In the general KA rule example (Assertion 
 \ref{as:generalRule}), we can notice that one of the variables ($\$x$) is not 
 presented with standard variable naming ($x,y,z$), but is marked with a prefix 
-$\$$, whic is a marker for the inference engine to not treat this as a standard
+$\$$, which is a marker for the inference engine to not treat this as a standard
 variable and try to bind it to values inside KB. Instead variables marked with
 $\$$, are treated as normal concepts until they are asserted into the KB or used
 as in the KB as a query. 
 
+The rule \ref{as:generalRule} effectively detects when there is an instance in 
+the KB that doesnt have some kind of information that other instances have, and
+then it causes the system to intend to ask about it, if and when it has a 
+suitable opportunity (e.g. a suitable interaction context). The rule described,
+is an example of the general rule that can produce the apparent curiosity of 
+the system using nothing but the existing background or newly acquired 
+knowledge, whatever that may be.
+
+In very large knowledge bases, general rules like this can produce many 
+questions, including, in some cases, many irrelevant ones. To mitigate this, the
+proposed system must have additional rules that can suppress questions on some 
+predicates, or for whole parts of the KB. Simples example for this is to 
+introduce $omitPredicate(x)$ predicate, with a constraint 
+$argIs(omitPredicate,Predicate)$, which can be then either used int rules like
+\ref{as:generalRule} as one of the conjunction premises using $unknown$
+predicate, or the resulting $ccWantsToAsk$ sentences can be filtered with
+additional rules, or by \emph{procedural component}, removing questions
+using \emph{omitted} predicates.
+
+While we defined rule \ref{as:generalRule} in some detail here to show the 
+possibilities of the approach, we will explain the rest of the system through 
+simpler examples for easier understanding. For example, the narrower rule which
+produces the same step \ref{step:menu} of example shown in 
+\autoref{tab:conversation1} can also be defined as follows:
+
+\begin{equation}\label{as:specificRule}
+\begin{gathered}
+\forall x \forall u:is(x,Restaurant) \implies ccWantsToAsk(u,menuItem(x,\$y))
+\end{gathered}
+\end{equation}
+In this case, the system would always produce the $menuItem$ questions for all, 
+existing restaurants, regardless of whether this knowledge exists already or
+not, it would always aks more. But only for $menuItems$, as the rule is not
+general and would never come out of new type of questions as does rule 
+\ref{as:generalRule}.
+
+We can see now that the KA or "curiosity rules" can span from very general, to 
+very specific. General rules can automatically trigger on almost any newly 
+asserted knowledge, while specific ones can be added to fine-control the 
+responses and knowledge we want to acquire. How specific or general the rule 
+will be, is simply controlled by the number and content of the rule premises.
 
 % SUBCHAPTER
 \subsection{Context}
