@@ -1163,8 +1163,54 @@ will be, is simply controlled by the number and content of the rule premises.
 
 % SUBCHAPTER
 \subsection{Context}
+\label{section:context}
+
+As mentioned in \autoref{section:bg:context}, in order to be able to ask 
+relevant questions which users can actually answer, and at the same time 
+maintain their interest, the context of the user is of crucial importance. For 
+this reason, a considerable part of our KB content is user context, which can 
+be used with the KA rules as the rest of the knowledge. One example of 
+contextual knowledge is the $userLocation(x,y)$ predicate 
+(Definition \ref{def:userLocation}), which holds the information combined from 
+mobile 
+sensors mining (see the definition of $probableUserLocation$ below) and the KA 
+process. Besides $userLocation$, there is a lot of additional information on the
+user that the proposed system uses to coming up with personalized questions.
+
 \begin{definition}[predicate "$probableUserLocation$"]
 \label{pred:probableUserLocation}
-Dada\hl{Maybe define this one at the end, since it could also be defined in the
-Context section}
+
+Predicate $\\probableUserLocation(x,y)$ denotes that the user $x$ is most likely
+at the location $y$. It is probable because it is automatically inferred by the
+ML algorithm (\hl{ref}) and we still want the user to confirm it.
+Formally the predicate is defined as:
+\begin{equation}\label{as:probableUserLoc}
+\begin{gathered}
+    is(probableUserLocation,Predicate) \land \\
+	argIs(probableUserLocation,1,User) \land\\
+	argClass(probableUserLocation,2, Place)
+\end{gathered}
+\end{equation}
 \end{definition}
+
+\subsubsection{Mined Context}
+\label{section:minedContext}
+The central and most important piece of contextual knowledge in our approach is
+the users location and the duration of stay at this location. To facilitate this
+function, we use an improved implementation of the stay-point detection (Quannan, et al. 2008) algorithm, which is able to cluster raw GPS coordinates and detect when user is moving or staying at a particular location as shown in Fig. 5.
+
+\subsubsection{Acquired context}
+\label{section:acquiredContext}
+
+
+%Subsection
+\subsection{NL to logic and logic to NL conversion}
+\label{section:nl}
+
+%Subsection
+\subsection{Consistency Check and KB Placement}
+\label{section:consistency}
+
+%Subsection
+\subsection{Crowdsourcing Mechanisms}
+\label{section:crowdsourcing}
