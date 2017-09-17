@@ -1101,7 +1101,7 @@ is(Restaurant1,Restaurant) \land menuItem(Restaurant1,Coffee)\land \\
 \end{equation}
 Because all of the above premises are true, including the $unknown$ part
 (there is no support in the KB for the formula inside $unknown$ predicate - see 
-Definition \hl{def for unknown}), this rule in our KB up to now produces the 
+Definition \autoref{def:pred_unknown}), this rule in our KB up to now produces the 
 following consequent:
 \begin{equation}\label{as:generalRuleConsequent}
 \begin{gathered}
@@ -1110,9 +1110,15 @@ following consequent:
 \end{equation}
 representing an intent of CC system to ask user the question 
 $menuItem(JoesPizza,x)$, which converted to NL comes out as "What is on the menu
-in Joe's Pizza", which matches the step \ref{step:menu} from the \autoref{tab:conversation1}.
+in Joe's Pizza", which matches the step \ref{step:menu} from the 
+\autoref{tab:conversation1}. In the general KA rule example (Assertion 
+\ref{as:generalRule}), we can notice that one of the variables ($\$x$) is not 
+presented with standard variable naming ($x,y,z$), but is marked with a prefix 
+$\$$, whic is a marker for the inference engine to not treat this as a standard
+variable and try to bind it to values inside KB. Instead variables marked with
+$\$$, are treated as normal concepts until they are asserted into the KB or used
+as in the KB as a query. 
 
-B\hl{Emphasise how \$x got transferred, tehn continue with the explanation}
 
 % SUBCHAPTER
 \subsection{Context}
