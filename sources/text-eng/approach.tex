@@ -1198,7 +1198,8 @@ implemented in our \emph{procedural component}
 (see\autoref{section:Architecture} and \autoref{fig:Architecture}).
 
 This algorithm takes raw GPS readings as input, and clusters them into visits
-(staypoints), based on two thresholds: the time ($T_t$) the user needs to stay
+(staypoints) and paths (moves between the staypoints), based on two thresholds:
+the time ($T_t$) the user needs to stay
 inside the perimeter ($T_P$), which is the second threshold. The staypoint is 
 defined with the coordinates (of the users mobile device) that all lay inside a
 given perimeter for at least minimum time: 
@@ -1215,10 +1216,16 @@ from one of the online APIs (Foursquare, Factual places, Google Places). This
 usually return multiple results, where the less likely ones need to be filtered
 out. This is described in detail in the implementation (\hl{ref to impl}), 
 related work (Section \ref{section:MarcoMamei}) and also in the related papers 
-\autocite{Mamei2010,Bradesko2015}. After \emph{Procedural Module} clusters and
-mines all the relevant information, it can start asserting this into the KB.
-This is done through some additional concepts and predicates that we need to
-define.
+\autocite{Mamei2010,Bradesko2015}.
+
+Let's say the user moves from the previous location. This is detected by the
+algorithm (move), which causes the \emph{Procedural Component} to remove 
+previous $userLocation(x,y)$ assertion for this user, since his/her location is
+not known anymore. Then the SPD algorithm \hl{ref} is monitoring the user, and 
+once it detects that he/she stopped at some location for a bit, it sends the 
+coordinates to the second part\hl{ref}, and retrieves a most likely place from 
+public APIs. After this, the enriched and relevant information can be added 
+back to the KB. For this we need to define (add) a few more pieces of the KB.
 
 \begin{definition}[predicate "$probableUserLocation$"]
 \label{pred:probableUserLocation}
@@ -1236,6 +1243,45 @@ Formally the predicate is defined as:
 \end{equation}
 \end{definition}
 
+\begin{definition}[class "$Visit$" and its instances]\label{def:visit}
+Class $Visit$ represent a concept of a visit. Each instance represent one
+particular visit, which can be used in other assertion to add more data to it
+or to link it to other concepts. For example see Assertion \hl{ref below}.
+\end{definition}
+
+\begin{definition}[predicate "$userVisit$"]
+\label{pred:userVisit}
+
+Predicate $\\userVisit(w,x,y,z)$ denotes that the user $w$ did a visit $x$
+at the time $y$, where visit duration was $z$. This predicate is used to be 
+able to link users to their visits with some additional data like time of
+arrival (sa unix time), and the duration of stay (in seconds), which proved to 
+be an important part of the context. Formally the predicate is defined as:
+\begin{equation}\label{as:userVisit}
+\begin{gathered}
+    is(userVisit,Predicate) \land \\
+	arity(userVisit,4) \land \\
+	argIs(userVisit,1,User) \land\\
+	argIs(userVisit,2, Visit) \land \\
+	argIs(userVisit,3,Number) \land \\
+	argIs(userVisit,4,Number) \land
+\end{gathered}
+\end{equation}
+\end{definition}
+
+
+
+If we build on top of our usual example (\autoref{tab:conversation1}, after
+clustering the coordinates and time, and filtering out the rest of the places,
+the system creates a new concept  $JoesPizza$ and adds it into the KB:
+\begin{equation}\label{joesPizza}
+\begin{gathered}
+	is(JoesPizza Place)
+\end{gathered}
+\end{equation}
+
+After this, the \emph{Procedural Component} goes on and asserts additional
+context assertions. To show that we need to define a new predicate.
 
 \subsubsection{Acquired context}
 \label{section:acquiredContext}
