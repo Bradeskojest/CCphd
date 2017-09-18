@@ -1419,7 +1419,46 @@ SCG,}).
 %subsubsection
 \subsubsection{Logic to NL}
 \label{section:logicNL}
-dada
+When the system already employs an extensible KB, each of the concepts in the 
+KB can be named using a standard textual string. For this, we first need to
+add a concept of $String$ on top of our \emph{upper ontology}.
+
+\begin{definition}[class $String$ and its instances]\label{def:string}
+All written texts (strings), marked with double quotes, are instances of the 
+class $String$. Formally, this can be
+asserted into a KB as:
+\begin{equation}\label{as:strings}
+\begin{gathered}
+	\mathbb{S}=\{x|\forall y:x="y"\} \\
+	\forall x \in \mathbb{S}:is(x,String)
+\end{gathered}
+\end{equation}
+\end{definition}
+For example, the following is a correct logical statement and is also true:
+\begin{equation*}
+	is(\text{"This is string"},String)
+\end{equation*}
+
+Now we can also define the $name$ predicate, which is used to add concepts
+a proper string representations.
+
+\begin{definition}[predicate "$name$"]\label{def:pred_name}
+Predicate $name(x,y)$ denotes that the concept $x$ has a name, or string
+representaion given as $y$. For example, asserting 
+\\$name(JoesPizza,\text{"Joe's Pizza"})$, states that the string representation
+for the concept $JoesPizza$ is "Joe's Pizza". Formally the predicate is 
+defined as:
+\begin{equation}\label{as:predName}
+\begin{gathered}
+	is(name,Predicate)\land\\
+	arity(name,2)\land\\
+	argIs(name,1,Something)\land\\
+	argIs(name,2,String)
+\end{gathered}
+\end{equation}
+\end{definition}
+
+B
 
 %subsubsection
 \subsubsection{NL to Logic}
