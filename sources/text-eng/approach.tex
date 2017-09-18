@@ -1251,7 +1251,6 @@ or to link it to other concepts. For example see Assertion \hl{ref below}.
 
 \begin{definition}[predicate "$userVisit$"]
 \label{pred:userVisit}
-
 Predicate $\\userVisit(w,x,y,z)$ denotes that the user $w$ did a visit $x$
 at the time $y$, where visit duration was $z$. This predicate is used to be 
 able to link users to their visits with some additional data like time of
@@ -1270,18 +1269,88 @@ be an important part of the context. Formally the predicate is defined as:
 \end{definition}
 
 
-
-If we build on top of our usual example (\autoref{tab:conversation1}, after
-clustering the coordinates and time, and filtering out the rest of the places,
-the system creates a new concept  $JoesPizza$ and adds it into the KB:
-\begin{equation}\label{joesPizza}
+\begin{definition}[predicate "$placeVisit$"]\label{pred:placeVisit}
+Predicate $\\placeVisit(x,y)$ denotes that the place $x$ was visited as part of
+the visit $y$. This predicate is used to link visits to particular places.
+Formally the predicate is defined as:
+\begin{equation}\label{as:placeVisit}
 \begin{gathered}
-	is(JoesPizza Place)
+    is(placeVisit,Predicate) \land \\
+	arity(placeVisit,2) \land \\
+	argIs(placeVisit,1,Place) \land\\
+	argIs(placeVisit,2, Visit) \land \\
 \end{gathered}
 \end{equation}
+\end{definition}
 
-After this, the \emph{Procedural Component} goes on and asserts additional
-context assertions. To show that we need to define a new predicate.
+\begin{figure}[h]
+	\centering
+		\includegraphics[width=1\textwidth]{figures/contextOntology.png}
+	\caption{Current KB with newly added "context support knowledge" marked 
+with orange.}
+	\label{fig:contextKB}
+\end{figure}
+
+Now, after we defined the relevant predicates (see \autoref{fig:contextKB}), we 
+can continue building the example.
+Let's say that hte most likely place returned by SPD(\hl{ref}), is "Joe's Pizza"
+(our usual example from \autoref{tab:conversation1}). The 
+\emph{Procedural Component} creates a new concepts  $JoesPizza$ and 
+$Visit1$ (it has number 1 since it is the first instance in the KB), and adds 
+them into the KB:
+\begin{equation}\label{as:joesPizzaVisit}
+\begin{gathered}
+	is(JoesPizza,Place) \land is(Visit1,Visit)
+\end{gathered}
+\end{equation}
+After this, the system adds more contextual data to these concepts. Let's say
+the user arrived to the place on 19. Sept 2017 at 3pm, and is at the moment
+there 1minute. This converts into the following assertions being added, while
+removing possible prior assertions for the same user and visit combination:
+\begin{equation}\label{as:probableContext}
+\begin{gathered}
+	probableUserLocation(User1,JoesPizza)
+\end{gathered}
+\end{equation}
+and
+\begin{equation}\label{as:visitContext}
+\begin{gathered}
+	userVisit(User1,Visit1,1505746857,60)
+\end{gathered}
+\end{equation}
+Then, continuing our example, whenrver te system gets a new GPS coordinate
+(let's say in 10 seconds), and consequently our algorithms calculate context 
+update, the system deletes the Assertion \ref{as:visitContext}, and updates it
+with new data:
+\begin{equation}\label{as:visitContext1}
+\begin{gathered}
+	userVisit(User1,Visit1,1505746857,70)
+\end{gathered}
+\end{equation}
+These updates (even if just duration of visit seconds) are causing the CC 
+system inference engine to re-evaluate the rules connected to relevant 
+predicates and thus possibly produce new consequents in the shape of new 
+questions or comments, which appears to the users as proactivity, since they 
+get new relevant questions even if not interacting with the system.
+This simple contextual knowledge(presented with Assertions 
+\ref{as:probableContext} and \ref{as:visitContext1}) is enough to be able to 
+show how to make the system produce the examples provided in 
+\autoref{tab:conversation1} and \autoref{tab:conversation2}.
+
+At this moment careful reader might notice that the predicate $placeVisit$ was
+not used in the assertions. The predicate is not yet asserted, because at 
+this time it is not yet known for sure, whether the user is exactly at this 
+place. The $probableUserLocation$ is only used to trigger questions for the
+predicate $userLocation$ (\hl{ref}). Only after this is answered, we can be
+100\% sure that this is the exact place, and, besides the $userLocation$ (see
+\hl{ref}), the system can also assert
+\begin{equation}\label{as:placeVisit}
+\begin{gathered}
+	placeVisit(JoesPizza,Visit1)
+\end{gathered}
+\end{equation}
+and thus permanently link the user's 19. Sept 2017 visit to the place 
+Joe's Pizza.
 
 \subsubsection{Acquired context}
 \label{section:acquiredContext}
