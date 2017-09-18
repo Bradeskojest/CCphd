@@ -1389,10 +1389,42 @@ The knowledge gathered in this way, is additional to the mined context and can
 be used by the rules to better identify the users who will actually be able to 
 answer particular questions.
 
-
 %Subsection
 \subsection{NL to logic and logic to NL conversion}
 \label{section:nl}
+In order to interact with the user, it is not sufficient to form the knowledge 
+acquisition questions in logical form using an inference engine and KA rules,
+as we had seen up to now. These formulas are understandable by knowledge 
+engineering and math experts, but are not at all appropriate for a direct use 
+in general KA using crowdsourcing from the general population. For this reason,
+the logical formulas of the sentences and questions need to be translated to 
+natural language to be presented to the user. Similarly, as the user is 
+providing some of the answers in natural language these at least to some extent
+have to be transformed from natural language, into their logical form.
+This means that in addition to the knowledge itself the KB should include 
+natural language description of the knowledge units, or the natural language 
+generation capabilities must be provided by an external service (the letter is 
+the case in our example with Umko KB \parencite{Bradesko2015} and
+early corwdsourcing approach \parencite{Bradesko2012a}. 
+
+Because natural language generation and conversion is not the main focus of 
+this paper, we present here only a simplified version which explains the basic 
+concepts involved. The actual Curious Cat implementation is based on 
+Cyc NL\parencite{Baxter2005} for generation, and SCG\parencite{Schneider2015}
+for the NL to logic. It consists of more than 90 predicates and rules beyond 
+those in the baseline Cyc system to handle language generation. This is 
+described in more detail in the Implementation chapter (Chapter \hl{ref to
+SCG,}).
+
+%subsubsection
+\subsubsection{Logic to NL}
+\label{section:logicNL}
+dada
+
+%subsubsection
+\subsubsection{NL to Logic}
+\label{section:NLLogic}
+dada
 
 %Subsection
 \subsection{Consistency Check and KB Placement}
