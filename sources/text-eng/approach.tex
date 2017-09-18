@@ -1315,7 +1315,7 @@ removing possible prior assertions for the same user and visit combination:
 and
 \begin{equation}\label{as:visitContext}
 \begin{gathered}
-	userVisit(User1,Visit1,1505746857,60)
+	userVisit(User1,Visit1,1505746800,60)
 \end{gathered}
 \end{equation}
 Then, continuing our example, whenrver te system gets a new GPS coordinate
@@ -1352,8 +1352,42 @@ predicate $userLocation$ (\hl{ref}). Only after this is answered, we can be
 and thus permanently link the user's 19. Sept 2017 visit to the place 
 Joe's Pizza.
 
+%subsection
 \subsubsection{Acquired context}
 \label{section:acquiredContext}
+Besides the context mined automatically, the system can also use internal 
+context, which is a specific set of KA rules and KB knowledge acquired from
+the user himself, or other users, and is directly relevant to the the him/her. 
+By considering the knowledge acquired from the user, we improve relevance of 
+asked questions. 
+This knowledge is obtained by asking the user specific questions about himself,
+such as, the languages spoken, profession, interests, preferred food, etc.,
+represented by the example predicates below:
+\begin{equation*}
+\begin{gathered}
+	userAge(x,y) \\	
+	userSpeaksLanguage(x,y) \\
+	userInterest(x,y)
+\end{gathered}
+\end{equation*}
+or, a lot of knowledge can also be inferred already even by questions asked
+in our examples (Table \ref{tab:conversation1}), resulting in many instances of
+$Visit$ ($Visit1,Visit2,Visit3,...$) and $orderedFood$ (see \hl{ref after this}).
+Specific rules or analytics provided by the \emph{Procedural Component} can
+infer things like the following examples:
+\begin{equation*}
+\begin{gathered}
+	userHome(x,y) \\
+	userHomeCity(x,y) \\
+	userHomeCountry(x,y) \\
+	userLikesFood(x,y) \\
+	...
+\end{gathered}
+\end{equation*}
+
+The knowledge gathered in this way, is additional to the mined context and can 
+be used by the rules to better identify the users who will actually be able to 
+answer particular questions.
 
 
 %Subsection
