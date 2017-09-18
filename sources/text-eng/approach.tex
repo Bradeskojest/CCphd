@@ -1177,6 +1177,49 @@ sensors mining (see the definition of $probableUserLocation$ below) and the KA
 process. Besides $userLocation$, there is a lot of additional information on the
 user that the proposed system uses to coming up with personalized questions.
 
+\subsubsection{Mined Context}
+\label{section:minedContext}
+For the system to be able to address users at the right time and about the right
+knowledge, it makes sense to understand user and his/her current context as
+much as possible. While there is infinite amount of things that can contribute
+to contextual knowledge, the central and most important piece in our 
+approach is user's location and the duration of stay at this location. 
+
+While for this (CC) approach it doesn't matter how exactly the current location
+and other contextual raw data is acquired, since the year 2007 (release of 
+iPhone and Nokia N95) it is the easiest to acquire it from the user's mobile 
+phones\footnote{With the prior user's consent.}. As we hinted already in the
+\autoref{section:SPD1}, we use a modified \emph{staypoint detection} algorithm
+(\hl{ref to ours}),similar to the approach taken by \textcite{Kang2005} and 
+\textcite{Li2008}(\autoref{alg:spd1}). Here we will describe the mining 
+algorithm only briefly, to be able to explain the approach. It is described in
+more detail in \hl{ref to our SPD implementation}. These algorithms are all
+implemented in our \emph{procedural component} 
+(see\autoref{section:Architecture} and \autoref{fig:Architecture}).
+
+This algorithm takes raw GPS readings as input, and clusters them into visits
+(staypoints), based on two thresholds: the time ($T_t$) the user needs to stay
+inside the perimeter ($T_P$), which is the second threshold. The staypoint is 
+defined with the coordinates (of the users mobile device) that all lay inside a
+given perimeter for at least minimum time: 
+$r(lat,lon)<T_p \land t(lat,lon)>T_t$. The result of this algorithm is one
+coordinate (lat, lon), time of arrival and the duration of stay, which can be
+directly used by our approach (\hl{see below}). This simple algorithm proves 
+to be robust to the usual GPS signal, which is not always returning the same 
+coordinates for the same location and is also lost during the time the user is
+indoors, or nearby tall buildings or trees. 
+
+After we have the coordinates, time of arrival and current duration of stay,
+we can use this info to get additional information about the place, most easily
+from one of the online APIs (Foursquare, Factual places, Google Places). This
+usually return multiple results, where the less likely ones need to be filtered
+out. This is described in detail in the implementation (\hl{ref to impl}), 
+related work (Section \ref{section:MarcoMamei}) and also in the related papers 
+\autocite{Mamei2010,Bradesko2015}. After \emph{Procedural Module} clusters and
+mines all the relevant information, it can start asserting this into the KB.
+This is done through some additional concepts and predicates that we need to
+define.
+
 \begin{definition}[predicate "$probableUserLocation$"]
 \label{pred:probableUserLocation}
 
@@ -1188,21 +1231,11 @@ Formally the predicate is defined as:
 \begin{gathered}
     is(probableUserLocation,Predicate) \land \\
 	argIs(probableUserLocation,1,User) \land\\
-	argClass(probableUserLocation,2, Place)
+	argIs(probableUserLocation,2, Place)
 \end{gathered}
 \end{equation}
 \end{definition}
 
-\subsubsection{Mined Context}
-\label{section:minedContext}
-For the system to be able to address users at the right time and about the right
-knowledge, it makes sense to understand user and his/her current context as
-much as possible. While there is ifinite amount of things that can contribute
-to contextual knowledge, the central and most important piecee in our 
-approach is users location and the duration of stay at this location. 
-
-To facilitate this
-function, we use an improved implementation of the stay-point detection (Quannan, et al. 2008) algorithm, which is able to cluster raw GPS coordinates and detect when user is moving or staying at a particular location as shown in Fig. 5.
 
 \subsubsection{Acquired context}
 \label{section:acquiredContext}
