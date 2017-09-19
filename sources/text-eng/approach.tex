@@ -1500,7 +1500,122 @@ for more details. Formally the predicate is defined as:
 \end{equation}
 \end{definition}
 
-The above definitions (\autoref{def:predNlPattern}, \autoref{def:predName} and
+To be able to explain the simple Logic to NL engine, let's add the following 
+assertions to our KB:
+\begin{equation}\label{as:menuitem1}
+\begin{gathered}
+	name(Coffee,\text{"coffee"})\land\\
+	name(Restaurant1, \text{"L'Ardoise"})\\
+	nlPattern(menuItem, \text{"\$1 has \$2 on the menu"})
+\end{gathered}
+\end{equation}
+
+Now, with this NL knowledge, our NL generation engine, when represented by
+the sentence $menuItem(Restaurant1,Coffee)$, checks into the KB, whether it 
+has enough of NL knowledge to do it. First it tries to find all the patterns
+of the predicate by issuing a query:
+\begin{equation}\label{q:nlpattern1}
+Q:nlPattern(menuItem,x)
+\end{equation}
+which results in all the possible values of $x$:
+\begin{table}[H]
+\centering
+\caption{Results of query \ref{q:nlpattern1}.}
+\label{tab:results1}
+\begin{tabular}{|c|}
+	\hline
+	\textbf{x} \\
+    \hline
+    "\$1 has \$2 on the menu" \\
+    \hline
+\end{tabular}
+\end{table}
+Then if does similar search queries for both of the concepts in the arguments
+of the predicate:
+\begin{equation}\label{q:names1}
+\begin{gathered}
+Q:name(Restaurant1,x_1) \lor namePlural(Restaurant1,y_1)\\
+name(Coffee,x_2) \lor namePlural(Coffee,y_2)\\
+\end{gathered}
+\end{equation}
+which results in
+\begin{table}[H]
+\centering
+\caption{Results of query \ref{q:names1}.}
+\label{tab:results2}
+\begin{tabular}{|c|c|c|c|}
+	\hline
+	\textbf{$x_1$} & \textbf{$y_1$} & \textbf{$x_2$} & \textbf{$y_2$}\\
+    \hline
+    "L'Ardoise" & & "coffee" & \\
+    \hline
+\end{tabular}
+\end{table}
+As we see in the result tables \ref{tab:results1} and \ref{tab:results2}, it
+os able to find the pattern and also names of both of the arguments 
+($\$1=Restaurant1$ and $\$2=Coffee$). These results are merged into the 
+NL representation "L'Ardoise has coffee on the menu.". 
+The engine checks the \emph{arity} of the $menuItem$ predicate, ,
+and verifies whether all of the slots are bound to non variable concepts. When
+this is fullfilled like in the example above, the engine knows that this 
+sentence must be declerative (up to now we only have one declerative pattern), 
+picks the proper pattern, and also adds the punctuation "." on it's own.
+
+Now, consider, our Logic to NL engine gets the task to convert the query 
+$\\menuItem(Restaurant1,x)$, where $x$ represnets a variable as in other our 
+examples. Our engine again, does the same query \ref{q:nlpattern1}, but because
+the second argument is now a variable, only the first part ($Restaurant$) of 
+the second query \ref{q:names1}. Results for $x_1$ are the same as before,
+but there is no results for $x_2$. Now the engine detects that one of the 
+pattern arguments ($\$2$) is missing, and since it does't have any additional
+info on how to convert a statement into an interrogative mode, it simply
+converts it into a KA pattern: "L'Ardoise has \_\_\_ on the menu.".
+
+While these type of patterns is enough to be able to do the simple KA, it
+doesn't yet completely follow the exaples from \autoref{tab:conversation1}. To
+be able to do properly formed interrogative sentences when necessary, we need
+to add additional assertion, similar as the last part of assertion 
+\ref{as:menuitem1}.
+
+\begin{equation}\label{as:menuitem2}
+\begin{gathered}
+	nlPattern(menuItem, \text{"What is on the menu in \$1"})
+\end{gathered}
+\end{equation}
+Now the the query \ref{q:nlpattern1}, if issued again will return more
+results:
+\begin{table}[H]
+\centering
+\caption{Results of query \ref{q:nlpattern1}, after we have more $nlPattern$ 
+assertions for the predicate $menuItem$.}
+\label{tab:results3}
+\begin{tabular}{|c|}
+	\hline
+	\textbf{x} \\
+    \hline
+    "\$1 has \$2 on the menu" \\
+    \hline
+	"What is on the menu in \$1" \\
+	\hline
+\end{tabular}
+\end{table}
+Now, considering that we are still converting $menuItem(Restaurant1,x)$, the
+engine will among two options pick a second one, because it has a better match
+against given arguments (only argument 1 is present), and thus instead of
+"L'Ardoise has \_\_\_ on the menu." convert into 
+"What is on the menu in L'Ardoise?"
+
+Careful reader might notice that the results for plural versions of concept 
+names ($namePlural$) were always empty. For the concept $Coffee$, the plural
+version is exactly the same as for singular, so we omit it. In cases when
+this is not so, the engine picks the plural version when it is describing
+instances of $Class$, representing whole classes of terms which can have 
+multiple instances, and singular version when describing instances of
+other terms.
+
+\hl{add other required definitions to be able to do full example}
+
+The definitions (\autoref{def:predNlPattern}, \autoref{def:predName} and
 \autoref{def:predNamePlural}),
 are simplifified formulations of minimal required NL knowledge to be able to 
 present our approach. While the implementation of NL generation engine is 
@@ -1522,8 +1637,9 @@ nameWord(Pizza,WordForPizza)
 \end{equation*}
 then the system could notice that its missing the plural version of the word
 for the concept $Pizza$ and ask for it: $namePlural(WordForPizza,x)$ 
-(converted to NL: What is the plural word for 'pizza'?".
+(converted to NL: "What is the plural word for 'pizza'?".
 
+\hl{Maybe add Logic to NL KB current state imeage}
 %subsubsection
 \subsection{NL to Logic}
 \label{section:NLLogic}
