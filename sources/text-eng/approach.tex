@@ -1643,7 +1643,40 @@ for the concept $Pizza$ and ask for it: $namePlural(WordForPizza,x)$
 %subsubsection
 \subsection{NL to Logic}
 \label{section:NLLogic}
-dada
+While simple processing based on the same NL knowledge as entered and described
+in the previous section (\autoref{section:logicNL}) suffices to interpret 
+isolated terms and denotational phrases from the user responses, converting 
+general NL expressions back to logic is much trickier than the other way 
+around, because natural language is much more ambiguous than logic. This 
+process exceeds the scope of this KA related thesis and is 
+described in more detail in the implementation (\hl{ref}), and paper 
+\parencite{Schneider2015} and to other aspects of it also in chat-bot related
+works\parencite{Wallace2013,Wilcox2011}. Following the simplistic examples as
+before just to show and be able to explain the approach, we explain the basic 
+functionality (enough to be able to make our examples from 
+\autoref{tab:conversation1}).
+
+In the proposed NL engine (described also in section \ref{section:logicNL}
+above), all of the \emph{String} arguments of the predicates $name$, 
+$namePlural$ and $nlPattern$ are indexed and searchable by the system, where
+the $\$\#$ slots of the $nlPattern$ strings are replaced with asterisks ($*$),
+representing any number of words, in a similar way as chat-bot scripts are
+matching defining their patterns\parencite{Wilcox2011}.
+
+For illustration consider inverting the example defined in (17). The system is presented with the statement Joes Pizza has pizzas on the menu. Because all the textual representations of the concepts are indexed, it is able to find the concepts:
+	Restaurant1
+	menuItem
+	Pizza
+Because of the is and subclass knowledge of Restaurant1 and Pizza classes, which can be observed in Fig. 4, and the argIs and argClass domain limits of menuItem (definition 9), the inference engine is actually able to construct the logical equivalent of the above sentence: menuItem(Restaurant1, Pizza).
+Consider, that we have implicitly provided natural language representation of the knowledge for predicate restaurantServesCuisine which is the same as one denotation for menuItem (serves). Additionally, we have the knowledge that limits that predicate to only link to subclasses of class Cuisine:
+	argClass(restaurantServesCuisine,Cuisine)	(18)
+Then, for the same statement, our system will find the following possibilities:
+	Restaurant1
+	restaurantServesCuisine, menuItem
+	Pizza
+At this moment it needs to check all the constraints again, and filter out restaurantServesCuisine because it needs a subclass of Cuisine, which is not in the list of found concepts (only FoodOrDrink, which is Pizza). This logical statement would be invalid due to argument constraints in our KB: restaurantServesCuisine (Restaurant1, Pizza). Only the predicate menuItem can actually take its arguments with our available concepts and still be valid in our KB.
+These two examples illustrate a simplest kind of sentential NL conversion. When there are many more possible concepts which need to be combined, the complexity of the problem quickly explodes, or is ambiguous even given the constraints. For this reason, our actual Cyc SCG implementation contains much more complex KB structures and patterns which help with the conversion and a high-speed parser, in Java, that performs the needed search
+
 
 %Subsection
 \section{Consistency Check and KB Placement}
