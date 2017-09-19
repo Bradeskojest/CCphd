@@ -1,6 +1,7 @@
 -------------------------------------------------------------------------------
 % 
 \chapter{Knowledge Acquisition Approach}
+\label{chapter:approach}
 %-------------------------------------------------------------------------------
 
 This chapter defines the terms, formal structure and steps that form our 
@@ -1162,7 +1163,7 @@ responses and knowledge we want to acquire. How specific or general the rule
 will be, is simply controlled by the number and content of the rule premises.
 
 % SUBCHAPTER
-\subsection{Context}
+\section{Context}
 \label{section:context}
 
 As mentioned in \autoref{section:bg:context}, in order to be able to ask 
@@ -1177,7 +1178,7 @@ sensors mining (see the definition of $probableUserLocation$ below) and the KA
 process. Besides $userLocation$, there is a lot of additional information on the
 user that the proposed system uses to coming up with personalized questions.
 
-\subsubsection{Mined Context}
+\subsection{Mined Context}
 \label{section:minedContext}
 For the system to be able to address users at the right time and about the right
 knowledge, it makes sense to understand user and his/her current context as
@@ -1353,7 +1354,7 @@ and thus permanently link the user's 19. Sept 2017 visit to the place
 Joe's Pizza.
 
 %subsection
-\subsubsection{Acquired context}
+\subsection{Acquired context}
 \label{section:acquiredContext}
 Besides the context mined automatically, the system can also use internal 
 context, which is a specific set of KA rules and KB knowledge acquired from
@@ -1389,8 +1390,8 @@ The knowledge gathered in this way, is additional to the mined context and can
 be used by the rules to better identify the users who will actually be able to 
 answer particular questions.
 
-%Subsection
-\subsection{NL to logic and logic to NL conversion}
+%section
+\section{NL to logic and logic to NL conversion}
 \label{section:nl}
 In order to interact with the user, it is not sufficient to form the knowledge 
 acquisition questions in logical form using an inference engine and KA rules,
@@ -1417,7 +1418,7 @@ described in more detail in the Implementation chapter (Chapter \hl{ref to
 SCG,}).
 
 %subsubsection
-\subsubsection{Logic to NL}
+\subsection{Logic to NL}
 \label{section:logicNL}
 When the system already employs an extensible KB, each of the concepts in the 
 KB can be named using a standard textual string, and predicates can have 
@@ -1441,10 +1442,10 @@ For example, the following is a correct logical statement and is also true:
 	is(\text{"This is string"},String)
 \end{equation*}
 
-Now we can also define the $name$ predicate, which is used to
-add to concepts their name string representations.
+Now we can also define the $name$ and $namePlural$ predicates, which are used 
+to add to concepts their name string representations.
 
-\begin{definition}[predicate "$name$"]\label{def:pred_name}
+\begin{definition}[predicate "$name$"]\label{def:predName}
 Predicate $name(x,y)$ denotes that the concept $x$ has a name, or string
 representaion given as $y$. For example, asserting 
 \\$name(JoesPizza,\text{"Joe's Pizza"})$, states that the string representation
@@ -1460,37 +1461,87 @@ defined as:
 \end{equation}
 \end{definition}
 
-And similarly, $nlDeclerative$ and $nlInterrogative$ predicates, attaching a
-NL generation information to other predicates:
-
-\begin{definition}[predicate "$nlDeclarative$"]\label{def:predNlDeclarative}
-Predicate $nlDeclarative(x,y)$ denotes that the predicate $x$ has a nl pattern
-that can be used in declerative sentences given as $y$. For example, asserting 
-$nlDeclerative(is,\text{"\$1 is a \$2"})$, states that the predicate is, can
-be represented in natural language as the name of first argument, followed by
-the string "is a", and then followed by the name of the second argument. 
-Formally the predicate is defined as:
-\begin{equation}\label{as:predName}
+\begin{definition}[predicate "$namePlural$"]\label{def:predNamePlural}
+Predicate $namePlural(x,y)$ denotes that the concept $x$ has a plural version of
+its name representaion given as a string $y$. For example, asserting 
+\\$namePlural(Pizza,\text{"pizzas"})$, states that the plural version of 
+string representation for the concept $Pizza$ is "pizzas". Formally the 
+predicate is defined as:
+\begin{equation}\label{as:predNamePlural}
 \begin{gathered}
-	is(name,Predicate)\land\\
-	arity(name,2)\land\\
-	argIs(name,1,Something)\land\\
-	argIs(name,2,String)
+	is(namePlural,Predicate)\land\\
+	arity(namePlural,2)\land\\
+	argIs(namePlural,1,Something)\land\\
+	argIs(namePlural,2,String)
 \end{gathered}
 \end{equation}
 \end{definition}
 
-A
+And similarly, $nlPattern$ predicate, attaching a NL generation information to 
+other predicates:
+
+\begin{definition}[predicate "$nlPattern$"]\label{def:predNlPattern}
+Predicate $nlPattern(x,y)$ denotes that the predicate $x$ has a NL pattern
+that can be used in sentences given as $y$. For example, asserting 
+$nlPattern(is,\text{"\$1 is a \$2"})$, states that the predicate is, can
+be represented in natural language as the name of first argument, followed by
+the string "is a", and then followed by the name of the second argument. Based
+on our example NL engine, the arguments are marked with the "\$" sign, followed
+by the number. When some of the arguments are missing, this represents an 
+interrogative mode. For example $nlPattern(is,\text{"What is \$1"})$. See below
+for more details. Formally the predicate is defined as:
+\begin{equation}\label{as:predNL}
+\begin{gathered}
+	is(nlPattern,Predicate)\land\\
+	arity(nlPattern,2)\land\\
+	argIs(nlPattern,1,Predicate)\land\\
+	argIs(nlPattern,2,String)
+\end{gathered}
+\end{equation}
+\end{definition}
+
+The above definitions (\autoref{def:predNlPattern}, \autoref{def:predName} and
+\autoref{def:predNamePlural}),
+are simplifified formulations of minimal required NL knowledge to be able to 
+present our approach. While the implementation of NL generation engine is 
+totally up to the developer of such a system, for this examples (and also 
+our implementation - see \hl{ref impl}), we decided to put the NL patterns
+into the KB, next to the definitions of the concepts. On the contrary to
+having the NL patterns in some external database or a text file, this approach
+in long term allows the system to ask questions about the language patterns
+themselves, and thus allow it to learn and ask about these as well. For example,
+if instead of strings directly, NL patterns would be constructed from the 
+concepts of words (not part of our KB and not consistant with it, but serves 
+as an hypotetical exaple, and more tightly matches our non-simplified 
+implementation):
+\begin{equation*}
+\begin{gathered}
+is(WordForPizza, Word) \land name(WordForPizza, "pizza")\land\\
+nameWord(Pizza,WordForPizza)
+\end{gathered}
+\end{equation*}
+then the system could notice that its missing the plural version of the word
+for the concept $Pizza$ and ask for it: $namePlural(WordForPizza,x)$ 
+(converted to NL: What is the plural word for 'pizza'?".
 
 %subsubsection
-\subsubsection{NL to Logic}
+\subsection{NL to Logic}
 \label{section:NLLogic}
 dada
 
 %Subsection
-\subsection{Consistency Check and KB Placement}
+\section{Consistency Check and KB Placement}
 \label{section:consistency}
 
 %Subsection
-\subsection{Crowdsourcing Mechanisms}
+\section{Crowdsourcing Mechanisms}
 \label{section:crowdsourcing}
+
+%section
+\section{Putting it All Together}
+\label{section:together}
+This section wraps up the approach and brings together the components described
+in \autoref{chapter:approach} into a coherent full system, which we describe 
+through the example conversation presented in \autoref{tab:conversation1} and
+\autoref{tab:conversation2}.
+
