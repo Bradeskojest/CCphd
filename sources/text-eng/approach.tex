@@ -1051,6 +1051,7 @@ would support the encapsulated $is$ statement. The predicate is formally defined
 
 And now one of the main KA predicates, which is used to provide the CC system
 with the formulas which need to be converted to NL and presented to the user.
+
 \begin{definition}[predicate "$ccWantsToAsk$"]\label{def:pred_ccWantsToAsk}
 One of the main KA predicates written as $ccWantsToAsk(x,y)$, denotes that the 
 \emph{Curious Cat} system wants to ask user $x$ a question represented by the
@@ -1832,7 +1833,100 @@ approaches and patterns please refer to chapter Related Work (subchapters
 %subsubsection
 \subsection{Dialog Formulation}
 \label{section:dialog}
-dada
+As mentioned before, \emph{Curios Cat} conversation is not pre-defined by the 
+patterns, but is completely knowledge driven. The knowledge is being inserted
+into the system by its users (section \ref{section:consistency}), and automated
+context (section \ref{section:context}). This is then picked up by the 
+inference engine that generates questions and commens with the help of KA rules
+(section \ref{section:kakb}). The resulting assertions, which propose the 
+intents like $ccWantsToAsk(x,y)$ (definition \ref{def:pred_ccWantsToAsk}) and
+$ccWantsToComment(x,y)$ (definition \ref{def:ccWantsToComment} below), 
+are then converted to the natural language and shown to the users, which then 
+respond. The appearance of the assertions and consequently questions/comments
+in NL and their user responses form a conversation. The topic and flow of the 
+conversation in the most simplistic form depends on the order that these
+assertions appear in the KB (the newest ones are always displayed first).
+
+To be able to produce commenting or advice statements, beside the questions
+(as shown also in the examples in \autoref{tab:conversation1}), we are missing
+one more predicate.
+
+\begin{definition}[predicate "$ccWantsToComment$"]
+\label{def:pred_ccWantsToComment}
+This conversational predicate written as $ccWantsToComment(x,y)$, denotes that 
+the \emph{Curious Cat} system wants to tell (or comment) a statement $y$ to
+the user $x$. For example, assertion 
+\begin{equation*}
+ccWantsToComment(User1, menuItem(Restaurant1,Coffee)
+\end{equation*}
+tells CC system to tell user $menuItem(Restaurant1,Coffee)$, which,
+after it goes through logic to NL conversion (section \ref{section:logicNL}) 
+is paraphrased as "L'Ardoise has coffee on the menu.". The predicate is 
+formally defined as follows:
+\begin{equation}\label{as:ccWantsToComment}
+\begin{gathered}
+	is(ccWantsToComment,Predicate) \land \\
+	arity(ccWantsToComment,2) \land\\ 
+	argIs(ccWantsToComment,1,User) \land \\
+	argIs(ccWantsToComment,2,Formula)
+\end{gathered}
+\end{equation}
+\end{definition}
+
+For the experiments produced in this paper, \emph{Curious Cat} system 
+(Procedural Component) tracks additional context of users current concept 
+(topic) of interest (it asserts it into KB with $currentTopic$ predicate), and 
+also a list of newly created concepts by that user. For example, concepts 
+$JoesPizza$ and $PizzaDeluxe$ from our conversation example are on this ordered
+list. In cases it has multiple $ccWantsTo...$ formulas in place, it prefers 
+the formulas which contain these concepts in the given order. Then it simply 
+exploits the feature of the system to produce new questions/comments on the fly
+as all users (including the one having the conversation) and contextual data 
+are constantly producing new knowledge and consequently new questions/comments.
+It then presents these questions/comments to the user as they come in. For 
+example, when user answers that he is at Joe's Pizza restaurant, the system 
+produces $ccWantsToAsk(User1, menuItem(JoesPizza,x))$, which is showed to the 
+user in NL, as it is the newest formula that appeared and contains the concept 
+of JoesPizza. This simple approach works quite well, since the latest formula 
+is always a consequence of the previous user action. Additionally, this can be 
+used for pro-activity, when the question/comment for the user appears as a 
+consequence of some other user's action, or a context change. If the user didnt
+use the system for a while, we can simply present him with the latest formula 
+when it appears from the inference as a proactive question/comment. In the cases
+when we have a statement, and a question formula, the system presents the 
+comment and then a new question as part of the same response (as also visible
+in example convesation in \autoref{tab:conversation1}).
+
+For the cases when the system needs more explicit control over the order of 
+the questions, the inference rules can be added using special intent predicates
+which allow ordering of the responses. For example predicates like 
+$ccWantsTo...$, but with arity of 3, where new argument is importance, and then
+the system picks more important predicates first. Additionally, the system 
+tracks the window of user and its own responses with logical assertions like 
+$ccResponse(user,formula,num)$ and $userResponse(user,formula,num)$ which 
+stores the history of the conversation and allows rules like:
+\begin{equation*}
+\begin{gathered}
+	\forall x \forall y_1 \forall y_2: userResponse(x,y_1,0) \land userResponse(x,y_2,1) \land equals(y_1,y_2) \\
+	\implies \\
+	ccWantsToComment(x,userRepeatingItself(x))
+\end{gathered}
+\end{equation*}
+This (purely) example rule will produce a comment that user is repeating itself,
+when the user will respond with the same thing two times in a row.
+
+At last, in the occasions when there are no new questions appearing on the list,
+the system will pick from the old ones in the order, until something will 
+trigger a new one, or until depleting all of them. If the depletion happens, 
+then the topic will traverse all the concepts from the history and thus 
+accidentally trigger additional inference with new topic of interest for the 
+user, which will produce new questions, which will additionally (if answered) 
+produce new follow-up questions/comments. As the final fallback, the system 
+will randomly pick a concept from its KB and present it to the inference 
+engine as a current interest for the user.
+
+\hl{revise this section and possibly add missing assertions when constructing
+how everythin fits togehter}
 
 %Subsection
 \section{Consistency Check and KB Placement}
