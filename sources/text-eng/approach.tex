@@ -922,6 +922,7 @@ menu.Formally it is defined as:
 \begin{equation}\label{as:pred_menuItem}
 \begin{gathered}
     is(menuItem,Predicate) \land \\
+    arity(menuItem,2) \land \\
 	argIs(menuItem,1,Restaurant) \land\\
 	argClass(menuItem,2,FoodOrDrink)
 \end{gathered}
@@ -1714,7 +1715,23 @@ sentence:
 \begin{equation*}
 menuItem(Restaurant1, Pizza)
 \end{equation*}
-
+This is done in the following sequence:
+\begin{enumerate}
+\item The system first finds argument constraints of all the predicates that are
+found in the results. In this case it is $argIs(menuItem,1,Restaurant)$ and
+$argClass(menuItem,\\
+2,FoodOrDrink)$ for the predicate $menuItem$.
+\item All of the predicates are checked for their arity, and removed if the
+arity of the predicate is not the same as the number of concepts that were found
+as part of the sentence. In this case the arity is 2 (Assertion 
+\ref{as:pred_menuItem}), and we found 2 unique concepts ($Coffee$ and 
+$Restaurant1$).
+\item The concepts that are not filtered out in the previous steps are then 
+checket whether they fullill the the arity constraints of the arguments of the
+predicates. In our above example, $Coffee$ is a subclass of $FoodOrDrink$, so
+it can be used as argument 2, and $Restaurant1$ is an instance of $Restaurant$,
+so it can be used as argument 1.
+\end{enumerate}
 Consider, that we have implicitly provided natural language representation of the knowledge for predicate restaurantServesCuisine which is the same as one denotation for menuItem (serves). Additionally, we have the knowledge that limits that predicate to only link to subclasses of class Cuisine:
 	argClass(restaurantServesCuisine,Cuisine)	(18)
 Then, for the same statement, our system will find the following possibilities:
