@@ -1786,9 +1786,53 @@ properly disambiguate into the logical equivalent
 	menuItem(Restaurant1,Coffee)
 \end{equation*}
 
+These two examples illustrate a simplest kind of sentential NL conversion. 
+When there are many more possible concepts which need to be combined, the 
+complexity of the problem quickly explodes, or is ambiguous even given the 
+constraints. For this reason, our actual Cyc SCG implementation contains much 
+more complex KB structures and patterns which help with the conversion and a 
+high-speed parser.
 
-These two examples illustrate a simplest kind of sentential NL conversion. When there are many more possible concepts which need to be combined, the complexity of the problem quickly explodes, or is ambiguous even given the constraints. For this reason, our actual Cyc SCG implementation contains much more complex KB structures and patterns which help with the conversion and a high-speed parser, in Java, that performs the needed search
+For the most complicated NL conversions, similar approach to a standard 
+ChatScript or AIML patterns\parencite{Wilcox2011,Wallace2013} is taken, just 
+that the patterns are not matched to textual response patterns directly, but 
+to the logical statements instead. Consider the example answer given as step 
+\ref{step:menu} in \autocite{tab:conversation1}, when user would, instead of 
+simple "pizzas", answer something like "They sell pizzas", or "They have 
+pizzas on the menu". In this case the simple approach described at the 
+beginning of this chapter would not find anything and thus the system needs 
+more descriptive patterns like
+\begin{equation}\label{nl:complexPattern}
+\begin{gathered}
+nlPattern(menuItem,\text{"\$1 (sell|sells|has|have) \$2 |(on the menu)"})
+\end{gathered}
+\end{equation}
+where the sign $|$ represent the or clause, meaning that the "on the menu" is
+optional and in the middle, only one of the words ("sell","sells",...) will
+be used. Additionally, the system needs to infer that "They" refers to the
+restaurant where user currently is (first argument), and that "Pizzas" refer 
+to the the second argument.
+Additional help that the NL system has and we didn't mention is the predicate
+we used to generate a question. For example, in the case of step 
+\ref{step:menu}, the system can give advantage to $menuItem$ predicate and its
+argument constraints, even if there are multiple ambiguous predicates or other
+terms matched by the strings.
 
+Also, note that these more complicated patterns are to be used only when the 
+assisted KA doesnt present valid options and user types free text and also, that
+the patterns dont ever specify what should be the systems response (as opposed
+to how chatbots work). Instead the pattern just converts the text to the logic
+and then leaves up to the inference engine what to do next. This is completely 
+different approach from standard chatbot systems where patterns dictate the 
+responses as well. For readers interested in more detailed overwiew of chat-bot
+approaches and patterns please refer to chapter Related Work (subchapters
+\ref{section:aiml} and \ref{section:chatscript}), or related paper
+\parencite{Bradesko2012}.
+
+%subsubsection
+\subsection{Dialog Formulation}
+\label{section:dialog}
+dada
 
 %Subsection
 \section{Consistency Check and KB Placement}
