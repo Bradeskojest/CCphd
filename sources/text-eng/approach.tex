@@ -1926,11 +1926,49 @@ will randomly pick a concept from its KB and present it to the inference
 engine as a current interest for the user.
 
 \hl{revise this section and possibly add missing assertions when constructing
-how everythin fits togehter}
+how everythin fits togehter. Maybe this chapter is not even necessary?}
 
 %Subsection
 \section{Consistency Check and KB Placement}
 \label{section:consistency}
+
+As already described, we can employ the inference engine to deduce various 
+facts using forward-chaining inference including intents to ask a question. 
+The answers can then be automatically inserted into the KB. The knowledge 
+stored in the KB can be then retrieved using logical queries, which return 
+the matching knowledge, or it can infer additional entailed knowledge at 
+query time using backward-chaining inference. The queries are simple logical 
+formulas, which the inference tries to prove or satisfy. For example, the
+query
+\begin{equation}\label{q:food}
+	class(x,Food)
+\end{equation}
+will return the following results if queried over our current KB 
+(\autoref{fig:nlKB})
+
+\begin{table}[H]
+\centering
+\caption{Results for query \ref{q:food}.}
+\label{tab:nlResultsFood}
+\begin{tabular}{|c|}
+	\hline
+	\textbf{x} \\
+    \hline
+    $Bread$ \\
+    \hline
+    $Baguette$ \\
+    \hline 
+	$Pizza$ \\
+	\hline
+	$Margherita$ \\
+	\hline
+\end{tabular}
+\end{table}
+Or the query
+\begin{equation}
+is(Restaurant1,Place)
+\end{equation}
+will return $True$.
 
 %Subsection
 \section{Crowdsourcing Mechanisms}
