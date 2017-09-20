@@ -1511,7 +1511,12 @@ assertions to our KB:
 \end{equation}
 
 Now, with this NL knowledge, our NL generation engine, when represented by
-the sentence $menuItem(Restaurant1,Coffee)$, checks into the KB, whether it 
+the sentence 
+\begin{equation}
+\label{nl:menuItem1}
+menuItem(Restaurant1,Coffee)
+\end{equation}
+checks into the KB, whether it 
 has enough of NL knowledge to do it. First it tries to find all the patterns
 of the predicate by issuing a query:
 \begin{equation}\label{q:nlpattern1}
@@ -1561,8 +1566,12 @@ this is fullfilled like in the example above, the engine knows that this
 sentence must be declerative (up to now we only have one declerative pattern), 
 picks the proper pattern, and also adds the punctuation "." on it's own.
 
-Now, consider, our Logic to NL engine gets the task to convert the query 
-$\\menuItem(Restaurant1,x)$, where $x$ represnets a variable as in other our 
+Now, consider, our Logic to NL engine gets the task to convert the formula
+(query)
+\begin{equation}
+menuItem(Restaurant1,x)
+\end{equation}
+where $x$ represnets a variable as in other our 
 examples. Our engine again, does the same query \ref{q:nlpattern1}, but because
 the second argument is now a variable, only the first part ($Restaurant$) of 
 the second query \ref{q:names1}. Results for $x_1$ are the same as before,
@@ -1639,7 +1648,14 @@ then the system could notice that its missing the plural version of the word
 for the concept $Pizza$ and ask for it: $namePlural(WordForPizza,x)$ 
 (converted to NL: "What is the plural word for 'pizza'?".
 
-\hl{Maybe add Logic to NL KB current state imeage}
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=1\textwidth]{figures/LogicToNLOntology.png}
+	\caption{Current "NL generation knowledge" on top of the existing KB (new
+    additions mareked with blue)}
+	\label{fig:nlKB}
+\end{figure}
+
 %subsubsection
 \subsection{NL to Logic}
 \label{section:NLLogic}
@@ -1663,11 +1679,42 @@ the $\$\#$ slots of the $nlPattern$ strings are replaced with asterisks ($*$),
 representing any number of words, in a similar way as chat-bot scripts are
 matching defining their patterns\parencite{Wilcox2011}.
 
-For illustration consider inverting the example defined in (17). The system is presented with the statement Joes Pizza has pizzas on the menu. Because all the textual representations of the concepts are indexed, it is able to find the concepts:
-	Restaurant1
-	menuItem
-	Pizza
-Because of the is and subclass knowledge of Restaurant1 and Pizza classes, which can be observed in Fig. 4, and the argIs and argClass domain limits of menuItem (definition 9), the inference engine is actually able to construct the logical equivalent of the above sentence: menuItem(Restaurant1, Pizza).
+For illustration consider inverting the example \ref{nl:menuItem1} from the
+\autoref{section:logicNL}. The system is presented with the statement
+\begin{equation}\label{nl:joespizzamenu}
+\text{"Joe's Pizza has coffee on the menu."}
+\end{equation}
+
+Because all the textual representations of the concepts are indexed, the NL
+engine is able to search for the strings appearing in the sentece through
+our NL predicate assertions and finds the following concepts:
+\begin{table}[H]
+\centering
+\caption{String search results for query \ref{nl:joespizzamenu}.}
+\label{tab:nlResults1}
+\begin{tabular}{|l|l|}
+	\hline
+	\textbf{String} & \textbf{Concept} \\
+    \hline
+    "Joe's Pizza" & $Restaurant1$ \\
+    \hline
+    "* has * on the menu" & $menuItem$ \\
+    \hline
+    "coffee" & $Coffee$ \\
+    \hline
+\end{tabular}
+\end{table}
+
+Because of the $is$ and $subclass$ knowledge of $Restaurant1$ and $Coffee$ 
+classes, which can be observed in \autoref{fig:nlKB}, and the $argIs$ and 
+$argClass$ argument constraints of $menuItem$ (Definition \ref{def:menuItem}), 
+the inference engine is actually able to use the results above 
+(\autoref{tab:nlResults1}), to construct the logical equivalent of the above 
+sentence: 
+\begin{equation*}
+menuItem(Restaurant1, Pizza)
+\end{equation*}
+
 Consider, that we have implicitly provided natural language representation of the knowledge for predicate restaurantServesCuisine which is the same as one denotation for menuItem (serves). Additionally, we have the knowledge that limits that predicate to only link to subclasses of class Cuisine:
 	argClass(restaurantServesCuisine,Cuisine)	(18)
 Then, for the same statement, our system will find the following possibilities:
