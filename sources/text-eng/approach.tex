@@ -1732,13 +1732,61 @@ predicates. In our above example, $Coffee$ is a subclass of $FoodOrDrink$, so
 it can be used as argument 2, and $Restaurant1$ is an instance of $Restaurant$,
 so it can be used as argument 1.
 \end{enumerate}
-Consider, that we have implicitly provided natural language representation of the knowledge for predicate restaurantServesCuisine which is the same as one denotation for menuItem (serves). Additionally, we have the knowledge that limits that predicate to only link to subclasses of class Cuisine:
-	argClass(restaurantServesCuisine,Cuisine)	(18)
-Then, for the same statement, our system will find the following possibilities:
-	Restaurant1
-	restaurantServesCuisine, menuItem
-	Pizza
-At this moment it needs to check all the constraints again, and filter out restaurantServesCuisine because it needs a subclass of Cuisine, which is not in the list of found concepts (only FoodOrDrink, which is Pizza). This logical statement would be invalid due to argument constraints in our KB: restaurantServesCuisine (Restaurant1, Pizza). Only the predicate menuItem can actually take its arguments with our available concepts and still be valid in our KB.
+
+To make the example more complicated, and thus process more clear, consider
+an additional predicate $servesCuisine$ which has a totally different meaning
+than $menuItem$, but can have the same language pattern:
+\begin{equation*}
+\begin{gathered}
+    is(servesCuisine,Predicate) \land \\
+	arity(servesCuisine,2)\land\\
+	argIs(servesCuisine,1,Restaurant) \land\\
+	argClass(servesCuisine,2, Cuisine) \land \\
+	nlPattern(servesCuisine, \text{"\$1 serves \$2"}) 
+\end{gathered}
+\end{equation*}
+while we add one more pattern to the $menuItem$ predicate.
+\begin{equation*}
+\begin{gathered}
+	nlPattern(menuItem, \text{"\$1 serves \$2"}) 
+\end{gathered}
+\end{equation*}
+With this additional predicate and NL knowledge, the engine, given the following
+text:
+\begin{equation}\label{nl:joespizzamenu1}
+\text{"Joe's Pizza serves coffee."}
+\end{equation}
+will find the following possible terms:
+
+\begin{table}[H]
+\centering
+\caption{String search results for query \ref{nl:joespizzamenu1}.}
+\label{tab:nlResults2}
+\begin{tabular}{|l|l|}
+	\hline
+	\textbf{String} & \textbf{Concept} \\
+    \hline
+    "Joe's Pizza" & $Restaurant1$ \\
+    \hline
+    "* serves *" & $menuItem$ \\
+    \hline
+	"* serves *" & $servesCuisine$\\
+	\hline
+    "coffee" & $Coffee$ \\
+    \hline
+\end{tabular}
+\end{table}
+Now on the \autoref{tab:nlResults2} we can see, that there are two predicates
+for the same NL pattern. But when the system will try to fit the class $Coffee$
+into both of them, it will not fit to $servesCuisine$, because it requires
+subclass of $Cuisine$, but $Coffee$ is a sub-class of $Drink$. Consequently,
+the predicate $servesCuisine$ will be filtered out, and the system will
+properly disambiguate into the logical equivalent
+\begin{equation*}
+	menuItem(Restaurant1,Coffee)
+\end{equation*}
+
+
 These two examples illustrate a simplest kind of sentential NL conversion. When there are many more possible concepts which need to be combined, the complexity of the problem quickly explodes, or is ambiguous even given the constraints. For this reason, our actual Cyc SCG implementation contains much more complex KB structures and patterns which help with the conversion and a high-speed parser, in Java, that performs the needed search
 
 
