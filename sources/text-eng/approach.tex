@@ -2218,7 +2218,60 @@ Additionally, users might have a feeling that they are the only one in the
 system if they dont see some immediate feedback and activity. 
 Initially we started with Crowdsourcing through repetition, but then 
 decided (due to reasons above) to do our initial experiments 
-(described in section results \hl{proper ref}) by using the option 2 (\hl{ref}.
+(described in section results \hl{proper ref}) by using the option 2 (\hl{ref}).
+
+%subsection
+\subsection{Crowdsourcing through repetition}
+\label{section:crowdRepetition}
+This type of proposed crowdsourcing mechanism is based on the number of 
+identical assertions in all the sub-KBs on the same level (i.e., different 
+users providing exactly the same knowledge). Once the specific assertion count 
+is above a threshold, we assume that there is enough evidence for promoting it 
+to general knowledge, which is performed by moving the knowledge to higher 
+level of the hierarchy (via "lifting rules" in the $CuriousCatBelievesKB$), 
+and thus making it visible for all the users. After the knowledge is in the 
+public KB, crowd users can start voting on it (see \hl{ref to voting}).
+
+Consider the case of $User1$ answering the question from the previous examples: 
+"What did you order?", with a lie: "spicy unicorn wings". The system will go 
+through steps described in section \autoref{section:consistency}
+\hl{(Consistency Check and KB Placement)}, and if the user confirms this new 
+concept, \emph{Curious Cat} will believe (in the world for $User1$), that he 
+ate spicy unicorn wings and that the $JoesPizza$ restaurant has them on the
+menu. The contextual KB $User1KB$ would then get the assertion 
+$menuItem(JoesPizza,SpicyUnicornWings)$. There is a very low chance that any 
+other user would provide the same answer, so the wrong assertion will never get 
+promoted to higher levels of KB.
+
+On the other hand, if $User1$ answers $menuItem(JoesPizza,PizzaDeluxe)$, then 
+$User2$ answers the same, then $User3$, the assertion already has a count of 
+more than 2, which is the threshold in our system, and the assertion will get 
+promoted to be visible for all the users (world). For newcomers to $JoesPizza$, 
+the system will already know that they have "Pizza Deluxe" on the menu.
+The real world implementation example of promoted knowledge at the first 
+visit can be seen on \hl{screen ref - fig 11 from TOIS}.
+
+
+%subsection
+\subsection{Crowdsourcing through voting}
+\label{section:crowdVoting}
+Contrary to the previous example, we can also promote all the answers 
+immediately. In this case, all the assertions except the private ones 
+(e.g. ones that contain the concept for the $User\#$), will get asserted into 
+both the users KB and the $CuriousCatBelievesKB$.
+
+Once the assertions are in $CuriousCatBelievesKB$, users will not get the 
+standard questions produced by the KA rules, but will still get occasionally 
+the "crowdsourcing" questions (produced by different rules), which will 
+simply be checking the truth of some existing knowledge: "Is it true that Joes 
+Pizza has Pizza Deluxe on the menu?". These simple yes/no questions allow us to 
+assess the truthfulness of the logical statement and remove it, if it gets 
+more negative answers than positive.
+
+This voting mechanism serves for promoting knowledge (as described in 
+\autoref{section:crowdRepetition} (\nameref{section:crowdRepetition}) and for 
+detecting when the world changes and something that was true in the past is not 
+true anymore.
 
 %section
 \section{Putting it All Together}
@@ -2227,4 +2280,4 @@ This section wraps up the approach and brings together the components described
 in \autoref{chapter:approach} into a coherent full system, which we describe 
 through the example conversation presented in \autoref{tab:conversation1} and
 \autoref{tab:conversation2}.
-
+\hl{FINISH THIS}
