@@ -2143,6 +2143,82 @@ place as illustrated in \autoref{fig:kbCorrectPosition}.
 %section
 \section{Crowdsourcing Mechanisms}
 \label{section:crowdsourcing}
+Up to this point, we have discussed the mechanisms of KA, showing how it is 
+possible to get valid knowledge from a single user. In order to lower the cost 
+of and/or increase the speed of KA we can involve a crowd. Crowdsourcing 
+however bring several challenges (as described in Section 
+\autoref{section:problemCrowd}) including the followinga:
+\begin{itemize}
+\item User privacy
+\item Users making deliberately false claims or having mistaken ideas about the 
+world
+\item Fast changing state of the real world
+\end{itemize}
+We tackle this by organizing our KB into smaller, hierarchical knowledge base 
+structures. Each of these structures is then our virtual knowledge base in 
+which we operate, and which has its own independent knowledge, added on top of 
+all the sub-KBs up in the hierarchy (\autoref{fig:mt}). In the Cyc system, these
+contextual KB structures are called \emph{Microtheories}\parencite{Kleer2013}.
+
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=1\textwidth]{figures/microtheories.png}
+	\caption{Hierarchical structure of knowledge bases.}
+	\label{fig:mt}
+\end{figure}
+
+The idea is that the sub-KBs which are higher up in the hierarchy are not aware
+of the knowledge that is at the lower levels. But the KBs which are at the lower
+levels, contain all the knowledge of their ancestors from the higher levels. 
+For example,  let us assume that $WholeWorldKB$  in \autoref{fig:mt} has the 
+knowledge defined in section \ref{section:upperOnotlogy} and 
+\autoref{section:existingKB}, $CuriousCatBelievesKB$ has the knowledge defined
+in section \autoref{section:kaKnowledge} and then acquired from multiple users. 
+$User1KB$ has knowledge that was acquired from $User1$ and $user2KB$ has 
+knowledge acquired from $User2$ (new, other user). Following our KB structure 
+given in \hl{ref to fig pre-existing knowledge} and formal logical definitions, 
+we can see that:
+\begin{itemize}
+\item $WholeWorldKB$ contains the upper ontology and pre-existing knowledge 
+from \hl{figure ref to pre-existing knowledge}.
+\item $CuriousCatBelievesKB$ contains KA assertions and union of assertions 
+acquired from all the users.
+\item $User1KB$ contains assertions acquired from user 1 and only relevant to 
+her/him.
+\item $User2KB$ contains assertions acquired from user 2 and only relevant to 
+her/him.
+\end{itemize}
+
+Following this structure, it becomes obvious that each user in our system has 
+its own sub-KB, connected to the main knowledge only through 
+$CuriousCatBelievesKB$. Also, $User1KB$ and $User2KB$ cannot see each others 
+knowledge, but only perceive the world through the "eyes" of 
+$CuriousCatBelievesKB$ and their own local sub-KB. This means, that if $User1$ 
+lies about something, the wrong knowledge will be only available to $User1$, 
+while the rest of the users will not be affected. In this way, the users privacy
+is also protected.
+
+To benefit from crowdsourcing we want to share some of the knowledge to all of 
+the users. Since each sub-KB can "see" only the assertions stored in itself and 
+the assertions higher up in the hierarchy, we can control what only one user 
+knows, versus all the users, by moving the specific assertions up or down 
+through the KB hierarchy. 
+We are proposing two approaches: 1) Crowdsourcing through repetition (\hl{ref}),
+and 2) Crowdsourcing through voting (\hl{ref}).
+
+Crowdsourcing 1 is more advanced, since it includes type 2 as well, once the 
+repeated assertions from multiple users got promoted to $CuriousCatBelievesKB$. 
+Because it only promotes the knowledge which is asserted by multiple users 
+independently, there is reduced chance for temporal wrong knowledge staying in 
+our system before the voting from approach 2 removes it. In this sense, 
+Crowdsourcing through repetition gives better results, but it has a drawback, 
+especially if there is not enough of users in the system, the knowledge takes 
+longer to be promoted to the main KB where other users could benefit from it. 
+Additionally, users might have a feeling that they are the only one in the 
+system if they dont see some immediate feedback and activity. 
+Initially we started with Crowdsourcing through repetition, but then 
+decided (due to reasons above) to do our initial experiments 
+(described in section results \hl{proper ref}) by using the option 2 (\hl{ref}.
 
 %section
 \section{Putting it All Together}
