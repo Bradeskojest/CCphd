@@ -44,13 +44,13 @@ and \ref{tab:conversation2}.
 	\hline
     \multicolumn{3}{|c|}{...Some time passes while the user eats...}\\
 	\hline
-	6 & What did you order? & A car. \\
+	\step{step:car} 6 & What did you order? & A car. \\
 	\hline
-	7 & \makecell[l]{I've never heard of food called 'car' before. \\ Are you sure it's a type of food?} & No. \\
+	\step{step:surecar} 7 & \makecell[l]{I've never heard of food called 'car' before. \\ Are you sure it's a type of food?} & No. \\
 	\hline
-	8 & What did you order then? & Pizza Deluxe \\
+	\step{step:pizzadeluxe} 8 & What did you order then? & Pizza Deluxe \\
 	\hline
-	9 & \makecell[l]{I've never heard of 'Pizza Deluxe' before.\\What kind of thing is it?} & Pizza. \\
+	\step{step:deluxething} 9 & \makecell[l]{I've never heard of 'Pizza Deluxe' before.\\What kind of thing is it?} & Pizza. \\
 	\hline 
 \end{tabular}
 \end{table}
@@ -1969,6 +1969,79 @@ Or the query
 is(Restaurant1,Place)
 \end{equation}
 will return $True$.
+
+For ilustration, let us assme that the system finds the following question to
+ask 
+\begin{equation*}
+\begin{gathered}
+\text{"What has Joe's Pizza on the menu?"}\\
+(menuItem(JoesPizza,x))
+\end{gathered}
+\end{equation*}
+with the argumentconstraints on the predicate as defined in assertion 
+\ref{as:pred_menuItem}. Assuming that the user answers with "Pizza Margherita"
+(hypothetical example, different than in \autoref{tab:conversation1}, step
+\ref{step:pizzadeluxe}) which exists in our KB, the system can ask the inference
+engine the following type of general query:
+\begin{equation}
+\begin{gathered}
+    Q:name(x,\$answer)\land \\ % TERM?=x
+    argIs(\$pred,\$argPos,y)\land \\ %ARGIS?=y
+    is(x,y)\land \\
+    \left(
+    \begin{tabular}{c}
+        $argClass(\$pred,\$argPos,z) \land  subclass(x,z)$\\
+        $\lor$\\
+        $unknown(\exists z:argClass(\$pred,\$argPos,z))$ \\
+    \end{tabular}
+    \right)
+\end{gathered}
+\end{equation}
+where we replace the meta variables (marked with $\$$) with our values from 
+the exaple question, where $\$answer$ represents user answer, $\$pred$ 
+represents the predicate that was used to propose a question, and 
+$\$argPos$ is the position of the variable in the question query. After we
+fill in our values ($\$answer=\text{"Pizza Margherita}, \$pred=menuItem, 
+\$argPos=2$), we get the following concrete logical query:
+\begin{equation}\label{q:constraintQuery}
+\begin{gathered}
+   Q:name(x,\text{"Pizza Margherita"})\land \\ 
+    argIs(menuItem,2,y)\land \\
+    is(x,y)\land \\
+    \left(
+    \begin{tabular}{c}
+        $argClass(menuItem,2,z) \land  subclass(x,z)$\\
+        $\lor$\\
+        $unknown(\exists z: argClass(menuItem,2,z))$ \\
+    \end{tabular}
+    \right)
+\end{gathered}
+\end{equation}
+If this query is asked in our current KB (\hl{ref to last img}), we get the 
+following results:
+
+\begin{table}[H]
+\centering
+\caption{Results for query \ref{q:constraintQuery}.}
+\label{tab:constraintResults}
+\begin{tabular}{|c|c|c|}
+	\hline
+	\textbf{x} & \textbf{y} & \textbf{z} \\
+    \hline
+    $Margherita$ & $Class$ & $FoodOrDrink$ \\
+    \hline
+\end{tabular}
+\end{table}
+Because the inference engine was able to answer this query, we imediatelly
+know that the answer is consistent with the KB and is safe to assert it into
+the KB as $menuItem(JoesPizza,Margherita)$. \hl{Maybe switchh from Joes to
+Lardoise which is for sure in the KB. Check whether worth mentioning Nothing}.
+
+At this point we have seen an example of how to add new knowledge when the
+concept that the user has provided already exists in the KB and the answer is 
+structurally valid. But what would happen if user should say "Pizza Deluxe" 
+(as in our example in \autoref{tab:conversation1}, step \step{step:pizzadeluxe}),
+which we do not have in the KB.
 
 %Subsection
 \section{Crowdsourcing Mechanisms}
