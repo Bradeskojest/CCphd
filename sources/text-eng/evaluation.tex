@@ -1,5 +1,30 @@
-%--------------------------------------------------------------------------------------------------
+%--------------------------------------------------------------------------------
 % 
 \chapter{Evaluation}
-%--------------------------------------------------------------------------------------------------
-TBW
+%--------------------------------------------------------------------------------
+Validation of the proposed approach was performed using our Curious Cat system 
+running alive over the course of 4 years engaging a total of 728 registered 
+users. During that time, the users checked-into 5,551 locations and responded 
+to 57,978 questions, of which 8,611 were voting questions (7,560 positive and 
+1,051 negative votes), 18,907 answered with "I dont know", and 30,460 real 
+answers inserted into the KB as new knowledge, including 31,140 concepts 
+(3,171 on users, 22,563 check-ins and other places and 5,406 other concepts). 
+These triggered additional 386,980 assertions to be added through 
+forward-chained inference. These can be separated into facts (374,300 
+assertions) and additional derived question generating rules and questions 
+(12,680). Altogether we gathered 444,958 (374,300 + 30,460) pieces of 
+completely new knowledge. 
+
+For easier understanding, we show the structure of the collected knowledge 
+graphically in \autoref{fig:results}, and give real examples of the collected 
+and inferred knowledge in \autoref{tab:results}.
+
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=1\textwidth]{figures/results.png}
+	\caption{Graphical representation of collected answers (knowledge) and 
+    distributions.}
+	\label{fig:results}
+\end{figure}
+
+
