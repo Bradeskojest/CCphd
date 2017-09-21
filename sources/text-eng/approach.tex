@@ -2040,10 +2040,107 @@ Lardoise which is for sure in the KB. Check whether worth mentioning Nothing}.
 At this point we have seen an example of how to add new knowledge when the
 concept that the user has provided already exists in the KB and the answer is 
 structurally valid. But what would happen if user should say "Pizza Deluxe" 
-(as in our example in \autoref{tab:conversation1}, step \step{step:pizzadeluxe}),
-which we do not have in the KB.
+(as in our example in \autoref{tab:conversation1}, step 
+\step{step:pizzadeluxe}), which we do not have in the KB. In this case the query
+above would return nothing. This would happen as well, if the user should say 
+"car" (as in the step \ref{step:car}). When the validation query does not return
+results (as would happen for "car"), we need to separately check whether the 
+concept exists:
+\begin{equation}\label{q:nameCar}
+Q:name(x,"car")
+\end{equation}
+If it does (i.e. the querly \ref{q:nameCar} above returns the resulting 
+concepts), then the answer is actually invalid on structural grounds (the term 
+it includes ca not be used a viable answer).
+But, if the concept does not exist yet (nothing returned, as would be the case 
+for "Pizza Deluxe"), then we can simply create it together with its NL 
+denotation and assert it using our question predicate.
 
-%Subsection
+
+%subsection
+\subsection{Detailed Placement in the KB}
+\label:section{placement}
+
+In addition to deciding to add some newly acquired knowledge to the KB, the 
+exact location in the "KB graph" is determined by the $argIs$ and $argClass$
+assertions on the question predicate. Consider our example question
+$menuItem(JoesPizza,x)$. Because of the $argClass(menuItem,2,FoodOrDrink)$, the
+answer must be a subclass of $FoodOrDrink$ concept. Let us say the aswer is
+"Pizza Deluxe", as with previous explanations. To insert the knowledge, the 
+system goes through the steps described in the previous section 
+\ref{section:consistency}. Because of $argClass$ assertions $PizzaDeluxe$ 
+concept is added as a $subclass$ of $FoodOrDrink$ as illustrated in 
+\autoref{fig:kbPosition}.
+
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=1\textwidth]{figures/kbPosition.png}
+	\caption{$FoodOrDrink$ part of the class hierarchy from our example KB with
+    newly added concept.}
+	\label{fig:kbPosition}
+\end{figure}
+
+While this is logically valid, it is not detailed enough to satisfy our KA 
+requirements. For this reason, when the concept does not already exist, or is 
+not detailed enough (too high in the class hierarchy), we can issue additional 
+query:
+\begin{equation}\label{q:additionalFood}
+Q:subclass(x,FoodOrDrink)
+\end{equation}
+which, for our example knowledge it returns:
+\begin{table}[H]
+\centering
+\caption{Results for query \ref{q:additionalFood}.}
+\label{tab:foodResults}
+\begin{tabular}{|c|}
+	\hline
+	\textbf{x} \\
+    \hline
+    $FoodOrDrink$ \\
+    \hline
+    $Drink$ \\
+    \hline
+    $Coffee$ \\
+    \hline
+    $Food$ \\
+    \hline
+    $Bread$ \\
+    \hline
+    $Baguette$ \\
+    \hline
+    $Pizza$ \\
+    \hline
+    $Margherita$ \\
+    \hline
+\end{tabular}
+\end{table}
+This gives us various options.
+\begin{enumerate}
+\item Ask the user, which one of these PizzaDeluxe is (excluding the main 
+class $FoodOrDrink$). For example: "What describes it in most detail?", or: 
+"Is Pizza Deluxe a drink, coffee, bread, baguette, pizza or margherita"
+\item Ask for the first level subclasses first, then for the next level, 
+etc.: 1. "Is Pizza Deluxe a type of drink or food?", 2. "Is Pizza Deluxe a 
+type of pizza?"
+\item (which is usually the best option) we can scan all of the resulting 
+concepts (results from \autoref{tab:foodResults}) for their NL patterns and 
+names, and then match the strings to "Pizza Deluxe", to see which one fits the 
+best. In this case, only the $Pizza$ concept provides a partial match ("Pizza"
+vs "Pizza Deluxe"). So, we can immediately ask: "Is Pizza Deluxe a type of 
+Pizza?". If the user agrees, we can, in addition to 
+$subclass(PizzaDeluxe,FoodOrDrink)$, assert: $subclass(PizzaDeluxe,Pizza)$. 
+This results in our new concept being located in the KB at the most descriptive
+place as illustrated in \autoref{fig:kbCorrectPosition}.
+\end{enumerate}
+
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=1\textwidth]{figures/kbCorrectPosition.png}
+	\caption{New position of the $PizzaDeluxe$ concept in our KB.}
+	\label{fig:kbCorrectPosition}
+\end{figure}
+
+%section
 \section{Crowdsourcing Mechanisms}
 \label{section:crowdsourcing}
 
