@@ -2,6 +2,7 @@
 % 
 \chapter{Evaluation}
 %--------------------------------------------------------------------------------
+\hl{Go through this, re-paraphrase - it was copied from the paper}
 Validation of the proposed approach was performed using our Curious Cat system 
 running alive over the course of 4 years engaging a total of 728 registered 
 users. During that time, the users checked-into 5,551 locations and responded 
@@ -473,3 +474,52 @@ appropriate baselines.
 \end{tabular}
 \end{table}
 
+As the overall sanity check of the KB, we randomly picked 100 newly acquired 
+assertions, and assessed them manually to see whether they were:
+\begin{itemize}
+\item Valid (in the sense of consistent with the KB here we expect 100\%)
+\item True (in the sense of true in an interpretation based on our human world)
+\item Useful (useful for a potential user, or for the inference engine in 
+producing suggestions, validations, new questions)
+\end{itemize}
+
+The counts are presented in \autoref{tab:validity}. As expected all the 
+assertions are 
+valid, 96\% of them are true and 95\% are useful. This can be used as an 
+estimate of the knowledge that we acquired through the proposed approach.
+
+%old table XII
+\begin{table}[h]
+\centering
+\caption{Results of manual evaluation on 100 randomly picked assertions}
+\label{tab:validity}
+\begin{tabular}{|c|c|c|}
+	\hline
+	\textbf{Valid} & \textbf{True} & \textbf{Useful} \\
+    \hline
+	100 & 96 & 95 \\    
+    \hline
+\end{tabular}
+\end{table}
+
+The results of this counting are not surprising, since the system doesnt allow 
+manifestly inconsistent assertions, and the crowdsourcing mechanism already 
+weeded out most of the untrue examples. There were four untrue assertions in 
+the sample, which expose three potential problems:
+\begin{enumerate}
+\item One error was because the price of the coffee changed since the last 
+check with the users  the stored knowledge was obsolete.
+\item There were two concepts with exactly the same name and were both 
+subclasses of $Organization$, so the users and also the system didnt manage to 
+distinguish them and picked the wrong one. For users, everything seemed 
+perfectly correct even though a logical error resulted.
+\item Twice the user entered a complex sentence instead of a name of the 
+concept and that forced the system to create a concept with that name (a
+consequence of disabled SCG\hl{see ref}).
+\end{enumerate}
+
+Looking more in details of the usefulness of the retrieved knowledge, there 
+were two answers, which related to the internal KB mechanism (how to handle 
+events) and were thus not really useful for the end user. The remaining there 
+were mostly too specific and not really useful in general, such as the name of 
+the spider the user has in the corner of a room.
