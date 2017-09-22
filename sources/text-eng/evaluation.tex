@@ -201,7 +201,6 @@ some of them were repeating (user re-tries, or other users did the same
 mistake), so the system actually prevented 384 unique inconsistent answers.
 
 %old table VII
-
 \begin{table}[h]
 \centering
 \caption{Results of Consistency Checking}
@@ -210,23 +209,230 @@ mistake), so the system actually prevented 384 unique inconsistent answers.
 	\hline
 	\textbf{Measure}  &	 \makecell[l]{\textbf{Real data from}\\\textbf{the logs}} & \makecell[l]{\textbf{Extrapolation for}\\ \textbf{the full experiment}} \\
     \hline
-    Number of new assertions & 1,364 days & 100 days \\
+    Number of new assertions & 22,980 & 57,978 days \\
     \hline
-    \makecell[l]{Number of rejected assertions\\due to inconsistency} & 56,586 & 709\\
+    \makecell[l]{Number of rejected assertions\\due to inconsistency} & 563 & 1420\\
     \hline
-    \makecell[l]{\textbf{Percentage of rejected}\\\textbf{asserts}} & 18,380 (32\%) & 267 (38\%) \\	
+    \makecell[l]{\textbf{Percentage of rejected}\\\textbf{asserts}} & \textbf{2.45\%} & \textbf{2.45\%} \\	
 	\hline 
-    \makecell[l]{Number of unique rejected\\ asserts}  &38,206 (68\%) & 442 (62\%) \\
+    \makecell[l]{Number of unique rejected\\ asserts} & 384 & 968 \\
 	\hline
-    \makecell[l]{\textbf{Percentage of unique}\\ \textbf{rejected asserts}} & 42.1 & 7.1\\
+    \makecell[l]{\textbf{Percentage of unique}\\ \textbf{rejected asserts}} & \textbf{1.67\%} & \textbf{1.67\%}\\
 	\hline
-    \makecell[l]{Number of new users } & 90.3 & 15.7 \\
+    \makecell[l]{Number of new users } & 128 & 728 \\
 	\hline
-    \makecell[l]{Number of active users} & 0.07 & 0.16 \\
+    \makecell[l]{Number of active users} & 148 & 728 \\
 	\hline
-    \makecell[l]{Experiment duration} & 3.7 & 0.4 \\
+    \makecell[l]{Experiment duration} & 143 days & 1472 days \\
 	\hline
 \end{tabular}
 \end{table}
 
+As presented in \autoref{tab:resultsconsistencycheck}, for every 100 valid 
+answers users provided during the experiment, there were 2.45 answers which 
+were rejected by the system due to being completely wrong or inconsistent. 
+Because we only have logs for 143 days we had to extrapolate the number for the
+overall experiment to get some estimation of how many bad assertions were 
+prevented by the system throughout the whole experiment. The estimated number 
+of rejected assertion system prevented overall is 1,420. Fore easier 
+understanding, in \autoref{tab:rejectedconversation} are examples of the 
+rejected assertions, together with the interaction that lead to the rejection.
 
+%old table VIII
+\begin{table}[h]
+\centering
+\caption{Conversation prior to rejected assertions}
+\label{tab:rejectedconversation}
+\begin{tabular}{|l|l|}
+	\hline
+	\textbf{CC}  & \textbf{User} \\
+    \hline
+    \multicolumn{2}{|c|}{\textbf{Example 1}} \\
+    \hline
+    \makecell[l]{Which social being has \\ Lagos as assets?} & hotel \\
+    \hline
+    \makecell[l]{By hotel do you mean\\ hotel (building)?} & yes\\
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Rejected - building is not a social building}}\\
+    \hline
+    \multicolumn{2}{|c|}{\textbf{Example 2}} \\
+    \hline
+    \makecell[l]{Let's continue our\\ previous conversation \\ about going on a date.} & ok \\
+    \hline
+    \makecell[l]{All going on a date has\\ \_\_\_as a characteristic\\sub-event} & hello\\
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Rejected - hello is a greeting, not an event.}}\\
+    \hline
+\end{tabular}
+\end{table}
+
+%subsection
+\subsection{Additional knowledge as follow-up of newly acquired knowledge}
+\label{section:followups}
+As one of the more important features of our proposed system is its ability to 
+use newly acquired knowledge to ask new things, we explored this functionality, 
+comparing it to the baseline KA and consequently measuring the knowledge that 
+was acquired as a consequence of prior acquisition. An example of such a 
+follow up question or assertion is given in \autoref{tab:followupexample}.
+
+%old table IX
+\begin{table}[h]
+\centering
+\caption{Example of follow-up question and answers (new knowledge)}
+\label{tab:followupexample}
+\begin{tabular}{|c|l|}
+	\hline
+	1  & CC Asks: "What did you order?" \\
+    \hline
+    2 & User answers: "Meatloaf" \\
+    \hline
+    3 & \makecell[l]{CC asks a follow-up question: "One of the meatloaf\\ ingredients is \_\_\_". }\\
+    \hline
+    4 & User answers: "egg". \\
+    \hline
+\end{tabular}
+\end{table}
+
+The question number 3 in \autoref{tab:followupexample} is a "follow-up" question
+since it is only asked when someone enters the previously unknown food concept. 
+Answer under number 4 is a follow-up knowledge, since it was answered and given 
+to the system only because someone created the concept of $Meatloaf$.
+
+During the whole experiment the system collected and accepted \textbf{22,838 
+answers}, which were a follow-up answer. This means that \textbf{39.4\%} of all
+the knowledge we obtained was a direct consequence of the systems ability to 
+generate new questions based on the already acquired knowledge.
+
+The follow-up questions and answers are always a consequence of some new 
+concept that enters the system. The 22,838 of answers are consequence of 
+5,406 new concepts (not counting concepts of users themselves and locations 
+they checked in), where the distribution of new knowledge/concept follows a 
+long-tail distribution - a very small number of concepts triggered a big number
+of follow-up knowledge (\autoref{fig:followups} - logarithmic scale).
+
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=1\textwidth]{figures/followupGraph.png}
+	\caption{Long tail (logarithmic scale) distribution of follow-up answers per new concept}
+	\label{fig:followups}
+\end{figure}
+
+%subsection
+\subsection{Additional knowledge because of allowing cross-user cooperation}
+\label{section:resultscross}
+Similarly, as done for follow-up answers in \autoref{section:followups}, we can
+check how much of the new knowledge came into the system due to its ability to 
+share knowledge and questions cross-users. For this, we check the answers, 
+where the initial concept was given to the system from a different user then the
+follow up answer. From the example in \autoref{tab:followupexample} this would 
+mean that the answer number 2 was given by $User1$ and then CC asks the 
+question 3 and receives answer 4 from $User2$.
+
+While for follow-up results, we have a complete log, due to changing the 
+system, not all records have information about the original user who created 
+the concept. We have his data only for 45 concepts out of 5406, excluding all 
+user concepts and locations they checked-in. For these 45 concepts, 
+we got additional 123 answers from other users.
+
+%subsection
+\subsection{voting}
+\label{section:resultsvoting}
+The voting part of the system is, besides directly providing the answers, 
+one of the main crowdsourcing components. As described in \hl{old section 2.5}, 
+after the knowledge is acquired, the system can re-check with other users 
+whether the assertion is true or not. This is done by presenting a question in 
+the form: "Is it true that [assertion].", which can be answered with "yes" or 
+"no". For example: "Is it true that Bornholmsk is a national language of 
+Denmark?".
+
+While the consistency check is performed automatically by the system, the 
+answers that are manifestly inconsistent with the other content in the KB are 
+stored only in the user specific part of the KB. Checking for truth of the 
+knowledge is motivated by the fact that claims can be still be untrue even if 
+they are consistent with the KB. From the Yes/No ratio, we can see that there 
+are many more "Yes" votes than "No" votes, which hints that the answers the 
+other users provide are mostly recognized as true by the crowd. 
+This could be taken as a hint towards the precision of the truthfulness of the 
+acquired knowledge. If we take into consideration that more users can vote for 
+the same assertion, the effective precision of the knowledge measured this way 
+can be estimated more accurately. The voting mechanism hides from the public 
+knowledge base 97 of the assertions where the users were unable to agree on 
+truth and 636 assertions which were voted as untrue by majority of the users.
+
+%old table X
+\begin{table}[h]
+\centering
+\caption{Crowd voting results}
+\label{tab:votingresults}
+\begin{tabular}{|l|l|}
+	\hline
+	\textbf{Measure}  & \textbf{Number} \\
+    \hline
+    All votes & 8,611 \\
+    \hline
+    Votes over unique asserts & 5,436 \\
+    \hline
+    Yes votes & 7,560 \\
+    \hline
+    No votes & 1,051 \\
+    \hline
+    Rejected answers & 636 \\
+    \hline
+    Accepted answers & 4,703 \\
+    \hline
+    Undecided answers & 97 \\
+    \hline
+\end{tabular}
+\end{table}
+
+If we look at some of the most rejected assertions, we can see assertions 
+such as (more no votes than yes):
+\begin{itemize}
+\item $nationalLanguage (Denmark Bornholmsk)$ (3 yes, 9 no)
+\item $typicalColorOfType (Automobile BlackColor)$ (3 yes, 9 no)
+\item $is (CityOfCopenhagenDenmark Town)$ (0 yes, 4 no)
+\item $subclass (Coffee-Beverage ArtificialMaterial)$ (3 yes, 9 no)
+\item $soleMakerOfProductType (TelevisionSet PhilipsPetroleumCompany)$ (3 yes, 7 no)
+\end{itemize}
+And the most accepted assertions (more yes votes than no):
+\begin{itemize}
+\item $is (Denmark CountryWithOnlyOneTimeZone)$ (25 yes, 0 no)
+\item $is (Food CollectionWithManySpecializzations)$ (23 yes, 0 no)
+\item $sublcass (Food OrganicMaterial)$ (19 yes, 0 no)
+\item $is (Food ProductTypeWithoutSoleMaker)$ (20 yes, 1 no)
+\item $countryPhoneCode (Slovenia 386)$ (18 yes, 0 no)
+\end{itemize}
+And some of the undecided assertions (same number of yes and no votes):
+\begin{itemize}
+\item $subclass (IceCream Mixture)$ (2 yes, 2 no)
+\item $characteristicProperSubeventTypes (CookingFood EatingEvent)$ (1 yes, 1 no)
+\item $electronicDeviceMountingStyle (RearVideoPort DesktopComputer)$ (2 yes, 2 no)
+\end{itemize}
+
+%subsection
+\subsection{User Stickiness Factor}
+To get an idea of how the users interacted with the system, we checked each of
+them by the first and the last piece of knowledge they provided and measured 
+the duration of days between these dates. This is a simple indicator of a 
+stickiness - showing how many of the users only tried an application and then 
+forgot about it and how many of them answered questions for longer. On
+\autoref{fig:userstickiness} we can see the long-tail distribution of how long 
+users stick with the application. About 25\% of the users stick with the 
+system for more than just one-day testing. While most of the users (548) only 
+tested the system for a day and did not use it further, 180 users stayed for a 
+longer period of time. Among these, 117 used it for more than a week, 98 for 
+more than two weeks, 69 for a month or more, 51 for more than two months and 
+15 for more than a year.
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=1\textwidth]{figures/userStickiness.png}
+	\caption{Distribution of usage duration for users}
+	\label{fig:userstickiness}
+\end{figure}
+
+While this distribution is not too impressive for the commercial product, 
+it is somehow expected for a research prototype without any updates and 
+improvements for more than a year after it was built. It shows that the 
+approach has potential and triggered interest in a decent number of the users, 
+which indicates it could gain a lot of interest with a few improvements and 
+obvious bug fixes.
