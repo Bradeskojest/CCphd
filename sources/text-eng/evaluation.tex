@@ -436,3 +436,40 @@ improvements for more than a year after it was built. It shows that the
 approach has potential and triggered interest in a decent number of the users, 
 which indicates it could gain a lot of interest with a few improvements and 
 obvious bug fixes.
+
+%subsection
+\subsection{Results Summary}
+\label{section:resultssummary}
+As a wrap-up of the result sections, \autoref{tab:baselines} shows the 
+knowledge or quality contributions of particular system features and their 
+appropriate baselines.
+
+\begin{table}[h]
+\centering
+\caption{Contributions of separate system features and appropriate baselines}
+\label{tab:baselines}
+\begin{tabular}{|l|l|c|c|}
+	\hline
+	\makecell[c]{\textbf{System Feature}} & \makecell[c]{\textbf{Measure}} & \makecell[c]{\textbf{Baseline}} & \makecell[c]{\textbf{Proposed Approach}} \\
+    \hline
+	\multicolumn{4}{|c|}{\textbf{Knowledge Gathering}} \\    
+    \hline
+    Context and Proactivity & \makecell[l]{Number of gathered\\assertions/day} & 71 & \textbf{42.1} \\
+     \hline
+     \multirow{2}{10em}{Follow-up assertions (new knowledge due to already collected k.} & \makecell[l]{Number of gathered\\assertions} & 35,140 & \textbf{57,978} \\
+	\cline{2-4}
+																						       & \makecell[l]{Number of gathered \\assertions per concept} & 0 & \textbf{4.22} \\
+	\hline 
+	\multirow{2}{10em}{Cross-user assertions} & \makecell[l]{Number of gathered\\assertions\\(extrapolated)} & 43,920 & \textbf{57,978} \\
+	\cline{2-4}
+										     & \makecell[l]{Number of gathered\\assertions/concept} & 0 & \textbf{2.73} \\
+	\hline
+	\multicolumn{4}{|c|}{\textbf{Quality Control}} \\    
+	\hline
+	Consistency Checking & \makecell[l]{Number of removed\\bad answers} & 0 & \textbf{1420} \\
+	\hline
+	Crowd Voting & \makecell[l]{Number of removed\\bad answers} & 0 & \textbf{733}\\
+	\hline
+\end{tabular}
+\end{table}
+
