@@ -1,9 +1,9 @@
-%--------------------------------------------------------------------------------------------------
+%-------------------------------------------------------------------------------
 % 
 \chapter{Bibliography}
-%--------------------------------------------------------------------------------------------------
-% Enclose with refsection and use \nocite{*}, if you need to list publications not referenced in 
-% the thesis:
+%------------------------------------------------------------------------------
+% Enclose with refsection and use \nocite{*}, if you need to list publications 
+%not referenced in the thesis:
 \begin{refsection}
 \nocite{*}
 
@@ -16,6 +16,13 @@ All publications related to the thesis should be referenced in the text.
 
 \defbibheading{subbibliography}{\subsection*{Conference Paper}}
 \printbibliography[heading=subbibliography,keyword=myconf]
+
+\defbibheading{subbibliography}{\subsection*{Book Chapter}}
+\printbibliography[heading=subbibliography,keyword=mybook]
+
+\defbibheading{subbibliography}{\subsection*{Magazine Article}}
+\printbibliography[heading=subbibliography,keyword=mymagazine]
+
 
 \section*{Other Publications (optional)}
 
