@@ -10,11 +10,19 @@ to now we've been describing the idea and a general approach to do it
 system that we implemented and kept it online in the shape of the current 
 version since the end of 2012. 
 
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=0.4\textwidth]{figures/androidExample.png}
+	\caption{Screenshot of Curious Cat Android app.}
+	\label{fig:androidExample}
+\end{figure}
+
 During this time, 5,185 users installed its
 client app, out of which 2,401 users registered, and 1,715 users used it at 
 least once (see the results chapter, \autoref{section:stickiness} for more 
 details on users).
-The development started on October 26th, 2010 and halted on June 2014. The
+The development  of \emph{Curious Cat} implementation started on October 
+26th, 2010 and halted on June 2014. The
 implementation follows closely the architecture presented on 
 \autoref{fig:Architecture} in \autoref{chapter:approach}. For the core
 of the system we took Cyc with its common sense KB and inference engine, which 
@@ -36,30 +44,57 @@ Support in Practice}\parencite{Costa2016} and \emph{Handbook of Human
 Computation}\parencite{Witbrock2013}. This implementation was also mentioned
 in the \emph{Communications of the ACM} magazine article\parencite{Geller2016}.
 
-Implementation consists of Android based mobile client, Java Servlet based
-\emph{Procedural Component} with PostGreSQL database access, two Cyc instances 
+Implementation consists of Android based mobile client (see screenshot on
+\autoref{fig:androidExample}), Java Servlet based
+\emph{Procedural Component} with PostGreSQL database access, two Research 
+Cyc instances 
 (KB, Inference Engine, NL Conversion) to increase the speed and reliablility 
 of the system, \emph{Transcript Server} for syncing between Cyc instances, 
 and a web-site for registration and email confirmation. This organization is 
 also depicted on \autoref{fig:implementation} below.
 
-\begin{figure}[htb]
+\begin{figure}[H]
 	\centering
-		\includegraphics[width=0.7\textwidth]{figures/implementationOrg.png}
+		\includegraphics[width=0.62\textwidth]{figures/implementationOrg.png}
 	\caption{Organization of the system modules in our implementation.}
 	\label{fig:implementation}
 \end{figure}
 
-
 \section{Cyc}
 \label{section:Cyc}
+idadad
 
+%subsection
+\subsection{Cyc KB}
+\label{section:cyckb}
+dada
+
+%subsection
+\subsection{Cyc Inferene Engine}
+\label{section:cycinference}
+dada
+
+%subsection
+\subsection{Transcript server}
+\label{section:transcriptserver}
 TBW
 
+%subsection
+\subsection{Cyc NL generation}
+\label{section:cycnl}
+dada
+
+%subsection
 \subsection{SCG}
 \label{section:scg}
 TBW
 
+%section
 \section{Mobile Client}
 \label{section:app}
 TBW
+
+%section
+\section{Procedutal Component}
+\label{section:prophet}
+dada

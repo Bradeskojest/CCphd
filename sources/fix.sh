@@ -4,8 +4,6 @@ rm *.bcf
 rm *.bbl
 rm *.blg
 rm *.idx
-rm *.loa
-rm *.log
 rm *.log
 rm *.lot
 rm *.xml
