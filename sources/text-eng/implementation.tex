@@ -106,7 +106,23 @@ by the name in capital ($?PERSON$). For example, query asking the inference
 engine, what is on the menu in Joe's Pizza is represented as: 
 $(\#\$menuItem\quad\#\$JoesPizza\quad?ITEMS)$, where the name of the variable
 "ITEMS", can be arbitrary.
+\item Rules in \emph{CycKB} are represented by assertions using predicate 
+$\#\$implies$, where the first argument is then it's antecedent and the second
+argument a consequent (see CycL rule \ref{as:cycrule} below, which represents
+the same upper ontology rule as defined in \hl{rule 4.10}).
 \end{itemize}
+
+\begin{equation}\label{as:cycrule}
+\begin{gathered}
+\begin{aligned}
+&(\#\$implies\\
+	&\quad(\#\$and\\
+		&\qquad(\#\$genls\quad?X\quad?Y)\\
+		&\qquad(\#\$genls\quad?Y\quad?Z))\\
+	&\quad(\#\$genls\quad?X\quad?Z))
+\end{aligned}
+\end{gathered}
+\end{equation}
 %subsubsection
 \subsubsection{CC KB}
 \label{section:cckb}
