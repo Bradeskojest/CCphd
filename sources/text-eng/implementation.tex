@@ -225,9 +225,8 @@ $\#\$curiousCatIntendsToAskUserPredUnboundArg2WithChoices$.}
 	\centering
 		\includegraphics[width=1\textwidth]{figures/kaRule.png}
 	\caption{Example of KA rule from CC implementation (screenshot from Cyc).}
-	\label{fig:ccmediated}
+	\label{fig:kaRuleImpl}
 \end{figure}
-
 
 \begin{equation}\label{as:cycCCAssertions}
 \begin{gathered}
@@ -249,7 +248,41 @@ $\#\$curiousCatIntendsToAskUserPredUnboundArg2WithChoices$.}
 %subsection
 \subsection{Cyc Inferene Engine}
 \label{section:cycinference}
-dada
+Cyc AI system also includes the inference engine which can work over the CycKB.
+Because the KB is so big (more than 7 million assertions), approaches taken
+by other inference engines (like RETE algorithm) does not scale well at this
+size, while the included engine is with some tweaking still able to give 
+results inside tolerable time frame. One of the techniquies (mentioned before)
+allowing this, is organization of the KB into microtheories which allow the 
+inference engine to reduce the size of the world it operates with at given
+contexts.
+
+Cyc Inference Engine is able to perform modus ponens and modus tollens 
+inference, universal and existential quantification, and also mathematical 
+calculations\footnote{http://www.cyc.com/subl-information/introduction-cyc-inferencing/overview-cyc-inferencing/}. The inference engine is constructed together
+with a set of \emph{Inference Removal Modules} (each module is able to remove or
+solve a specific problem from the inference problem). These modules can range
+from very general, to very specific ones, registered to only solve problems
+related to one particular logical predicate. For example, predicate 
+$\#\$disjoint$ can have a module that can tell whether the assertions using
+this predicate are true or not (decides on disjointness). There are many
+modules like this, implementing symmetry, transitivity and reflexivity, etc.
+
+The engine is mostly controlled with rules (as are rules \hl{some rules} and
+the KA rule on \autoref{fig:kaRuleImpl}). The inference rules can be separated
+into the forward and backward rules, which define whether they are to be used
+by forward chaining or backward chaining while doing the inference. Forward
+rules are triggered when something is asserted into the KB and then they produce
+the results (assertions as defined in the consequent), while backward rules
+are triggered when a logical query is being asked over the KB, and only support
+the logic behind the answering, without actually physically populating the KB.
+The example KA rule from the \autoref{fig:kaRule} is forward rule. 
+
+Forward rules are causing the system to be slower when something is being added,
+and also cause its memory consumption to increase (newly inferred assertions),
+but on the other hand speed up the querying. Backward rules are the opposite,
+not taking any burden on the system when the assertion is being added, but
+trigger the inference which could be slow, when someone issues a query.
 
 %subsection
 \subsection{Cyc NL generation}
