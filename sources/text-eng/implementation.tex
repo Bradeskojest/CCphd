@@ -339,6 +339,32 @@ crucial component), while NL to logic was implemented but not always used,
 because it is more complex part of the software, harder to maintain, and was
 also not of crucial importance for KA experiments.
 
+%subsection
+\section{Transcript Server}
+\label{section:transcriptserver}
+The \emph{Transcript Server} is an important technical part of the presented CC 
+implementation, improving scalability, reducing downtime and also reducing
+other maintenance costs. As visible in the implementation design 
+(\autoref{fig:implementation}) sketch, it is a clowd based software module
+to which all Cyc instances connect to. Software wise it is a simple database
+server, which can receive and store for later, raw \emph{CycL} assertions 
+(without any inference capabilities), and replicate them between 
+connected \emph{Cyc} instances. Each of CC instances of \emph{Cyc} system is
+set in a way, that after it wakes up, first syncs with the \emph{Transcript 
+Server} and thus gets the knowledge added in the past. Besides the syncing,
+it also forwards every new assertion to the \emph{Transcript Server} (if it was
+not received from there). 
+
+This simple mechanism allows us to have multiple \emph{Cyc} instances with
+the same knowledge, which then allows simple load-balancing at query-time,
+backup instances in cases when the main instance crashes. For the cases when
+we had to manually shut down Cyc for upgrades or server maintenance, this simple
+automatic syncing mechanism (even if being slow due to each assertion triggering
+the inference engine again), saved us a lot of manual importing of the old knowledge. As of September 2017, full sync of CC collected knowledge (532,847 
+assertions) takes approximately 2 days to finish.
+
+
+
 %section
 \section{Mobile Client}
 \label{section:app}
@@ -348,7 +374,4 @@ TBW
 \section{Procedutal Component}
 \label{section:prophet}
 d
-%subsection
-\section{Transcript server}
-\label{section:transcriptserver}
-TBWada
+
