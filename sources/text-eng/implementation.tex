@@ -386,10 +386,31 @@ is presented with the set of possible responses, or a free text box. On the
 right of this GUI section, there is a cat's face, which acts as a button with
 same functionalities as the "cat" menu on the upper right.
 \item On the bottom, there is a swipable section, which contains contextual
-bubbles representing what other users nearby or discussing same topics are
-answering.
+bubbles representing what other users  who are nearby or are discussing same 
+topics are answering.
 \end{itemize} 
 
+The logic behind the client is pretty straight forward. It is connected to the
+\emph{Procedural Component} of CC system, which can send it a discourse object
+containing a text which needs to be presented to the user, and some additional 
+info such as ID of the statement, it's \emph{CycL} representation and also
+suggestions for the user, and the points that user currently collected. When 
+the user answers, this is sent back to the server, together with the ID of the 
+discourse. In the cases, when the server wants to pro-actively ask something,
+and the phone is in a sleep mode (meaning that the proactivity didn't occur due
+to location change), it can generate a FCM message with the same object as
+it would send directly, and then this is presented to the user when he/she 
+looks at the phone.
+
+Additionally to this answer/reply functionality, represented as blue arrows on
+\autoref{fig:Architecture}, the client keeps a back-channel with the 
+server's \emph{Procedural Component}, and is periodically sending a location,
+local time and language. In order to not consume a lot of the battery, the 
+client is mostly sleeping, and only wakes up every 3min and tries to get a GPS
+signal for 20 seconds. If the signal is too low and cannot acquire accurate 
+enough location in 20 seconds, it stops trying and goes back to sleep mode.
+The back-channel is also opened each time user opens the client application
+manually.
 
 %section
 \section{Procedutal Component}
