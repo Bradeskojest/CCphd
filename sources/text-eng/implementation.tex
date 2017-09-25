@@ -171,17 +171,85 @@ replacing implication form ($x \implies y$), with the CycL form
 %subsubsection
 \subsubsection{CC KB}
 \label{section:cckb}
-dada
+Even though \emph{CycKB} is one of the biggest and most complete common sense 
+KBs that currently exist, it still does not cover everything and has missing 
+knowledge. While it covers at least a bit of almost any topic within the general
+knowledge, it often has missing parts that need to be extended in order to use
+the knowledge in real world. While this is exactly what \emph{Curious Cat} is
+helping to solve, we also added some of the knowledge by hand, to make initial
+questions more interesting and to make it cover more topics. For the whole CC
+implementation, we added an additional 8,571 assertions on top of the existing 
+7mio assertions of \emph{CycKB} prior knowledge.
+\begin{itemize}
+\item New assertions are mostly KA meta-knowledge supporting the acquisition
+mechanisms and logic.
+\item Some of the new assertions are also missing general knowledge 
+improvements on top of CycKB.
+\end{itemize}
+
+For the initial \emph{Cyc} knowledge entry process, we used ".ke" files, 
+which support bulk import bigger amount of the assertions (see 
+\autoref{fig:ketext}). After the system was already stable and running all the
+time, this was replaced by the Transcript Server syncing as described below
+in \autoref{section:transcriptserver}.
+
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=0.9\textwidth]{figures/keEntry.png}
+	\caption{Example screen of bulk importing assertions (knowledge) into Cyc.
+This example is defining a concept $PersonTypeByEatingHabits$ and a rule 
+generating questions about typeOfPlace for last known user venue visit.}
+	\label{fig:ketext}
+\end{figure}
+
+While mapping from our explanations to the actual \emph{Cyc} upper ontology is 
+pretty straight forward since it is small, it would be impossible to describe
+all details of more than 8,000 assertions that define the implementation of
+CC KA approach. For example, the simple $ccWantsToAsk$ predicate (see
+\hl{definition 4.15 in chapter X}, alternative in the real-world implementation
+is 8 predicates (see definition \ref{as:cycCCAssertions} below), allowing us to define much more complicated statements and
+enriching them with possible suggestions as visible on \autoref{fig:ccmediated}.
+Similary, the KA rules are more complicated, using much bigger vocabulary
+than we were able to exaplain. Example of one such rule is presented on
+\autoref{fig:kaRuleImpl}.
+
+\begin{figure}[h]
+	\centering
+		\includegraphics[width=0.4\textwidth]{figures/androidMediated.png}
+	\caption{Example of human to computer interaction options generated with
+$\#\$curiousCatIntendsToAskUserPredUnboundArg2WithChoices$.}
+	\label{fig:ccmediated}
+\end{figure}
+
+\begin{figure}[h]
+	\centering
+		\includegraphics[width=1\textwidth]{figures/kaRule.png}
+	\caption{Example of KA rule from CC implementation (screenshot from Cyc).}
+	\label{fig:ccmediated}
+\end{figure}
+
+
+\begin{equation}\label{as:cycCCAssertions}
+\begin{gathered}
+\begin{aligned}
+&S_{CC Intents}=\{\\
+&\quad\#\$curiousCatIntendsToAskUserPredBound,\\
+&\quad\#\$curiousCatIntendsToAskUserPredUnboundArg2,\\
+&\quad\#\$curiousCatIntendsToAskUserPredUnboundArg2WithChoices,\\
+&\quad\#\$curiousCatIntendsToAskUserPredUnboundArg3WithChoices,\\
+&\quad\#\$curiousCatIntendsToAskUserYesNoQuestionAboutVenue,\\
+&\quad\#\$curiousCatIntendsToAskUserYesNoQuestionAboutVenueWithArgument,\\
+&\quad\#\$curiousCatIntendsToAskWithChoices,\\
+&\quad\#\$curiousCatWantsToAskUser\\
+&\}
+\end{aligned}
+\end{gathered}
+\end{equation}
 
 %subsection
 \subsection{Cyc Inferene Engine}
 \label{section:cycinference}
 dada
-
-%subsection
-\subsection{Transcript server}
-\label{section:transcriptserver}
-TBW
 
 %subsection
 \subsection{Cyc NL generation}
@@ -201,4 +269,8 @@ TBW
 %section
 \section{Procedutal Component}
 \label{section:prophet}
-dada
+d
+%subsection
+\section{Transcript server}
+\label{section:transcriptserver}
+TBWada
