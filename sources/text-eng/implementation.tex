@@ -112,6 +112,50 @@ argument a consequent (see CycL rule \ref{as:cycrule} below, which represents
 the same upper ontology rule as defined in \hl{rule 4.10}).
 \end{itemize}
 
+Similar as with our example KB explaining CC approach, \emph{CycKB} is built on
+top of upper ontology which gives it a formal grounding to support the rest of 
+the KB. Our KA approach (\emph{Curious Cat} system) was implemented using 
+\emph{Cyc}, and also inspired by its toolset and unsolved problems. CC 
+initially started as a solution for Cyc to speed up the NL based KA, so for our
+explanations it was natural to pick and define an \emph{Upper Ontology} that 
+can be easily mapped to \emph{CycKB}. While we cannot directly map all of the
+definitions we used to explain the approach, we can map most of the Upper 
+Ontology, which is given in the table below.
+
+\begin{table}[h]
+\centering
+\caption{Mapping between upper ontologies of Cyc and our example KB constructed
+to explain the approach.}
+\label{tab:uppermap}
+\begin{tabular}{|l|l|}
+	\hline
+	\textbf{CC Upper Concept} & \textbf{CycKB Upper Concept}\\
+    \hline
+    $is$ & $\#\$isa$ \\
+    \hline
+	$subclass$ & $\#\$genls$ \\
+	\hline
+	$arity$ & $\#\$arity$ \\
+	\hline
+	$argIs$ & $\#\$argIsa$ \\
+	\hline
+	$argClass$ & $\#\$argGenl$ \\
+	\hline
+	$Class$ & $\#\$Collection$ \\
+	\hline
+	$Predicate$ & $\#\$Predicate$ \\
+	\hline
+	$Something$ & $\#\$Thing$ \\
+	\hline
+	$Number$ & $\#\$NonNegativeInteger$\\
+	\hline
+\end{tabular}
+\end{table}
+
+Similarly as with constants, some rules can be mapped into Cyc versions by 
+replacing implication form ($x \implies y$), with the CycL form 
+($(\#\$implies\quad (x) \quad (y))$. For example, rule \hl{4.10} is in
+ \emph{CycL} written as follows:
 \begin{equation}\label{as:cycrule}
 \begin{gathered}
 \begin{aligned}
@@ -123,6 +167,7 @@ the same upper ontology rule as defined in \hl{rule 4.10}).
 \end{aligned}
 \end{gathered}
 \end{equation}
+
 %subsubsection
 \subsubsection{CC KB}
 \label{section:cckb}
