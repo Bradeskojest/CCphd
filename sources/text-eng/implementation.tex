@@ -264,7 +264,7 @@ with a set of \emph{Inference Removal Modules} (each module is able to remove or
 solve a specific problem from the inference problem). These modules can range
 from very general, to very specific ones, registered to only solve problems
 related to one particular logical predicate. For example, predicate 
-$\#\$disjoint$ can have a module that can tell whether the assertions using
+$\#\$disjointWith$ can have a module that can tell whether the assertions using
 this predicate are true or not (decides on disjointness). There are many
 modules like this, implementing symmetry, transitivity and reflexivity, etc.
 
@@ -276,7 +276,7 @@ rules are triggered when something is asserted into the KB and then they produce
 the results (assertions as defined in the consequent), while backward rules
 are triggered when a logical query is being asked over the KB, and only support
 the logic behind the answering, without actually physically populating the KB.
-The example KA rule from the \autoref{fig:kaRule} is forward rule. 
+The example KA rule from the \autoref{fig:kaRuleImpl} is forward rule. 
 
 Forward rules are causing the system to be slower when something is being added,
 and also cause its memory consumption to increase (newly inferred assertions),
@@ -285,14 +285,49 @@ not taking any burden on the system when the assertion is being added, but
 trigger the inference which could be slow, when someone issues a query.
 
 %subsection
-\subsection{Cyc NL generation}
+\subsection{Cyc NL}
 \label{section:cycnl}
-dada
+In the \hl{section NL} and \hl{section NL2SCG} we gave a simplest possible 
+example of logic to NL and the opposite conversion, to explain and showcase the
+approach taken by the \emph{Curious Cat}. While this served well for the
+explantion, the implementation in real-world is inherently more complicated.
+For the implementation we used Cyc logic to NL system which is part of 
+\emph{Research Cyc}\autocite{Coppock2010,Baxter2005}, and is able to convert
+a decent number of \emph{CycL} assertions into thier natural language 
+equivalents. In our example, we only used two (2) predicates to be able to
+do that ($name$, $nlPattern$), but the implemented system uses more than
+90 predicates and functions that are used to make the paraphrase system to work.
+On the \autoref{fig:nlAssertion}, we can see the screenshot of
+NL generation assertion using 4 paraphrase functions, unbound variables,
+a string and a concept of the $Have-TheWord$. Then additionally, the concept
+representing the word "have", has additional 79 language generation assertions
+defining how to convert this word in various discourse contexts. 
 
-%subsection
-\subsection{SCG}
-\label{section:scg}
-TBW
+\begin{figure}[h]
+	\centering
+		\includegraphics[width=0.6\textwidth]{figures/nlAssertion.png}
+	\caption{Actual NL generation assertion example for the corresponding predicate for 'menuItem' from our implementation (Cyc).}
+	\label{fig:nlAssertion}
+\end{figure}
+
+As part of implementing \emph{CC}, we had
+to extend this sytem and add multiple NL generating assertions to it, the
+implementation is from \emph{Cyc AI System}, and is out of scope of this 
+thesis. The details of this approach which can generate both referring 
+expressions and non-referring expressions, including both referential and 
+bound variable anaphora, are described in the paper written by
+\textcite{Coppock2010}. 
+
+To be able to convert from NL back to logic, our implementation also relies on
+the functionality which is part of \emph{Cyc} and is described in more detail
+in the paper written by \textcite{Schneider2015}. The approach is similar as
+taken by chat-bot engines\parencite{Wilcox2011}, which uses textual patterns
+with special wildcards, to map the actual text onto a pre-defined pattern, which
+is then used to find a response. The difference is, that after the initial 
+pattern matches are found, it uses \emph{CycL} mappings and then Inference 
+Engine to check for
+the formal validity of the resulting statements and consequently the parsing 
+process.
 
 %section
 \section{Mobile Client}
