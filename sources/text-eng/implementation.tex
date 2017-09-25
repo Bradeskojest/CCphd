@@ -12,7 +12,7 @@ version since the end of 2012.
 
 \begin{figure}[H]
 	\centering
-		\includegraphics[width=0.41\textwidth]{figures/androidExample.png}
+		\includegraphics[width=0.41\textwidth]{figures/androidExample1.png}
 	\caption{Screenshot of Curious Cat Android app.}
 	\label{fig:androidExample}
 \end{figure}
@@ -213,6 +213,10 @@ Similary, the KA rules are more complicated, using much bigger vocabulary
 than we were able to exaplain. Example of one such rule is presented on
 \autoref{fig:kaRuleImpl}.
 
+On top of 7 million of pre-existing \emph{Cyc} assertions and 8,571 of manually
+added CC assertions, our system collected from users additional 524,276 
+assertions (as of September 2017).
+
 \begin{figure}[h]
 	\centering
 		\includegraphics[width=0.4\textwidth]{figures/androidMediated.png}
@@ -363,12 +367,29 @@ automatic syncing mechanism (even if being slow due to each assertion triggering
 the inference engine again), saved us a lot of manual importing of the old knowledge. As of September 2017, full sync of CC collected knowledge (532,847 
 assertions) takes approximately 2 days to finish.
 
-
-
 %section
 \section{Mobile Client}
 \label{section:app}
-TBW
+The client part of the implemented KA approach is a simple Android application
+(see screenshot on \autoref{fig:androidExample} at the beginning of the chapter).
+The main screen consists of (listed top down as sections appear on the phone 
+screen):
+\begin{itemize}
+\item Upper status bar, containing the points on the left, location info and 
+button in the middle, ant a "cat" menu on the right.
+\item Middle conversational section, where CC and user responses appear as
+text in the conversational bubbles, similar to those that usually represent 
+SMS messages. Each bubble can contain html formatted text, hyperlinks and 
+pictures.
+\item Conversational section is followed by the "response section", where user
+is presented with the set of possible responses, or a free text box. On the 
+right of this GUI section, there is a cat's face, which acts as a button with
+same functionalities as the "cat" menu on the upper right.
+\item On the bottom, there is a swipable section, which contains contextual
+bubbles representing what other users nearby or discussing same topics are
+answering.
+\end{itemize} 
+
 
 %section
 \section{Procedutal Component}
