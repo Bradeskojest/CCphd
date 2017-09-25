@@ -320,14 +320,19 @@ bound variable anaphora, are described in the paper written by
 
 To be able to convert from NL back to logic, our implementation also relies on
 the functionality which is part of \emph{Cyc} and is described in more detail
-in the paper written by \textcite{Schneider2015}. The approach is similar as
+in the Semantic Construvtion Grammar paper\parencite{Schneider2015}. The 
+approach is similar as
 taken by chat-bot engines\parencite{Wilcox2011}, which uses textual patterns
 with special wildcards, to map the actual text onto a pre-defined pattern, which
 is then used to find a response. The difference is, that after the initial 
 pattern matches are found, it uses \emph{CycL} mappings and then Inference 
 Engine to check for
 the formal validity of the resulting statements and consequently the parsing 
-process.
+process. The other improvement is, that the the wildcards in the patterns
+can be typed (using Cyc constants). This means that that in such patterns, 
+only terms of specific type can be fitted into a slot, which improves the 
+conversion accuracy. An example pattern (taken from the paper) can be written 
+like: "place[d|\{\}] \$ContainerArtifact\#0 over high heat".
 
 %section
 \section{Mobile Client}
