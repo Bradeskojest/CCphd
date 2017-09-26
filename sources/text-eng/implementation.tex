@@ -504,6 +504,26 @@ runs out of other topics, it starts discussing about the user.
 \end{tabular}
 \end{table}
 
+For example, on \autoref{tab:topics}, we can see that the current topic is
+taken out of the stack (separated by the double line), and the other concepts 
+that were in the answers of the questions, were added on top 
+($\#\$AnswerConcept2$). We can also see, that the topics are added back on the
+stack, if their questions are not depleted yet (as happened for the 
+$\#\$PreviousTopic$). For example, let's say that the $\#\$PreviousTopic$ was
+\emph{Joes's pizza} restaurant, which was on the stack right above the 
+$\#\$UserConcept$ topic. It was taken out of stack, and then when user answers
+the first question (let's say "they have pizzas on the menu" as in our other
+examples), concept $\#\$PreviousConcept1$ represent $\#\$Pizza$, and is added
+on the stack. Then user decides that she wants to discuss about some other 
+topic ($\#\$CurrentTopic$), and this causes the $\#\$PreviousTopic$ to be put
+back on the stack, since not all questions were depleted. But now, it sits
+on top of the "Pizza" topic ($\#\$PreviousConcept1$). The $\$\#AnswerConcept1$ 
+and $\#\$AnswerConcept2$ were then added on top of the stack, as a consequence 
+of answering questions inside the $\#\$CurrentTopic$ topic. An additional 
+fail-back mechanism (not presented on \autoref{tab:topics}), for when the
+topic is depleted of the KA questions, is to call internal \emph{Cyc CURE} API
+\autocite{Witbrock2010}, to get a list of general, or internal \emph{Cyc} 
+questions (not using any context) that could be asked for particular concept.
 
 %section
 \section{Assisting and Using Gained Knowledge}
