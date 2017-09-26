@@ -22,6 +22,14 @@ instead for pure HTML\\
 then $P$ followed by $n$ constants and variables is an atomic formula. Examples:
 $P(a), P(x), P(x,y) D(a,x)$.\\
 
+\emph{Backward Chaining} or backward reasoning is the opposite of the 
+\emph{forward chaining}. It also uses \emph{modus ponens}, but instead of 
+starting from the data, it starts with a list of goals and scans all the 
+consequents of the implication rules in the KB, check if they holds and then
+tries to find whether antecedents supporting these consequents hold as well.
+The inference engine will continue to do the inference iterations until it will
+find an assertion or rule which has a consequent that matches a desired goal.\\
+
 \emph{Consequent (predicate logic)} is a second half of the hypotetical 
 proposition. It is a $q$ part of the implies statement (see symbol $\implies$ in
 Chapter Symbols for explanation. In an implication $p \implies q$, $q$ is a
@@ -39,6 +47,13 @@ $\exists$ in the chapter Symbols.\\
 
 \emph {First order logic} can also be called \emph{Predicate logic}. See this
 term for more refined definition\\
+
+\emph{Forward Chaining} or forward reasoning is a repeated application of
+\emph{modus ponens} inference rule. It starts with the available knowledge in 
+the KB, then it applies the existing rules to infer new knowledge. Then in
+another iteraction it can use newly inferred knowledge to prodce even more 
+knowledge, and this continues until the goal is reached, or there is no new
+knowledge during the last iteraion.\\
 
 \emph{Material Equivalence ($\iff$)}. For explanation see the symbol $\iff$ in the
 chapter Symbols.\\
