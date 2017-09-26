@@ -38,9 +38,9 @@ the additional knowledge we added in CycKB to drive our KA process.
 Besides the implementation described here, this system was also implemented and
 deployed as a real-time commuting companion\parencite{Figueiras2013}, and as an
 RDF framework for on the field sensor information knowledge acquisition
-\parencite{Bradesko2012a}. Commuting companion implementation and this implementation
-were also described in the books \emph{Intelligent Decision Technology 
-Support in Practice}\parencite{Costa2016} and \emph{Handbook of Human 
+\parencite{Bradesko2012a}. Commuting companion implementation and this 
+implementation were also described in the books \emph{Intelligent Decision 
+Technology Support in Practice}\parencite{Costa2016} and \emph{Handbook of Human 
 Computation}\parencite{Witbrock2013}. This implementation was also mentioned
 in the \emph{Communications of the ACM} magazine article\parencite{Geller2016}.
 
@@ -417,7 +417,93 @@ manually.
 \label{section:prophet}
 This component serves as the main interface between the \emph{CC} system and
 the external world, and as a glue, keeping all the parts of the system in sync
-and together as a coherent whole.
+and together as a coherent KA platform. This component consists of a database,
+two Java servlets, and a separate Node.js server handling the geo-spatial 
+context mining functions. Each of the servlets is handling one type of 
+interaction with the client applications:
+\begin{itemize}
+\item \emph{Main Interaction Servlet} is taking care of the user sessions, and 
+main interaction loop between the user and the system. This servlet is handling
+most of the work when user is receiving and answering the questions. It also
+asserts and detects new topics, when user clicks hyperlinked concepts that
+are presented as part of the convesational bubbles.
+\item \emph{Location Servlet} is accepting GPS records from the phone, calling
+the geo-spatial clustering service and then asserting current location and 
+time assertions into \emph{Cyc}, as described in \hl{ref to context chapter}.
+Additionally, this servlet is providing the contextual clues (bubbles at the
+bottom of Android app as visible on \autoref{fig:androidExample}) to the 
+clients.
+\end{itemize}
+
+%subsection
+\subsection{Main Interaction Servlet}
+\label{section:mainServlet}
+When this component gets the request from the client, it first checks whether
+it is linked to one of the statement IDs that were sent to the client. This
+identifies, whether this is an answer to some previous questions that CC
+asked, or is a completely new discourse. This identification can be done on 
+the client already, since the GUI is constructed in a way, that it is obvious
+to the user, he is answering a question. If he wants to do something completely
+idenependent, the guided mechanism "forces" the user to click on 
+"something else", where he can then start a completely new discourse.
+After this is identified, the system asserts into  \emph{Cyc} and logs
+in the database  the time of last user response, and text of the
+response. After this, depending on whether it was identified as an answer to
+previous question, or a completely new discourse (statement, question), it goes
+into the \hl{textref ontology placement mode, chapter ref}, or \hl{SCG parsing
+mode}, as described in the appropriate sections in the 
+\autoref{chapter:approach}. 
+
+After this step, when the system already remembered
+the user answer, or understood user query, this servlet asks \emph{Cyc} for
+new questions and comments that \emph{Curious Cat/Cyc} might have. This is done
+with logical queries like this (let's say that the current user is $User1$):
+$(curiousCatWantsToAskUser\quad User1 \quad ?QUESTION \quad ?SUGGESTIONS)$. This
+will then cause he inference engine to search through all the assertions and
+trigger all the backward rules in the microtheory KB of $User1$, and come up
+with the answers, filling the variables $?QUESTION$ and $?SUGGESTIONS$. The list
+of questions (given in logic, \emph{CycL}) is then analysed by the servlet,
+which picks the first one that was not there before (on previous interaction),
+and mentions the concept that is set as a current topic. Topics are organized
+into a stack, where the concepts user is mentioning when answering questions
+about the current topic, are constantly being added on top of the stack 
+(\autoref{tab:topics}). 
+In addtition to these "user caused" topics, stack contains a three pre-defined
+topics at the bottom. First one (last to be used - at the bottom), is a
+random topic that gets chosen by the system. Second "topic" is actually a
+question, whether there is some particular topic that would interest the user.
+The third one (first of the system's topics, to be used when it runs out of
+the questions), is the concept of the user itself. If it happens that \emph{CC}
+runs out of other topics, it starts discussing about the user. 
+
+\begin{table}[h]
+\centering
+\caption{Stack of conversational topics.}
+\label{tab:topics}
+\begin{tabular}{|c|}
+	\hline
+	\textbf{$\#\$CurrentTopic$}\\
+    \hline
+	\hline
+    $\vdots$  \\
+    \hline
+	$\#\$AnswerConcept2$ \\
+	\hline
+	$\#\$AnswerConcept1$ \\
+	\hline
+	$\#\$PreviousTopic$ \\
+	\hline
+	$\#\$PreviousConcept1$ \\
+	\hline
+	$\#\$UserConcept$ \\
+	\hline
+	$\#\$AskUserForTopic$ \\
+	\hline
+	$\#\$Random$ \\
+	\hline
+\end{tabular}
+\end{table}
+
 
 %section
 \section{Assisting and Using Gained Knowledge}
