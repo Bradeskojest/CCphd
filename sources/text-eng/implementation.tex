@@ -528,8 +528,140 @@ questions (not using any context) that could be asked for particular concept.
 %subsecton
 \subsection{Location Servlet}
 \label{section:locationServlet}
-dada
+When the client sends the GPS location and user local time (either when 
+periodically waking up, or when user turns on the application), the coordinate
+gets into a clustering algorithm which detects whether this is part of user
+moving between the locations, or is part of the visit of particular location.
+In the case, when user is moving, this is asserted into \emph{Cyc} as the user
+activity, but no particular action is taken. This simply influences the 
+\emph{CC} responses in cases, when user interacts with the system while he is
+on the way. On the other side, when the algorithm detects that user is at 
+particular location, this goes to the second algorithm, which checks online 
+APIs(Factual, Foursquare) for the type and name of the place. This information,
+together with the time of arrival and current stay, is asserted into \emph{Cyc},
+together with the new topic, representing the concept of the new location. 
+At this point the system "knows" the user is staying at particular place and 
+might have some free time, even if the client application is sleeping, it sends
+a FCM message with a new contextual questions, which appears as a notification
+on the user's phone.
+
+The first part of the clustering algorithm is an improved implementation of
+already mentioned (\autoref{section:SPD1} in \autoref{chapter:related} and
+described in \autoref{section:minedContext} in \autoref{chapter:approach})
+SPD (Staypoint Detection) algorithm\parencite{Kang2005}. Our improvements
+and extension to the algorithm improved the accuracy and robustness by a
+large factor\footnote{A paper with the full explanation and evaluation of 
+extended SPD algorithm that can be used in any location-based application is 
+in preparation}, and can be quickly summarized:
+\begin{itemize}
+\item Removing some unnecessary steps performed in the original algorithm (step
+13 from the paper written by \textcite{Kang2005}.
+\item Extending the algorithm to also reports locations that are not detected
+as a point of stay and thus allow it to be an online algorithm, working in
+real-time, quickly responding to possible location changes and reporting 
+whether the user is currently traveling or at a fixed location. This is achieved
+by keeping the index of locations, until completelly clustered. The paths
+are then locations from this index, not included in any of the clusters. 
+Additionally, the current cluster (marked as $CL$ on the \autoref{alg:spd1}),
+is returned each time as well, marked as unfinished.
+\item Adding an optional second iteration of the algorithm which fine tunes
+promising detected staypoints from the first iteration. This cleans the 
+potential errors, when one or a few raw GPS locations jumped outside the 
+perimeter but then the sensor stabilizes. This adds another loop through
+the detected clusters at the end of each iteration. It creates one visit
+(staypoint) on the occasions when the path between two same locations lasts 
+less than a given threshold, which is the most common mistake appearing in the
+results of the original algorithm.
+\end{itemize}
+
+This algorithm through the years while \emph{CC} is online evolved from a few
+"if" statements running locally on the phone, to a separate service and mobile
+library serving also other projects, due to it's general usefulness for 
+geo-spatial analytics. The data that the clients (not just \emph{Curious Cat}
+are sending and the service is analysing, can be visualized and browsed through
+a separate web-interface as visible on \autoref{fig:nextPin}.
+
+\begin{figure}[htb]
+	\centering
+		\includegraphics[width=1\textwidth]{figures/nextPin.png}
+	\caption{Visualisation of clustering and enrichment results the SPD
+algorithm, to provide $probableUserLocation$ context.}
+	\label{fig:nextPin}
+\end{figure}
+
+The second part of this algorithm was inspired by the paper \emph{Applying 
+Commonsense Reasoning to Place Identification}\parencite{Mamei2010}, which
+probabilisticly ranks the possible places acquired from online APIs based on the
+SPD results and current time of the day. This then additionally enriches (with
+the name and type of the place) raw geo-coordinates of the cluster and time 
+as given by the SPD algorithm alone. 
+
+Additionally to handling user current location and time, 
+\emph{Location Servlet} also uses this context, together with the current topic
+(\autoref{tab:topics}), to query for latest non-private answers from other
+users that are nearby, or talking about the same concepts as our example user.
+This is represented by contextual clues at the bottom of the client application
+(\autoref{fig:androidExample1}).
 
 %section
 \section{Assisting and Using Gained Knowledge}
 \label{section:usage}
+
+One of the main ideas behind proposed KA approach, is to be able to incorporate
+it into some other activity, and do the KA unobtrusively and cheaply as a side
+effect of the main purpose of the software. This was also our initial aim when
+we started the \emph{Cyc} based implementation of proposed KA system. The end 
+goal of the KA is thus not the KA itself, but to be able to collect good 
+enough knowledge to be able to use by the inference to solve some higher-level 
+tasks previously not possible. To prove this concept, we added a few inference 
+rules which try to combine all the gained knowledge to produce relevant 
+suggestions when user requests them, or when the system thinks the user is 
+hungry (no eating reported for a while). Additionally, the system is able to 
+infer, based on the events around the user and his likes (answered questions 
+about what user likes).
+
+\begin{figure}[htb]
+	\centering
+		\includegraphics[width=0.8\textwidth]{figures/assistExample1.png}
+	\caption{Example suggestions for a live music (after it learns that the user likes jazz), and information that there is a cheaper coffee nearby, followed by the comparison question to be able to suggest better in the future}
+	\label{fig:assist1}
+\end{figure}
+
+On the left screenshot of \autoref{fig:assist1}, we see that \emph{Curious Cat}
+smartly told the user that there is a (jazz) music event nearby, after it 
+learnt that the user likes jazz music. The event was actually entered by 
+another user and the system picked it up from the KB for the purpose of 
+helping new user. On the right screenshot, there is a similar ad-hoc comment, 
+but this time the trigger was cheaper coffee in the bar next-door. The 
+suggestion is immediately followed by the comparison question, to be able to 
+better rank the coffees next time.
+
+A more complex inference suggestion when user asked for something fast to eat 
+is presented on the \autoref{fig:assist2}. There the inference engine combined 
+multiple pieces of knowledge:
+\begin{enumerate}
+\item Hot horse serves fast food cuisines, therefore it must be a fast food 
+restaurant
+\item User likes fried food
+\item French fries are a type of fried food
+\item Hot Horse has French fries on the menu
+\item Since Hot Horse is a fast food restaurant which is near the user, and has 
+something on the menu that the user likes, it is among the good suggestions.
+\end{enumerate}
+
+\begin{figure}[htb]
+	\centering
+		\includegraphics[width=0.4\textwidth]{figures/assistExample2.png}
+	\caption{Suggestion as a complex inference result combining knowledge about cuisines, user likes and place specifics.}
+	\label{fig:assist2}
+\end{figure}
+
+This inference process was then structured into the set of logical statements 
+(special inference rule for suggestions), sent through the NL conversion  and 
+presented to the user as the suggestion text. 
+While this suggestion is a simple basic example, still shows the power of 
+combining separate piece of logic by inference and produce some useful results. 
+The step from liking the fried food to French fries on the menu would be quite 
+hard to tackle with standard approaches, especially if we consider it just an 
+example of a general mechanism.
+
