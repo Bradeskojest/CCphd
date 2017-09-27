@@ -34,28 +34,15 @@ We believe this categorization most accurately reflects the current state of
 machine (computer) based knowledge acquisition, and we decided to use the same 
 classification when structuring our related work, focusing more on closely 
 related approaches and extending where necessary. According to this 
-classification, our work presented in this thesis, fits into a hybrid approach 
-combining all four groups, with main focus on interaction and reasoning. We 
-address the problem by combining the labour and interaction acquisition (users 
-answering questions as part of NL interaction aimed at some higher level goal, 
-such as helping the user with various tasks), adding unique features of using 
-user context and existing knowledge in combination with reasoning to produce a 
-practically unlimited number of potential interaction acquisition tasks, going 
-into the field of crowd-sourcing by sending these generated tasks to many users 
-simultaneously.
-
-\todo{Fix this, reference to chapters instead to specifici works.} 
-Previous works that can compare with our solution is divided into the systems 
-that exploit existing knowledge (generated anew during acquisition or 
-pre-existing from before in other sources) \parencite{Singh2002a,Witbrock2003,
-Forbus2007,Kvo2010,Sharma2010,Mitchel2015}, reasoning \parencite{Witbrock2003,
-Speer2007,Speer2008,Kuo2010}, crowdsourcing \parencite{Singh2002,Speer2009, 
-Kuo2010, Pedro2012a, Pedro2013}, acquisition through interaction 
-\parencite{Speer2009,Pedro2012,Pedro2013}, acquisition through labour(\hl{add, 
-probably rather refer to subsections}) \parencite{} and natural language 
-conversation\parencite{Pedro2012, Speer2007,Speer2009, Witbrock2003,Kuo2010}.
-
-\hl{Test referencing table} (see \tablename~\ref{tab:related}).
+classification, the work presented in this dissertation fits into a hybrid 
+approach combining all four groups, with the main focus on interaction and 
+reasoning. As already hinted at the beginning of \autoref{chapter:background},
+we address the problem by combining the labour and interaction acquisition, 
+adding unique features of using user context and existing knowledge in a 
+combination with machine reasoning to produce practically unlimited number of 
+potential interaction acquisition tasks. These tasks are presented as a 
+natural language questions to multiple users (as eligible by their context),
+which covers aspects of crowdsourcing. 
 
 \begin{landscape}
 	\begin{table}[htb]
@@ -112,7 +99,7 @@ conversation\parencite{Pedro2012, Speer2007,Speer2009, Witbrock2003,Kuo2010}.
 \end{landscape}
 
 \section{Labour Acquisition}
-\label{section:LabourAcquisition}
+\label{section:labouracquisition}
 This category consists of KA approaches which rely on explicit human work to 
 collect the knowledge. A number of expert (or also untrained) ontologists or 
 knowledge engineers is employed to codify the knowledge by hand into the given 
@@ -128,7 +115,7 @@ the most comprehensive of them and was picked as a starting point and main
 background knowledge and implementation base for this work.
 
 \subsection{Cyc}
-\label{section:relatedCyc}
+\label{section:relatedcyc}
  The most famous and also most comprehensive and expensive 
 knowledge acquired this way, is Cyc KB, which is part of Cyc AI system 
 \parencite{Lenat1995}. It started in 1984 as a research project, with a premise 
@@ -149,7 +136,9 @@ in \autoref{section:Cyc} on page \pageref{section:Cyc}. Cyc Project is still
 work in progress and continues to live and expand through various research and
 commercial projects.
 
-\subsection{ThoughtTreasure} Approximately at the same time(1994) as Cyc Inc. 
+\subsection{ThoughtTreasure}
+\label{section:r:thought}
+ Approximately at the same time(1994) as Cyc Inc. 
 company was formed, Eric Mueller started to work on a similar system, which was
 inspired by Cyc and is similar in having a combination of common sense knowledge
 concepts connected to their natural language presentations. The main 
@@ -161,7 +150,9 @@ this system consisted of 25,000 concepts and 50,000 assertions. ThoughtTreasure
 was not so successfull as Cyc and ceased all developments in 2000 and was 
 open-sourced on Github in 2015. \hl{link as footnote}.
 
-\subsection{HowNet} started in 1999 and is an on-line common-sense knowledge base 
+\subsection{HowNet}
+\label{section:r:hownet}
+Started in 1999 and is an on-line common-sense knowledge base 
 unveiling inter-conceptual relationships and inter-attribute relationships of 
 concepts as connoting in lexicons of the Chinese and their English equivalents. 
 As of 2010 it had 115,278 concepts annotated with Chinese representation, 
@@ -171,7 +162,9 @@ is stored in the form of concept relationships and attribute relationships and
 is formally structured in KDML (Knowledge Database Mark-up Language), consisting
 of concepts (called semens in KDML) and their semantic roles.
  
-\subsection{Open Mind Common Sense (OMCS)} is a crowdsourcing knowledge acquisition 
+\subsection{Open Mind Common Sense (OMCS)}
+\label{section:r:omcs}
+A crowdsourcing knowledge acquisition 
 project that started in 1999 at the MIT Media Lab\parencite{Singh2002a}. 
 Together with initial seed and example knowledge, the system was put online with
 a knowledge entry interface, so the entry was crowd-sourced and anyone 
@@ -196,6 +189,7 @@ KB\footnote{http://conceptnet.io/} \parencite{Speer2016}, which is now (in 2017)
 part of Linked Open Data (LOD) and maintained as open-source project.
 
 \subsection{GAC/MindPixel}
+\label{section:r:gac}
 Generic Artificial Consciousness was a bold try to make a general AI based on
 the premise that human thinking can be simulated with answering binary yes/no
 questions or decisions\parencite{McKinstry2018}, where humans have a natural 
@@ -212,6 +206,7 @@ YES/NO crowdsourcing system lives under the name \emph{Weegy}
 \footnote{http://www.weegy.com}.
 
 \subsection{Semantic Knowledge Source Integration (SKSI)}
+\label{section:r:sksi}
 No matter how big the underlying knowledge base is, there will always be some
 missing knowledge, that exists somewhere else. While with knowledge acquisition
 it is possible to add these missing peaces, sometimes it makes more sense to
@@ -242,6 +237,7 @@ on externally connected data without even noticing it's external.
 
 
 \section{Interaction Acquisition}
+\label{section:r:interaction}
 Similarly as with Labour KA, interaction Acquisition gets the knowledge from 
 human minds, but in this case the acquisition is an intended side effect, while
 users are interacting with the software as part of some other activity/task, or
@@ -258,6 +254,7 @@ user to show the 'understanding', which was first tried in OSMC (
 non-conversational way as part of the input forms.
  
 \subsection{Interactive User Interfaces}
+\label{section:r:interactive}
 Interactive user interfaces are the most common representation of interaction 
 acquisition, where the user interface is constructed in a way to help user enter
 the data and thus make the acquisition much faster and cheaper. Historically, 
@@ -267,7 +264,9 @@ knowledge stability. This is the reason why all of these systems rely or are
 build on top of labour acquisition (\autoref{section:LabourAcquisition}) or 
 mining acquisition (\autoref{section:MiningAcquisition}) systems.
 
-\subsubsection{KRAKEN} system was a knowledge entry tool which allows domain experts to
+\subsubsection{KRAKEN}
+\label{section:r:kraken}
+This system was a knowledge entry tool which allows domain experts to
 make meaningful additions to CYC knowledge base, without the training in the 
 areas of artificial intelligence, ontology development, or knowledge
 representation\parencite{Panton2002a}. It was developed as part of DARPA's
@@ -285,7 +284,9 @@ interest), and also crowdsourcing aspects. Kraken was also missing rules for
 explicit question asking. The questions were all related to the selected concept
 and given as a list of natural language forms.
 
-\subsubsection{User Interaction Agenda (UIA)} was a web  based user interface for KRAKEN
+\subsubsection{User Interaction Agenda (UIA)} 
+\label{section:r:uia}
+UIA was a web  based user interface for KRAKEN
 KA tool\parencite{Panton2002a,Witbrock2003UIA}. It worked inside a browser and 
 it worked as responsive web-app (in 2001) by automatically triggering refresh 
 functionality of the browser. It consisted of a menu of tools that is organized
@@ -295,14 +296,34 @@ tool, and a summary with a set of colored steps needed to complete current
 interaction. Similarly as KRAKEN itself, this interface was later improved
 and integrated into main Cyc system as part of CURE tool. 
 
-\subsubsection{Factivore} 
+\subsubsection{Content Understanding, Review, or Entry(CURE)}
+\label{section:r:cure}
+As mentioned above (sections \ref{section:r:kraken} and \ref{section:r:uia}),
+\emph{CURE}\parencite{Witbrock2010} is an improved version of \emph{KRAKEN} 
+system with improved
+\emph{UIA} User Interface, which is integrated directly into \emph{Cyc}. 
+Additional to the knowledge entry mechanisms mentioned in previous two tools,
+\emph{CURE} also has a web-browser plug-in that can read current web-pages,
+or also free text, and annotate it with possible Cyc concepts, which are
+clickable and they cause the knowledge entry process for clicked concept.
+As already mentioned, \emph{Curious Cat} was inspired by \emph{CURE}, and
+could be considered a \emph{CURE} improvement with more precise control over the
+KA process, crowdsourcing component, user context and conversational ability.
+In the cases when \emph{Curious Cat} mechanisms run out of responses,
+our system falls back to \emph{CURE}, showing its questions to the user, instead
+of imediatelly switching the topic (see \autoref{tab:topics} in 
+\autoref{section:mainServlet}).
+
+\subsubsection{Factivore}
+\label{section:r:factivore} 
 This application was a Java Applet user interface for an extended KRAKEN system,
 meant for quick facts entering \parencite{Witbrock2005}. On the back-end it used
 the same mechanisms and logical templates, while in the front-end it only
 allowed facts entering, as opposed to UIA, which also allowed rules (which
 ended up as not being useful).
 
-\subsubsection{Predicate Populator} 
+\subsubsection{Predicate Populator}
+\label{section:r:pp}
 \emph{Predicete Populator} is a similar tool as \emph{Factivore}, which instead
 of only collecting instances, allows to add general knowledge about classes. For
 example, instead of describing facts for a specific restaurant, it can collect
@@ -315,7 +336,8 @@ acquired knowledge. One of the proposed solutions (never implemented), was to
 start using volunteers to vote about the correctness. This is already a 
 pre-cursor idea for crowd-sourced voting mechanisms that we used in Curious Cat.
 
-\subsubsection{Freebase} 
+\subsubsection{Freebase}
+\label{section:r:freebase}
 \emph{Freebase} started in 2007\parencite{Bollacker2008} and was a large (mostly
 instance based) crowd-sourced graph database for structured general human 
 knowledge. Initially it was acquired from multiple public sources, mostly 
@@ -327,7 +349,8 @@ knowledge and also software based editing, it uses Metaweb Query Language
 into a Google Knowledge Graph. In 2016 Freebase was incorporated into the 
 Wikidata platform and shut down by Google and is no longer maintained.
 
-\subsubsection{OMCommons (Open Mind Commons)} 
+\subsubsection{OMCommons (Open Mind Commons)}
+\label{section:r:omc}
 This system is an interactive interface to OMCS which
 can respond with a feedback to user answers and maintain dialogue 
 \parencite{Speer2007}. This is similar approach as we do with Curious Cat and
@@ -344,13 +367,15 @@ to refine the knowledge entered by other users and see the ratings. Users can
 also explore what new inferences are result of their new contributions.
 
 \subsection{Games}
+\label{section:r:games}
 Games are a specific sub-section of interaction acquisition, where the actual
 acquisition is hidden or transformed into much more enjoyable process, 
 maximizing the entertainment of the users. This type of KA was first 
 officially introduced by Luis von Ahn in 2006 \parencite{VonAhn2006,
 VonAhn2008} under the name 'Games with Purpose' paradigm.
 
-\subsubsection{20Q (20 Questions)} 
+\subsubsection{20Q (20 Questions)}
+\label{section:r:20q}
 This is a game with intentional knowledge acquisition task
 which focuses to the most salient properties of concepts. The game itself is
 a standard 20 questions game which aims to make one player figure out the 
@@ -364,7 +389,8 @@ in OMCS KB. After the user answers all the questions, including whether the
 detected concept was right or not, the concept and the answers will be assigned
 to proper cluster and thus the characteristics of the object are learned.
 
-\subsubsection{Verbosity}. 
+\subsubsection{Verbosity}
+\label{section:r:verbosity}
 Similarly as Q20 above, Verbosity is a spoken game for two 
 persons randomly selected online. It was inspired by Taboo board 
 game\parencite{TabooGame} which required players to state common sense facts
@@ -380,7 +406,8 @@ In the experiments, a total of 267 people played the game and collected
 that the game can be used successfully, these facts were natural language 
 snippets and were not incorporated into any kind of structure or formal KB. 
 
-\subsubsection{Rapport} 
+\subsubsection{Rapport}
+\label{section:r:rapport} 
 This is a KA game based on Chinese OMCS questions, but implemented as a 
 Facebook game to make use of the social connections inside social network. 
 The Game helps users to make new friends or enhance connections with their 
@@ -398,7 +425,8 @@ after at least 2 repetitions of the same question. In 6 months, \emph{Rapport}
 collected 14,001 unique statements from 1,700 users. Normalized, this is
 8.2 answers per user.
 
-\subsubsection{Virtual Pet} 
+\subsubsection{Virtual Pet}
+\label{section:r:virtualpet} 
 This is a similar game as \emph{Rapport} in a sense that it
 uses \emph{OMCS} patterns, is in Chinese and is developed by the same authors
 \parencite{Kuo2009}. Instead of Facebook platform, \emph{Virtual Pet} uses
@@ -413,7 +441,8 @@ argue that the reasons behind both is, that users didn't interact directly,
 but through the virtual pet, so they were less careful whether answers are
 correct or not.
 
-\subsubsection{Goal Oriented Knowledge Collection (GOKC)}. 
+\subsubsection{Goal Oriented Knowledge Collection (GOKC)}
+\label{section:r:gokc}
 This game builds on the
 findings and approach of \emph{Virtual Pet} KA game. The main improvement
 is to try and actually make use of the new knowledge inside a given domain
@@ -433,7 +462,8 @@ reported as bad. Out of these questions 10,572 answers were collected where
 to the game without question expansion (\emph{Virtual Pet}), which has
 precision of 80.58\%, this is an improvement.
 
-\subsubsection{Collabio (Collbaorative Biography)}. 
+\subsubsection{Collabio (Collbaorative Biography)}
+\label{section:r:collabio}
 This is also a Facebook based game, with the intention to
 collect user's tags. While the gathered knowledge is more a set of person's 
 tags than knowledge, it served as an inspiration to \emph{Rapport} and 
@@ -442,6 +472,7 @@ tags than knowledge, it served as an inspiration to \emph{Rapport} and
 otherwise\parencite{Bernstein2009, Bernstein2010}.
 
 \subsection{Interactive Natural Language Conversation}
+\label{section:r:inlc}
 Natural Language Knowledge Acquisition methods are special case of Interaction 
 Acquisition systems. While almost all of the approaches already described above
 (under Interactive User Interfaces and Games subsections) use natural language 
@@ -462,7 +493,8 @@ chat-bots, two technologies evolved (\emph{AIML, ChatScript}) to be general
 enough and can be used for conversational engine (chat-bot) construction and 
 also NL knowledge acquisition.
 
-\subsection{AIML(Artificial Intelligence Mark-up Language)}\label{section:aiml}
+\subsection{AIML(Artificial Intelligence Mark-up Language)}
+\label{section:aiml}
 AIML is an XML based 
 scripting language. It allows developers of chat-bots, to construct a pre-
 defined natural language patterns and their responses. These definitions are 
@@ -563,7 +595,8 @@ AIML based chatbots were winning Loebner's competitions in the years from 2000
 to 2004, but were later outcompeted by Chatscript based bots and propriatery 
 solutions.
 
-\subsection {ChatScript}\label{section:chatscript}
+\subsection {ChatScript}
+\label{section:chatscript}
 ChatScript is an NLP expert system consisting of textual patterns 
 rules. It was designed by Bruce Wilcox \parencite{Wilcox2011} and besides
 patterns it has mechanisms for defining concepts, triple store for facts, 
@@ -656,24 +689,25 @@ to correct mistakes and check consistency.
 \label{section:rw_PCW}
 Since whole idea of Cyc system is to gain enough knowledge through manual work,
 to be able to learn on itself after some point, the Cyc team is looking int into 
-other means of knowledge acquisition which can automatize or speed-up the KA process.
-One of the approaches is by mining facts from the Internet by issuing appropriate
-search engine queries\parencite{Matuszek2004}.
-
-Because Cyc KB is really big, the first step of this approach is to select appropriate
-part of the kb (concepts and related queries) which are in the interest of the system.
-For initial experiments  a set of 134 binary predicates was selected. These predicates
-were then used to scan the KB and find the missing knowledge, which was converted to 
-CycL queries. 
-These queries were then converted to NL and queried on a web search engine. The results
-are then converted back to CycL through NL to logic engine of Cyc. After the conversion
-these are converted back to NL and re-searched on the web, to check whether the results
-still hold, and then as the last step, the results are checked for consistency 
-(whether they can be asserted into Cyc). From the initial 134 predicates, the system
-generated 348 queries, 4290 searches. It found 1016 facts, out of which 4 were rejectec
-due to inconsistency, 566 rejected by search engine (not same results), 384 were 
-already known to Cyc, and finally 61 new consistent facts were detected as valid.
-After human review, the findings were that only 32 facts were actually correct.
+other means of knowledge acquisition which can automatize or speed-up the KA 
+process. One of the approaches is by mining facts from the Internet by issuing 
+appropriate search engine queries\parencite{Matuszek2004}. Because Cyc KB is 
+really big, the first step of this approach is to select appropriate part of 
+the kb (concepts and related queries) which are in the interest of the system.
+For initial experiments  a set of 134 binary predicates was selected. These 
+predicates were then used to scan the KB and find the missing knowledge, which 
+was converted to CycL queries. 
+These queries were then converted to NL and queried on a web search engine. 
+The results are then converted back to CycL through NL to logic engine of Cyc. 
+After the conversion these are converted back to NL and re-searched on the web,
+to check whether the results still hold, and then as the last step, the 
+results are checked for consistency (whether they can be asserted into Cyc). 
+From the initial 134 predicates, the system generated 348 queries, 
+4290 searches. It found 1016 facts, out of which 4 were rejectec
+due to inconsistency, 566 rejected by search engine (not same results), 384 
+were already known to Cyc, and finally 61 new consistent facts were detected 
+as valid. After human review, the findings were that only 32 facts were 
+actually correct.
 
 \subsection{Learning Reader}
 \label{section:rw_LR}
