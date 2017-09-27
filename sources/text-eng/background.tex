@@ -5,8 +5,8 @@
 %-------------------------------------------------------------------------------
 This chapter describes the challenges and components that Knowledge Acquisition 
 system such is presented in this work (\emph{Curious Cat}) have to address and 
-bring together into a working workflow in order to be a coherent KA system able 
-to satisfy the goals of general (common) Knowledge Acquisition. 
+bring together into an interconnected workflow in order to be a coherent 
+KA system able to satisfy the goals of general (common) Knowledge Acquisition. 
 
 \emph{Curious Cat} is a KA system making use of existing knowledge, 
 logical inference, crowd-sourcing and mobile context, to trigger natural language
@@ -48,11 +48,98 @@ inference to produce new questions/comments/suggestions (section
 
 \section{Knowledge Representation, Engineering and Inference}
 \label{section:bg:knowledge}
-dada
+The proposed Knowledge Acquisition (KA) approach described in 
+\autoref{chapter:approach} is completely knowledge driven. One of the main 
+building blocks of our system is its knowledge base, which must be based on a 
+representation language expressive enough to support the knowledge structures 
+required to drive the behavior of the system, and to represent the wide variety 
+of knowledge it may gather from the users. Additionally, the inference engine 
+needs to be able to access knowledge from the KB and needs to be powerful enough 
+to perform inference over it.
+
+%subsection
+\subsection{Knowledge Base}
+\label{section:bg:kb}
+The Knowledge Base (KB) is a crucial part of our KA approach 
+(marked in purple in \autoref{fig:Architecture}). It dictates the expressivity 
+of the knowledge representation that we must use, as well as 
+(together with the inference engine) the overall speed of the KA system. 
+Although our approach is generally KB independent, each KB has its own 
+specific characteristics, which need to be taken into consideration when 
+representing and storing the acquired knowledge. As a part of this research we 
+have considered three knowledge bases and the appropriateness of their 
+knowledge representations.
+\begin{enumerate}
+\item The main system reported here was built based on the Cyc KB
+\parencite{Lenat1995}, in a form similar to Research Cyc. 
+\item Inspired by the Open Cyc representation we also developed our own 
+knowledge base and inference engine, Umko, designed to be as simple as possible
+while still supporting several of the typical use-cases presented here. 
+Because of its simplicity, the approach built around Umko can run in totality 
+on a 2015-quality smart phone.
+\item Additionally, to test the generality of the approach, we used similar 
+idea with a standard RDF knowledge representation\parencite{Bradesko2012}.
+\end{enumerate}
+
+Requirements and specifics about KB are described in more detail in 
+\autoref{section:kb} and also in the implementation \autoref{section:cyckb}.
+
+%subsection Inference engine
+\subsection{Inference Engine}
+\label{section:bg:inference}
+In addition to the KB, a second most crucial part of the proposed system is an 
+inference engine (marked in red in \autoref{fig:Architecture}) that can reason 
+over the knowledge stored in the KB. The inference engine is used to detect 
+the missing knowledge and infer what to ask and when, based on the context 
+that is asserted as a part of the knowledge. Similarly to the knowledge base, 
+the inference engine influences the speed and complexity of the approach. Our 
+approach was again twofold. The main experiments were based on the Cyc 
+inference engine (see \autoref{section:cycinference}) which is tightly linked 
+to the Cyc KB and thus able to apply inference over the biggest existing 
+common sense KB. Additionally, we developed the inference capabilities 
+(forward and backward chaining) inside our custom developed inference 
+engine - Umko, needed to test the generalizability of the proposed approach 
+and to make it possible to run on embedded devices.
+
+%subsection
+\subsection{Knowledge Representation}
+\label{section:bg:representation}
+The problem of representing knowledge in a computer is as old as the field of 
+the AI research and has been tackled from various perspectives, but still not 
+completely solved. The proposed approach relies on the Knowledge Representation
+(KR) which is powerful 
+enough to describe the real world we live in. Additionally, it needs to cover 
+knowledge about the knowledge itself (meta-knowledge), enabling inference over 
+internal knowledge structures, questions and answers (see \autoref{section:kakb}
+for approach and \autoref{section:cyckb} for the implementation). 
+This inference is used to 
+produce statements and questions and interactions between them as part of a 
+dialogue used to communicate with the user in the process of knowledge 
+acquisition. We have tested two approaches, where one was fully based on 
+the Cyc KB, and the other based on Umko, where we only created the 
+minimal upper ontology and vocabulary to support the KA task. 
 
 \section{Context (Information) Extraction}
 \label{section:bg:context}
-dada
+To be able to ask relevant questions, connected to the user or something that 
+the user is currently doing or knows, and to ask at the right time/place, 
+maintaining and using user context is crucial. Using context and the newly 
+acquired knowledge to drive the KA process, is one of the main contributions 
+of this paper. 
+
+Nowadays, the obvious information source to get to know the user is his or her
+mobile phone, which, with its sensors can provide an extensive and valuable 
+source of information. However, the users need to approve using their phones 
+sensors, and additionally, the raw measurements of sensor data need to be 
+processed and understood to the extent that it is possible to use that 
+information in some sort of knowledge representation. In our approach, we used 
+two types of the context. One was provided by the users directly via answering 
+questions about themselves (\autoref{section:bg:contextu} below and 
+\autoref{section:acquiredContext}). Another part 
+of the context was mined from the phone sensors as introduced in 
+\autoref{section:bg:contextm} and described in sections 
+\ref{section:minedContext} and \ref{section:locationServlet}.
+
 
 \section{Knowledge Acquisition}
 \label{section:bg:ka}
