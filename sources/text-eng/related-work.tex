@@ -101,6 +101,11 @@ returning the result) had been tried to some extent before\parencite{Baral2007},
 but just as a proof of concept example covering 4 use-cases, without doing 
 anything else.
 
+More recently, common sense KA quiz game with a dialog system, using also prior
+knowledge (\emph{ConceptNet}) and automated quesion generation was implemented 
+and tested, acquiring 150,000 unique knowledge bits from 70,000 users
+\parencite{Otani2016}. 
+
 The rest of the related work is explained in the \autoref{tab:related} and 
 sub-sections that follow.
 
@@ -133,6 +138,8 @@ sub-sections that follow.
 		Virtual Pet (NTU) & ConceptNet  &  \parencite{Kuo2009}  & Game &  Public & ConceptNet  & /  & \checkmark  & /  \\
 		GOKC (NTU) & ConceptNet  & \parencite{Kuo2010}  & Game & Public  & ConceptNet  & \checkmark  & \checkmark  & /  \\
 		Collabio (MS) & /  & \parencite{Bernstein2010}  & Game & Public  & /  & /  & \checkmark  & /  \\
+		GECKA (NUS) & /  & \parencite{Cambria2015}  & Game & Public  & EBKR  & /  & \checkmark  & /  \\
+		Quiz (KU) & ConceptNet  & \parencite{Otani2016}  & Game & Public  & ConceptNet  & \checkmark  & \checkmark  & /  \\
 		AIML (Alice foundation) & /  & \parencite{Wallace2003}  & Chatbot & /  & AIML  & /  & /  & /  \\
 		Chatscript (Brilligunderstanding) & /  & \parencite{Wilcox2011}  & Chatbot & /  & ChatScript  & /  & /  & /  \\
 		CyN (Daxtron Labs) & Cyc+AIML  & \parencite{Wilcox2011}  & Chatbot & /  & AIML+Cyc  & \checkmark  & /  & /  \\
@@ -531,6 +538,47 @@ tags than knowledge, it served as an inspiration to \emph{Rapport} and
 3,800 persons with accurate tags with information that cannot be found 
 otherwise\parencite{Bernstein2009, Bernstein2010}.
 
+\subsection{GECKA (The Game Engine for Common Sense Knowledge Acquisition)}
+\label{section:r:gecka}
+\emph{GECKA} can be considered as a meta GWAP (Game with a Purpose), as it is
+a GWAP game developing/editing tool. It was inspired by existing GWAP games
+(Virtual Pet, Rapport), trying to overcome their weaknesses, naming sticky 
+factor and un-transferrability of the knowledge. This is done by allowing
+users to buld their own games (short, or long adventure games), which they can
+share with friends who play. While the users are designing a game, they
+also generate knowledge as a side effect when defining screens, iteractions
+between the objects and other users. Authors call these knwoledge pieces
+\emph{POG triples} (Prerequisite, outcome, goal).
+Approach was tested on 20 students from Singapore Polytechnic, and was evaluated
+to have the accuracy of  85.7\%.
+
+\subsection{Quiz}
+\label{section:r:qiz}
+\emph{Large-Scale Acquisition of Commonsense Knowledge via a Quiz Game on a
+Dialogue System}\parencite{Otani2016} is a GWAP game developed on a 
+smart-phone as a module inside Yahoo Voice Assist application (which is 
+installed on more than 2.5 million devices), and interacting with the users 
+via natural langauge dialogue.  Over the course of 8 months, 70,000
+users contributed 150,000 unique knowledge knowledge pieces, being added on
+top of Japanese \emph{ConceptNet}. Regarding the game mechanics,
+quiz participants are given clues about a certain concept. Then they try to
+figure it out, but from their incorrect guesses, the game can obtain knowledge 
+about the clues. For example, a hint "this is made of milk" is given to a 
+player. The expected answer is "a cake", but we can learn that "cheese is made 
+of milk" when the player answers "cheese" in response to the hint.
+To double check the facts, the system uses similar crowdsourcing approach as 
+\emph{Curious Cat}, described in \autoref{section:crowdrepetition}. After
+the evaluation, the results show that the quiz game is an effective way
+to acquire large amounts of knowledge.
+
+While this game shares many similarities with \emph{Curious Cat} (prior 
+knowledge, natural language dialogue, automated "question" formulation,
+crowdsourcing), the approach is more or less random (no targeting using context),
+and there is no validation by inference. Also, a minor mistake in the paper,
+authors claim that Quiz game is the first such a system to collect large amount
+of knowledge using dialogue system, which is not true, since they missed our
+ work, which was published before \parencite{Bradesko2016}.
+
 \subsection{Interactive Natural Language Conversation}
 \label{section:r:inlc}
 Natural Language Knowledge Acquisition methods are special case of Interaction 
@@ -733,7 +781,7 @@ and also for querying\parencite{Coursey2004}. This was done by introduction of n
 \end{itemize} 
 
 \section{Mining Acquisition}
-\label{section:MiningAcquisition}
+\label{section:r:miningacq}
 This category of KA systems try to make use of big text corpus-es 
 available online or otherwise on some digital media. Because the core idea of 
 writing is to share information, there is a lot of knowledge in the texts that 
@@ -745,7 +793,7 @@ using various NLP techniques, which are often combined with existing knowledge
 to correct mistakes and check consistency.
 
 \subsection{Populating Cyc from the Web (PCW)}
-\label{section:rw_PCW}
+\label{section:r:pcw}
 Since whole idea of Cyc system is to gain enough knowledge through manual work,
 to be able to learn on itself after some point, the Cyc team is looking int into 
 other means of knowledge acquisition which can automatize or speed-up the KA 
@@ -769,7 +817,7 @@ as valid. After human review, the findings were that only 32 facts were
 actually correct.
 
 \subsection{Learning Reader}
-\label{section:rw_LR}
+\label{section:r:lr}
 Learning Reader\parencite{Forbus2007} is a prototype knowledge mining system
 that combines NLP, large KB (CycKB) and analogical inference into an automated 
 knowledge extraction system that works on simplified language texts. The system
@@ -777,7 +825,7 @@ uses Direct Memory Access Parsing (DMAP\parencite{Martin1986}) to parse text
 and convert it into CycL concepts which are then checked by the inference engine
 whether they can form correct CycL statements. The prototype consisted of
 30,000 NDAP patterns (a quick approximation would be to imagine CyN patterns-
-chapter \ref{section:rw_CyN}). After parsing and syntax checks, found CycL 
+chapter \ref{section:r:cyn}). After parsing and syntax checks, found CycL 
 sentences were checked by the inference within CycKB, whether knowledge is new
 or not. Only new logical statements were then asserted. Additional feature of
 this prototype system is that it includes question answering mechanism, which 
@@ -825,7 +873,7 @@ Additionally, Curious Cat is able to use context to target specific users who
 have a very high chance of being able to answer a question.
 
 \subsection{KnowItAll}
-\label{section:rw_KnowItAll}
+\label{section:r:knowitall}
 KnowItAll\parencite{Etzioni2004} is a domain independent web fact extraction 
 system that s specific search engine queries to find new instances of specific
 classes. It starts it extraction with a small seed of class names and NL patterns
@@ -853,7 +901,7 @@ when approaching textual patterns which can lead to open (without specifying the
 targets) knowledge extraction on a web scale.
 
 \subsection{Probase}
-\label{section:rw_Probase}
+\label{section:r:probase}
 Probase is a probabilistic taxonomy of concepts and instances consisting of
 2.7 million of concepts extracted from 1.68 billion of web pages
 \parencite{Wu2012}. The main difference between Probase and other KBs is that
@@ -869,7 +917,7 @@ API\footnote{https://concept.research.microsoft.com} which in 2017 consists of
 5,401,933 concepts, 12,551,613 instances and 87,603,947 isA relations. 
 
 \subsection {TextRunner}
-\label{section:rw_TextRunner}
+\label{section:r:textrunner}
 TextRunner is a successor of KnowItAll system \parencite{Soderland2007} and is
 the first to introduce Open Information Extraction (OIE) paradigm, which's main
 idea is that it is open-ended and can extract information autonomously without
@@ -895,7 +943,7 @@ each retained tuple, based on the probabilistic model or redundancy
 \parencite{Downey2005}.
 
 \subsection{ReVerb}
-\label{section:rw_ReVerb}
+\label{section:r:reverb}
 With  the experiments done with \emph{TextRunner} and \emph{WAE}, it became
 obvious that OIE systems have a lot of noise and inconistencies in the results.
 For this reason two syntactical and lexical constraints were introduced in
@@ -910,7 +958,7 @@ for each identified phrase. The resulting extractions are then given a
 confidence score using logistic regression classifier.
 
 \subsection{R2A2}
-\label{section:rw_R2A2}
+\label{section:r:r2a2}
 R2A2 is another improvement in OIE paradigm, since previous systems assumed that
 relation arguments are only simple noun phrases. Analysis of \emph{ReVerb}
 errors showed that 65\% of errors is on the arguments side (the relation was ok).
@@ -922,7 +970,7 @@ classifier to detects class constraints (bounds) of the arguments. Compared to
 \emph{ReVerb}, \emph{R2A2} has much higher precision and recall.
 
 \subsection{ConceptMiner}
-\label{section:rw_ConceptMiner}
+\label{section:r:conceptminer}
 \emph{ConceptMiner} is a KA system built by Ian Scott Eslick as part of his
 master thesis\parencite{Eslick2006}, with the main hipothesis that the seed
 knowledge collected from vounteers can be then used to bootstrap automatic 
@@ -953,7 +1001,7 @@ removes badly formed statements, concepts not included in \emph{ConceptNet} KB,
 and concepts with low PMI score (see abbreviations and glossary).
 
 \subsection{DBPedia}
-\label{section_rw:dbpedia}
+\label{section:r:dbpedia}
 \emph{DBPedia} is crowd-sourced RDF KB, extracted from Wikipedia pages and made
 publicly available\parencite{Lehmann2015}. As of 2017 the English DBPedia contains 4.58 million 
 knowledge pieces, out of which 4.22 million in a consistent ontology, 
@@ -976,7 +1024,7 @@ written into an RDF sink, supporting various format such as NTriples, etc.
 \end{itemize}
 
 \subsection{YAGO (Yet Another Great Ontology)}
-\label{section_rw:YAGO}
+\label{section:r:yago}
 \emph{YAGO} is an ontology built automatically from \emph{WordNet} and 
 \emph{Wikipedia}\parencite{Suchanek2008}. Latest version \emph{YAGO3} is built
 from multiple languages and as of 2015 consist of 4,595,906 entities, 
@@ -990,7 +1038,7 @@ for type and consistency checking. This kind of type checking helps YAGO to
 maintain its precision at 95\%\parencite{Suchanek2008}.
 
 \subsection{KNEXT}
-\label{section_rw:KNEXT}
+\label{section:r:knext}
 With the premise that there is a lot of general knowledge available in texts,
 which lays beneath explicit assertional content, Schubert build \emph{KNEXT} KA
 system\parencite{Schubert2002} which extracts \emph{general "possibilistic"
@@ -1039,6 +1087,7 @@ conducted their KA experiments on Treebank corpora resulting in around 60\% of
 propositions marked as "reasonable general claims"\parencite{Schubert2003}. 
 
 \section{Reasoning Acquisition}
+\label{section:r:reasoningacq}
 Compared to other types of KA, \emph{Reasoning Acquisition} in its essence,
 doesn't need any external data-sources, but it uses existing knowledge and
 machine inference to automatically infer additional facts from the existing
