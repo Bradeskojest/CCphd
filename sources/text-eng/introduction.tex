@@ -1,0 +1,79 @@
+%-------------------------------------------------------------------------------
+% 
+\chapter{Introduction}
+%-------------------------------------------------------------------------------
+An intelligent being or machine solving any kind of a problem needs knowledge 
+over which it can apply its intelligence when inferencing in order to be able
+and come up with appropriate solutions. This is especially true for any 
+knowledge-driven AI systems which constitute a significant fraction of general 
+AI research. For these applications, getting and formalizing the knowledge that
+can be trusted is crucial, but not yet straight forward to achieve on scale 
+within accessible cost boundaries. Even in the case if it happens that future 
+research will prove the knowledge based systems to be the dead end in the
+evolution of AI, solving the knowledge acquisition bottleneck will be one of
+the required and critical stepping stones that will need to be involved.
+
+Such knowledge needs to be acquired by some sort of Knowledge Acquisition (KA) 
+process, either manual, automatic or semi-automatic, converted into the
+appropriate representation and subsequently maintained, to keep up with the
+changes in the underlying domains. That this is costly is becoming 
+increasingly obvious, with the rise of chat-bots and other conversational 
+agents and AI assistants that became popular throughout the last few years. 
+The most developed of these (Siri, Cortana, Google Now, Alexa, Bixby), are 
+all backed by huge financial support from their producing companies, and the 
+lesser-known ones are still result of 7 or more person-years of efforts by
+individuals\parencite{Wilcox2011, Wallace2013}, or smaller companies (e.g.,
+Josh AI\footnote{www.josh.ai}). Even while these systems may use statistical
+and machine learning (e.g. deep learning) approaches, a substantial 
+portion of their production effort lies in knowledge acquisition, which is 
+sometimes hidden in (hand) coded rules for request/response patterns, execution
+workflow constructions and corresponding actions.
+
+Independently of the far goal of AI research (human like intelligence), which
+is relected through latest instances of AI assistants, there are countless 
+expert systems, databases and other software solutions that need maintenance
+and additional semantics, and all suffer from the KA bottleneck. This is making
+the solutions expensive, or unable to fully utilize the idea that they 
+implement. The bottleneck is especially obvious for the systems that make use 
+of the real-world data that is rapidly changing through time. Some of this can
+be reflected through revenues of the crowdsourcing platforms (Amazon Mechanical
+Turk, Crowdflower).
+
+This dissertation deals with the KA bottleneck problem by developing a novel
+approach to automated knowledge acquisition, using existing knowledge,
+contextual crowdsourcing and natural language, to make the KA a side effect of
+effortless interaction of users with the computer. The thesis aims to develop,
+implement and evaluate the approach and do a step closer towards removing the
+bottleneck part from the knowledge acquisition.
+
+The approach implementation resulted in a real world mobile assistant 
+application (called Curious Cat), which is able to use existing knowledge to 
+automatically infer 
+what knowledge is missing and then ask users for the answers, check for
+the correctnes and consistency and then place the newly acquired answer on
+top of the existing knowledge, to repeat the KA loop. It is
+using the context obtained from mobile devices to ask the right users at the 
+right time, about the right topic. 
+The implenentation has a multi objective goal, 
+where KA is the primary goal, and an intelligent assistant and conversational 
+agent are secondary goals, making the KA effortless and accurate while having a 
+conversation about concepts which have some connection to the user.
+
+The evaluation of the approach shows that the knowledge collected this way is
+mostly correct and consistent with the existing KB and thus shows the approach
+is promising and could work also in other real-world scenarious.
+
+\section{Scientific Contributions}
+This section gives an overview of scientific and other contributions of this thesis to the knowledge acquisition approaches.
+
+\subsection{Novel Approach Towards Knowledge Acquisition}
+Traditionally KA (knowledge acquisition) approach focuses on one type of acquisition process, which can be either Labor, Interaction, Mining or Reasoning\parencite{Zang2013}. In this thesis we propose a novel, previously untried approach that intervenes all aforementioned types with current user context and crowdsourcing into a coherent, collaborative and autonomous KA system. It uses existing knowledge and user context, to automatically deduce and detect  missing or unconfirmed knowledge(reasoning) and uses this info to generate crowdsourcing tasks for the right audience at the right time(labor). These tasks are presented to users in natural language (NL) as part of the contextual conversation (interaction) and the answers parsed (mining) and placed into the KB after consistency checks(reasoning). The approach contribution can be summed up as a) definition of the framework for autonomous and collaborative knowledge acquisition with the help of contextual knowledge (\hl{chapter X}), and b) demonstrate and evaluate the contributions of contextual knowledge and approach in general \hl{chapter X}.
+
+\subsection{Knowledge Acquisition Platform Implementation as Technical Contribution }
+Implementation of the KA framework as a working real-world prototype which shows the feasibility of the approach and a way to connect many independent and complex sub-systems. Sensor data, natural language, inference engine, huge pre-existing knowledge base (Cyc)\parencite{Lenat1995}, textual patterns and crowdsourcing mechanisms are connected and interlinked into a coherent interactive application (\hl{Chapter X}).
+
+\subsection{A Shift From NL Patterns to Logical Knowledge Representation in Conversational Agents}
+Besides the main contributions presented above, one aspect of the approach introduces a shift in the way how conversational agents are being developed. Normally the approach is to use textual patterns and corresponding textual responses, sometimes based on some variables, and thus encode the rules for conversation. As a consequence of natural language interaction, the proposed KA framework is in some sense a conversational agent which is driven by the knowledge and inference rules and uses patterns only for conversion from NL to logic. This shows promise as an alternative approach to building non scripted conversational engines (\hl{Chapter X}).
+
+\section{Thesis structure}
+The rest of the thesis is structured in to chapters covering specific topics. \hl{Chapter X} introduces\todo{...Finish}
