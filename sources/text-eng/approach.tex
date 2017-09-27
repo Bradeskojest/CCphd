@@ -65,7 +65,7 @@ the knowledge can be double checked with another user, as shown in
 \autoref{tab:conversation2}. Based on the votes (confirmations or rejections) 
 from the crowd (other users), the system can decide whether to believe the new 
 knowledge in general, or only when it interacts with this particular user.
-This is explained in more detail in section \hl{ref}.
+This is explained in more detail in \autoref{section:crowdsourcing}.
 
 \begin{table}[h!]
 \centering
@@ -93,8 +93,8 @@ a conversation about concepts which have some connection to the user.
 At the same time, the approach allows the system (or the user) to follow the 
 links in the conversation to other connected topics, covering and collecting
 more knowledge. For illustration see the example conversation sketch in 
-]hl{Table I}, where the topic changes from a specific restaurant to a type of 
-dish.
+\autoref{tab:conversation1}, where the topic changes from a specific restaurant
+to a type of dish.
 
 \section{Architecture}
 \label{section:Architecture}
@@ -190,7 +190,8 @@ represented by arrows. Orange arrow (pointing
 directly from the phone towards the system) represents the automatic interaction
 or triggers that the phone (client) is sending to the system all the time. This
 provides one part of the user context. After the precedural part analyses
-the data (as described in \hl{ref to SPD}) and enter findings into the KB as 
+the data (as described in \autoref{section:minedContext} and 
+\autoref{section:locationServlet}) and enter findings into the KB as 
 context, this often triggers the system to come up with a new question, or 
 context related info. Example of such a trigger is, when user changes a location
 and the system figures out the name and type of the new place. On the other 
@@ -201,7 +202,8 @@ answering a question from the same user, or some other user. This shows, how the
 actual knowledge (even if entered automatically through procedural component) is
 controlling the interaction, and explains how the system is initialized and how
 its main pro-activity driver is implemented. Examples of such initialization
-of the interaction is presented in \hl{Script 1 and Script2}. Additionally, the 
+of the interaction is presented in \autoref{tab:conversation1} and
+\autoref{tab:conversation2}. Additionally, the 
 user can trigger a conversation at any point in time either by continuing the 
 previous conversation or simply starting a new one. 
 
@@ -218,7 +220,8 @@ options for the interaction. Human to machine (HMI), when users initiate
 interaction, and machine to human (MHI), when the system initiates the 
 interaction. The specifics of both, which cannot fit in 
 \autoref{fig:Architecture} are explained in the following sub-sections 
-\hl{4.2.1 and 4.2.2}. On top of this, the design of the system allows a novel 
+\ref{section:mhi} and \ref{section:hmi}. On top of this, the design of the 
+system allows a novel 
 type of interaction which combines multiple users and machine into one 
 conversation, while presenting this to the users as a single conversation track
 with the machine. This becomes useful when the system doesn't have enough
@@ -240,15 +243,16 @@ CC decides it's the time to ask or tell something. On the
 \autoref{fig:interaction}, this is represented by the most inner loop (MHI). 
 Example of this is when the context part of \emph{Procedural} module classifies
 a new location and then asserts it into the KB. This then triggers Inference 
-Engine which results in a new user query (same as defined in 
-\hl{ref to CCWantsToAskLocation}).
+Engine which results in a new user query (same as defined in Definition
+\ref{def:userLocation}).
 
 \begin{equation*}
 	\label{eq:ccWantsLoc}
 	ccWantsToAsk(CCUser1, (userLocation(CCUser1,CCLoc1)))
 \end{equation*}
 
-This query then goes through logic to NL \hl{ref} conversion, which is then
+This query then goes through logic to NL (\autoref{section:logicNL}) 
+conversion, which is then
 presented to the user in NL like "Where are we? Are we at the restaurant X?".
 This is represented on \autoref{fig:interaction} with a blue arrow on the
 inner circle, marked with 1a. The presentation is handled by the client and 
@@ -258,7 +262,7 @@ answer this question and thus close the interaction loop (blue arrow marked with
 
 For easier answering, the KA system can use existing KB to generate a set of 
 possible answers at the qustion generation time. These can be then picked by
-the user instead of writing. THe guidance can consis of variations of these:
+the user instead of writing. The guidance can consis of variations of these:
 \begin{itemize}
 	\item A fixed set of pre-defined options that user can pick from, generated
 	from the KB.
@@ -269,14 +273,16 @@ the user instead of writing. THe guidance can consis of variations of these:
 	the same as for the HMI interaction described below (\autoref{section:hmi}).
 \end{itemize}
 
-The example of mediated answer guidance can be seen in \hl{Fig. 3}, where the 
-system presented a set of possible answers while still allowing a free text 
+The example of mediated answer guidance can be seen in \autoref{fig:ccmediated},
+where the system presented a set of possible answers while still allowing a 
+free text 
 which will be autocompleted with the food types that the system knows about. 
-If the user enters something new, the system will accept that (\hl{as was shown 
-in the step 6 in Table I)}.
+If the user enters something new, the system will accept that (as shown 
+in the step \ref{step:car} in \autoref{tab:conversation1}).
 
 The inference triggering, language rules and mechanisms for context detection
-are described in more detail in sections \hl{ref, ref, ref} respectively. This
+are described in more detail in sections \ref{section:nl} and 
+\ref{section:dialog} respectively. This
 type of the interaction is where the users answer questions and is thus part of
 the main research topic of this thesis.
 
