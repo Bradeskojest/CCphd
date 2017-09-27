@@ -44,6 +44,66 @@ potential interaction acquisition tasks. These tasks are presented as a
 natural language questions to multiple users (as eligible by their context),
 which covers aspects of crowdsourcing. 
 
+One of the most similar systems (by functionality and approach) is 
+Goal Oriented Knowledge Collection (GOKC) (subsection \ref{section:r:gokc}). 
+Like 
+\emph{Curious Cat}, \emph{GOKC} starts with an initial seed KB which is used 
+to infer new questions that are presented to the user. The GOKC authors first 
+demonstrated that without generating new types of questions, the knowledge in 
+a domain gets saturated. Then they introduced a rule which can infer new 
+questions through concepts which are connected by the predicates. Unlike 
+\emph{Curious Cat}, which checks answers for validity and has a variety of 
+question generation rules, \emph{GOKC} has only one rule, is fixed to a 
+specific domain and accepts all user answers, which are then filtered only by 
+voting.
+
+Another related system, which is a predecessor of \emph{Curious Cat} in some 
+aspects, is \emph{Cyc CURE} KA system (\autoref{section:r:cure} whic is 
+available as part of \emph{Cyc}, for making the internal KA easier. While 
+\emph{CURE} can use inference rules to produce new questions and is able to
+check for consistency of the answers, it doesn't use any context, conversation
+or crowdsourcing. It simply lists a set of quesions when \emph{Cyc} user clicks
+on the concept inside Cyc's unternak web-gui.
+
+After an initial KB, extracted from internet textual content had been gathered, 
+the CMU text-mining knowledge acquisition system NELL 
+(\autoref{section:r:nell}), started to apply a crowdsourcing approach
+\parencite{Pedro2013}, using natural language questions to validate its KB. 
+In the same fashion, as \emph{Curious Cat}, NELL can use newly acquired 
+knowledge, to formulate new representations and learning tasks. There are, 
+however, distinct differences between the approaches of NELL and Curious Cat. 
+NELL uses information extraction to populate its KB from the web, then sends 
+the acquired knowledge to Yahoo Answers, where the knowledge can be confirmed 
+or rejected. By contrast, \emph{Curious Cat} formulates its questions directly 
+to users (and these questions can have many forms, not just facts to validate), 
+and only then sends the new knowledge to other users for validation. 
+Additionally, \emph{Curious Cat} is able to use context to target specific 
+users who have a very high chance of being able to answer a question.
+
+On the other end of the spectrum lie conversational agents (chatbots) with a 
+vast number of hand-scripted NL patterns and responsesi.
+Recently, some successfull chatbots have started to employ an internal KB, in
+addition to just scipted requests and response (subsections 
+\ref{section:r:aiml} and \ref{section:chatscript}). It is used to remember facts 
+from the conversation for later use. In this way, the chat system is actually 
+doing sort of targeted knowledge acquisition. There has also been an attempt to 
+extend AIML scripts with CYC knowledge (subsection \ref{section:r:cyn}) by 
+using NL patterns to match to particular logical queries, enabling a bot to 
+answer questions from Cyc KB. Unlike responses generated due to NL pattern 
+matches as with chatbots, \emph{Curious Cat} generates NL responses based on 
+the knowledge and context driven inference. This allows our system to 
+proactively engage users in sensible conversations and is thus one of the first 
+approaches that attempts to bridge the gap between maintaining the NL 
+conversation of chatbots and actually understanding its content.
+
+Something similar (converting NL to Prolog logic, answering the question and
+returning the result) had been tried to some extent before\parencite{Baral2007},
+but just as a proof of concept example covering 4 use-cases, without doing 
+anything else.
+
+The rest of the related work is explained in the \autoref{tab:related} and 
+sub-sections that follow.
+
 \begin{landscape}
 	\begin{table}[htb]
 	\caption{Structured overview of related KA systems}
@@ -494,7 +554,7 @@ enough and can be used for conversational engine (chat-bot) construction and
 also NL knowledge acquisition.
 
 \subsection{AIML(Artificial Intelligence Mark-up Language)}
-\label{section:aiml}
+\label{section:r:aiml}
 AIML is an XML based 
 scripting language. It allows developers of chat-bots, to construct a pre-
 defined natural language patterns and their responses. These definitions are 
@@ -657,9 +717,8 @@ powerful and can remember facts in the shape of (subject verb object) and act on
 them. This is done with using \emph{\^createfact} and \emph{\^findfact} 
 functions.
 
-
 \subsection {CyN} 
-\label{section:rw_CyN}
+\label{section:r:cyn}
 CyN is an AIML interpreter implementation with additional functionality
 to be able to access Cyc inference engine and KB for both, storing the knowledge 
 and also for querying\parencite{Coursey2004}. This was done by introduction of new AIML tags:
@@ -730,7 +789,7 @@ recall from 10\% to 37\% and kept the accuracy as 99.7\% compared to original
 raised to 60\% while accuracy dropped to 90.8\%.
 
 \subsection{Never Ending Language Learner (NELL)}
-\label{section:rw_NELL}
+\label{section:r:nell}
 NELL\parencite{Mitchell2015} is a text mining KA system running 24/7 with the
 goal to extract knowledge, use this knowledge to improve itself and extract
 more knowledge. NELL was started in January 2010 and as of 2015 acuired
