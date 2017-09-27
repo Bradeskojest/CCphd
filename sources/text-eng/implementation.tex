@@ -109,7 +109,8 @@ $(\#\$menuItem\quad\#\$JoesPizza\quad?ITEMS)$, where the name of the variable
 \item Rules in \emph{CycKB} are represented by assertions using predicate 
 $\#\$implies$, where the first argument is then it's antecedent and the second
 argument a consequent (see CycL rule \ref{as:cycrule} below, which represents
-the same upper ontology rule as defined in \hl{rule 4.10}).
+the same upper ontology rule as defined in assertion 
+\ref{rule:subclass_transitivity}).
 \end{itemize}
 
 Similar as with our example KB explaining CC approach, \emph{CycKB} is built on
@@ -154,8 +155,8 @@ to explain the approach.}
 
 Similarly as with constants, some rules can be mapped into Cyc versions by 
 replacing implication form ($x \implies y$), with the CycL form 
-($(\#\$implies\quad (x) \quad (y))$. For example, rule \hl{4.10} is in
- \emph{CycL} written as follows:
+($(\#\$implies\quad (x) \quad (y))$. For example, rule 
+\ref{rule:subclass_transitivity} is in \emph{CycL} written as follows:
 \begin{equation}\label{as:cycrule}
 \begin{gathered}
 \begin{aligned}
@@ -206,8 +207,10 @@ While mapping from our explanations to the actual \emph{Cyc} upper ontology is
 pretty straight forward since it is small, it would be impossible to describe
 all details of more than 8,000 assertions that define the implementation of
 CC KA approach. For example, the simple $ccWantsToAsk$ predicate (see
-\hl{definition 4.15 in chapter X}, alternative in the real-world implementation
-is 8 predicates (see definition \ref{as:cycCCAssertions} below), allowing us to define much more complicated statements and
+definition \ref{def:pred_ccWantsToAsk} \autoref{chapter:approach}, alternative 
+in the real-world implementation
+is 8 predicates (see definition \ref{as:cycCCAssertions} below), allowing us to
+define much more complicated statements and
 enriching them with possible suggestions as visible on \autoref{fig:ccmediated}.
 Similary, the KA rules are more complicated, using much bigger vocabulary
 than we were able to exaplain. Example of one such rule is presented on
@@ -272,8 +275,8 @@ $\#\$disjointWith$ can have a module that can tell whether the assertions using
 this predicate are true or not (decides on disjointness). There are many
 modules like this, implementing symmetry, transitivity and reflexivity, etc.
 
-The engine is mostly controlled with rules (as are rules \hl{some rules} and
-the KA rule on \autoref{fig:kaRuleImpl}). The inference rules can be separated
+The engine is mostly controlled with rules (as for example the rule on 
+\autoref{fig:kaRuleImpl}). The inference rules can be separated
 into the forward and backward rules, which define whether they are to be used
 by forward chaining or backward chaining while doing the inference. Forward
 rules are triggered when something is asserted into the KB and then they produce
@@ -291,7 +294,8 @@ trigger the inference which could be slow, when someone issues a query.
 %subsection
 \subsection{Cyc NL}
 \label{section:cycnl}
-In the \hl{section NL} and \hl{section NL2SCG} we gave a simplest possible 
+In the \autoref{section:logicNL} and \autoref{section:NLLogic} we gave a 
+simplest possible 
 example of logic to NL and the opposite conversion, to explain and showcase the
 approach taken by the \emph{Curious Cat}. While this served well for the
 explantion, the implementation in real-world is inherently more complicated.
@@ -429,7 +433,7 @@ asserts and detects new topics, when user clicks hyperlinked concepts that
 are presented as part of the convesational bubbles.
 \item \emph{Location Servlet} is accepting GPS records from the phone, calling
 the geo-spatial clustering service and then asserting current location and 
-time assertions into \emph{Cyc}, as described in \hl{ref to context chapter}.
+time assertions into \emph{Cyc}, as described in \autoref{section:context}.
 Additionally, this servlet is providing the contextual clues (bubbles at the
 bottom of Android app as visible on \autoref{fig:androidExample}) to the 
 clients.
@@ -450,8 +454,9 @@ After this is identified, the system asserts into  \emph{Cyc} and logs
 in the database  the time of last user response, and text of the
 response. After this, depending on whether it was identified as an answer to
 previous question, or a completely new discourse (statement, question), it goes
-into the \hl{textref ontology placement mode, chapter ref}, or \hl{SCG parsing
-mode}, as described in the appropriate sections in the 
+into the \emph{Consistency Check and KB Placement} mode 
+(\autoref{section:consistency}), or \emph{NL to Logic} mode 
+(\autoref{section:NLLogic}), as described in the appropriate sections in the 
 \autoref{chapter:approach}. 
 
 After this step, when the system already remembered
