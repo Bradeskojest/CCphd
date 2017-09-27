@@ -784,7 +784,7 @@ than a fixed ontology that needs to be implemented.
 
 \begin{figure}[H]
 	\centering
-		\includegraphics[width=0.8\textwidth]{figures/upperOntology.png}
+		\includegraphics[width=0.7\textwidth]{figures/upperOntology.png}
 	\caption{Upper ontology terms, with 'is' and 'subclass' relations.}
 	\label{fig:upperOnto}
 \end{figure}
@@ -796,7 +796,7 @@ This sub-chapter extends our upper ontology example with additional knowledge
 that allows us to explain the system through the examples given in 
 \autoref{tab:conversation1} and \autoref{tab:conversation2}. 
 
-As also visible in the Architecture schematic (\autoref{fig:architecture},
+As also visible in the Architecture schematic (\autoref{fig:Architecture},
 KB with background knowledge is one of the most crucial elements of proposed 
 approach. It serves both, as the driving force behind the source of the 
 questions, since with the help of contextual knowledge triggers the infrence to
@@ -929,8 +929,8 @@ upper ontology ($S_{Constants} = S_{upper} \cup S_{Food} \cup S_{Place}
 
 For defining the predicates, we need a bit more detailed definitions, since we 
 also want to represent the constraints which will serve for the inference 
-engine to check the validity of the answers (as explained in 
-\hl{ref to constraints def. in UpperOnto}).
+engine to check the validity of the answers (as explained in the definitions
+\ref{def:pred_argis} and \ref{def:pred_argClass}).
 
 \begin{definition}[predicate $menuItem$]\label{def:menuItem}
 Predicate $menuItem(x,y)$ denotes that place $x$ has a menu item $y$ on its 
@@ -1076,7 +1076,8 @@ formula $y$. For example, assertion
 ccWantsToAsk(User1, userLocation(User1,x))
 \end{equation*}
 tells CC system to ask user the question $userLocation(User1,x)$, which,
-after it goes through logic to NL conversion \hl{ref} is paraphrased as
+after it goes through logic to NL conversion (\autoref{section:logicNL}) is 
+paraphrased as
 "Where are we?", as hinted in the step \ref{step:where} in the 
 \autoref{tab:conversation1}. The predicate is formally defined as follows:
 \begin{equation}\label{as:ccWantsToAsk}
@@ -1105,8 +1106,7 @@ predicate, and there is another instance of the same class which doesn’t have
 any assertion using this predicate. When the antecedent of this rule is true,
 then the consequent is a $ccWantsToAsk$ predicate representing an open
 ended logical query (NL question) asking for the things that can fullfill the
-predicate $P$ for instances of aforementioned class. \hl{maybe add/explain
-list of suggestions as well}.
+predicate $P$ for instances of aforementioned class.
 
 If we take our example KB (\autoref{fig:existingKB}) and imagine we assert
 an additional instance of a $Restaurant$ (Restaurant2: "Joe’s Pizza", as was 
@@ -1183,7 +1183,6 @@ will be, is simply controlled by the number and content of the rule premises.
 % SUBCHAPTER
 \section{Context}
 \label{section:context}
-
 As mentioned in \autoref{section:bg:context}, in order to be able to ask 
 relevant questions which users can actually answer, and at the same time 
 maintain their interest, the context of the user is of crucial importance. For 
@@ -1208,13 +1207,13 @@ While for this (CC) approach it doesn't matter how exactly the current location
 and other contextual raw data is acquired, since the year 2007 (release of 
 iPhone and Nokia N95) it is the easiest to acquire it from the user's mobile 
 phones\footnote{With the prior user's consent.}. As we hinted already in the
-\autoref{section:SPD1}, we use a modified \emph{staypoint detection} algorithm
-(\hl{ref to ours}),similar to the approach taken by \textcite{Kang2005} and 
-\textcite{Li2008}(\autoref{alg:spd1}). Here we will describe the mining 
+\autoref{section:SPD1}, we use a modified \emph{staypoint detection} algorithm, 
+similar to the approach taken by \textcite{Kang2005} (\autoref{alg:spd1}). 
+Here we will describe the mining 
 algorithm only briefly, to be able to explain the approach. It is described in
-more detail in \hl{ref to our SPD implementation}. These algorithms are all
+more detail in section \ref{section:locationServlet}. These algorithms are all
 implemented in our \emph{procedural component} 
-(see\autoref{section:Architecture} and \autoref{fig:Architecture}).
+(see\autoref{section:Architecture}, depicted on \autoref{fig:Architecture}).
 
 This algorithm takes raw GPS readings as input, and clusters them into visits
 (staypoints) and paths (moves between the staypoints), based on two thresholds:
@@ -1224,7 +1223,8 @@ defined with the coordinates (of the users mobile device) that all lay inside a
 given perimeter for at least minimum time: 
 $r(lat,lon)<T_p \land t(lat,lon)>T_t$. The result of this algorithm is one
 coordinate (lat, lon), time of arrival and the duration of stay, which can be
-directly used by our approach (\hl{see below}). This simple algorithm proves 
+directly used by our approach (see \autoref{pred:probableUserLocation} below). 
+This simple algorithm proves 
 to be robust to the usual GPS signal, which is not always returning the same 
 coordinates for the same location and is also lost during the time the user is
 indoors, or nearby tall buildings or trees. 
@@ -1233,25 +1233,27 @@ After we have the coordinates, time of arrival and current duration of stay,
 we can use this info to get additional information about the place, most easily
 from one of the online APIs (Foursquare, Factual places, Google Places). This
 usually return multiple results, where the less likely ones need to be filtered
-out. This is described in detail in the implementation (\hl{ref to impl}), 
+out. This is described in detail in the implementation 
+(section \ref{section:locationServlet}), 
 related work (Section \ref{section:MarcoMamei}) and also in the related papers 
 \autocite{Mamei2010,Bradesko2015}.
 
 Let's say the user moves from the previous location. This is detected by the
 algorithm (move), which causes the \emph{Procedural Component} to remove 
 previous $userLocation(x,y)$ assertion for this user, since his/her location is
-not known anymore. Then the SPD algorithm \hl{ref} is monitoring the user, and 
-once it detects that he/she stopped at some location for a bit, it sends the 
-coordinates to the second part\hl{ref}, and retrieves a most likely place from 
-public APIs. After this, the enriched and relevant information can be added 
+not known anymore. Then the SPD algorithm (section 
+\ref{section:locationServlet} is monitoring the user, and 
+once it detects that he/she stopped at some location for a bit, it retrieves 
+the most likely place from public APIs. After this, the enriched and relevant 
+information can be added 
 back to the KB. For this we need to define (add) a few more pieces of the KB.
 
 \begin{definition}[predicate "$probableUserLocation$"]
 \label{pred:probableUserLocation}
 
 Predicate $\\probableUserLocation(x,y)$ denotes that the user $x$ is most likely
-at the location $y$. It is probable because it is automatically inferred by the
-ML algorithm (\hl{ref}) and we still want the user to confirm it.
+at the location $y$. It is "probable" because it is automatically inferred by 
+the ML algorithm and we still want the user to confirm it.
 Formally the predicate is defined as:
 \begin{equation}\label{as:probableUserLoc}
 \begin{gathered}
@@ -1265,7 +1267,8 @@ Formally the predicate is defined as:
 \begin{definition}[class "$Visit$" and its instances]\label{def:visit}
 Class $Visit$ represent a concept of a visit. Each instance represent one
 particular visit, which can be used in other assertion to add more data to it
-or to link it to other concepts. For example see Assertion \hl{ref below}.
+or to link it to other concepts. For example see Assertion 
+\ref{as:joesPizzaVisit}.
 \end{definition}
 
 \begin{definition}[predicate "$userVisit$"]
@@ -1286,7 +1289,6 @@ be an important part of the context. Formally the predicate is defined as:
 \end{gathered}
 \end{equation}
 \end{definition}
-
 
 \begin{definition}[predicate "$placeVisit$"]\label{pred:placeVisit}
 Predicate $\\placeVisit(x,y)$ denotes that the place $x$ was visited as part of
@@ -1312,7 +1314,8 @@ with orange.}
 
 Now, after we defined the relevant predicates (see \autoref{fig:contextKB}), we 
 can continue building the example.
-Let's say that hte most likely place returned by SPD(\hl{ref}), is "Joe's Pizza"
+Let's say that hte most likely place returned by SPD
+(section \ref{section:locationServlet}), is "Joe's Pizza"
 (our usual example from \autoref{tab:conversation1}). The 
 \emph{Procedural Component} creates a new concepts  $JoesPizza$ and 
 $Visit1$ (it has number 1 since it is the first instance in the KB), and adds 
@@ -1360,9 +1363,11 @@ At this moment careful reader might notice that the predicate $placeVisit$ was
 not used in the assertions. The predicate is not yet asserted, because at 
 this time it is not yet known for sure, whether the user is exactly at this 
 place. The $probableUserLocation$ is only used to trigger questions for the
-predicate $userLocation$ (\hl{ref}). Only after this is answered, we can be
+predicate $userLocation$ (see definition \ref{def:userLocation}). Only after 
+this is answered, we can be
 100\% sure that this is the exact place, and, besides the $userLocation$ (see
-\hl{ref}), the system can also assert
+assertion \ref{as:joesPizzaVisit}), the system can also assert
+
 \begin{equation}\label{as:placeVisit}
 \begin{gathered}
 	placeVisit(JoesPizza,Visit1)
@@ -1391,7 +1396,7 @@ represented by the example predicates below:
 \end{equation*}
 or, a lot of knowledge can also be inferred already even by questions asked
 in our examples (Table \ref{tab:conversation1}), resulting in many instances of
-$Visit$ ($Visit1,Visit2,Visit3,...$) and $orderedFood$ (see \hl{ref after this}).
+$Visit$ ($Visit1,Visit2,Visit3,...$) and $orderedFood$ predicates.
 Specific rules or analytics provided by the \emph{Procedural Component} can
 infer things like the following examples:
 \begin{equation*}
@@ -1432,8 +1437,8 @@ concepts involved. The actual Curious Cat implementation is based on
 Cyc NL\parencite{Baxter2005} for generation, and SCG\parencite{Schneider2015}
 for the NL to logic. It consists of more than 90 predicates and rules beyond 
 those in the baseline Cyc system to handle language generation. This is 
-described in more detail in the Implementation chapter (Chapter \hl{ref to
-SCG,}).
+described in more detail in the Implementation chapter 
+(Chapter \ref{chapter:implementation}, section \ref{section:locationServlet}).
 
 %subsubsection
 \subsection{Logic to NL}
@@ -1647,7 +1652,8 @@ The definitions (\autoref{def:predNlPattern}, \autoref{def:predName} and
 are simplifified formulations of minimal required NL knowledge to be able to 
 present our approach. While the implementation of NL generation engine is 
 totally up to the developer of such a system, for this examples (and also 
-our implementation - see \hl{ref impl}), we decided to put the NL patterns
+our implementation - see section \ref{section:cycnl}), we decided to 
+put the NL patterns
 into the KB, next to the definitions of the concepts. On the contrary to
 having the NL patterns in some external database or a text file, this approach
 in long term allows the system to ask questions about the language patterns
@@ -1683,7 +1689,8 @@ isolated terms and denotational phrases from the user responses, converting
 general NL expressions back to logic is much trickier than the other way 
 around, because natural language is much more ambiguous than logic. This 
 process exceeds the scope of this KA related thesis and is 
-described in more detail in the implementation (\hl{ref}), and paper 
+described in more detail in the implementation (section \ref{section:cycnl}), 
+and paper 
 \parencite{Schneider2015} and to other aspects of it also in chat-bot related
 works\parencite{Wallace2013,Wilcox2011}. Following the simplistic examples as
 before just to show and be able to explain the approach, we explain the basic 
@@ -1843,7 +1850,7 @@ and then leaves up to the inference engine what to do next. This is completely
 different approach from standard chatbot systems where patterns dictate the 
 responses as well. For readers interested in more detailed overwiew of chat-bot
 approaches and patterns please refer to chapter Related Work (subchapters
-\ref{section:aiml} and \ref{section:chatscript}), or related paper
+\ref{section:r:aiml} and \ref{section:chatscript}), or related paper
 \parencite{Bradesko2012}.
 
 %subsubsection
@@ -1947,7 +1954,6 @@ how everythin fits togehter. Maybe this chapter is not even necessary?}
 %Subsection
 \section{Consistency Check and KB Placement}
 \label{section:consistency}
-
 As already described, we can employ the inference engine to deduce various 
 facts using forward-chaining inference including intents to ask a question. 
 The answers can then be automatically inserted into the KB. The knowledge 
@@ -2033,7 +2039,7 @@ fill in our values ($\$answer=\text{"Pizza Margherita}, \$pred=menuItem,
     \right)
 \end{gathered}
 \end{equation}
-If this query is asked in our current KB (\hl{ref to last img}), we get the 
+If this query is asked in our current KB (\autoref{fig:nlKB}), we get the 
 following results:
 
 \begin{table}[H]
@@ -2049,8 +2055,9 @@ following results:
 \end{tabular}
 \end{table}
 Because the inference engine was able to answer this query, we imediatelly
-know that the answer is consistent with the KB and is safe to assert it into
-the KB as $menuItem(JoesPizza,Margherita)$. \hl{Maybe switchh from Joes to
+know that the answer is consistent with the KB and is safe to assert it as 
+$menuItem(JoesPizza,Margherita)$. 
+\hl{Maybe switchh from Joes to
 Lardoise which is for sure in the KB. Check whether worth mentioning Nothing}.
 
 At this point we have seen an example of how to add new knowledge when the
@@ -2072,11 +2079,9 @@ But, if the concept does not exist yet (nothing returned, as would be the case
 for "Pizza Deluxe"), then we can simply create it together with its NL 
 denotation and assert it using our question predicate.
 
-
 %subsection
 \subsection{Detailed Placement in the KB}
 \label{section:placement}
-
 In addition to deciding to add some newly acquired knowledge to the KB, the 
 exact location in the "KB graph" is determined by the $argIs$ and $argClass$
 assertions on the question predicate. Consider our example question
@@ -2192,11 +2197,11 @@ knowledge defined in section \ref{section:upperOnotlogy} and
 in section \autoref{section:kaKnowledge} and then acquired from multiple users. 
 $User1KB$ has knowledge that was acquired from $User1$ and $user2KB$ has 
 knowledge acquired from $User2$ (new, other user). Following our KB structure 
-given in \hl{ref to fig pre-existing knowledge} and formal logical definitions, 
+given in \autoref{fig:existingKB} and formal logical definitions, 
 we can see that:
 \begin{itemize}
 \item $WholeWorldKB$ contains the upper ontology and pre-existing knowledge 
-from \hl{figure ref to pre-existing knowledge}.
+from \autoref{fig:existingKB}.
 \item $CuriousCatBelievesKB$ contains KA assertions and union of assertions 
 acquired from all the users.
 \item $User1KB$ contains assertions acquired from user 1 and only relevant to 
@@ -2219,9 +2224,11 @@ the users. Since each sub-KB can "see" only the assertions stored in itself and
 the assertions higher up in the hierarchy, we can control what only one user 
 knows, versus all the users, by moving the specific assertions up or down 
 through the KB hierarchy. 
-We are proposing two approaches: 1) Crowdsourcing through repetition (\hl{ref}),
-and 2) Crowdsourcing through voting (\hl{ref}).
-
+We are proposing two approaches: 
+\begin{enumerate}
+\item Crowdsourcing through repetition (\autoref{section:crowdRepetition}),
+\item and 2) Crowdsourcing through voting (\autoref{section:crowdVoting}).
+\end{enumerate}
 Crowdsourcing 1 is more advanced, since it includes type 2 as well, once the 
 repeated assertions from multiple users got promoted to $CuriousCatBelievesKB$. 
 Because it only promotes the knowledge which is asserted by multiple users 
@@ -2234,7 +2241,8 @@ Additionally, users might have a feeling that they are the only one in the
 system if they dont see some immediate feedback and activity. 
 Initially we started with Crowdsourcing through repetition, but then 
 decided (due to reasons above) to do our initial experiments 
-(described in section results \hl{proper ref}) by using the option 2 (\hl{ref}).
+(described in \autoref{chapter:evaluation}, \autoref{section:resultsvoting}) 
+by using the "voting" option.
 
 %subsection
 \subsection{Crowdsourcing through repetition}
