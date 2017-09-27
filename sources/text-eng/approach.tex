@@ -290,17 +290,21 @@ the main research topic of this thesis.
 \label{section:hmi}
 The second type of interaction is, when user initiates the conversation. 
 If this is done at some point as the answer to an old question, the process is 
-the same as described above in \autoref{section:mhi}. But users can also enter a 
+the same as described above in subsection \ref{section:mhi}. But users can 
+also enter a 
 free text, asking a question or stating something. In this case, this goes 
-through the \emph{NL to Logic Converter} module which tries to convert the
+through the NL to Logic conversion (section \ref{section:NLLogic} and section 
+\ref{sectopn:locationServlet}) which tries to convert the
 text into logical query or assertion. The complexity of converting NL into logic 
 is a lot higher than in the opposite direction, since the language is not
-as exact. In CC implementation \hl{ref to CC converter}, we handled this to
+as exact. In CC implementation (section \ref{section:locationServlet}), we 
+handled this to
 some extent by using SCG system \parencite{Schneider2015}, where the text
 is matched to NL patterns which are linked to appropriate logical structures.
-\hl{This would be used for example, when user, instead of simple Pizza Deluxe 
-(step 5 in Table I), would say They sell pizzas or something even more complex 
-(see section 4.5.2)}. After the text is converted into logic, inference engine 
+This would be used for example, when user, instead of simple "Pizza Deluxe" 
+(step \ref{step:pizzadeluxe} in \autoref{tab:conversation1}, would say 
+"They sell pizzas", or something even more complex (see section 
+\ref{section:NLLogic}). After the text is converted into logic, inference engine 
 can use it to query it against the KB, and show the answers back to user, again 
 converted into NL through \emph{Logic to NL Converter} module. This type of
 interaction is depicted on \autoref{fig:interaction} by the middle arrow circle
@@ -346,20 +350,22 @@ the common-sense knowledge, and its upper ontology over which we operate.
 This part of the system contributes the most to the ability to check the 
 answers for consistency. The more knowledge already exists, the easier becomes 
 to assess the answers, come up with new questions and also propose possible
-answers in the guided interaction(\hl{ref}).
+answers in the guided interaction(\autoref{section:existingKB}).
 
 The second part is the user Context KB, which stores the contextual knowledge 
 about the user. This covers the knowledge that the user has provided about 
-himself (\hl{ref}) and the knowledge obtained by mining raw mobile sensors 
-(\hl{ref}). On \autoref{fig:Architecture}, This part of the KB is represented 
+himself (\autoref{section:acquiredContext}) and the knowledge obtained by 
+mining raw mobile sensors (\autoref{section:minedContext}). On 
+\autoref{fig:Architecture}, This part of the KB is represented 
 as the left-most KB, sitting between the main KB and the 
 \emph{Procedural Module}.The sensor based context allows the system to 
 proactively target the right users at the right time and thus improve the 
 efficiency and accuracy and also stickiness of the KA process.
 
 The third KB part, is the meta-knowledge and KA rules that drive the dialog and 
-knowledge acquisition process (\hl{ref}). Although in our implementation we 
-used Cyc KB (\hl{ref} and also tested Umko KB (\hl{ref}), the approach is not 
+knowledge acquisition process (section \ref{section:kakb}). Although in our 
+implementation we 
+used Cyc KB (\autoref{section:cyckb}), the approach is not 
 fixed to any particular knowledge base. But the KB needs needs to be expressive
 enough to be able to cover the intended knowledge acquisition tasks and 
 meta-knowledge needed for the system's internal workings. 
@@ -368,7 +374,8 @@ Because the full Curious Cat system including the KB is too big and complex to
 be fully explained here (the KA Meta Knowledge alone consists of 12,353 
 assertions and rules), we will focus on the fundamentals of the idea and 
 approach, and define the simplest possible logic to explain the workings 
-through the examples given in the \hl{ref} and  \hl{ref Table II}. 
+through the examples given in the \autoref{tab:conversation1} and 
+\autoref{tab:conversation2}. 
 
 The logic examples are given in formal higher order predicate logic, which we 
 later replace with a more compact notation, with a slight change in the way the 
@@ -384,7 +391,9 @@ that while our logical definitions and formalization are strongly influenced by
 Cyc\parencite{Lenat1995}, and while the approach is based on the Cyc upper 
 ontology, the approach is general and not bound to any particular 
 implementation, and our notation below reflects but is not tightly bound to 
-that of OpenCyc. \todo{Add footnotes as in the paper}
+that of OpenCyc\footnote{The notation here follows closely practices used in 
+Cyc. For more details, readers can refer to \parencite{Lenat1995} and
+\parencite{Matuszek2006}) and the references it contains.}. 
 
 %SUBSECTION
 \subsection{Upper Ontology}
