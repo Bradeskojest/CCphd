@@ -2254,12 +2254,13 @@ is above a threshold, we assume that there is enough evidence for promoting it
 to general knowledge, which is performed by moving the knowledge to higher 
 level of the hierarchy (via "lifting rules" in the $CuriousCatBelievesKB$), 
 and thus making it visible for all the users. After the knowledge is in the 
-public KB, crowd users can start voting on it (see \hl{ref to voting}).
+public KB, crowd users can start voting on it (see section 
+\ref{section:crowdVoting}).
 
 Consider the case of $User1$ answering the question from the previous examples: 
 "What did you order?", with a lie: "spicy unicorn wings". The system will go 
-through steps described in section \autoref{section:consistency}
-\hl{(Consistency Check and KB Placement)}, and if the user confirms this new 
+through steps described in \autoref{section:consistency}
+(\nameref{section:consistency}), and if the user confirms this new 
 concept, \emph{Curious Cat} will believe (in the world for $User1$), that he 
 ate spicy unicorn wings and that the $JoesPizza$ restaurant has them on the
 menu. The contextual KB $User1KB$ would then get the assertion 
