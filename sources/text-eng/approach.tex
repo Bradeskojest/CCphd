@@ -79,7 +79,7 @@ This is explained in more detail in \autoref{section:crowdsourcing}.
 	\hline
 	10 & \makecell[l]{Where are we? \\Are we at Joe's Pizza restaurant?} & Yes.\\
     \hline
-	11 & \makecell[l]{We've never been here before.\\ What kind of place this is?} & Restaurant.\\
+	11 & \makecell[l]{Is it true that it has Pizza Deluxe on the menu?} & Yes.\\
     \hline
 \end{tabular}
 \end{table}
@@ -377,14 +377,15 @@ approach, and define the simplest possible logic to explain the workings
 through the examples given in the \autoref{tab:conversation1} and 
 \autoref{tab:conversation2}. 
 
-The logic examples are given in formal higher order predicate logic, which we 
-later replace with a more compact notation, with a slight change in the way the 
-variables are presented. For better readability, instead of $x, y, z$, we mark 
-variables with a question mark ($?$) followed by a name that represents the 
-expected type of the concepts the variable represents. For example, when we see 
-a variable in a logical formula like $CCUser(?PERSON)$, we immediately know that
-$?PERSON$ can be only replaced with (bound to) instance or subclasses of the 
-concept $Person$. We start predicate names with a small letter 
+The logic examples are given in formal higher order predicate logic, where
+additional to variables given as predicate arguments ($x, y, z$), we sometimes
+also use rules, where predicate (i.e. $P$) letter is also treated as avariable. 
+In these cases it is
+obvious that the predicate is a variable as well, because it is used in a
+inference rule (implication $\implies$ or equivalence $\iff$) and marked with
+one of the quantifiers ($\forall$ or $\exists$). 
+When we have exact definitions of the predicates and constants, we try to name
+them accordingly, where the predicate names start with a small letter 
 ($predicate$) and the rest of the 
 concepts with a capital letter ($Concept$). At this point it is worth noting 
 that while our logical definitions and formalization are strongly influenced by 
@@ -439,7 +440,7 @@ KA approach, since the knowledge will be coming from the users with various
 backgrounds and without any idea of predicate logic. For this reason we
 need more control of what can be used where, if we want to be able to
 check for consistencies and have control of our KB with the inference engine.
-For this reason, we enforce a constraint (rule).
+For this reason, we enforce a constraint (constraint rule).
 
 \begin{definition}[Predicate Constraint]\label{constraint:predicate}
 Everything that we want to use in the KB as a predicate, must first be defined
@@ -2308,7 +2309,16 @@ true anymore.
 \section{Putting it All Together}
 \label{section:together}
 This section wraps up the approach and brings together the components described
-in \autoref{chapter:approach} into a coherent full system, which we describe 
+in \autoref{chapter:approach} into a coherent system, which we try to describe 
 through the example conversation presented in \autoref{tab:conversation1} and
 \autoref{tab:conversation2}.
+
+\subsection{Step 1, Where are we?}
+\label{section:step1}
+Let's say our example user $User1$
+To produce the \autoref{step:where} from \autoref{tab:conversation1},
+
+
+
+
 \hl{FINISH THIS}
