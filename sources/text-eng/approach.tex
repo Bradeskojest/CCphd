@@ -379,11 +379,15 @@ through the examples given in the \autoref{tab:conversation1} and
 
 The logic examples are given in formal higher order predicate logic, where
 additional to variables given as predicate arguments ($x, y, z$), we sometimes
-also use rules, where predicate (i.e. $P$) letter is also treated as avariable. 
+use rules, where predicate (i.e. $P$) letter is also treated as avariable. 
 In these cases it is
 obvious that the predicate is a variable as well, because it is used in a
 inference rule (implication $\implies$ or equivalence $\iff$) and marked with
-one of the quantifiers ($\forall$ or $\exists$). 
+one of the quantifiers ($\forall$ or $\exists$). When the variables are
+pre-fixed with the $\$$ sign, they are treated as a concept and do not
+represent an unbound variable, but a concept representing the variable which
+can appear also in the rule consequents. This is used to be able to represent
+the logical queries as a consequence of inference.
 When we have exact definitions of the predicates and constants, we try to name
 them accordingly, where the predicate names start with a small letter 
 ($predicate$) and the rest of the 
@@ -1354,7 +1358,7 @@ update, the system deletes the Assertion \ref{as:visitContext}, and updates it
 with new data:
 \begin{equation}\label{as:visitContext1}
 \begin{gathered}
-	userVisit(User1,Visit1,1505746857,70)
+	userVisit(User1,Visit1,1505746857,190)
 \end{gathered}
 \end{equation}
 These updates (even if just duration of visit seconds) are causing the CC 
@@ -1680,6 +1684,19 @@ then the system could notice that its missing the plural version of the word
 for the concept $Pizza$ and ask for it: $namePlural(WordForPizza,x)$ 
 (converted to NL: "What is the plural word for 'pizza'?".
 
+Now we can define some more nlPatterns, to be able to cover fully the
+examples from \autoref{tab:conversation1}. Starting with $userLocation$:
+\begin{equation}\label{as:nl:userLocation}
+\begin{gathered}
+    nlPattern(userLocation,\text{"[\$2] Where are you?"}) \land \\
+    nlPattern(userLocation,\text{"Are you at \$2?"}
+\end{gathered}
+\end{equation}
+Which should be enough to prouce conversions required for \autoref{step:where}
+from \autoref{tab:conversation1}. The argument variable enclosed in "[]" means
+that this pattern should have thiat argument unbound, but it will not be 
+used when generating the NL.
+
 \begin{figure}[H]
 	\centering
 		\includegraphics[width=1\textwidth]{figures/LogicToNLOntology.png}
@@ -1959,12 +1976,30 @@ engine as a current interest for the user.
 Now we can add some dialog formulation rules to be able to produce the
 examples from \autoref{tab:conversation1}. First, we want to define that
 the engine asks the user where he is, when it doesn't know that:
-\begin{equation}
+\begin{equation}\label{rule:userLoc}
 \begin{gathered}
 	\forall x \exists y:unknown(userLocation(x,y)) \implies \\
-	ccWantsToAsk(x,userLocation(x,\$y)
+	ccWantsToAsk(x,userLocation(x,\$z)
 \end{gathered}
 \end{equation}
+This rule basically detects when there is an user in the KB, which doesn't have
+the $userLocation$ assertion and generates a question "Where are you(user x)?".
+
+Additionally, when the \emph{Procedural Component} detects probable location,
+this should trigger a "confirm" question:
+
+\begin{equation}\label{rule:userLocConfirm}
+\begin{gathered}
+	\forall x \exists y \forall z:unknown(userLocation(x,y)) \land 
+    probableUserLocation(x,z) 
+    \\ \implies \\
+	ccWantsToAsk(x,userLocation(x,z)
+\end{gathered}
+\end{equation}
+This rule detects the insertion of $probableUserLocation$, and if it's not
+yet confirmed, it causes the inference to produce a yes/no question:
+"Are you at Z?".
+
 \hl{revise this section and possibly add missing assertions when constructing
 how everythin fits togehter. Maybe this chapter is not even necessary?}
 
@@ -2349,23 +2384,37 @@ data about the location (restaurant called "Joe's Pizzza").
 Now the \emph{Procedural Component} does the following steps:
 \begin{enumerate}
 \item Converts the name of the place into a constant name $JoesPizza$ and next
-available concept of a visit $Visit1$ (see assertion \ref{as:joesPizzaVisit})
+available concept of a visit $Visit1$ (see assertions \ref{as:joesPizza} and
+\ref{as:visit1}).
+\item Asserts the visit time, and current duration in the KB (assertion 
+\ref{as:visitContext})
 \item Checks if it exists in our KB, and adds it if it doesn't (assertion 
 \ref{as:joesPizza}). 
 \item It also creates the new concept for visit, $Visit1$ (\ref{as:visit1}),
 and asserts the time of arrival and current duration of stay 
 (\ref{as:visitContext}).
-\item It removes all the existing occasions of $userLocation(User1,x)$ and 
+\item It removes all the existing occasions of $\\userLocation(User1,x)$ and 
 $probableUserLocation(User1,x)$
 \item It adds a new assertion $probableUserLocation(User1,JoesPizza)$ 
 (see assertion \ref{as:probableContext}).
 \end{enumerate}
-This last step triggers the inference angine (rule \ref{})
+This last step triggers the inference angine (rules \ref{rule:userLoc} and
+\ref{rule:userLocConfirm}), to generate $ccWantsToAsk$ questions:
+\begin{itemize}
+\item $userLocation(User1,x)$
+\item $userLocation(User1,JoesPizza)$
+\end{itemize}
+Because these two are the same predicate, and the second one is better defined,
+the system merges them into a single response, where the main question is the
+second assertion (better defined). 
 
+These assertions are then converted to NL (according to assertions in 
+\ref{as:nl:userLocation}), and presented to the user as \autoref{step:where} 
+(\autoref{tab:conversation1}). Because the main question has novariables, it
+can be only true or not, so \emph{CC} already provides the "yes/no" options
+as part of the possible answer.
 
-To produce the \autoref{step:where} from \autoref{tab:conversation1},
+Once user answers, the assertion $userLocation(User1,JoesPizza)$ will get
+asserted into the KB. This will also cause inference engine to retract these two
+questions, since user location is not unknown anymore.
 
-
-
-
-\hl{FINISH THIS}
