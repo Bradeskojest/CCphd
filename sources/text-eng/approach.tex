@@ -32,7 +32,7 @@ and \ref{tab:conversation2}.
 	\multirow{2}{2em}{Step num.} & \multicolumn{2}{c|}{Interaction}\\\cline{2-3}
 	& \multicolumn{1}{c|}{Curious Cat} & User1 \\
 	\hline
-	\step{step:where} 1& \makecell[l]{Where are we? \\Are we at Joe's Pizza?} & Yes.\\
+	\step{step:where} 1& \makecell[l]{Where are you? \\Are you at Joe's Pizza?} & Yes.\\
     \hline
 	\step{step:kind} 2 & \makecell[l]{We've never been here before.\\ What kind of place this is?} & Restaurant.\\
     \hline
@@ -77,7 +77,7 @@ This is explained in more detail in \autoref{section:crowdsourcing}.
 	\multirow{2}{2em}{Step num.} & \multicolumn{2}{c|}{Interaction}\\\cline{2-3}
 	& \multicolumn{1}{c|}{Curious Cat} & User2 \\
 	\hline
-	10 & \makecell[l]{Where are we? \\Are we at Joe's Pizza restaurant?} & Yes.\\
+	10 & \makecell[l]{Where are you? \\Are you at Joe's Pizza restaurant?} & Yes.\\
     \hline
 	11 & \makecell[l]{Is it true that it has Pizza Deluxe on the menu?} & Yes.\\
     \hline
@@ -253,7 +253,7 @@ Engine which results in a new user query (same as defined in Definition
 
 This query then goes through logic to NL (\autoref{section:logicNL}) 
 conversion, which is then
-presented to the user in NL like "Where are we? Are we at the restaurant X?".
+presented to the user in NL like "Are you at the restaurant X?".
 This is represented on \autoref{fig:interaction} with a blue arrow on the
 inner circle, marked with 1a. The presentation is handled by the client and 
 can be in a written form, or through the text-to-speech interface. User can then 
@@ -856,7 +856,7 @@ of the following terms:
 
 \begin{equation}\label{set:placeTerms}
 \begin{gathered}
-S_{Place} = \{Placa,PublicPlace,PrivatePlace,Restaurant\}
+S_{Place} = \{Place,PublicPlace,PrivatePlace,Restaurant\}
 \end{gathered}
 \end{equation}
 Where each of these terms is also an instance of a $Class$:
@@ -892,8 +892,8 @@ of our \emph{Existing Knowledge} consist of the following terms:
 
 \begin{equation}\label{set:otherTerms}
 \begin{gathered}
-S_{Reest} = \{Service,WirelessService,Vehicle,Car,Animal,Duck,\\
-	Human,User\}
+S_{Rest} = \{Service,WirelessService,Vehicle,Car,Animal,Duck,\\
+	Human,User,User1\}
 \end{gathered}
 \end{equation}
 Where each of these terms is also an instance of a $Class$:
@@ -912,7 +912,7 @@ And a class-hierarchy:
 \end{gathered}
 \end{equation}
 And an instance of the $User$ class representing one CC user.
-\begin{equation}
+\begin{equation}\label{as:user1}
 	is(User1,User)
 \end{equation}
 
@@ -1079,7 +1079,7 @@ ccWantsToAsk(User1, userLocation(User1,x))
 tells CC system to ask user the question $userLocation(User1,x)$, which,
 after it goes through logic to NL conversion (\autoref{section:logicNL}) is 
 paraphrased as
-"Where are we?", as hinted in the step \ref{step:where} in the 
+"Where are you?", as hinted in the step \ref{step:where} in the 
 \autoref{tab:conversation1}. The predicate is formally defined as follows:
 \begin{equation}\label{as:ccWantsToAsk}
 \begin{gathered}
@@ -1321,15 +1321,22 @@ Let's say that hte most likely place returned by SPD
 \emph{Procedural Component} creates a new concepts  $JoesPizza$ and 
 $Visit1$ (it has number 1 since it is the first instance in the KB), and adds 
 them into the KB:
-\begin{equation}\label{as:joesPizzaVisit}
+\begin{equation}\label{as:joesPizza}
 \begin{gathered}
-	is(JoesPizza,Place) \land is(Visit1,Visit)
+	is(JoesPizza,Place)
+\end{gathered}
+\end{equation}
+and
+\begin{equation}\label{as:visit1}
+\begin{gathered}
+	is(Visit1,Visit)
 \end{gathered}
 \end{equation}
 After this, the system adds more contextual data to these concepts. Let's say
 the user arrived to the place on 19. Sept 2017 at 3pm, and is at the moment
-there 1minute. This converts into the following assertions being added, while
-removing possible prior assertions for the same user and visit combination:
+there for 3 minutes. This converts into the following assertions being added, 
+while removing possible prior assertions for the same user and visit 
+combination:
 \begin{equation}\label{as:probableContext}
 \begin{gathered}
 	probableUserLocation(User1,JoesPizza)
@@ -1338,7 +1345,7 @@ removing possible prior assertions for the same user and visit combination:
 and
 \begin{equation}\label{as:visitContext}
 \begin{gathered}
-	userVisit(User1,Visit1,1505746800,60)
+	userVisit(User1,Visit1,1505746800,180)
 \end{gathered}
 \end{equation}
 Then, continuing our example, whenrver te system gets a new GPS coordinate
@@ -1936,8 +1943,8 @@ stores the history of the conversation and allows rules like:
 	ccWantsToComment(x,userRepeatingItself(x))
 \end{gathered}
 \end{equation*}
-This (purely) example rule will produce a comment that user is repeating itself,
-when the user will respond with the same thing two times in a row.
+This (purely) example rule will produce a comment that user is repeating 
+himself, when the user will respond with the same thing two times in a row.
 
 At last, in the occasions when there are no new questions appearing on the list,
 the system will pick from the old ones in the order, until something will 
@@ -1949,6 +1956,15 @@ produce new follow-up questions/comments. As the final fallback, the system
 will randomly pick a concept from its KB and present it to the inference 
 engine as a current interest for the user.
 
+Now we can add some dialog formulation rules to be able to produce the
+examples from \autoref{tab:conversation1}. First, we want to define that
+the engine asks the user where he is, when it doesn't know that:
+\begin{equation}
+\begin{gathered}
+	\forall x \exists y:unknown(userLocation(x,y)) \implies \\
+	ccWantsToAsk(x,userLocation(x,\$y)
+\end{gathered}
+\end{equation}
 \hl{revise this section and possibly add missing assertions when constructing
 how everythin fits togehter. Maybe this chapter is not even necessary?}
 
@@ -2311,11 +2327,42 @@ true anymore.
 This section wraps up the approach and brings together the components described
 in \autoref{chapter:approach} into a coherent system, which we try to describe 
 through the example conversation presented in \autoref{tab:conversation1} and
-\autoref{tab:conversation2}.
+\autoref{tab:conversation2}. Each subsection below will explain the workflow
+and mechanisms required to produce one of the steps.
 
-\subsection{Step 1, Where are we?}
+\subsection{Step 1, Where are you?}
 \label{section:step1}
-Let's say our example user $User1$
+Let's say our example user $User1$ (defined with assertion \ref{as:user1}, see
+\ref{fig:restOntology}) was travelling for a while
+and now arrived at some restaurant. He is there for 3 minutes and just managed
+to find a table and sit down.
+
+He didn't touch his phone in a while, but the \emph{Curious Cat} periodically 
+wakes up and sendd a GPS coordinate to the \emph{Procedural Component} on the
+server side. While he was travelling, the \emph{SPD} algorithm 
+(\autoref{section:locationServlet}) was only returning data about the route. 
+Now, after the
+raw GPS coordinates were suddenly grouped around stable place, the algorithm 
+detects the cluster and its center, calls the Foursquare API and retrieves the 
+data about the location (restaurant called "Joe's Pizzza").
+
+Now the \emph{Procedural Component} does the following steps:
+\begin{enumerate}
+\item Converts the name of the place into a constant name $JoesPizza$ and next
+available concept of a visit $Visit1$ (see assertion \ref{as:joesPizzaVisit})
+\item Checks if it exists in our KB, and adds it if it doesn't (assertion 
+\ref{as:joesPizza}). 
+\item It also creates the new concept for visit, $Visit1$ (\ref{as:visit1}),
+and asserts the time of arrival and current duration of stay 
+(\ref{as:visitContext}).
+\item It removes all the existing occasions of $userLocation(User1,x)$ and 
+$probableUserLocation(User1,x)$
+\item It adds a new assertion $probableUserLocation(User1,JoesPizza)$ 
+(see assertion \ref{as:probableContext}).
+\end{enumerate}
+This last step triggers the inference angine (rule \ref{})
+
+
 To produce the \autoref{step:where} from \autoref{tab:conversation1},
 
 
