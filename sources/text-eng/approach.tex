@@ -34,7 +34,7 @@ and \ref{tab:conversation2}.
 	\hline
 	\step{step:where} 1& \makecell[l]{Where are you? \\Are you at Joe's Pizza?} & Yes.\\
     \hline
-	\step{step:kind} 2 & \makecell[l]{We've never been here before.\\ What kind of place this is?} & Restaurant.\\
+	\step{step:kind} 2 & \makecell[l]{What kind of place this is?} & Restaurant.\\
     \hline
     \step{step:wifi} 3 & Does Joe's Pizza have Wi-Fi? & Yes. \\
     \hline
@@ -1695,7 +1695,12 @@ examples from \autoref{tab:conversation1}. Starting with $userLocation$:
 Which should be enough to prouce conversions required for \autoref{step:where}
 from \autoref{tab:conversation1}. The argument variable enclosed in "[]" means
 that this pattern should have thiat argument unbound, but it will not be 
-used when generating the NL.
+used when generating the NL. Additionally, carful reader can notice that these
+two NL patterns are fixed to a personal pronoun "you". We did this here in the
+approach for simplicity, but the implementation handles the pronouns properly
+(see \autoref{section:cycnl}). Also, the functions generating NL can be given
+the "adresee", so the system knows when to use person's name, "you" or even
+I, when talking about itself.
 
 \begin{figure}[H]
 	\centering
@@ -2213,6 +2218,23 @@ place as illustrated in \autoref{fig:kbCorrectPosition}.
 	\label{fig:kbCorrectPosition}
 \end{figure}
 
+For the cases, when this more detailed placement is not done imediatelly after
+the first entrance of the concept, and cannot be handled by the 
+\emph{Procedural Component}, we can have a special rule which will cause
+the system to ask questions about more detailed positions:
+\begin{equation}\label{rule:autoSubclass}
+\begin{gathered}
+ \forall u \forall x \forall y \forall z:
+ is (u,User) \land \\
+ subclass(x,y) \land \\
+ subclass(x,z) \land \\
+ \lnot equals(z,x) \land \\
+ unknown(\lnot subclass(z,x)) \\
+ \implies\\
+ ccWantsToAsk(u,subclass(z,x))
+\end{gathered}
+\end{equation}
+This rule
 %section
 \section{Crowdsourcing Mechanisms}
 \label{section:crowdsourcing}
@@ -2416,5 +2438,11 @@ as part of the possible answer.
 
 Once user answers, the assertion $userLocation(User1,JoesPizza)$ will get
 asserted into the KB. This will also cause inference engine to retract these two
-questions, since user location is not unknown anymore.
+questions, since user location is not unknown anymore. At the same time the
+\emph{Procedural Component} will assert that the place that user visited is
+actually the $JoesPizza$, as aready shown in assertion \ref{as:placeVisit}.
 
+%subsection
+\subsection{What kind of place this is?}
+\label{section:step2}
+After
