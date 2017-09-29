@@ -34,7 +34,7 @@ and \ref{tab:conversation2}.
 	\hline
 	\step{step:where} 1& \makecell[l]{Where are you? \\Are you at Joe's Pizza?} & Yes.\\
     \hline
-	\step{step:kind} 2 & \makecell[l]{What kind of place this is?} & Restaurant.\\
+	\step{step:kind} 2 & \makecell[l]{What kind of thing is Joe's Pizza?} & Restaurant.\\
     \hline
     \step{step:wifi} 3 & Does Joe's Pizza have Wi-Fi? & Yes. \\
     \hline
@@ -2222,9 +2222,10 @@ For the cases, when this more detailed placement is not done imediatelly after
 the first entrance of the concept, and cannot be handled by the 
 \emph{Procedural Component}, we can have a special rule which will cause
 the system to ask questions about more detailed positions:
+
 \begin{equation}\label{rule:autoSubclass}
 \begin{gathered}
- \forall u \forall x \forall y \forall z:
+ \forall u \forall x \exists y \forall z:
  is (u,User) \land \\
  subclass(x,y) \land \\
  subclass(x,z) \land \\
@@ -2234,7 +2235,35 @@ the system to ask questions about more detailed positions:
  ccWantsToAsk(u,subclass(z,x))
 \end{gathered}
 \end{equation}
-This rule
+
+Or the same for instances: 
+
+\begin{equation}\label{rule:autoIs}
+\begin{gathered}
+ \forall u \forall x \exists y \forall z:
+ is (u,User) \land \\
+ is(x,y) \land \\
+ subclass(y,z) \land \\
+ unknown (is(x,z)) \land \\
+ unknown(\lnot is(x,z)) \\
+ \implies\\
+ ccWantsToAsk(u,is(x,z))
+\end{gathered}
+\end{equation}
+The rule above checks for each instance of some class, what are subclasses of 
+that class, and then checks whether the concept can be an instance of any of 
+these (if not already, or strictly asserted that not), then is proposes a
+list of questions for every of the possibilities. For example,
+$ccWantsToAsk(User1,is(JoesPizza,Restaurant))$ which converts to "Is Joes's 
+pizza a restaurant?". This rule works in cooperation with $class$ transitivity
+rule (\ref{rule:transitivity}), and $is$ transfer rule (\ref{rule:is_transfer}).
+If we do a slight change in the rule consequent ($ccWantsToAsk(u,is(x,\$z))$,
+this rule generates open-ended questions like "What kind of thing is Joe's
+pizza?" In our implementation (\autoref{chapter:implementation}), this was
+done with a slightly more complicated approach (using custom predicate), whic
+allowed us to include the initial class name in the questions as well 
+("What kind of \textbf{place} is Joe's pizza?"). 
+
 %section
 \section{Crowdsourcing Mechanisms}
 \label{section:crowdsourcing}
