@@ -40,7 +40,7 @@ and \ref{tab:conversation2}.
     \hline
     \step{step:fast} 4 & Is it fast enough to make Skype calls? & I don't know.\\
     \hline
-    \step{step:menu} 5 & What's on the menu in Joe's Pizza? & Pizzas.\\
+    \step{step:menu} 5 & What's on the menu at Joe's Pizza? & Pizzas.\\
 	\hline
     \multicolumn{3}{|c|}{...Some time passes while the user eats...}\\
 	\hline
@@ -1670,8 +1670,6 @@ instances of $Class$, representing whole classes of terms which can have
 multiple instances, and singular version when describing instances of
 other terms.
 
-\hl{add other required definitions to be able to do full example}
-
 The definitions (\autoref{def:predNlPattern}, \autoref{def:predName} and
 \autoref{def:predNamePlural}),
 are simplifified formulations of minimal required NL knowledge to be able to 
@@ -1719,7 +1717,7 @@ Then $is$ predicate NL pattern:
 \begin{equation}\label{as:nl:is}
 \begin{gathered}
     nlPattern(is,\text{"[\$2] What kind of thing is \$1?"}) \land \\
-    nlPattern(is,\text{"$1 is a $2."}
+    nlPattern(is,\text{"\$1 is a \$2."})
 \end{gathered}
 \end{equation}
 
@@ -1730,6 +1728,25 @@ Then $is$ predicate NL pattern:
     additions mareked with blue)}
 	\label{fig:nlKB}
 \end{figure}
+
+Also the pattern for $providesServiceType$:
+\begin{equation}\label{as:nl:providesServiceType}
+\begin{gathered}
+    nlPattern(providesServiceType,\text{"Does \$1 have \$2"}) \land \\
+    nlPattern(providesServiceType,\text{"Does \$1 provide \$2"})
+\end{gathered}
+\end{equation}
+
+And the classes:
+\begin{equation}\label{as:nl:classes}
+\begin{gathered}
+    name(Restaurant, \text{restaurant}) \land \\
+    name(WirelessService, \text{Wifi}) \land \\
+    name(WirelessService, \text{Wi-Fi}) \land \\
+\end{gathered}
+\end{equation}
+
+
 
 %subsubsection
 \subsection{NL to Logic}
@@ -2028,31 +2045,24 @@ all the variables in the question are boud to something, user can only confirm
 or reject the proposed question. There is nothing to be filled in):
 "Are you at Z?".
 
-Now lets define the rest of predicates and rules that are used in our examples 
+Now lets define the rest of rules that are used in our examples 
 from \autoref{tab:conversation1}. and KA dialog formulation.
 
-\begin{definition}[Predicate $hasWifi$]\label{def:hasWifi}
 To be able to ask about the Wi-fi signal, we need a vocabolary for storing this
-information and also for asking. This is done by introducing $hasWifi$ 
-predicate, formally defined as follows:
-\begin{equation}\label{as:hasWifi}
-\begin{gathered}
-	is(hasWifi, Predicate) \land \\
-	arity(hasWifi,1) \land \\
-	argIs(hasWifi,1,PublicPlace) \land \\
-	nlPattern(hasWifi,\text{"Does \$1 hafe Wi-Fi"})
-\end{gathered}
-\end{equation}
-Then, the KA rule that triggers questions about Wifi:
+information and also for asking. This is done by introducing the rule which
+generates the questions about the $providesServiceType$ predicate which was
+defined in the assertion \ref{as:providesServiceType}. The rule triggers
+when user is at the public place (not any place, to prevent too many questions):
+
 \begin{equation}\label{rule:haswifi}
 \begin{gathered}
 	\forall x\forall u: userLocation(u,x) \land
-	is (x,PublicPlace) \land unknown(hasWifi(x))\\
+	is (x,PublicPlace) \land \\
+	unknown(providesServiceType(x,WirelessService))\\
 	\implies \\
-	ccWantsToAsk(hasWifi(x))
+	ccWantsToAsk(providesServiceType(x,WirelessService))
 \end{gathered}
 \end{equation}
-\end{definition}
 
 \begin{definition}[Predicate $hasGoodWifi$]\label{def:hasGoodWifi}
 To be able to ask additional question about Wi-fi signal, introduce 
@@ -2066,18 +2076,19 @@ $hasGoodWifi$ predicate, formally defined as follows:
 	nlPattern(hasGoodWifi,\text{"Is Wifi at \$1 fast enough to make Skype calls"})
 \end{gathered}
 \end{equation}
-Then, the KA rule that triggers questions about Wifi:
-\begin{equation}\label{rule:haswifi}
+Then, the KA rule that triggers follow-up questions once we know that there
+is a wi-fi signal:
+\begin{equation}\label{rule:hasGoodWifi}
 \begin{gathered}
 	\forall x\forall u: userLocation(u,x) \land
-	is (x,PublicPlace) \land unknown(hasWifi(x))\\
+	is (x,PublicPlace) \land \\
+	providesServiceType(x,WirelessSignal) \land \\
+	unknown(hasGoodWifi(x) \\
 	\implies \\
-	ccWantsToAsk(hasWifi(x))
+	ccWantsToAsk(hasGoodWifi(x))
 \end{gathered}
 \end{equation}
 \end{definition}
-
-
 
 %Subsection
 \section{Consistency Check and KB Placement}
@@ -2403,7 +2414,8 @@ We are proposing two approaches:
 \item Crowdsourcing through repetition (\autoref{section:crowdRepetition}),
 \item and 2) Crowdsourcing through voting (\autoref{section:crowdVoting}).
 \end{enumerate}
-Crowdsourcing 1 is more advanced, since it includes type 2 as well, once the 
+Crowdsourcing approach 1 is more advanced, since it includes type 2 as well, 
+once the 
 repeated assertions from multiple users got promoted to $CuriousCatBelievesKB$. 
 Because it only promotes the knowledge which is asserted by multiple users 
 independently, there is reduced chance for temporal wrong knowledge staying in 
@@ -2417,6 +2429,57 @@ Initially we started with Crowdsourcing through repetition, but then
 decided (due to reasons above) to do our initial experiments 
 (described in \autoref{chapter:evaluation}, \autoref{section:resultsvoting}) 
 by using the "voting" option.
+
+Additionally to store the answers of different users in different microtheories,
+the system uses the voting results of users to influence the system's KA 
+behaviour towards these particular users (It is used as part of acquired user 
+context, \autoref{section:acquiredContext}). For example, if user states that 
+she agrees with some statement,
+this can be used to produce additional questions, or influence the questions
+that would appear otherwise. Similarly if the user doesn't agree, or doesn't
+know. This is especially useful to not ask users about particular concept, if
+they answered with "I don't know" at some point. For this, we use the following
+predicates that get asserted into the KB for each particular vote that appears
+in the system.
+
+\begin{definition}[Predicate $userAgrees$]\label{def:userAgrees}
+To be able to state that user agrees with something, \emph{CC} uses the 
+predicate $userAgrees$, formally defined as follows:
+\begin{equation}\label{as:userAgrees}
+\begin{gathered}
+	is(userAgrees, Predicate) \land \\
+	arity(userAgrees,2) \land \\
+	argIs(userAgrees,1,User) \land \\
+	argIs(userAgrees,2,Formula)\\
+\end{gathered}
+\end{equation}
+\end{definition}
+
+\begin{definition}[Predicate $userDoubts$]\label{def:userDoubts}
+To be able to state that user does not agree with something, \emph{CC} uses 
+the predicate $userDoubts$, formally defined as follows:
+\begin{equation}\label{as:userDoubts}
+\begin{gathered}
+	is(userDoubts, Predicate) \land \\
+	arity(userDoubts,2) \land \\
+	argIs(userDoubts,1,User) \land \\
+	argIs(userDoubts,2,Formula)\\
+\end{gathered}
+\end{equation}
+\end{definition}
+
+\begin{definition}[Predicate $userDontKnow$]\label{def:userDontKnow}
+To be able to state that user doesn't know the answer, \emph{CC} uses the 
+predicate $userDontKnow$, formally defined as follows:
+\begin{equation}\label{as:userDontKnow}
+\begin{gathered}
+	is(userDontKnow, Predicate) \land \\
+	arity(userDontKnow,2) \land \\
+	argIs(userDontKnow,1,User) \land \\
+	argIs(userDontKnow,2,Formula)\\
+\end{gathered}
+\end{equation}
+\end{definition}
 
 %subsection
 \subsection{Crowdsourcing through repetition}
@@ -2544,7 +2607,7 @@ questions, since user location is not unknown anymore. At the same time the
 actually the $JoesPizza$, as aready shown in assertion \ref{as:placeVisit}.
 
 %subsection
-\subsection{What kind of place this is?}
+\subsection{Step 2. What kind of place this is?}
 \label{section:step2}
 After the $userLocation(User1,JoesPizza)$ got asserted into the KB, the 
 inference engine runs through all the rules that use this preicate in the
@@ -2589,11 +2652,38 @@ that this answer is consistent with our KB and can be asserted
 ($is(JoesPizza,Restaurant$)).
 
 %subsection
-\subsection{Does Joe's Pizza have Wi-Fi?}
+\subsection{Step 3. Does Joe's Pizza have Wi-Fi?}
 \label{section:step3}
 The assertion ($is(JoesPizza,Restaurant$)) which got asserted as a consequence
-of answering step \ref{step:kind} from the \autoref{tab:conversation1} (see
+to answering step \ref{step:kind} from the \autoref{tab:conversation1} (see
 previous subsection above), triggers the rule \ref{rule:haswifi}, which 
-produces the following assertion: .
+produces the following assertion: 
+\begin{equation*}
+ccWantsToAsk(providesServiceType(JoesPizza,WirelessService)).
+\end{equation*}
+Then, it gets converted into NL ("Does Joe's Pizza have Wi-Fi?", 
+assertion \ref{as:nl:providesServiceType}), 
+and once user responds with "yes", the assertion 
+($providesServiceType(JoesPizza,WirelessService)$) goes into the KB under the 
+User1's microtheory.
 
+%subsection
+\subsection{Step 4. Is it fast enough to make Skype calls?}
+\label{section:step3}
+Similarly as previous question, this one is triggered after the system knows
+Joe's Pizza has wifi (due to $\land $ constraint in the antecedent of rule 
+\ref{rule:hasGoodWifi}). This rule produces the 
+$ccWantsToAsk(hasGoodWifi(JoesPizza)$, which converted to NL appears as 
+"Is it fast enough to make Skype calls?", as defined in assertion 
+\ref{as:hasGoodWifi} and visible in example step \ref{step:fast} in 
+\autoref{tab:conversation1}.
 
+After user answers with "I don't know" (\ref{tab:conversation1}), this is picked
+up by the \emph{Procedural Component} and asserted into the KB as 
+$userDontKnow(User1,hasGoodWifi(JoesPizza))$, which can then be used by further 
+rules.
+
+%subsection
+\subsection{Step 5. What's on the menu at Joe's Pizza?}
+\label{section:step5}
+S
