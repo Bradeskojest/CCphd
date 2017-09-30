@@ -1070,6 +1070,19 @@ would support the encapsulated $is$ statement. The predicate is formally defined
 \end{equation}
 \end{definition}
 
+Similarly, we need a way to tell whether two concepts of formulas are the same.
+\begin{definition}[predicate "$equals$"]\label{def:pred_equals}
+Predicate $equals(x,y)$ denotes that the concept or formula $x$ is exactly 
+the same as $y$. For example, $equals(Dog,Dog)$ is true, while 
+$equals(Dog,Cat)$ is not. The predicate is formally defined as follows:
+\begin{equation}\label{as:equals}
+\begin{gathered}
+	is(equals,Predicate) \land arity(equals,2)\\
+ 	\land argIs(equals,1,Something) \land argIs(equals,1,Something)
+\end{gathered}
+\end{equation}
+\end{definition}
+
 And now one of the main KA predicates, which is used to provide the CC system
 with the formulas which need to be converted to NL and presented to the user.
 
@@ -1684,7 +1697,7 @@ then the system could notice that its missing the plural version of the word
 for the concept $Pizza$ and ask for it: $namePlural(WordForPizza,x)$ 
 (converted to NL: "What is the plural word for 'pizza'?".
 
-Now we can define some more nlPatterns, to be able to cover fully the
+Now we can define some more nlPatterns, to be able to fully cover the
 examples from \autoref{tab:conversation1}. Starting with $userLocation$:
 \begin{equation}\label{as:nl:userLocation}
 \begin{gathered}
@@ -1701,6 +1714,14 @@ approach for simplicity, but the implementation handles the pronouns properly
 (see \autoref{section:cycnl}). Also, the functions generating NL can be given
 the "adresee", so the system knows when to use person's name, "you" or even
 I, when talking about itself.
+
+Then $is$ predicate NL pattern:
+\begin{equation}\label{as:nl:is}
+\begin{gathered}
+    nlPattern(is,\text{"[\$2] What kind of thing is \$1?"}) \land \\
+    nlPattern(is,\text{"$1 is a $2."}
+\end{gathered}
+\end{equation}
 
 \begin{figure}[H]
 	\centering
@@ -2002,11 +2023,61 @@ this should trigger a "confirm" question:
 \end{gathered}
 \end{equation}
 This rule detects the insertion of $probableUserLocation$, and if it's not
-yet confirmed, it causes the inference to produce a yes/no question:
+yet confirmed, it causes the inference to produce a yes/no question (when
+all the variables in the question are boud to something, user can only confirm
+or reject the proposed question. There is nothing to be filled in):
 "Are you at Z?".
 
-\hl{revise this section and possibly add missing assertions when constructing
-how everythin fits togehter. Maybe this chapter is not even necessary?}
+Now lets define the rest of predicates and rules that are used in our examples 
+from \autoref{tab:conversation1}. and KA dialog formulation.
+
+\begin{definition}[Predicate $hasWifi$]\label{def:hasWifi}
+To be able to ask about the Wi-fi signal, we need a vocabolary for storing this
+information and also for asking. This is done by introducing $hasWifi$ 
+predicate, formally defined as follows:
+\begin{equation}\label{as:hasWifi}
+\begin{gathered}
+	is(hasWifi, Predicate) \land \\
+	arity(hasWifi,1) \land \\
+	argIs(hasWifi,1,PublicPlace) \land \\
+	nlPattern(hasWifi,\text{"Does \$1 hafe Wi-Fi"})
+\end{gathered}
+\end{equation}
+Then, the KA rule that triggers questions about Wifi:
+\begin{equation}\label{rule:haswifi}
+\begin{gathered}
+	\forall x\forall u: userLocation(u,x) \land
+	is (x,PublicPlace) \land unknown(hasWifi(x))\\
+	\implies \\
+	ccWantsToAsk(hasWifi(x))
+\end{gathered}
+\end{equation}
+\end{definition}
+
+\begin{definition}[Predicate $hasGoodWifi$]\label{def:hasGoodWifi}
+To be able to ask additional question about Wi-fi signal, introduce 
+$hasGoodWifi$ predicate, formally defined as follows:
+\begin{equation}\label{as:hasGoodWifi}
+\begin{gathered}
+	is(hasGoodWifi, Predicate) \land \\
+	arity(hasGoodWifi,1) \land \\
+	argIs(hasGoodWifi,1,PublicPlace) \land \\
+	nlPattern(hasGoodWifi,\text{"Is it fast enought to make Skype calls"})\land\\
+	nlPattern(hasGoodWifi,\text{"Is Wifi at \$1 fast enough to make Skype calls"})
+\end{gathered}
+\end{equation}
+Then, the KA rule that triggers questions about Wifi:
+\begin{equation}\label{rule:haswifi}
+\begin{gathered}
+	\forall x\forall u: userLocation(u,x) \land
+	is (x,PublicPlace) \land unknown(hasWifi(x))\\
+	\implies \\
+	ccWantsToAsk(hasWifi(x))
+\end{gathered}
+\end{equation}
+\end{definition}
+
+
 
 %Subsection
 \section{Consistency Check and KB Placement}
@@ -2062,7 +2133,7 @@ with the argumentconstraints on the predicate as defined in assertion
 (hypothetical example, different than in \autoref{tab:conversation1}, step
 \ref{step:pizzadeluxe}) which exists in our KB, the system can ask the inference
 engine the following type of general query:
-\begin{equation}
+\begin{equation}\label{q:generalConstraint}
 \begin{gathered}
     Q:name(x,\$answer)\land \\ % TERM?=x
     argIs(\$pred,\$argPos,y)\land \\ %ARGIS?=y
@@ -2260,7 +2331,7 @@ rule (\ref{rule:transitivity}), and $is$ transfer rule (\ref{rule:is_transfer}).
 If we do a slight change in the rule consequent ($ccWantsToAsk(u,is(x,\$z))$,
 this rule generates open-ended questions like "What kind of thing is Joe's
 pizza?" In our implementation (\autoref{chapter:implementation}), this was
-done with a slightly more complicated approach (using custom predicate), whic
+done with a slightly more complicated approach (using custom predicate), which
 allowed us to include the initial class name in the questions as well 
 ("What kind of \textbf{place} is Joe's pizza?"). 
 
@@ -2461,17 +2532,68 @@ second assertion (better defined).
 
 These assertions are then converted to NL (according to assertions in 
 \ref{as:nl:userLocation}), and presented to the user as \autoref{step:where} 
-(\autoref{tab:conversation1}). Because the main question has novariables, it
+(\autoref{tab:conversation1}). Because the main question has no variables, it
 can be only true or not, so \emph{CC} already provides the "yes/no" options
 as part of the possible answer.
 
-Once user answers, the assertion $userLocation(User1,JoesPizza)$ will get
-asserted into the KB. This will also cause inference engine to retract these two
+Once user answered, the assertion $userLocation(User1,JoesPizza)$ got 
+asserted into the KB, and $JoesPizza$ set as the current topic. This 
+also caused inference engine to retract the 
 questions, since user location is not unknown anymore. At the same time the
-\emph{Procedural Component} will assert that the place that user visited is
+\emph{Procedural Component}  asserts that the place that user visited is
 actually the $JoesPizza$, as aready shown in assertion \ref{as:placeVisit}.
 
 %subsection
 \subsection{What kind of place this is?}
 \label{section:step2}
-After
+After the $userLocation(User1,JoesPizza)$ got asserted into the KB, the 
+inference engine runs through all the rules that use this preicate in the
+antecedent, which causes the rule \ref{rule:autoIs} (the version with unbound
+variable) to assert $ccWantsToAsk(User1, is(JoesPizza,x))$. This according to
+assertion \ref{as:nl:is} produces the NL text 
+"What kind of thing is Joe's Pizza?" (step \autoref{step:kind}, 
+\autoref{tab:conversation1}).
+
+When user answers with "Restaurant", the engine (as described in 
+\autoref{section:consistency}), replaces the general query 
+\ref{q:generalConstraint} with the appropriate instance:
+\begin{equation}\label{q:realConstraint}
+\begin{gathered}
+    Q:name(x,"restaurant")\land \\ % TERM?=x
+    argIs(is,2,y)\land \\ %ARGIS?=y
+    is(x,y)\land \\
+    \left(
+    \begin{tabular}{c}
+        $argClass(is,2,z) \land subclass(x,z)$\\
+        $\lor$\\
+        $unknown(\exists z:argClass(is,2,z))$ \\
+    \end{tabular}
+    \right)
+\end{gathered}
+\end{equation}
+which returns the results:
+\begin{table}[H]
+\centering
+\caption{Results for query \ref{q:realConstraint}.}
+\label{tab:realConstraintResults}
+\begin{tabular}{|c|c|c|}
+	\hline
+	\textbf{x} & \textbf{y} & \textbf{z} \\
+    \hline
+    $Restaurant$ & $Class$ & / \\
+    \hline
+\end{tabular}
+\end{table}
+which is a signal to the system (as described in \autoref{section:consistency}),
+that this answer is consistent with our KB and can be asserted 
+($is(JoesPizza,Restaurant$)).
+
+%subsection
+\subsection{Does Joe's Pizza have Wi-Fi?}
+\label{section:step3}
+The assertion ($is(JoesPizza,Restaurant$)) which got asserted as a consequence
+of answering step \ref{step:kind} from the \autoref{tab:conversation1} (see
+previous subsection above), triggers the rule \ref{rule:haswifi}, which 
+produces the following assertion: .
+
+
