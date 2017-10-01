@@ -554,8 +554,10 @@ The first part of the clustering algorithm is an improved implementation of
 already mentioned (\autoref{section:SPD1} in \autoref{chapter:related} and
 described in \autoref{section:minedContext} in \autoref{chapter:approach})
 SPD (Staypoint Detection) algorithm\parencite{Kang2005}. Our improvements
-and extension to the algorithm improved the accuracy and robustness by a
-large factor\footnote{A paper with the full explanation and evaluation of 
+and extension to the algorithm\parencite{Kazic2017} improved the accuracy and 
+robustness by a
+large factor\footnote{An additional paper with the full explanation and 
+evaluation of 
 extended SPD algorithm that can be used in any location-based application is 
 in preparation}, and can be quickly summarized:
 \begin{itemize}
@@ -577,6 +579,8 @@ the detected clusters at the end of each iteration. It creates one visit
 (staypoint) on the occasions when the path between two same locations lasts 
 less than a given threshold, which is the most common mistake appearing in the
 results of the original algorithm.
+\item Adding an additional analytics steps, including enrichment of the detected
+staypoints and predicting user's next destinations.
 \end{itemize}
 
 This algorithm through the years while \emph{CC} is online evolved from a few

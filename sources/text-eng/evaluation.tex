@@ -3,23 +3,28 @@
 \chapter{Evaluation}
 \label{chapter:evaluation}
 %--------------------------------------------------------------------------------
-\hl{Go through this, re-paraphrase - it was copied from the paper}
-Validation of the proposed approach was performed using our Curious Cat system 
-running alive over the course of 4 years engaging a total of 728 registered 
-users. During that time, the users checked-into 5,551 locations and responded 
-to 57,978 questions, of which 8,611 were voting questions (7,560 positive and 
-1,051 negative votes), 18,907 answered with "I dont know", and 30,460 real 
-answers inserted into the KB as new knowledge, including 31,140 concepts 
-(3,171 on users, 22,563 check-ins and other places and 5,406 other concepts). 
+
+Validation of the proposed approach was performed using our \emph{Curious Cat}
+implementation of the proposed KA approach, running alive over the course of 4 
+years engaging a total of 728 registered 
+users (users which are part of the experiment. Overall the implementation have
+some additional users). During that time, the users checked-into 5,551 locations
+and responded 
+to 57,978 questions, out of which 8,611 were voting questions (7,560 positive 
+and 1,051 negative votes), 18,907 questions were answered with "I dont know", 
+and 30,460 real answers was inserted into the KB as new knowledge, including 
+31,140 concepts (3,171 connected to instances of $User$ concept, 22,563 
+check-ins and other places, and 5,406 other concepts). 
 These triggered additional 386,980 assertions to be added through 
 forward-chained inference. These can be separated into facts (374,300 
 assertions) and additional derived question generating rules and questions 
-(12,680). Altogether we gathered 444,958 (374,300 + 30,460) pieces of 
+(12,680). Altogether we gathered \textbf{444,958 (374,300 + 30,460)} pieces of 
 completely new knowledge. 
 
-For easier understanding, we show the structure of the collected knowledge 
+For easier understanding of the results, we show the structure of the collected
+knowledge 
 graphically in \autoref{fig:results}, and give real examples of the collected 
-and inferred knowledge in \autoref{tab:results}.
+and inferred knowledge in \autoref{tab:ccresultexamples}.
 
 \begin{figure}[h]
 	\centering
@@ -63,18 +68,21 @@ and inferred knowledge in \autoref{tab:results}.
 \end{tabular}
 \end{table}
 
-While the resulting number and quality (\hl{Table XI, Table XII}) of assertions
+While the resulting number and quality (\autoref{tab:baselines}, 
+\autoref{tab:validity}) of assertions
 shows that the presented approach can be successfully used for high quality KA,
 we explored in more detail the contributions of specific characteristics of our
 system and compare them to the baselines, to evaluate the ideas and claims
 of the approach:
 \begin{enumerate}
 \item Using context to proactively drive the KA increases engagement and the 
-chance of getting an answer (\hl{ref old 5.1})
+chance of getting an answer (\autoref{section:evaluationContext})
 \item Pre-existing knowledge and automated inference can be used to filter-out 
 inconsistent answers and thus increase the quality of the acquired knowledge
-\item Using newly acquired knowledge to further drive the KA process increases the amount of acquired answers and reach of the system
-\item Crowdsourcing additionally improves the results by filtering wrong but logically correct answers
+\item Using newly acquired knowledge to further drive the KA process increases
+the amount of acquired answers and reach of the system
+\item Crowdsourcing additionally improves the results by filtering wrong but 
+logically correct answers
 \end{enumerate}
 
 \section{Context and Proactivity}
@@ -122,8 +130,8 @@ max 61 active users). For this reason, we calculated the mean values of all
 18 windows which had the same number of new users as \emph{NC100}. Matching 
 new users (instead of active users) was selected because new users are the
 ones that contribute most of the assertions, since their interest winds down 
-gradually. This can be seen on \hl{old Fig. 13}. This is also the primary 
-reason why (unintuitively) number of new assertions/day/active user 
+gradually. This can be seen on \autoref{fig:followups}. This is also the 
+primary reason why (unintuitively) number of new assertions/day/active user 
 (row 7 in {utoref{tab:ccresultscompare}) is higher without context 
 (\emph{NC100}) than for  non-normalized data from experiment using context 
 (\emph{C}).
@@ -185,8 +193,8 @@ question there was.
 \subsection{Consistency Checking}
 \label{section:resultsConsistencyChecking}
 Before the system accepts the answer from the user (as described in 
-\hl{old section 4.6}), it converts it into logic and checks whether it is 
-consistent with its current knowledge. If there is an inconsistency, it will 
+\autoref{section:consistency}), it converts it into logic and checks whether it 
+is consistent with its current knowledge. If there is an inconsistency, it will 
 reject the answer and thus prevent the wrong or contradicting knowledge to 
 corrupt the KB and consequently the future KA process. The user then either has
 to fix the answer, or convince the system that the answer is actually only a 
@@ -340,7 +348,8 @@ we got additional 123 answers from other users.
 \subsection{Voting}
 \label{section:resultsvoting}
 The voting part of the system is, besides directly providing the answers, 
-one of the main crowdsourcing components. As described in \hl{old section 2.5}, 
+one of the main crowdsourcing components. As described in 
+\autoref{section:crowdsourcing}, 
 after the knowledge is acquired, the system can re-check with other users 
 whether the assertion is true or not. This is done by presenting a question in 
 the form: "Is it true that [assertion].", which can be answered with "yes" or 
@@ -517,7 +526,7 @@ distinguish them and picked the wrong one. For users, everything seemed
 perfectly correct even though a logical error resulted.
 \item Twice the user entered a complex sentence instead of a name of the 
 concept and that forced the system to create a concept with that name (a
-consequence of disabled SCG\hl{see ref}).
+consequence of disabled SCG (see \autoref{section:cycnl}).
 \end{enumerate}
 
 Looking more in details of the usefulness of the retrieved knowledge, there 
