@@ -1788,7 +1788,8 @@ And the classes:
     name(WirelessService, \text{"Wi-Fi"}) \land \\
 	name(Pizza, \text{"pizza"}) \land \\
 	namePlural(Pizza, \text{"pizzas}) \land \\
-	name(Car, \text{"car"})
+	name(Car, \text{"car"}) \land \\
+	name(FoodOrDrink, \text{"food or drink"}) \\
 \end{gathered}
 \end{equation}
 
@@ -2203,7 +2204,7 @@ ask
 (menuItem(JoesPizza,x))
 \end{gathered}
 \end{equation*}
-with the argumentconstraints on the predicate as defined in assertion 
+with the argument constraints on the predicate as defined in assertion 
 \ref{as:pred_menuItem}. Assuming that the user answers with "Pizza Margherita"
 (hypothetical example, different than in \autoref{tab:conversation1}, step
 \ref{step:pizzadeluxe}) which exists in our KB, the system can ask the inference
@@ -2273,7 +2274,7 @@ above would return nothing. This would happen as well, if the user should say
 results (as would happen for "car"), we need to separately check whether the 
 concept exists:
 \begin{equation}\label{q:nameCar}
-Q:name(x,"car")
+Q:name(x,\text{"car"})
 \end{equation}
 If it does (i.e. the querly \ref{q:nameCar} above returns the resulting 
 concepts), then the answer is actually invalid on structural grounds (the term 
@@ -2794,6 +2795,38 @@ test the system), \emph{CC} responds as descirbed in the next subsection
 %subsection
 \subsection{Step 7. I've never heard of food or drink called 'car' before.}
 \label{section:step7}
-aa
+After the user answers with a "car" to the question in step \ref{step:car}, the
+\emph{consistency check} subsystem of \emph{CC} checks the argument constraints
+of the predicate $userOrdered$ via the query defined in the asseertion 
+\ref{q:generalConstraint}. First it modifies this query to reflect the proper
+predicate:
 
+\begin{equation}\label{q:orderedConstraint1}
+\begin{gathered}
+   Q:name(x,\text{"car"})\land \\ 
+    argIs(userOrdered,3,y)\land \\
+    is(x,y)\land \\
+    \left(
+    \begin{tabular}{c}
+        $argClass(userOrdered,3,z) \land  subclass(x,z)$\\
+        $\lor$\\
+        $unknown(\exists z: argClass(userOrdered,3,z))$ \\
+    \end{tabular}
+    \right)
+\end{gathered}
+\end{equation}
+
+The query (query \ref{q:orderedConstraint1)} above doesn't return any results,
+so according to the approach described in section \ref{section:consistency}, 
+the system goes to check whether it knows anything about the concept called 
+'car', as shown in the query \ref{q:nameCar} ($Q:name(x,\text{"car"})$.
+Since this query returns the result (according to our existing KB) $Car$, 
+\emph{CC} KA Engine can know that this answer is actually inconsistant, because
+the previous query (qeury \ref{q:orderedConstraing1}) would otherwise return
+the resulting concept.
+For this reason the \emph{Procedural Component} responds with a double check
+question, making sure that the user really meant the answer: 
+"I've never heard of food or drink called 'car' before. Are you sure it's a type of food or drink?". This question is again constructed from a textual template,
+and names of the involved classes ($FooOrDrink$, $Car$). When user answers with
+'no', the system abandons the answer and continues with the KA.
 
