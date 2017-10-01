@@ -50,7 +50,7 @@ and \ref{tab:conversation2}.
 	\hline
 	\step{step:pizzadeluxe} 8 & What did you order? & Pizza Deluxe \\
 	\hline
-	\step{step:deluxething} 9 & \makecell[l]{I've never heard of 'Pizza Deluxe' before.\\What kind of thing is it?} & Pizza. \\
+	\step{step:deluxething} 9 & \makecell[l]{I've never heard of 'Pizza Deluxe' before.\\What kind of food or drink is it?} & pizza. \\
 	\hline 
 \end{tabular}
 \end{table}
@@ -2830,3 +2830,41 @@ question, making sure that the user really meant the answer:
 and names of the involved classes ($FooOrDrink$, $Car$). When user answers with
 'no', the system abandons the answer and continues with the KA.
 
+%subsection
+\subsection{What did you order? The second time}
+\label{section:step8}
+Since nothing changed in the KB that would cause the retraction of the 
+$ccWantsToAsk(User1,userOrdered(User1,Visit1,x))$ question that appeared in the
+step \ref{step:car}, and nothing new appeared in meantime, the system repeats
+that question. But, as visible in the \autoref{tab:conversation1}, step 
+\ref{step:pizzadeluxe}, the user is more sincere this time and answers with
+'Pizza Deluxe'. See the next step (\autoref{section:step9} for how the system 
+reacts.
+
+%subsection
+\subsection{I've never heard of 'Pizza Deluxe' before.}
+\label{section:step9}
+Now the first thing the engine does to verify this answer is exactly the same 
+as described in \autoref{section:step7} above 
+(query \ref{q:orderedConstraint1} doesn't return any results), but the second
+query ($name(x,"Pizza Deluxe"$) now also doesn't return the results, so 
+'Pizza Deluxe' is not known to be an inconsistent answer (it can still be), but
+more likely it's a new type of $FoodOrDrink$. For this reason the engine
+responds with "I've never heard of 'Pizza Deluxe' before. Whhat kind of
+food or drink is it?" (step \ref{step:deluxething} in 
+\autoref{tab:conversation1}). Additionally to present the question, it also
+provides the possible answers (all of the subclasses of the concept 
+$FoodOrDrink$, and additional option "it's not a food or drink."). This allows
+the user to imediatelly place the new concept correctly, or reject it and 
+thus behave the same as in the step\ref{step:surecar} before. In this case
+user picked the "pizza", which is then asserted into the KB as the 
+following assertions:
+\begin{equation}
+\begin{gathered}
+subclass(PizzaDeluxe,FoodOrDrink) \land \\
+name(PizzaDeluxe, \text{"Pizza Deluxe"}) \land \\
+userOrdered(User1,Visit1,PizzaDeluxe)
+\end{gathered}
+\end{equation}
+This way the system learnt about a completely new concept and placed it properly
+into the existing KB hierarchy.
