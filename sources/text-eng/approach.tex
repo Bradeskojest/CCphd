@@ -46,9 +46,9 @@ and \ref{tab:conversation2}.
 	\hline
 	\step{step:car} 6 & What did you order? & A car. \\
 	\hline
-	\step{step:surecar} 7 & \makecell[l]{I've never heard of food called 'car' before. \\ Are you sure it's a type of food?} & No. \\
+	\step{step:surecar} 7 & \makecell[l]{I've never heard of food or drink called 'car' before. \\ Are you sure it's a type of food or drink?} & No. \\
 	\hline
-	\step{step:pizzadeluxe} 8 & What did you order then? & Pizza Deluxe \\
+	\step{step:pizzadeluxe} 8 & What did you order? & Pizza Deluxe \\
 	\hline
 	\step{step:deluxething} 9 & \makecell[l]{I've never heard of 'Pizza Deluxe' before.\\What kind of thing is it?} & Pizza. \\
 	\hline 
@@ -1787,7 +1787,8 @@ And the classes:
     name(WirelessService, \text{"Wifi"}) \land \\
     name(WirelessService, \text{"Wi-Fi"}) \land \\
 	name(Pizza, \text{"pizza"}) \land \\
-	namePlural(Pizza, \text{"pizzas})
+	namePlural(Pizza, \text{"pizzas}) \land \\
+	name(Car, \text{"car"})
 \end{gathered}
 \end{equation}
 
@@ -2773,6 +2774,26 @@ kb.
 %subsection
 \subsection{Step 6. What did you order?}
 \label{section:step6}
-dada 
+As was described in the sections \ref{section:context} and 
+\ref{section:locationServlet}, \emph{Procedural Component} and the \emph{CC} 
+client are  waking up periodically to mine the user context and among other 
+things, also assert how long the user is at a particular location. In this case
+(following our example conversation), the place is Joe's Pizza, represented
+by $JoesPizza$ and $Visit1$ concepts. Consequently, erven when user is not
+using \emph{CC}, the system is updating the assertion 
+$userVisit(User1,Visit1,1505746857, t)$, to reflect the time of stay at 
+particular location (represented by $t$, see assertions \ref{as:visitContext} 
+and \ref{as:visitContext1}). Once the user stays at the place for more than
+10 minutes (600 seconds), the rule \ref{rule:whatOrdered} will fire and 
+trigger the \emph{CC} to ask $ccWantsToAsk(User1,userordered(User1,Visit1,x))$
+question, which converted to NL (assertion \ref{as:nl:userOrdered}) appears as 
+"What did you order?". After the user answers with a "car" (maybe trying to 
+test the system), \emph{CC} responds as descirbed in the next subsection 
+(\autoref{section:step7}) below.
+
+%subsection
+\subsection{Step 7. I've never heard of food or drink called 'car' before.}
+\label{section:step7}
+aa
 
 
