@@ -77,9 +77,9 @@ This is explained in more detail in \autoref{section:crowdsourcing}.
 	\multirow{2}{2em}{Step num.} & \multicolumn{2}{c|}{Interaction}\\\cline{2-3}
 	& \multicolumn{1}{c|}{Curious Cat} & User2 \\
 	\hline
-	10 & \makecell[l]{Where are you? \\Are you at Joe's Pizza restaurant?} & Yes.\\
+	\step{step:where2} 10 & \makecell[l]{Where are you? \\Are you at Joe's Pizza restaurant?} & Yes.\\
     \hline
-	11 & \makecell[l]{Is it true that it has Pizza Deluxe on the menu?} & Yes.\\
+	\step{step:votecheck} 11 & \makecell[l]{Is it true that it has Pizza Deluxe on the menu?} & Yes.\\
     \hline
 \end{tabular}
 \end{table}
@@ -997,6 +997,18 @@ sub-classes of class $Service$ for the second. Similarly, the predicate
 $userOrdered$ can only take instances of $User$ for the first argument, 
 instances of $Visit$ for the second, and subclasses of $FoodOrDrink$ for the
 third.
+
+At this point we can also add an inference rule, stating that if user ordered
+something at some place, then this same thing is on the menu at this place as
+well:
+\begin{equation}\label{rule:orderedMenu}
+\begin{gathered}
+	placeVisit(p,v) \land
+	userOrdered(u,v,x) \land
+	\implies \\
+	menuItem(p,x) 
+\end{gathered}
+\end{equation}
 
 \begin{definition}[predicate $userLocation$]\label{def:userLocation}
 Predicate $userLocation(x,y)$ denotes that user $x$ is located at place 
@@ -2831,7 +2843,7 @@ and names of the involved classes ($FooOrDrink$, $Car$). When user answers with
 'no', the system abandons the answer and continues with the KA.
 
 %subsection
-\subsection{What did you order? The second time}
+\subsection{Step 8. What did you order? The second time}
 \label{section:step8}
 Since nothing changed in the KB that would cause the retraction of the 
 $ccWantsToAsk(User1,userOrdered(User1,Visit1,x))$ question that appeared in the
@@ -2842,7 +2854,7 @@ that question. But, as visible in the \autoref{tab:conversation1}, step
 reacts.
 
 %subsection
-\subsection{I've never heard of 'Pizza Deluxe' before.}
+\subsection{Step 9. I've never heard of 'Pizza Deluxe' before.}
 \label{section:step9}
 Now the first thing the engine does to verify this answer is exactly the same 
 as described in \autoref{section:step7} above 
@@ -2863,8 +2875,43 @@ following assertions:
 \begin{gathered}
 subclass(PizzaDeluxe,FoodOrDrink) \land \\
 name(PizzaDeluxe, \text{"Pizza Deluxe"}) \land \\
-userOrdered(User1,Visit1,PizzaDeluxe)
+userOrdered(User1,Visit1,PizzaDeluxe) \land \\
+menuItem(JoesPizza,PizzaDeluxe)
 \end{gathered}
 \end{equation}
 This way the system learnt about a completely new concept and placed it properly
 into the existing KB hierarchy.
+
+Additionally, after this is inserted, the new knowledge triggers the inferenece
+rule (rule \ref{rule:orderedMenu}), and produces an additional piece of 
+knowledge, that the "Pizza Deluxe" which the user just ordered is also on the
+menu in Joe's Restaurant: $menuItem(JoesPizza,PizzaDeluxe)$.
+
+%subsection
+\subsection{Step 10. User2, Where are you?}
+\label{section:step10}
+Now, to produce this step (step \ref{step:where2}, \autoref{tab:conversation2}),
+\emph{CC} does exactly the same things as for step \ref{step:where}, but now
+for a diffeerent user $User2$. To see how it constructs, and answer this 
+question refer to \autoref{section:step1}. After this visit of $User2$ gets 
+asserted to the KB, \emph{CC} detects that there is already some knowledge
+for this place which has not been verified, and additionally to start asking
+questions it also wakes up  the \emph{Crowdsourcing Module}. See next step
+(\autoref{section:step11}).
+
+%subsection
+\subsection{Step 11. Is it true that Joe's Pizza has Pizza Deluxe on the menu?}
+\label{section:step11}
+As mentioned in the previous step (\autoref{section:step10}), \emph{CC} 
+finds unconfirmed knowledge on the same topic as is the topic of $User2$, which
+was provuided by other users. One assertion like this is 
+$menuItem(JoesPizza,PizzaDeluxe)$, which it checks with the new user ($User2$),
+by simply stating it in English and adding a prefix "Is it true that" to the
+sentence.
+In this case user checks the menu and answers with "yes", which results in the
+additional assertion in the KB: 
+$userAgrees(User2,menuItem(JoesPizza,Pizzadeluxe))$, which can be then used
+by the \emph{Voting Component} to confirm the truth, and also as an additional
+kwnoeldge about the user (what he agrees with) and used by other inference
+rules to produce more questions.
+
