@@ -961,7 +961,8 @@ menuItem(Restaurant1,Coffee)
 
 Besides the 
 items on the menu, to explain our examples, we also need a way to tell that
-a place provides some services.
+a place provides some services and that user ordered something vhile visiting
+a restaurant.
 
 \begin{definition}[predicate $providesServiceType$]\label{def:serviceType}
 Predicate $providesServiceType(x,y)$ denotes that place $x$ provides service 
@@ -974,10 +975,28 @@ $y$. Formally it is defined as:
 \end{gathered}
 \end{equation}
 \end{definition}
+
+\begin{definition}[predicate $userOrdered$]\label{def:userOrdered}
+Predicate $userOrdered(x,y,z)$ denotes that user $x$ as part of his visit $y$ 
+ordered something from the menu $z$. Formally it is defined as:
+\begin{equation}\label{as:userOrdered}
+\begin{gathered}
+    is(userOrdered,Predicate) \land \\
+    arity(userOrdered,3) \land \\
+	argIs(userOrdered,1,User) \land\\
+    argIs(userOrdered,2,Visit) \land \\
+	argClass(userOrdered,3, FoodOrDrink)
+\end{gathered}
+\end{equation}
+\end{definition}
+
 As defined in the Assertion \ref{as:providesServiceType}, $providesServiceType$
 constraints allow us to only use instances of class $Place$ (Public,Private,
 Home,Restaurant for the current stage of the KB) for the first argument, and 
-sub-classes of class $Service$ for the second. 
+sub-classes of class $Service$ for the second. Similarly, the predicate
+$userOrdered$ can only take instances of $User$ for the first argument, 
+instances of $Visit$ for the second, and subclasses of $FoodOrDrink$ for the
+third.
 
 \begin{definition}[predicate $userLocation$]\label{def:userLocation}
 Predicate $userLocation(x,y)$ denotes that user $x$ is located at place 
@@ -1365,7 +1384,7 @@ and
 	userVisit(User1,Visit1,1505746800,180)
 \end{gathered}
 \end{equation}
-Then, continuing our example, whenrver te system gets a new GPS coordinate
+Then, continuing our example, whenever te system gets a new GPS coordinate
 (let's say in 10 seconds), and consequently our algorithms calculate context 
 update, the system deletes the Assertion \ref{as:visitContext}, and updates it
 with new data:
@@ -1752,6 +1771,15 @@ Also the pattern for $providesServiceType$:
 \end{gathered}
 \end{equation}
 
+And for $userOrdered$:
+\begin{equation}\label{as:nl:userOrdered}
+\begin{gathered}
+    nlPattern(userOrdered,\text{"[\$3] What did you order?"}) \land \\
+    nlPattern(userOrdered,\text{"[\$3] What did you order as part of your visit \$2?"}) \\
+\end{gathered}
+\end{equation}
+
+
 And the classes:
 \begin{equation}\label{as:nl:classes}
 \begin{gathered}
@@ -2104,6 +2132,26 @@ is a wi-fi signal:
 \end{gathered}
 \end{equation}
 \end{definition}
+
+On top of just follow-up questions, we can define follow-up conversation which
+is also time-based (using time of visit info as defined in 
+\autoref{section:context} and example assertion \ref{as:visitContext}). For
+this we rely on the $greaterThan$ predicate and $userVisit$ assertions, to
+write rules like the following:
+
+\begin{equation}\label{rule:whatOrdered}
+\begin{gathered}
+\forall u\forall v \exists t\forall d\forall x: userVisit(u,v,t,d) \land\\
+    greaterThan(d,600)\land \\
+    unknown(userOrdered(u,v,x) \\
+    \implies \\
+    ccWantsToAsk(u, userOrdered(u,v,\$x))
+\end{gathered}
+\end{equation}
+The rule above triggers once the Context part of \emph{Procedural Module}
+asserts that the user was at some place for more than 10 minutes, and
+produces the question as given in the example step \ref{step:car} in 
+\autoref{tab:conversation1}.
 
 %Subsection
 \section{Consistency Check and KB Placement}
