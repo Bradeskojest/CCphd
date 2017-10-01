@@ -1741,12 +1741,12 @@ And the classes:
 \begin{equation}\label{as:nl:classes}
 \begin{gathered}
     name(Restaurant, \text{restaurant}) \land \\
-    name(WirelessService, \text{Wifi}) \land \\
-    name(WirelessService, \text{Wi-Fi}) \land \\
+    name(WirelessService, \text{"Wifi"}) \land \\
+    name(WirelessService, \text{"Wi-Fi"}) \land \\
+	name(Pizza, \text{"pizza"}) \land \\
+	namePlural(Pizza, \text{"pizzas})
 \end{gathered}
 \end{equation}
-
-
 
 %subsubsection
 \subsection{NL to Logic}
@@ -2676,14 +2676,40 @@ Joe's Pizza has wifi (due to $\land $ constraint in the antecedent of rule
 $ccWantsToAsk(hasGoodWifi(JoesPizza)$, which converted to NL appears as 
 "Is it fast enough to make Skype calls?", as defined in assertion 
 \ref{as:hasGoodWifi} and visible in example step \ref{step:fast} in 
-\autoref{tab:conversation1}.
+\autoref{tab:conversation1}. This question is presented to the user before
+otjer possible questions that are there before (such as one from step 
+\ref{step:menu}, because it appeared directly after answering something,
+it has the current topic's concept in its logical representation and is
+thus a question that appear to be most up-to date regarding the current
+coonversation.
 
-After user answers with "I don't know" (\ref{tab:conversation1}), this is picked
-up by the \emph{Procedural Component} and asserted into the KB as 
+After user answers with "I don't know" (\autoref{tab:conversation1}), this is 
+picked up by the \emph{Procedural Component} and asserted into the KB as 
 $userDontKnow(User1,hasGoodWifi(JoesPizza))$, which can then be used by further 
 rules.
 
 %subsection
 \subsection{Step 5. What's on the menu at Joe's Pizza?}
 \label{section:step5}
-S
+When the user answered that the place is a restaurant, simultaniously with
+already described rules and questions, also the rule \ref{as:generalRule} was
+triggered (see additional explanatory assertion \ref{as:generalRuleantecedent}
+and \ref{fig:existingKB}). This rule triggered  
+because of the existing knowledge about $Restaurant1$, which includes 
+$menuItem(Restaurant1,Coffee)$, so the engine figured out that also $JoesPizza$
+can have something on the menu. This rule produces the
+\begin{equation*}
+	ccWantsToAsk(User1,menuItem(JoesPizza,x))
+\end{equation*}
+assertion, which converts to "What's on the menu at Joe's 
+Pizza?" (due to the assertion \ref{as:menuitem2}) in NL. When user answers with
+"pizzas", the concept $Pizza$ is found by the system (due to the assertion
+\ref{as:}), and the assertion $menuItem(JoesPizza,Pizza)$ is entered into the 
+kb. 
+
+%subsection
+\subsection{Step 6. What did you order?}
+\label{section:step6}
+dada 
+
+
