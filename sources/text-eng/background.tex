@@ -142,7 +142,7 @@ of the context was mined from the phone sensors as introduced in
 
 %subsection
 \subsection{Mobile Sensor Stream Analytics (Mined Context)} 
-\label{section:bg:contectu}
+\label{section:bg:contextu}
 Mining raw sensor measurements and extracting the meaning out of the data is a 
 sub-problem on its own. The proposed KA approach relies on mining mobile phone 
 GPS coordinates and accelerometer sensors to extract the places where the user 
@@ -259,12 +259,14 @@ predicates and concepts in the KB are annotated with the rules that instruct
 the system on how to convert them to natural language. For the missing NL 
 rules and also for the new vocabulary, we extended the Cyc KB.
 
-\subsection{Natural Language to Logic Conversion}. Due to language ambiguity, 
+\subsection{Natural Language to Logic Conversion}
+\label{section:bg:nlToLogic}
+Due to language ambiguity, 
 NL to logic conversion is a harder problem than the logic to NL
 \parencite{Schneider2015} (sections \ref{section:nl} and \ref{section:cycnl}). 
 Similarly, the problem is not completely solved yet, but to some extent, it is 
 possible to do the simple conversion using textual patterns such us the 
-ChatScript (\autoref{section:chatscript} or AIML (\autoref{section:aiml}). 
+ChatScript (\autoref{section:chatscript} or AIML (\autoref{section:r:aiml}). 
 For our implementation, we used SCG system based on Cyc, which additionally to 
 textual patterns uses 
 inference to check whether the conversions make sense and is to some extent 
@@ -277,7 +279,7 @@ Maintaining a coherent dialog while asking and answering user questions is
 almost as important as the language generation itself. Without it, the user 
 quickly loses focus, is unsure about what the question refers to, etc. 
 While this is mostly the domain of purely conversational agents such as 
-chatbots\autoref{Bradesko2012}, our approach still needs to address this to 
+chatbots\parencite{Bradesko2012}, our approach still needs to address this to 
 some extent. In contrast to other approaches which use text patterns to encode 
 the dialog request and responses, our dialogs are triggered by knowledge. 
 This means that the system actually "understands" the request and response and 

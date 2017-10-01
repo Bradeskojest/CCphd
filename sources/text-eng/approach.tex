@@ -294,7 +294,7 @@ the same as described above in subsection \ref{section:mhi}. But users can
 also enter a 
 free text, asking a question or stating something. In this case, this goes 
 through the NL to Logic conversion (section \ref{section:NLLogic} and section 
-\ref{sectopn:locationServlet}) which tries to convert the
+\ref{section:locationServlet}) which tries to convert the
 text into logical query or assertion. The complexity of converting NL into logic 
 is a lot higher than in the opposite direction, since the language is not
 as exact. In CC implementation (section \ref{section:locationServlet}), we 
@@ -1317,7 +1317,7 @@ Formally the predicate is defined as:
 Class $Visit$ represent a concept of a visit. Each instance represent one
 particular visit, which can be used in other assertion to add more data to it
 or to link it to other concepts. For example see Assertion 
-\ref{as:joesPizzaVisit}.
+\ref{as:placeVisit}.
 \end{definition}
 
 \begin{definition}[predicate "$userVisit$"]
@@ -1422,7 +1422,7 @@ place. The $probableUserLocation$ is only used to trigger questions for the
 predicate $userLocation$ (see definition \ref{def:userLocation}). Only after 
 this is answered, we can be
 100\% sure that this is the exact place, and, besides the $userLocation$ (see
-assertion \ref{as:joesPizzaVisit}), the system can also assert
+assertions, the system can also assert
 
 \begin{equation}\label{as:placeVisit}
 \begin{gathered}
@@ -1988,7 +1988,7 @@ context (section \ref{section:context}). This is then picked up by the
 inference engine that generates questions and commens with the help of KA rules
 (section \ref{section:kakb}). The resulting assertions, which propose the 
 intents like $ccWantsToAsk(x,y)$ (definition \ref{def:pred_ccWantsToAsk}) and
-$ccWantsToComment(x,y)$ (definition \ref{def:ccWantsToComment} below), 
+$ccWantsToComment(x,y)$ (definition \ref{def:pred_ccWantsToComment} below), 
 are then converted to the natural language and shown to the users, which then 
 respond. The appearance of the assertions and consequently questions/comments
 in NL and their user responses form a conversation. The topic and flow of the 
@@ -2415,7 +2415,8 @@ these (if not already, or strictly asserted that not), then is proposes a
 list of questions for every of the possibilities. For example,
 $ccWantsToAsk(User1,is(JoesPizza,Restaurant))$ which converts to "Is Joes's 
 pizza a restaurant?". This rule works in cooperation with $class$ transitivity
-rule (\ref{rule:transitivity}), and $is$ transfer rule (\ref{rule:is_transfer}).
+rule (\ref{rule:subclass_transitivity}), and $is$ transfer rule 
+(\ref{rule:is_transfer}).
 If we do a slight change in the rule consequent ($ccWantsToAsk(u,is(x,\$z))$,
 this rule generates open-ended questions like "What kind of thing is Joe's
 pizza?" In our implementation (\autoref{chapter:implementation}), this was
@@ -2430,7 +2431,7 @@ Up to this point, we have discussed the mechanisms of KA, showing how it is
 possible to get valid knowledge from a single user. In order to lower the cost 
 of and/or increase the speed of KA we can involve a crowd. Crowdsourcing 
 however bring several challenges (as described in Section 
-\autoref{section:problemCrowd}) including the followinga:
+\autoref{section:bg:crowdsourcing}) including the following:
 \begin{itemize}
 \item User privacy
 \item Users making deliberately false claims or having mistaken ideas about the 
@@ -2454,9 +2455,9 @@ The idea is that the sub-KBs which are higher up in the hierarchy are not aware
 of the knowledge that is at the lower levels. But the KBs which are at the lower
 levels, contain all the knowledge of their ancestors from the higher levels. 
 For example,  let us assume that $WholeWorldKB$  in \autoref{fig:mt} has the 
-knowledge defined in section \ref{section:upperOnotlogy} and 
+knowledge defined in \autoref{section:upperOnto} and 
 \autoref{section:existingKB}, $CuriousCatBelievesKB$ has the knowledge defined
-in section \autoref{section:kaKnowledge} and then acquired from multiple users. 
+in section \autoref{section:kakb} and then acquired from multiple users. 
 $User1KB$ has knowledge that was acquired from $User1$ and $user2KB$ has 
 knowledge acquired from $User2$ (new, other user). Following our KB structure 
 given in \autoref{fig:existingKB} and formal logical definitions, 
@@ -2781,7 +2782,7 @@ can have something on the menu. This rule produces the
 assertion, which converts to "What's on the menu at Joe's 
 Pizza?" (due to the assertion \ref{as:menuitem2}) in NL. When user answers with
 "pizzas", the concept $Pizza$ is found by the system (due to the assertion
-\ref{as:}), and the assertion $menuItem(JoesPizza,Pizza)$ is entered into the 
+\ref{as:nl:classes}), and the assertion $menuItem(JoesPizza,Pizza)$ is entered into the 
 kb. 
 
 %subsection
@@ -2828,13 +2829,13 @@ predicate:
 \end{gathered}
 \end{equation}
 
-The query (query \ref{q:orderedConstraint1)} above doesn't return any results,
+The query (query \ref{q:orderedConstraint1}) above doesn't return any results,
 so according to the approach described in section \ref{section:consistency}, 
 the system goes to check whether it knows anything about the concept called 
 'car', as shown in the query \ref{q:nameCar} ($Q:name(x,\text{"car"})$.
 Since this query returns the result (according to our existing KB) $Car$, 
 \emph{CC} KA Engine can know that this answer is actually inconsistant, because
-the previous query (qeury \ref{q:orderedConstraing1}) would otherwise return
+the previous query (qeury \ref{q:orderedConstraint1}) would otherwise return
 the resulting concept.
 For this reason the \emph{Procedural Component} responds with a double check
 question, making sure that the user really meant the answer: 
@@ -2846,7 +2847,10 @@ and names of the involved classes ($FooOrDrink$, $Car$). When user answers with
 \subsection{Step 8. What did you order? The second time}
 \label{section:step8}
 Since nothing changed in the KB that would cause the retraction of the 
-$ccWantsToAsk(User1,userOrdered(User1,Visit1,x))$ question that appeared in the
+\begin{equation*}
+ccWantsToAsk(User1,userOrdered(User1,Visit1,x))
+\end{equation*}
+question that appeared in the
 step \ref{step:car}, and nothing new appeared in meantime, the system repeats
 that question. But, as visible in the \autoref{tab:conversation1}, step 
 \ref{step:pizzadeluxe}, the user is more sincere this time and answers with
