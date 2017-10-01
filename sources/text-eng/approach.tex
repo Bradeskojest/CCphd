@@ -1401,6 +1401,21 @@ assertion \ref{as:joesPizzaVisit}), the system can also assert
 and thus permanently link the user's 19. Sept 2017 visit to the place 
 Joe's Pizza.
 
+As described and defined above (assertion \ref{as:visitContext1}), we can use
+$userVisti$ predicate to specify a length of stay of user at particular place.
+This allows the system to react on this information, and produce time dependent
+questions and decisions. But in order to be able to do it more generally
+(as oposed to react only for the exact second when user satayed somewhere), we
+define a new predicate $greaterThan$.
+
+\begin{definition}[predicate "$greaterThan$"]\label{def:greaterThan}
+Predicate $greaterThan(x,y)$ denotes that $x$ has a greater value than $y$. 
+Meaning, this predicate is only true when $x > y$. For example, 
+stating $greaterThan(10, 5)$ is true.
+\end{definition}
+This predicate can be then used in rules that react based on some numberic 
+values like times, number of votes, number of answers, etc.
+
 %subsection
 \subsection{Acquired context}
 \label{section:acquiredContext}
