@@ -7,19 +7,58 @@ This thesis proposes a novel novel mobile, context aware,
 conversational crowdsourcing knowledge acquisition approach which is able to 
 gather new knowledge of a very high quality in a continuous way, while 
 interacting with its users using natural language. This is achieved by using an
-existing knowledge base, users current and past context and, employing a 
+existing knowledge base, users current and past context, and employing a 
 targeted crowdsourcing methodology. We proposed to use highly focused context 
 to support targeting the right users 
 at the right time. This had (to our knowledge) not been tried before. The
 proposed approach was implemented as part of Curious Cat system and evaluated 
-on the the data (experiment) gathered while running online throughout four 
+on the the data gathered during the experiment running online throughout four 
 years. 
 
-\hl{Continue...}
-During this time, it collected a substantial amount (57,978 user answers resulting in 386,980 assertions) of consistent and highly accurate knowledge and thus proved the proposed approach to be feasible and worth exploring. The evaluation also shows that all of the main features of the approach are contributing to the quality and quantity of the collected data, while making users interested enough (25% using the app for more than a day, 2% for more than a year), besides being in a research prototype state. The context and proactivity increase engagement from 7.1 assertions/day to 42.1/day. Using newly acquired knowledge to produce more and better questions acquired 39.4% of all the knowledge. On the other side consistency checking improved the knowledge base by preventing bad assertions (2.41% of all user answers) and crowd voting prevented consistent but otherwise wrong or untrue assertions (1.26% of all user answers).
-The implementation of the prototype required approximately 2.5 person years, on top of ~930 person years spent on Cyc system. While we implemented our prototype on the top of Cyc (Lenat, 1995), the approach itself is general and can be applied to any knowledge base or/and inference engine by implementing the necessary technical adjustments. 
-Similarly, as the approach is inference engine and knowledge base agnostic, it is also not fixed to any particular domain or type of the concepts or assertions. Of course, some adjustments would be needed to ensure relevance of the pre-existing knowledge for the targeted domain. For the purpose of the experiment, most of the KA rules were added for the subclasses of public places, restaurants and bars, which made the system more responsive and produce more questions/comments for these domains. But this didnt prevent the users, or the system to have a KA conversation about any other domain or concept, including (taken from our logs) concepts of Love, ImaginaryFrient, Tennis, Winter, Whining, Electronics, Balkan, TopGear, Swimming, etc. Additionally, by preferring general KA rules, for example what to ask for each location instead only for locations of type of Restaurant, this approach could quickly gain enough coverage for all types of the locations for users to not get bored, or the system to not run out of questions. The limit is basically not on the approach, but on the existing knowledge that the approach is hooked to. With using Cyc as the main KB the coverage of the domains is automatically quite broad (~500,000 concepts trying to address as much aspects of human knowledge as possible), without the ones newly acquired from the users.
-From the validation in Section 5, we can see that the resulting knowledge has high quality and is easily and inexpensively gathered from non-expert users, while they are having a conversation with the system in order to satisfy their information needs. Validation of the system also hinted at potential issues, which are to be addressed in the future work. The first of them is related to knowledge potentially becoming obsolete. This can be addressed by using time constraints and assert meta-knowledge to ensure that if some knowledge has not been confirmed for a while, it should be checked with the users for its validity. The second is related to having several possible answers to the users information need due to several concepts having the same NL presentation. This can be tackled to some extent by showing to the user all the answers using alternative NL presentations when available. Additionally, the system could provide more information on each of the answers, for instance, describe each with some unique predicate that holds for it. The third issue of the user entering a complicated sentence can be tackled simultaneously while improving the conversational client rules. 
-One of the promising directions for the future work is, for Curious Cat to become a full conversational engine (or to be merged with some existing one), which would make it easy to construct knowledgeable chatbots. This would allow improvement of the system to accept and understand more complex answers and questions from the users, and to not limit itself only to short replies and guided responses. This is to some extent similar to the current AIML and ChatScript systems, except that Curious Cat is completely knowledge driven and designed to be able to extend itself indefinitely while talking with the users. Patterns are utilized purely to convert from text to logic and not to dictate the responses. To still ensure quality of the knowledge base, the free text answers of the users that are providing new knowledge will be first checked to determine whether they can be parsed into a more complex logical sentence, as already described to some extent in section 4.5.2 through SCG technology. For this extension, the amount of work to increase the coverage should be much smaller compared to the current approaches due to knowledge and KA support specifics of our system.
+The results of the experiment showed that the approach is feasible nad gives a 
+good quality results as knowledge that is imediatelly useful, even if the users 
+(crowd) does not have a knowledge engineering background. It also shows that
+it is possible to incorporate KA into the natural language HCI interaction and 
+thus gather knowledge as a side effect of using the application for some other
+purposes. The results also confirm that all of the main features 
+of the approach are contributing to the quality and quantity of the collected 
+data, while making users interested enough (25\% using the app for more than a 
+day, 2\% for more than a year), besides being in a research prototype state. 
+The context and proactivity increase engagement from 7.1 assertions/day to 
+42.1/day. Using newly acquired knowledge to produce more and better questions 
+acquired 39.4\% of all the knowledge. On the other side consistency checking 
+improved the knowledge base by preventing bad assertions (2.41\% of all user 
+answers) and crowd voting prevented consistent but otherwise wrong or untrue 
+assertions (1.26\% of all user answers).
 
-\hl{re-paraphrase, re-check, currently a copy from the paper}
+%section
+\section{Future Work}
+There are several potential directions for the future work, depending which 
+part of the system we want to improve first. 
+To improve the user engagement (besides the obvious one to improve and finish
+the system or make it part of some really useful application), is to apply
+machine learning on top of using the only inference rules. Since the system
+already collects various features for when and how much users answer, we could
+try to apply some ranking algoritms to improve the ordering of the questions 
+(at the cases when we have multiple of them for the same concept), and thus
+either optimize the knowledge gain, or user interest, or both if possible.
+
+The other direction is to extend the system to be able to acquire also the
+predicates and the rules, by finding a ways to ask questions which combine 
+multiple concepts in a new ways and let them get confirmed by the users. 
+Another direction is to analyse the free text questions and answers that users
+give, especially throgh MMHHI (\autoref{section:mmhhi}), and mine the patterns,
+rules and predicates from these, then use the described KA approach to verify
+and confirm the mined knowledge.
+
+One of the other promising directions for the future work is to improve the
+approach to become a full conversational engine (or to be merged with some 
+existing one), which would make it easy to construct knowledgeable chatbots. 
+This would allow improvement of the system to accept and understand more 
+complex answers and questions from the users, and to not limit itself only to 
+short replies and guided responses. This is to some extent similar to the 
+current AIML and ChatScript systems, except that \emph{Curious Cat} is 
+completely knowledge driven and designed to be able to extend itself 
+indefinitely while talking with the users, and is only using patterns for NL 
+to knowledge conversion (as opposed to the existing approaches). 
+
