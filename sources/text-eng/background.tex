@@ -5,7 +5,7 @@
 %-------------------------------------------------------------------------------
 This chapter describes the challenges and components that Knowledge Acquisition 
 system such is presented in this work (\emph{Curious Cat}) have to address and 
-bring together into an interconnected workflow in order to be a coherent 
+bring together into an interconnected work-flow in order to be a coherent 
 KA system able to satisfy the goals of general (common) Knowledge Acquisition. 
 
 \emph{Curious Cat} is a KA system making use of existing knowledge, 
@@ -23,7 +23,7 @@ section is grouped into sub-sections describing main challenges. Each section
 then references our approach to it (implementation) and also related works that
 gives overview of similar approaches.
 
-\emph{Curiois Cat} is knowledge driven, meaning that knowledge is connecting
+\emph{Curious Cat} is knowledge driven, meaning that knowledge is connecting
 all of the components, including the user interaction, and storing of the
 results into the KB (section \ref{section:bg:knowledge}). Its user context is 
 obtained through a mobile sensor mining in a real world application that 
@@ -35,11 +35,11 @@ inference engine (section \ref{section:bg:knowledge}) which can results in
 logical representation of a new question (section \ref{section:bg:ka}) or a 
 statement that the system intends to show to the user. The aforementioned  
 logical formula is then converted to natural language (sections 
-\ref{section:bg:nlp}) and presented to the user through a mobile app. 
+\ref{section:bg:nlp}) and presented to the user through a mobile application. 
 When the user answers, his NL answer is converted back to logic 
-(section \ref{section:bg:nlp}), checked by the inference engine agains the 
+(section \ref{section:bg:nlp}), checked by the inference engine against the 
 existing knowledge for consistency, and inserted as new peace of knowledge into 
-the KB (section \ref{section:bg:ka}). After iteraction like that, the
+the KB (section \ref{section:bg:ka}). After interaction like that, the
 system determines whether to continue the conversational path with the user or
  not. Newly acquired knowledge is then used to check with other users for
 validity (section \ref{section:bg:crowdsourcing}) and is then used by the 
@@ -61,7 +61,7 @@ to perform inference over it.
 \subsection{Knowledge Base}
 \label{section:bg:kb}
 The Knowledge Base (KB) is a crucial part of our KA approach 
-(marked in purple in \autoref{fig:Architecture}). It dictates the expressivity 
+(marked in purple in \autoref{fig:Architecture}). It dictates the expressiveness 
 of the knowledge representation that we must use, as well as 
 (together with the inference engine) the overall speed of the KA system. 
 Although our approach is generally KB independent, each KB has its own 
@@ -98,7 +98,7 @@ inference engine (see \autoref{section:cycinference}) which is tightly linked
 to the Cyc KB and thus able to apply inference over the biggest existing 
 common sense KB. Additionally, we developed the inference capabilities 
 (forward and backward chaining) inside our custom developed inference 
-engine - Umko, needed to test the generalizability of the proposed approach 
+engine - Umko, needed to test the generalize-ability of the proposed approach 
 and to make it possible to run on embedded devices.
 
 %subsection
@@ -251,7 +251,7 @@ Being able to convert logic that the system uses to natural language that the
 user can understand is crucial part of the presented KA approach. While this is 
 in general a hard problem and still not completely solved, it is often easy to 
 solve simple examples of natural language generation. In our approach, we have 
-investigated two scenarios. One is using pre-existing Cyc natural language 
+investigated two scenarios. One is using preexisting Cyc natural language 
 capabilities; the other is a simple scenario that is a scaled down problem 
 using Umko. Cyc has more than 90 concepts which can be applied to create 
 natural language generation rules\parencite{Baxter2005}, and most of the 
@@ -279,7 +279,7 @@ Maintaining a coherent dialog while asking and answering user questions is
 almost as important as the language generation itself. Without it, the user 
 quickly loses focus, is unsure about what the question refers to, etc. 
 While this is mostly the domain of purely conversational agents such as 
-chatbots\parencite{Bradesko2012}, our approach still needs to address this to 
+chat-bots\parencite{Bradesko2012}, our approach still needs to address this to 
 some extent. In contrast to other approaches which use text patterns to encode 
 the dialog request and responses, our dialogs are triggered by knowledge. 
 This means that the system actually "understands" the request and response and 
@@ -319,9 +319,9 @@ which do not affect the common knowledge base, if inconsistent with it. In this 
 ay if the users lie or have different opinion about something, it will only 
 affect themselves and not the rest of the users. This capability is achieved by 
 arranging knowledge in a tree-like structure of contexts, where the upper 
-context is not aware of the lower ones, and the knowledge in the lower tree l
-evels overrides the knowledge in the upper levels. In Cyc this is a kind of 
-mechanism implemented through Micro Theories (aka microtheories, MTs)
+context is not aware of the lower ones, and the knowledge in the lower tree 
+levels overrides the knowledge in the upper levels. In Cyc this is a kind of 
+mechanism implemented through Micro Theories (aka micro-theories, MTs)
 \parencite{Kleer2013}. For the explanation of the solution refer to 
 \autoref{section:crowdsourcing}. 
 
@@ -333,11 +333,11 @@ perspectives. One is that the KB and inference engine need to support the
 temporal dimension of knowledge. The second is that the systems need somehow to 
 capture that the change happened and data previously valid may become invalid. 
 For the approach using Cyc we use the fact that Cyc supports time dependent 
-knowledge through special microtheories where the always microtheory is the 
+knowledge through special micro-theories where the always micro-theory is the 
 top-most one and the time dependent ones are connected to the top one through 
-a hierarchical microtheory structure (see section \ref{section:crowdsourcing}). 
+a hierarchical micro-theory structure (see section \ref{section:crowdsourcing}). 
 
-\section{Workflow and Scalability}
+\section{Work-flow and Scalability}
 Besides the scientific challenges, we have described related to the proposed 
 KA approach, in order to be able to work on a broader level, technical issues 
 and scalability had to be addressed as well. The knowledge base and inference 

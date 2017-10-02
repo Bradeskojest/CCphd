@@ -11,7 +11,7 @@ users (users which are part of the experiment. Overall the implementation have
 some additional users). During that time, the users checked-into 5,551 locations
 and responded 
 to 57,978 questions, out of which 8,611 were voting questions (7,560 positive 
-and 1,051 negative votes), 18,907 questions were answered with "I dont know", 
+and 1,051 negative votes), 18,907 questions were answered with "I don't know", 
 and 30,460 real answers was inserted into the KB as new knowledge, including 
 31,140 concepts (3,171 connected to instances of $User$ concept, 22,563 
 check-ins and other places, and 5,406 other concepts). 
@@ -75,7 +75,7 @@ we explored in more detail the contributions of specific characteristics of our
 system and compare them to the baselines, to evaluate the ideas and claims
 of the approach:
 \begin{enumerate}
-\item Using context to proactively drive the KA increases engagement and the 
+\item Using context to pro-actively drive the KA increases engagement and the 
 chance of getting an answer (\autoref{section:evaluationContext})
 \item Pre-existing knowledge and automated inference can be used to filter-out 
 inconsistent answers and thus increase the quality of the acquired knowledge
@@ -85,7 +85,7 @@ the amount of acquired answers and reach of the system
 logically correct answers
 \end{enumerate}
 
-\section{Context and Proactivity}
+\section{Context and Pro-activity}
 \label{section:evaluationContext}
 \emph{Curious Cat} employs two contextual knowledge provision mechanisms. One 
 is location based knowledge, such as, the type of current location, the time of
@@ -202,7 +202,7 @@ different name for the consistent knowledge. For example, if the user states
 that he ate a car in the restaurant, this is either wrong, or car is the name 
 for some unknown food and not a vehicle.
 
-Due to development process and timeline of the system, we only have logs and 
+Due to development process and time-line of the system, we only have logs and 
 consequently insights on when/how the system rejected the answers due to 
 inconsistency for 143 out of 1,472 days of the experiment duration. During 
 this time, 148 users provided 23,543 answers and the system rejected 563 of 
@@ -513,7 +513,7 @@ estimate of the knowledge that we acquired through the proposed approach.
 \end{tabular}
 \end{table}
 
-The results of this counting are not surprising, since the system doesnt allow 
+The results of this counting are not surprising, since the system does not allow 
 manifestly inconsistent assertions, and the crowdsourcing mechanism already 
 weeded out most of the untrue examples. There were four untrue assertions in 
 the sample, which expose three potential problems:
@@ -521,7 +521,7 @@ the sample, which expose three potential problems:
 \item One error was because the price of the coffee changed since the last 
 check with the users  the stored knowledge was obsolete.
 \item There were two concepts with exactly the same name and were both 
-subclasses of $Organization$, so the users and also the system didnt manage to 
+subclasses of $Organization$, so the users and also the system did not manage to 
 distinguish them and picked the wrong one. For users, everything seemed 
 perfectly correct even though a logical error resulted.
 \item Twice the user entered a complex sentence instead of a name of the 

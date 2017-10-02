@@ -6,14 +6,14 @@
 This chapter presents the actual implementation in the system described
 in the previous chapters (especially in \autoref{chapter:approach}). While up 
 to now we've been describing the idea and a general approach to do it 
-(independent of the implementation), here we represent the actuall working
+(independent of the implementation), here we represent the actual working
 system that we implemented and kept it online in the shape of the current 
 version since the end of 2012. 
 
 \begin{figure}[H]
 	\centering
 		\includegraphics[width=0.41\textwidth]{figures/androidExample1.png}
-	\caption{Screenshot of Curious Cat Android app.}
+	\caption{Screenshot of Curious Cat Android application.}
 	\label{fig:androidExample}
 \end{figure}
 
@@ -48,7 +48,7 @@ Implementation consists of Android based mobile client (see screenshot on
 \autoref{fig:androidExample}), Java Servlet based
 \emph{Procedural Component} with PostGreSQL database access, two Research 
 Cyc instances 
-(KB, Inference Engine, NL Conversion) to increase the speed and reliablility 
+(KB, Inference Engine, NL Conversion) to increase the speed and reliability 
 of the system, \emph{Transcript Server} for syncing between Cyc instances, 
 and a web-site for registration and email confirmation. This organization is 
 also depicted on \autoref{fig:implementation} below.
@@ -71,7 +71,7 @@ the knowledge by hand and also by other means of knowledge acquisition and
 mining (see rows stating "Cyc" as parent in \autoref{tab:related}, 
 \autoref{chapter:related} - \nameref{chapter:related}). 
 The collected and codified knowledge is represented in machine-usable form 
-using emph{CycL (Cyc Language)}, and is structured and grouped together as
+using \emph{CycL (Cyc Language)}, and is structured and grouped together as
 \emph{CycKB}. In parallel with the KB, Cyc also contains an inference engine
 that works on the scale of the KB, and a set of tools, APIs and other interfaces
 for interacting with the system, ranging from web interface, natural language,
@@ -85,9 +85,9 @@ communication with the procedural part of our system
 At this moment (end of 2017), \emph{Research CycKB} consists of more than 
 630,000 concepts, 7,000,000 assertions (rules are also assertions), made with
 using more than 38,000 predicates (relations), covering a broad domain of
-human common sense knowledge. The KB is divided into thousands of microtheories
+human common sense knowledge. The KB is divided into thousands of micro-theories
 (not counting the microtheories we added for \emph{CC} implementation - 
-\autoref{section:crowdsourcing}), where each microtheory is a set of assertions
+\autoref{section:crowdsourcing}), where each micro-theory is a set of assertions
 that share common assumptions. Microtheories (Mts) can hierarchically stack on 
 top of each other and allow \emph{Cyc} to independently maintain assertions that
 could contradict each-other. This also enhances the performance of the 
@@ -98,7 +98,7 @@ group of Mts to limit the number of facts it needs to use while inferencing.
 \begin{itemize}
 \item Logical constants are represented by "$\#\$$" sign, followed by the name 
 of the term name ($\#\$JoesPizza$).
-\item Formulas are enclosed in parentesis. If more than one constants or terms
+\item Formulas are enclosed in parenthesis. If more than one constants or terms
 are part of the assertion, the predicate is always first, followed by its
 arguments, for example: $(\#\$menuItem\quad\#\$JoesPizza\quad\#\$Pizza)$
 \item Variables are represented by the question mark ("$?$") sign, followed
@@ -116,7 +116,7 @@ the same upper ontology rule as defined in assertion
 Similar as with our example KB explaining CC approach, \emph{CycKB} is built on
 top of upper ontology which gives it a formal grounding to support the rest of 
 the KB. Our KA approach (\emph{Curious Cat} system) was implemented using 
-\emph{Cyc}, and also inspired by its toolset and unsolved problems. CC 
+\emph{Cyc}, and also inspired by its tool-set and unsolved problems. CC 
 initially started as a solution for Cyc to speed up the NL based KA, so for our
 explanations it was natural to pick and define an \emph{Upper Ontology} that 
 can be easily mapped to \emph{CycKB}. While we cannot directly map all of the
@@ -199,7 +199,7 @@ in \autoref{section:transcriptserver}.
 		\includegraphics[width=0.9\textwidth]{figures/keEntry.png}
 	\caption{Example screen of bulk importing assertions (knowledge) into Cyc.
 This example is defining a concept $PersonTypeByEatingHabits$ and a rule 
-generating questions about typeOfPlace for last known user venue visit.}
+generating questions about $typeOfPlace$ for last known user venue visit.}
 	\label{fig:ketext}
 \end{figure}
 
@@ -212,11 +212,11 @@ in the real-world implementation
 is 8 predicates (see definition \ref{as:cycCCAssertions} below), allowing us to
 define much more complicated statements and
 enriching them with possible suggestions as visible on \autoref{fig:ccmediated}.
-Similary, the KA rules are more complicated, using much bigger vocabulary
-than we were able to exaplain. Example of one such rule is presented on
+Similarly, the KA rules are more complicated, using much bigger vocabulary
+than we were able to explain. Example of one such rule is presented on
 \autoref{fig:kaRuleImpl}.
 
-On top of 7 million of pre-existing \emph{Cyc} assertions and 8,571 of manually
+On top of 7 million of preexisting \emph{Cyc} assertions and 8,571 of manually
 added CC assertions, our system collected from users additional 524,276 
 assertions (as of September 2017).
 
@@ -253,14 +253,14 @@ $\#\$curiousCatIntendsToAskUserPredUnboundArg2WithChoices$.}
 \end{equation}
 
 %subsection
-\subsection{Cyc Inferene Engine}
+\subsection{Cyc Inference Engine}
 \label{section:cycinference}
 Cyc AI system also includes the inference engine which can work over the CycKB.
 Because the KB is so big (more than 7 million assertions), approaches taken
 by other inference engines (like RETE algorithm) does not scale well at this
 size, while the included engine is with some tweaking still able to give 
-results inside tolerable time frame. One of the techniquies (mentioned before)
-allowing this, is organization of the KB into microtheories which allow the 
+results inside tolerable time frame. One of the techniques (mentioned before)
+allowing this, is organization of the KB into micro-theories which allow the 
 inference engine to reduce the size of the world it operates with at given
 contexts.
 
@@ -298,10 +298,10 @@ In the \autoref{section:logicNL} and \autoref{section:NLLogic} we gave a
 simplest possible 
 example of logic to NL and the opposite conversion, to explain and showcase the
 approach taken by the \emph{Curious Cat}. While this served well for the
-explantion, the implementation in real-world is inherently more complicated.
+explanation, the implementation in real-world is inherently more complicated.
 For the implementation we used Cyc logic to NL system which is part of 
 \emph{Research Cyc}\autocite{Coppock2010,Baxter2005}, and is able to convert
-a decent number of \emph{CycL} assertions into thier natural language 
+a decent number of \emph{CycL} assertions into their natural language 
 equivalents. In our example, we only used two (2) predicates to be able to
 do that ($name$, $nlPattern$), but the implemented system uses more than
 90 predicates and functions that are used to make the paraphrase system to work.
@@ -314,12 +314,13 @@ defining how to convert this word in various discourse contexts.
 \begin{figure}[h]
 	\centering
 		\includegraphics[width=0.6\textwidth]{figures/nlAssertion.png}
-	\caption{Actual NL generation assertion example for the corresponding predicate for 'menuItem' from our implementation (Cyc).}
+	\caption{Actual NL generation assertion example for the corresponding predicate for 
+		$menuItem$ from our implementation (Cyc).}
 	\label{fig:nlAssertion}
 \end{figure}
 
 As part of implementing \emph{CC}, we had
-to extend this sytem and add multiple NL generating assertions to it, the
+to extend this system and add multiple NL generating assertions to it, the
 implementation is from \emph{Cyc AI System}, and is out of scope of this 
 thesis. The details of this approach which can generate both referring 
 expressions and non-referring expressions, including both referential and 
@@ -328,15 +329,15 @@ bound variable anaphora, are described in the paper written by
 
 To be able to convert from NL back to logic, our implementation also relies on
 the functionality which is part of \emph{Cyc} and is described in more detail
-in the Semantic Construvtion Grammar paper\parencite{Schneider2015}. The 
+in the Semantic Construction Grammar paper\parencite{Schneider2015}. The 
 approach is similar as
 taken by chat-bot engines\parencite{Wilcox2011}, which uses textual patterns
-with special wildcards, to map the actual text onto a pre-defined pattern, which
+with special wild-cards, to map the actual text onto a predefined pattern, which
 is then used to find a response. The difference is, that after the initial 
 pattern matches are found, it uses \emph{CycL} mappings and then Inference 
 Engine to check for
 the formal validity of the resulting statements and consequently the parsing 
-process. The other improvement is, that the the wildcards in the patterns
+process. The other improvement is, that the the wild-cards in the patterns
 can be typed (using Cyc constants). This means that that in such patterns, 
 only terms of specific type can be fitted into a slot, which improves the 
 conversion accuracy. An example pattern (taken from the paper) can be written 
@@ -353,7 +354,7 @@ also not of crucial importance for KA experiments.
 The \emph{Transcript Server} is an important technical part of the presented CC 
 implementation, improving scalability, reducing downtime and also reducing
 other maintenance costs. As visible in the implementation design 
-(\autoref{fig:implementation}) sketch, it is a clowd based software module
+(\autoref{fig:implementation}) sketch, it is a crowd based software module
 to which all Cyc instances connect to. Software wise it is a simple database
 server, which can receive and store for later, raw \emph{CycL} assertions 
 (without any inference capabilities), and replicate them between 
@@ -368,7 +369,8 @@ the same knowledge, which then allows simple load-balancing at query-time,
 backup instances in cases when the main instance crashes. For the cases when
 we had to manually shut down Cyc for upgrades or server maintenance, this simple
 automatic syncing mechanism (even if being slow due to each assertion triggering
-the inference engine again), saved us a lot of manual importing of the old knowledge. As of September 2017, full sync of CC collected knowledge (532,847 
+the inference engine again), saved us a lot of manual importing of the old knowledge.
+ As of September 2017, full sync of CC collected knowledge (532,847 
 assertions) takes approximately 2 days to finish.
 
 %section
@@ -383,13 +385,13 @@ screen):
 button in the middle, ant a "cat" menu on the right.
 \item Middle conversational section, where CC and user responses appear as
 text in the conversational bubbles, similar to those that usually represent 
-SMS messages. Each bubble can contain html formatted text, hyperlinks and 
+SMS messages. Each bubble can contain HTML formatted text, hyper-links and 
 pictures.
 \item Conversational section is followed by the "response section", where user
 is presented with the set of possible responses, or a free text box. On the 
 right of this GUI section, there is a cat's face, which acts as a button with
 same functionalities as the "cat" menu on the upper right.
-\item On the bottom, there is a swipable section, which contains contextual
+\item On the bottom, there is a swipe-able section, which contains contextual
 bubbles representing what other users  who are nearby or are discussing same 
 topics are answering.
 \end{itemize} 
@@ -401,7 +403,7 @@ info such as ID of the statement, it's \emph{CycL} representation and also
 suggestions for the user, and the points that user currently collected. When 
 the user answers, this is sent back to the server, together with the ID of the 
 discourse. In the cases, when the server wants to pro-actively ask something,
-and the phone is in a sleep mode (meaning that the proactivity didn't occur due
+and the phone is in a sleep mode (meaning that the pro-activity didn't occur due
 to location change), it can generate a FCM message with the same object as
 it would send directly, and then this is presented to the user when he/she 
 looks at the phone.
@@ -429,13 +431,13 @@ interaction with the client applications:
 \item \emph{Main Interaction Servlet} is taking care of the user sessions, and 
 main interaction loop between the user and the system. This servlet is handling
 most of the work when user is receiving and answering the questions. It also
-asserts and detects new topics, when user clicks hyperlinked concepts that
-are presented as part of the convesational bubbles.
+asserts and detects new topics, when user clicks hyper-linked concepts that
+are presented as part of the conversational bubbles.
 \item \emph{Location Servlet} is accepting GPS records from the phone, calling
 the geo-spatial clustering service and then asserting current location and 
 time assertions into \emph{Cyc}, as described in \autoref{section:context}.
 Additionally, this servlet is providing the contextual clues (bubbles at the
-bottom of Android app as visible on \autoref{fig:androidExample}) to the 
+bottom of Android app. as visible on \autoref{fig:androidExample}) to the 
 clients.
 \end{itemize}
 
@@ -448,7 +450,7 @@ identifies, whether this is an answer to some previous questions that CC
 asked, or is a completely new discourse. This identification can be done on 
 the client already, since the GUI is constructed in a way, that it is obvious
 to the user, he is answering a question. If he wants to do something completely
-idenependent, the guided mechanism "forces" the user to click on 
+independent, the guided mechanism "forces" the user to click on 
 "something else", where he can then start a completely new discourse.
 After this is identified, the system asserts into  \emph{Cyc} and logs
 in the database  the time of last user response, and text of the
@@ -465,15 +467,15 @@ new questions and comments that \emph{Curious Cat/Cyc} might have. This is done
 with logical queries like this (let's say that the current user is $User1$):
 $(curiousCatWantsToAskUser\quad User1 \quad ?QUESTION \quad ?SUGGESTIONS)$. This
 will then cause he inference engine to search through all the assertions and
-trigger all the backward rules in the microtheory KB of $User1$, and come up
+trigger all the backward rules in the micro-theory KB of $User1$, and come up
 with the answers, filling the variables $?QUESTION$ and $?SUGGESTIONS$. The list
-of questions (given in logic, \emph{CycL}) is then analysed by the servlet,
+of questions (given in logic, \emph{CycL}) is then analyzed by the servlet,
 which picks the first one that was not there before (on previous interaction),
 and mentions the concept that is set as a current topic. Topics are organized
 into a stack, where the concepts user is mentioning when answering questions
 about the current topic, are constantly being added on top of the stack 
 (\autoref{tab:topics}). 
-In addtition to these "user caused" topics, stack contains a three pre-defined
+In addition to these "user caused" topics, stack contains a three predefined
 topics at the bottom. First one (last to be used - at the bottom), is a
 random topic that gets chosen by the system. Second "topic" is actually a
 question, whether there is some particular topic that would interest the user.
@@ -515,7 +517,7 @@ that were in the answers of the questions, were added on top
 ($\#\$AnswerConcept2$). We can also see, that the topics are added back on the
 stack, if their questions are not depleted yet (as happened for the 
 $\#\$PreviousTopic$). For example, let's say that the $\#\$PreviousTopic$ was
-\emph{Joes's pizza} restaurant, which was on the stack right above the 
+\emph{Joe's pizza} restaurant, which was on the stack right above the 
 $\#\$UserConcept$ topic. It was taken out of stack, and then when user answers
 the first question (let's say "they have pizzas on the menu" as in our other
 examples), concept $\#\$PreviousConcept1$ represent $\#\$Pizza$, and is added
@@ -567,40 +569,40 @@ in preparation}, and can be quickly summarized:
 as a point of stay and thus allow it to be an online algorithm, working in
 real-time, quickly responding to possible location changes and reporting 
 whether the user is currently traveling or at a fixed location. This is achieved
-by keeping the index of locations, until completelly clustered. The paths
+by keeping the index of locations, until completely clustered. The paths
 are then locations from this index, not included in any of the clusters. 
 Additionally, the current cluster (marked as $CL$ on the \autoref{alg:spd1}),
 is returned each time as well, marked as unfinished.
 \item Adding an optional second iteration of the algorithm which fine tunes
-promising detected staypoints from the first iteration. This cleans the 
+promising detected stay-points from the first iteration. This cleans the 
 potential errors, when one or a few raw GPS locations jumped outside the 
 perimeter but then the sensor stabilizes. This adds another loop through
 the detected clusters at the end of each iteration. It creates one visit
-(staypoint) on the occasions when the path between two same locations lasts 
+(stay-point) on the occasions when the path between two same locations lasts 
 less than a given threshold, which is the most common mistake appearing in the
 results of the original algorithm.
 \item Adding an additional analytics steps, including enrichment of the detected
-staypoints and predicting user's next destinations.
+stay-points and predicting user's next destinations.
 \end{itemize}
 
 This algorithm through the years while \emph{CC} is online evolved from a few
 "if" statements running locally on the phone, to a separate service and mobile
 library serving also other projects, due to it's general usefulness for 
 geo-spatial analytics. The data that the clients (not just \emph{Curious Cat}
-are sending and the service is analysing, can be visualized and browsed through
+are sending and the service is analyzing, can be visualized and browsed through
 a separate web-interface as visible on \autoref{fig:nextPin}.
 
 \begin{figure}[htb]
 	\centering
 		\includegraphics[width=1\textwidth]{figures/nextPin.png}
-	\caption{Visualisation of clustering and enrichment results the SPD
+	\caption{Visualization of clustering and enrichment results the SPD
 algorithm, to provide $probableUserLocation$ context.}
 	\label{fig:nextPin}
 \end{figure}
 
 The second part of this algorithm was inspired by the paper \emph{Applying 
 Commonsense Reasoning to Place Identification}\parencite{Mamei2010}, which
-probabilisticly ranks the possible places acquired from online APIs based on the
+probabilistically ranks the possible places acquired from online APIs based on the
 SPD results and current time of the day. This then additionally enriches (with
 the name and type of the place) raw geo-coordinates of the cluster and time 
 as given by the SPD algorithm alone. 
@@ -638,7 +640,7 @@ about what user likes).
 
 On the left screenshot of \autoref{fig:assist1}, we see that \emph{Curious Cat}
 smartly told the user that there is a (jazz) music event nearby, after it 
-learnt that the user likes jazz music. The event was actually entered by 
+learned that the user likes jazz music. The event was actually entered by 
 another user and the system picked it up from the KB for the purpose of 
 helping new user. On the right screenshot, there is a similar ad-hoc comment, 
 but this time the trigger was cheaper coffee in the bar next-door. The 

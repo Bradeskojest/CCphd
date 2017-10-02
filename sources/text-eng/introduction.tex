@@ -28,17 +28,17 @@ Josh AI\footnote{www.josh.ai}). Even while these systems may use statistical
 and machine learning (e.g. deep learning) approaches, a substantial 
 portion of their production effort lies in knowledge acquisition, which is 
 sometimes hidden in (hand) coded rules for request/response patterns, execution
-workflow constructions and corresponding actions.
+work-flow constructions and corresponding actions.
 
 Independently of the far goal of AI research (human like intelligence), which
-is relected through latest instances of AI assistants, there are countless 
+is reflected through latest instances of AI assistants, there are countless 
 expert systems, databases and other software solutions that need maintenance
 and additional semantics, and all suffer from the KA bottleneck. This is making
 the solutions expensive, or unable to fully utilize the idea that they 
 implement. The bottleneck is especially obvious for the systems that make use 
 of the real-world data that is rapidly changing through time. Some of this can
 be reflected through revenues of the crowdsourcing platforms (Amazon Mechanical
-Turk, Crowdflower).
+Turk, CrowdFlower).
 
 This dissertation deals with the KA bottleneck problem by developing a novel
 approach to automated knowledge acquisition, using existing knowledge,
@@ -51,18 +51,18 @@ The approach implementation resulted in a real world mobile assistant
 application (called Curious Cat), which is able to use existing knowledge to 
 automatically infer 
 what knowledge is missing and then ask users for the answers, check for
-the correctnes and consistency and then place the newly acquired answer on
+the correctness and consistency and then place the newly acquired answer on
 top of the existing knowledge, to repeat the KA loop. It is
 using the context obtained from mobile devices to ask the right users at the 
 right time, about the right topic. 
-The implenentation has a multi objective goal, 
+The implementation has a multi objective goal, 
 where KA is the primary goal, and an intelligent assistant and conversational 
 agent are secondary goals, making the KA effortless and accurate while having a 
 conversation about concepts which have some connection to the user.
 
 The evaluation of the approach shows that the knowledge collected this way is
 mostly correct and consistent with the existing KB and thus shows the approach
-is promising and could work also in other real-world scenarious.
+is promising and could work also in other real-world scenarios.
 
 \section{Scientific Contributions}
 This section gives an overview of scientific and other contributions of this 
@@ -95,7 +95,7 @@ Contribution }
 Implementation of the KA framework as a working real-world prototype which 
 shows the feasibility of the approach and a way to connect many independent and 
 complex sub-systems. Sensor data, natural language, inference engine, 
-huge pre-existing knowledge base (Cyc\footnote{Cyc is a registered trademark 
+huge preexisting knowledge base (Cyc\footnote{Cyc is a registered trademark 
 of Cycorp, Inc.})\parencite{Lenat1995}, textual patterns 
 and crowdsourcing mechanisms are connected and interlinked into a coherent 
 interactive application (\autoref{chapter:implementation}).
@@ -127,10 +127,10 @@ similar approaches from the area of knowledge acquisition.
 Chapter \ref{chapter:approach} describes the general, implementation agnostic
 knowledge acquisition approach, one of the main contributions of the dissertation.
 The chapter starts with the overall architecture and then works it's way through
-sections, explaining the approach and addressing problems highlited in
+sections, explaining the approach and addressing problems highlighted in
 \autoref{chapter:background}. Each section defines required minimal logical
 structures to be able to explain the approach. Definitions from the sections
-build on top of each-other, ending in an explanatory knowlege base, and
+build on top of each-other, ending in an explanatory knowledge base, and
 a last section which shows through the concrete example, how the separate 
 modules work together as a coherent KA platform.
 

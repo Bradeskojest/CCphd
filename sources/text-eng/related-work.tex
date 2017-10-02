@@ -16,15 +16,15 @@ Goined as \emph{Knowledge Acquisition Bottleneck} in
 \parencite{Zang2013}, authors categorize all of the KA approaches into four main
 groups, regarding the source of the data and the way knowledge is acquired:
 \begin{itemize}
-	\item \emph{Labour Acquisition.} This approach uses human minds as the 
-    knowledge source. This usually involves human (expert) ontologists manually 
+	\item \emph{Labor Acquisition.} This approach uses human minds as the 
+    knowledge source. This usually involves human (expert) oncologists manually 
     entering and encoding the knowledge.
-	\item \emph{Interaction Acquisition.} As in Labour Acquisition, the source 
+	\item \emph{Interaction Acquisition.} As in Labor Acquisition, the source 
     of the knowledge is coming from humans, but in this case the KA is wrapped 
     in a facilitated interaction with the system, and is sometimes implicit 
     rather than explicit.
 	\item \emph{Reasoning Acquisition.} In this approach, new knowledge is 
-    automaticaGly inferred from the existing knowledge using logical rules and 
+    automatically inferred from the existing knowledge using logical rules and 
     machine inference.
 	\item \emph{Mining Acquisition.} In this approach, the knowledge is 
     extracted from some large textual corpus or corpora.
@@ -37,7 +37,7 @@ related approaches and extending where necessary. According to this
 classification, the work presented in this dissertation fits into a hybrid 
 approach combining all four groups, with the main focus on interaction and 
 reasoning. As already hinted at the beginning of \autoref{chapter:background},
-we address the problem by combining the labour and interaction acquisition, 
+we address the problem by combining the labor and interaction acquisition, 
 adding unique features of using user context and existing knowledge in a 
 combination with machine reasoning to produce practically unlimited number of 
 potential interaction acquisition tasks. These tasks are presented as a 
@@ -58,14 +58,14 @@ specific domain and accepts all user answers, which are then filtered only by
 voting.
 
 Another related system, which is a predecessor of \emph{Curious Cat} in some 
-aspects, is \emph{Cyc CURE} KA system (\autoref{section:r:cure} whic is 
+aspects, is \emph{Cyc CURE} KA system (\autoref{section:r:cure} which is 
 available as part of \emph{Cyc}, for making the internal KA easier. While 
 \emph{CURE} can use inference rules to produce new questions and is able to
 check for consistency of the answers, it doesn't use any context, conversation
-or crowdsourcing. It simply lists a set of quesions when \emph{Cyc} user clicks
-on the concept inside Cyc's unternak web-gui.
+or crowdsourcing. It simply lists a set of questions when \emph{Cyc} user clicks
+on the concept inside Cyc's internal web-GUI.
 
-After an initial KB, extracted from internet textual content had been gathered, 
+After an initial KB, extracted from Internet textual content had been gathered, 
 the CMU text-mining knowledge acquisition system NELL 
 (\autoref{section:r:nell}), started to apply a crowdsourcing approach
 \parencite{Pedro2013}, using natural language questions to validate its KB. 
@@ -80,21 +80,21 @@ and only then sends the new knowledge to other users for validation.
 Additionally, \emph{Curious Cat} is able to use context to target specific 
 users who have a very high chance of being able to answer a question.
 
-On the other end of the spectrum lie conversational agents (chatbots) with a 
-vast number of hand-scripted NL patterns and responsesi.
-Recently, some successfull chatbots have started to employ an internal KB, in
-addition to just scipted requests and response (subsections 
+On the other end of the spectrum lie conversational agents (chat-bots) with a 
+vast number of hand-scripted NL patterns and responses.
+Recently, some successful chat-bots have started to employ an internal KB, in
+addition to just scripted requests and response (subsections 
 \ref{section:r:aiml} and \ref{section:chatscript}). It is used to remember facts 
 from the conversation for later use. In this way, the chat system is actually 
 doing sort of targeted knowledge acquisition. There has also been an attempt to 
-extend AIML scripts with CYC knowledge (subsection \ref{section:r:cyn}) by 
+extend AIML scripts with Cyc knowledge (subsection \ref{section:r:cyn}) by 
 using NL patterns to match to particular logical queries, enabling a bot to 
 answer questions from Cyc KB. Unlike responses generated due to NL pattern 
-matches as with chatbots, \emph{Curious Cat} generates NL responses based on 
+matches as with chat-bots, \emph{Curious Cat} generates NL responses based on 
 the knowledge and context driven inference. This allows our system to 
-proactively engage users in sensible conversations and is thus one of the first 
+pro-actively engage users in sensible conversations and is thus one of the first 
 approaches that attempts to bridge the gap between maintaining the NL 
-conversation of chatbots and actually understanding its content.
+conversation of chat-bots and actually understanding its content.
 
 Something similar (converting NL to Prolog logic, answering the question and
 returning the result) had been tried to some extent before\parencite{Baral2007},
@@ -102,7 +102,7 @@ but just as a proof of concept example covering 4 use-cases, without doing
 anything else.
 
 More recently, common sense KA quiz game with a dialog system, using also prior
-knowledge (\emph{ConceptNet}) and automated quesion generation was implemented 
+knowledge (\emph{ConceptNet}) and automated question generation was implemented 
 and tested, acquiring 150,000 unique knowledge bits from 70,000 users
 \parencite{Otani2016}. 
 
@@ -119,8 +119,8 @@ sub-sections that follow.
 		\hline
 		System & Parent & Reference & Category & Source & Representation & Prior K. &  Crowds. & Context \\
 		\hline
-		Cyc project (Cycorp) & / & \parencite{Lenat1995} & Labour & K. Exp. & CycL & / & / & / \\
-		ThoughtTrasure(Signiform) & / & \parencite{Mueller2003} & Labour & K. Exp. & LAGS & / & / & / \\
+		Cyc project (Cycorp) & / & \parencite{Lenat1995} & Labor & K. Exp. & CycL & / & / & / \\
+		ThoughtTrasure(Signiform) & / & \parencite{Mueller2003} & Labor & K. Exp. & LAGS & / & / & / \\
 		HowNet (Keen.) & / & \parencite{Dong2010} & Labour & K. Exp. & KDML & / & / & / \\
 		OMCS/ConceptNet (MIT) & / & \parencite{Singh2002a} & Labour & Public & ConceptNet & / & \checkmark & / \\
 		GAC/Mindpixel(McKinstry) & / & \parencite{McKinstry2008} & Labour & Public & MindPixel & / & \checkmark & / \\
@@ -140,14 +140,14 @@ sub-sections that follow.
 		Collabio (MS) & /  & \parencite{Bernstein2010}  & Game & Public  & /  & /  & \checkmark  & /  \\
 		GECKA (NUS) & /  & \parencite{Cambria2015}  & Game & Public  & EBKR  & /  & \checkmark  & /  \\
 		Quiz (KU) & ConceptNet  & \parencite{Otani2016}  & Game & Public  & ConceptNet  & \checkmark  & \checkmark  & /  \\
-		AIML (Alice foundation) & /  & \parencite{Wallace2003}  & Chatbot & /  & AIML  & /  & /  & /  \\
-		Chatscript (Brilligunderstanding) & /  & \parencite{Wilcox2011}  & Chatbot & /  & ChatScript  & /  & /  & /  \\
-		CyN (Daxtron Labs) & Cyc+AIML  & \parencite{Wilcox2011}  & Chatbot & /  & AIML+Cyc  & \checkmark  & /  & /  \\
+		AIML (Alice foundation) & /  & \parencite{Wallace2003}  & Chat-bot & /  & AIML  & /  & /  & /  \\
+		Chatscript (Brilligunderstanding) & /  & \parencite{Wilcox2011}  & Chat-bot & /  & ChatScript  & /  & /  & /  \\
+		CyN (Daxtron Labs) & Cyc+AIML  & \parencite{Wilcox2011}  & Chat-bot & /  & AIML+Cyc  & \checkmark  & /  & /  \\
 	    PCW (Cycorp) & Cyc  & \parencite{Matuszek2004}  & Mining & Web Search  & AIML+Cyc  & \checkmark  & /  & /  \\
  		Learning Reader (NU) & Cyc & \parencite{Forbus2007} & Mining & Web & CycL & \checkmark & / & / \\
 		NELL (CMU) & / & \parencite{Mitchell2015} & Mining & Web & Predicate l. & \checkmark & \checkmark & / \\ 
 		KnowItAll(UW) & / & \parencite{Etzioni2004} & Mining & Web Search & text & / & / & / \\
-		Probase (MSR) & / & \parencite{Wu2012}  & Mining & Web & Propriatery & / & / & / \\
+		Probase (MSR) & / & \parencite{Wu2012}  & Mining & Web & Proprietary & / & / & / \\
         TextRunner (UW) & KnowItAll & \parencite{Soderland2007} & Mining & Web & text & / & / & / \\
 		ReVerb (UW) & TextRunner & \parencite{Fader2011} & Mining & Web & text & / & / & / \\
 		R2A2 (UW) & ReVerb & \parencite{Etzioni2011} & Mining & Web & text & / & / & / \\
@@ -165,19 +165,19 @@ sub-sections that follow.
 \end{table}
 \end{landscape}
 
-\section{Labour Acquisition}
+\section{Labor Acquisition}
 \label{section:labouracquisition}
 This category consists of KA approaches which rely on explicit human work to 
 collect the knowledge. A number of expert (or also untrained) ontologists or 
 knowledge engineers is employed to codify the knowledge by hand into the given 
-knowledge representation (formal language). Labour acquisition is the most 
+knowledge representation (formal language). Labor acquisition is the most 
 expensive acquisition type, but it gives a high quality knowledge. It is often a
 crucial initial step in other KA types as well, since it can help to have some 
-pre-existing knowledge to be able to check the consistency of the newly acquired
-knowledge. Labour Acquisition is often present in other KA types, even if not 
+preexisting knowledge to be able to check the consistency of the newly acquired
+knowledge. Labor Acquisition is often present in other KA types, even if not 
 explicitly mentioned, since it is implicitly done when defining internal 
 workings and structures of other KA processes. While we checked other well 
-known systems that are result of Labour Acquisition, Cyc (mentioned below) is 
+known systems that are result of Labor Acquisition, Cyc (mentioned below) is 
 the most comprehensive of them and was picked as a starting point and main 
 background knowledge and implementation base for this work.
 
@@ -193,11 +193,11 @@ continued through Cycorp Inc. company, which is still continuing the effort.
 Through the years Cyc Inc. employed computer scientists, knowledge engineers, 
 philosophers, ontologists, linguists and domain experts, to codify the knowledge
 in the formal higher order logic language CycL \parencite{Matuszek2006}. As of 
-2006, the effort of making Cyc was 900 non-crowdsourced 
+2006, the effort of making Cyc was 900 non crowd-sourced 
 human years which resulted in 7 million assertions connecting 500,000 terms and 
 17,000 predicates/relations \parencite{Zang2013}, structured into consistent 
 sub-theories (Microtheories) and connected to the Cyc Inference engine and 
-Natural Language generation. Since the implemtentation of our approach is based
+Natural Language generation. Since the implementation of our approach is based
 on Cyc, we give a more detailed description of the KB and its connected systems
 in \autoref{section:Cyc} on page \pageref{section:Cyc}. Cyc Project is still 
 work in progress and continues to live and expand through various research and
@@ -214,8 +214,8 @@ to first-order logic as is used in Cyc. Additionally, some parts of
 \emph{ThoughtTreasure} knowledge can be presented also with finite automata, 
 grids and scripts\parencite{Mueller1999,Mueller2003}. In 2003 the knowledge of
 this system consisted of 25,000 concepts and 50,000 assertions. ThoughtTreasure 
-was not so successfull as Cyc and ceased all developments in 2000 and was 
-open-sourced on Github in 2015\footnote{https://github.com/eriktmueller/
+was not so successful as Cyc and ceased all developments in 2000 and was 
+open-sourced on GitHub in 2015\footnote{https://github.com/eriktmueller/
 thoughttreasure}. 
 
 \subsection{HowNet}
@@ -245,7 +245,7 @@ but rather inter-connected pieces of natural language statements. As of 2013
 English (1,040,067 statements), Chinese (356,277), Portuguese (233,514), 
 Korean (14,955), Japanese (14,546), Dutch (5,066), etc. Initial collection was
 done by specifying 25 human activities, where each activity got it's own user 
-interface for free form natural language entry and also pre-defined patterns 
+interface for free form natural language entry and also predefined patterns 
 like "A hammer is for \underline{\hspace{1.0cm}}", where participants can enter
 the knowledge. Although OMCS started to build KB from scratch it shares a 
 similarity to our CC system in a sense that it is using crowd-sourcing and also
@@ -262,12 +262,12 @@ Generic Artificial Consciousness was a bold try to make a general AI based on
 the premise that human thinking can be simulated with answering binary yes/no
 questions or decisions\parencite{McKinstry2008}, where humans have a natural 
 bias toward yes answers. With this in mind, McKinstry founded GAC (later renamed
-to MindPixel), where internet crowd would answer yes/no questions for shares
+to MindPixel), where Internet crowd would answer yes/no questions for shares
 in the company which would commercially exploit the GAC AI. Initially, one such
 answer which contributed to GAC knowledge base was called MindPixel, but after
 a while this became name for the whole system. With this idea, McKinstry's
 MindPixel was one of the first crowd-sourced efforts for collaborative KB
-building. While MindPixel shut down after McKinsey stopped working on it,
+building. While MindPixel shut down after McKinstry stopped working on it,
 it inspired \emph{OMCS, later OpenMind} and started the crowdsourcing and
 crowd based cross validation of the facts. Besides the \emph{OMCS}, a similar
 YES/NO crowdsourcing system lives under the name 
@@ -284,9 +284,9 @@ forecast information, real-time measurements of traffic/ production line, etc.
 In such cases it is beneficial if one can link and address this data in the 
 same way as it would have been included in the original KB. This is the goal
 of \emph{SKS}\parencite{Masters2007}
-In order to connect the external source, a "wapper" knowledge needs to be
+In order to connect the external source, a "wrapper" knowledge needs to be
 defined in \emph{Cyc} KB, which describes which concepts and instances external
-source represents, and how to access them (http request, SQL Query, etc.).
+source represents, and how to access them (HTTP request, SQL Query, etc.).
 
 In \emph{SKS} system, this "wrapper" knowledge is asserted as normal \emph{CycL}
 assertions using special predicates and concepts. The descriptions are 
@@ -306,7 +306,7 @@ on externally connected data without even noticing it's external.
 
 \section{Interaction Acquisition}
 \label{section:r:interaction}
-Similarly as with Labour KA, interaction Acquisition gets the knowledge from 
+Similarly as with Labor KA, interaction Acquisition gets the knowledge from 
 human minds, but in this case the acquisition is an intended side effect, while
 users are interacting with the software as part of some other activity/task, or
 as part of a motivation scheme, such as knowledge acquisition games. Besides 
@@ -326,10 +326,10 @@ non-conversational way as part of the input forms.
 Interactive user interfaces are the most common representation of interaction 
 acquisition, where the user interface is constructed in a way to help user enter
 the data and thus make the acquisition much faster and cheaper. Historically, 
-these systems were developed to help the labour acquisition systems, or on top
+these systems were developed to help the labor acquisition systems, or on top
 of them, after parent systems reached some sort of maturity and initial 
 knowledge stability. This is the reason why all of these systems rely or are 
-build on top of labour acquisition (\autoref{section:labouracquisition}) or 
+build on top of labor acquisition (\autoref{section:labouracquisition}) or 
 mining acquisition (\autoref{section:r:miningacq}) systems.
 
 \subsubsection{KRAKEN}
@@ -340,7 +340,7 @@ areas of artificial intelligence, ontology development, or knowledge
 representation\parencite{Panton2002a}. It was developed as part of DARPA's
 Rapid Knowledge Formation (RKF) project in 2000. As its goal was to allow
 knowledge entry to non-trained experts, it started to use natural language 
-entry and is as this, a first pre-cursor to Curious Cat system and a seed idea
+entry and is as this, a first precursor to Curious Cat system and a seed idea
 for it. It consists of creators, selectors, modifiers of Cyc KB building blocks,
 tools for consistency checks and tools for using existing knowledge to infer new
 things to ask. This tool, together with it's derived solutions was later 
@@ -356,7 +356,7 @@ and given as a list of natural language forms.
 \label{section:r:uia}
 UIA was a web  based user interface for KRAKEN
 KA tool\parencite{Panton2002a,Witbrock2003UIA}. It worked inside a browser and 
-it worked as responsive web-app (in 2001) by automatically triggering refresh 
+it worked as responsive web-application (in 2001) by automatically triggering refresh 
 functionality of the browser. It consisted of a menu of tools that is organized
 according to the recommended steps of the KE process, text entry box (query, 
 answer, statement), center screen for the main interaction with the current 
@@ -373,13 +373,13 @@ system with improved
 Additional to the knowledge entry mechanisms mentioned in previous two tools,
 \emph{CURE} also has a web-browser plug-in that can read current web-pages,
 or also free text, and annotate it with possible Cyc concepts, which are
-clickable and they cause the knowledge entry process for clicked concept.
+click-able and they cause the knowledge entry process for clicked concept.
 As already mentioned, \emph{Curious Cat} was inspired by \emph{CURE}, and
 could be considered a \emph{CURE} improvement with more precise control over the
 KA process, crowdsourcing component, user context and conversational ability.
 In the cases when \emph{Curious Cat} mechanisms run out of responses,
 our system falls back to \emph{CURE}, showing its questions to the user, instead
-of imediatelly switching the topic (see \autoref{tab:topics} in 
+of immediately switching the topic (see \autoref{tab:topics} in 
 \autoref{section:mainServlet}).
 
 \subsubsection{Factivore}
@@ -392,7 +392,7 @@ ended up as not being useful).
 
 \subsubsection{Predicate Populator}
 \label{section:r:pp}
-\emph{Predicete Populator} is a similar tool as \emph{Factivore}, which instead
+\emph{Predicate Populator} is a similar tool as \emph{Factivore}, which instead
 of only collecting instances, allows to add general knowledge about classes. For
 example, instead of describing facts for a specific restaurant, it can collect
 general knowledge that is true for all restaurants \parencite{Witbrock2005}. The
@@ -463,7 +463,7 @@ Similarly as Q20 above, Verbosity is a spoken game for two
 persons randomly selected online. It was inspired by Taboo board 
 game\parencite{TabooGame} which required players to state common sense facts
 without mentioning the secret concept. While having similar game-play as 
-aforementioned board game, Verbositywas developed with the intent to collect
+aforementioned board game, Verbosity was developed with the intent to collect
 common sense knowledge \parencite{VonAhn2006a}. One player (narrator), gets
 a secret word concept and needs to give hints about the word to the other 
 player (guesser), who must figure out the word that is described the hints.
@@ -521,7 +521,7 @@ questions and answers falls exponentially through time, with respect
 to the number of already collected knowledge peaces.
 This approach is also aligned with the CC approach, which uses existing+
 context and new knowledge, to drive the questions. First part of the \emph{GOKC}
-paper describes analysis of the knowledge collected by \emph{Virutal Pet} game. 
+paper describes analysis of the knowledge collected by \emph{Virtual Pet} game. 
 The second part is a description and evaluation of  GOKC KA approach, where 
 authors did 1 week experiment to show that the approach works. During that 
 week the system inferred created 755 new questions, out of which, 12 were
@@ -530,7 +530,7 @@ reported as bad. Out of these questions 10,572 answers were collected where
 to the game without question expansion (\emph{Virtual Pet}), which has
 precision of 80.58\%, this is an improvement.
 
-\subsubsection{Collabio (Collbaorative Biography)}
+\subsubsection{Collabio (Collaborative Biography)}
 \label{section:r:collabio}
 This is also a Facebook based game, with the intention to
 collect user's tags. While the gathered knowledge is more a set of person's 
@@ -544,11 +544,11 @@ otherwise\parencite{Bernstein2009, Bernstein2010}.
 \emph{GECKA} can be considered as a meta GWAP (Game with a Purpose), as it is
 a GWAP game developing/editing tool. It was inspired by existing GWAP games
 (Virtual Pet, Rapport), trying to overcome their weaknesses, naming sticky 
-factor and un-transferrability of the knowledge. This is done by allowing
-users to buld their own games (short, or long adventure games), which they can
+factor and un-transferability of the knowledge. This is done by allowing
+users to build their own games (short, or long adventure games), which they can
 share with friends who play. While the users are designing a game, they
-also generate knowledge as a side effect when defining screens, iteractions
-between the objects and other users. Authors call these knwoledge pieces
+also generate knowledge as a side effect when defining screens, interactions
+between the objects and other users. Authors call these knowledge pieces
 \emph{POG triples} (Prerequisite, outcome, goal).
 Approach was tested on 20 students from Singapore Polytechnic, and was evaluated
 to have the accuracy of  85.7\%.
@@ -559,7 +559,7 @@ to have the accuracy of  85.7\%.
 Dialogue System}\parencite{Otani2016} is a GWAP game developed on a 
 smart-phone as a module inside Yahoo Voice Assist application (which is 
 installed on more than 2.5 million devices), and interacting with the users 
-via natural langauge dialogue.  Over the course of 8 months, 70,000
+via natural language dialogue.  Over the course of 8 months, 70,000
 users contributed 150,000 unique knowledge knowledge pieces, being added on
 top of Japanese \emph{ConceptNet}. Regarding the game mechanics,
 quiz participants are given clues about a certain concept. Then they try to
@@ -597,7 +597,7 @@ conversations to be able to be smart enough, so users do not lose interest.
 Starting with Eliza\parencite{Weizenbaum1966}, these systems evolved, mostly 
 directed by Turning Tests\parencite{Turing?}, implemented as Loebner 
 competitions, trying to pass it\footnote{http://www.loebner.net}. Through the 
-measure of these tests\parencite{Bradesko2012}, among a few propriatery 
+measure of these tests\parencite{Bradesko2012}, among a few proprietary 
 chat-bots, two technologies evolved (\emph{AIML, ChatScript}) to be general 
 enough and can be used for conversational engine (chat-bot) construction and 
 also NL knowledge acquisition.
@@ -605,12 +605,12 @@ also NL knowledge acquisition.
 \subsection{AIML(Artificial Intelligence Mark-up Language)}
 \label{section:r:aiml}
 AIML is an XML based 
-scripting language. It allows developers of chat-bots, to construct a pre-
-defined natural language patterns and their responses. These definitions are 
+scripting language. It allows developers of chat-bots, to construct a predefined
+natural language patterns and their responses. These definitions are 
 then fed into an AIML engine, which can match user inputs with the patterns and 
 figure out what response to write. AIMLs syntax consists mostly of input rules 
 (categories) with appropriate output. The pattern must cover the entire input 
-and is case insensitive. It is possible to use a wildcard (*) which binds to 
+and is case insensitive. It is possible to use a wild-card (*) which binds to 
 one or more words. The simplest example of AIML pattern with appropriate 
 response is presented in \tablename~\ref{tab:aiml_example}. This pattern 
 detects user's questions like "Do you have something on the menu?" and responds 
@@ -698,10 +698,11 @@ was later improved with AIML2.0\parencite{Wallace2013} which introduced the
 \end{table}
 
 While AIML language with appropriate engine can remember specific facts, the
-mechanism is purely keyword based and cannot really count as structured knowledge. Additionally, since it only remembers direct facts, it would be
+mechanism is purely keyword based and cannot really count as structured knowledge. 
+Additionally, since it only remembers direct facts, it would be
 really hard to construct an acquisition of all types of food for example.
-AIML based chatbots were winning Loebner's competitions in the years from 2000
-to 2004, but were later outcompeted by Chatscript based bots and propriatery 
+AIML based chat-bots were winning Loebner's competitions in the years from 2000
+to 2004, but were later out-competed by Chatscript based bots and proprietary 
 solutions.
 
 \subsection {ChatScript}
@@ -709,10 +710,14 @@ solutions.
 ChatScript is an NLP expert system consisting of textual patterns 
 rules. It was designed by Bruce Wilcox \parencite{Wilcox2011} and besides
 patterns it has mechanisms for defining concepts, triple store for facts, 
-own inference engine POS tagger and parser. From the measure of how close the system is to pass the Turing Test as measured by Loebner's competitions, \emph{ChatScript} surpassed \emph{AIML},
+own inference engine POS tagger and parser. From the measure of how close 
+the system is to pass the Turing Test as measured by Loebner's competitions, 
+\emph{ChatScript} surpassed \emph{AIML},
 and is its successor, since both systems are open sourced. It was designed 
-purposely to be simpler to use and have more powerful tools for NLP and knowledge acquisition which is integral part chatbot systems. A simple example
-from AIML (\tablename~\ref{tab:aiml_example}) can be re-written in much shorter form as ChatScript rule (\tablename~\ref{tab:chatscript_example}).
+purposely to be simpler to use and have more powerful tools for NLP and 
+knowledge acquisition which is integral part chat-bot systems. A simple example
+from AIML (\tablename~\ref{tab:aiml_example}) can be re-written in much 
+shorter form as ChatScript rule (\tablename~\ref{tab:chatscript_example}).
 
 \begin{table}[htb]
 	\caption{Simple ChatScript example}
@@ -728,7 +733,7 @@ from AIML (\tablename~\ref{tab:aiml_example}) can be re-written in much shorter 
 	\end{tabular}
 \end{table}
 
-Similarly the example from \tablename~\ref{tab:aiml_ka1} can be writen as:
+Similarly the example from \tablename~\ref{tab:aiml_ka1} can be written as:
 \begin{table}[htb]
 	\caption{Simple ka (remembering) example}
 	\label{tab:chatscript_ka1}
@@ -770,7 +775,8 @@ functions.
 \label{section:r:cyn}
 CyN is an AIML interpreter implementation with additional functionality
 to be able to access Cyc inference engine and KB for both, storing the knowledge 
-and also for querying\parencite{Coursey2004}. This was done by introduction of new AIML tags:
+and also for querying\parencite{Coursey2004}. This was done by introduction of new 
+AIML tags:
 \begin{itemize}
 	\item \emph{<cycterm>} Translates an English word/phrase into a Cyc symbol.
 	\item \emph{<cycsystem>} Executes a CycL statement and returns the result.
@@ -787,7 +793,7 @@ This category of KA systems try to make use of big text corpus-es
 available online or otherwise on some digital media. Because the core idea of 
 writing is to share information, there is a lot of knowledge in the texts that 
 can be extracted and converted into a structured knowledge that can later be used 
-by computers. Due to wast size and availability of the data on the internet,
+by computers. Due to wast size and availability of the data on the Internet,
 mining is most often done on the web resources. Since most of the data format
 from these corpuses is text, these techniques are particularly strong in the
 using various NLP techniques, which are often combined with existing knowledge
@@ -811,7 +817,7 @@ After the conversion these are converted back to NL and re-searched on the web,
 to check whether the results still hold, and then as the last step, the 
 results are checked for consistency (whether they can be asserted into Cyc). 
 From the initial 134 predicates, the system generated 348 queries, 
-4290 searches. It found 1016 facts, out of which 4 were rejectec
+4290 searches. It found 1016 facts, out of which 4 were rejected
 due to inconsistency, 566 rejected by search engine (not same results), 384 
 were already known to Cyc, and finally 61 new consistent facts were detected 
 as valid. After human review, the findings were that only 32 facts were 
@@ -841,7 +847,7 @@ raised to 60\% while accuracy dropped to 90.8\%.
 \label{section:r:nell}
 NELL\parencite{Mitchell2015} is a text mining KA system running 24/7 with the
 goal to extract knowledge, use this knowledge to improve itself and extract
-more knowledge. NELL was started in January 2010 and as of 2015 acuired
+more knowledge. NELL was started in January 2010 and as of 2015 acquired
 80 million confidence weighted new beliefs. NELL consists of many different
 learning tasks (for different types of knowledge), where each task also consist
 of the performance metrics, so the system can asses itself and check if the 
@@ -853,12 +859,12 @@ learning task itself is also improving through time. In 2015 it consisted of
 	\item Entity Resolution
 	\item Inference Rules among belief triples
 \end{itemize}
-After learning tasks, there is a \emph{Coupling Constraings} component, which
+After learning tasks, there is a \emph{Coupling Constrains} component, which
 combines results of learning tasks. The potentially useful knowledge gets
 asserted into the KB as candidates, where the assertions are checked by knowledge
 integrator module which integrates the assertions into the KB, or rejects them.
 
-After some initail initial KB had been gathered, the CMU text-mining knowledge 
+After some initial initial KB had been gathered, the CMU text-mining knowledge 
 NELL also started to apply a crowdsourcing approach\parencite{Pedro2012a},
 using natural language questions to validate its KB. In a similar
 fashion as Curious Cat, NELL can use newly acquired knowledge, to 
@@ -882,11 +888,11 @@ like "NP1 such as NP2". The classes and patterns are then used to find instances
 new classes and also new extraction phrases by analyzing the results of the 
 web search engines. For example, Googling: "Cities such as *", will return 
 a lot of statements with instances of cities. After these cities are extracted,
-the names can be used for furhter Googling and by analyzing the phrases in which
+the names can be used for further Googling and by analyzing the phrases in which
 these cities appear, new patterns can be found, and so on. As part of the
 experiment, KnowItAll ran for 5 days and extracted over 50,000 instances of
 cities, states, countries, actors and films.
-To asses the correctnes of the extractions, the system can fill-in the instances
+To asses the correctness of the extractions, the system can fill-in the instances
 into the various patterns and check the hit-count returned by the search engine./
 This then compares by the hit-count of the instance itself and uses this to
 asses the probability of the instance really belonging to the detected class.
@@ -896,7 +902,7 @@ most likely indeed an instance of the class city.
 
 KnowItAll was the first of the systems that inspired an \emph{Open Information
 Extraction (Open IE)} paradigm\parencite{Etzioni2011} which resulted in many 
-other IE systems such us TextRunner, ReVerb and R2A2. The main ide of this
+other IE systems such us TextRunner, ReVerb and R2A2. The main idea of this
 paradigm is to avoid hand labeled examples and domain specific verbs and nouns
 when approaching textual patterns which can lead to open (without specifying the
 targets) knowledge extraction on a web scale.
@@ -908,8 +914,8 @@ Probase is a probabilistic taxonomy of concepts and instances consisting of
 \parencite{Wu2012}. The main difference between Probase and other KBs is that
 Probase is probabilistic as opposed of "black and white" KB. On the other hand,
 even if it has much more concepts, it is sparse in the knowledge, since it only
-uses isA relation (taxonomy). Probase was compared to other taxonomies such as
-WordNet, YAGO and Freebase in the sense of recall and precition of isA 
+uses $isA$ relation (taxonomy). Probase was compared to other taxonomies such as
+WordNet, YAGO and Freebase in the sense of recall and precision of $isA$ 
 relations. Probase was found to be most comprehensive (biggest recall), while
 losing at precision measure against YAGO (92.8\% vs 95\%). 
 
@@ -926,9 +932,9 @@ any human intervention which would fix the system to some specific domain or set
 of concepts/relations.
 \emph{TextRunner} was ran through over 9 million of web pages, and compared to
 \emph{KnowItAll} reduced the error rate for 33\% on comparable set of 
-extractions. Throughout the experiments, \emph{TextRunner} collected 11mio
-of high probability tuples and 1 mio concrete facts. \emph{TextRunner} consists
-of three components.
+extractions. Throughout the experiments, \emph{TextRunner} collected 11 million
+of high probability tuples and 1 million concrete facts. \emph{TextRunner} 
+consists of three components.
 
 \emph{Self-Supervised Learner} is a component started first which takes a small
 corpus of documents as an input and then outputs a classifier that can detect
@@ -939,22 +945,22 @@ the full corpus and extracts tuples for all possible relations. These tuples
 are then sent to the classifier trained before, which then marks them as
 trustworthy or not. Only trustworthy tuples are retained.
 
-\emph{Redundancy-Based Assesor} is the last step which assigns a probability to
+\emph{Redundancy-Based Assessor} is the last step which assigns a probability to
 each retained tuple, based on the probabilistic model or redundancy
 \parencite{Downey2005}.
 
 \subsection{ReVerb}
 \label{section:r:reverb}
 With  the experiments done with \emph{TextRunner} and \emph{WAE}, it became
-obvious that OIE systems have a lot of noise and inconistencies in the results.
+obvious that OIE systems have a lot of noise and inconsistencies in the results.
 For this reason two syntactical and lexical constraints were introduced in
 \emph{ReVerb} OIE system\parencite{Fader2011}. This helps with removing
 the incoherent extractions such as "recalled began" which was extracted from
-sentence "They recalled that Nungesser began his career as precint leader", or
+sentence "They recalled that Nungesser began his career as precinct leader", or
 uninformative extractions like "Faust, made a deal" extracted from "Faust
 made a deal with the devil".\parencite{Fader2011}.
 When started, \emph{ReVerb} first identifies relation phrases that match the
-constraints, then if finds approriate pair of appropriate noun phrase rguments
+constraints, then if finds appropriate pair of appropriate noun phrase arguments
 for each identified phrase. The resulting extractions are then given a 
 confidence score using logistic regression classifier.
 
@@ -964,7 +970,7 @@ R2A2 is another improvement in OIE paradigm, since previous systems assumed that
 relation arguments are only simple noun phrases. Analysis of \emph{ReVerb}
 errors showed that 65\% of errors is on the arguments side (the relation was ok).
 To fix this, \emph{R2A2} system goes somehow into the direction of kb based
-KA sytems like Curious Cat with argument constraings.\parencite{Etzioni2011}. 
+KA systems like Curious Cat with argument constrains.\parencite{Etzioni2011}. 
 The difference is that 
 \emph{R2A2} is not using hard logic and inference, but rather statistical
 classifier to detects class constraints (bounds) of the arguments. Compared to
@@ -973,15 +979,15 @@ classifier to detects class constraints (bounds) of the arguments. Compared to
 \subsection{ConceptMiner}
 \label{section:r:conceptminer}
 \emph{ConceptMiner} is a KA system built by Ian Scott Eslick as part of his
-master thesis\parencite{Eslick2006}, with the main hipothesis that the seed
-knowledge collected from vounteers can be then used to bootstrap automatic 
+master thesis\parencite{Eslick2006}, with the main hypothesis that the seed
+knowledge collected from volunteers can be then used to bootstrap automatic 
 knowledge acquisition. \emph{ConceptMiner} specifically focuses on binary
 semantic relationships such as cause, effect, intent and time. The system relies
 on the prior volunteer knowledge from \emph{ConceptNet} and tests its 
-hipothesis with experimental extractions of knowledge aroun three semantic
+hypothesis with experimental extractions of knowledge around three semantic
 relations: desire, effect and capability.
 
-As a first step, the systemn uses knowledge around predicates \emph{DesireOf},
+As a first step, the system uses knowledge around predicates \emph{DesireOf},
 \emph{EffectOf} and \emph{CapableOf} from \emph{ConceptNet}, to construct 
 web-search queries. The results of these are then used to derive general
 patterns for aforementioned relations. For example an existing knowledge
@@ -995,7 +1001,7 @@ patterns for aforementioned relations. For example an existing knowledge
 While not all of the patterns are of the same quality, with the sheer number of
 repetitions, it is possible to extract more probable ones. This then results
 in general patterns such as \emph{<X>/NN loves/VBZ <Y>/NN}. These can be then
-used to issue a lot of search queries with various combinations of wors, to 
+used to issue a lot of search queries with various combinations of words, to 
 extract instances of 'who desires what'. These potential instances then go
 into the last step (filtering). As part of this step, \emph{ConceptMiner} 
 removes badly formed statements, concepts not included in \emph{ConceptNet} KB,
@@ -1004,7 +1010,8 @@ and concepts with low PMI score (see abbreviations and glossary).
 \subsection{DBPedia}
 \label{section:r:dbpedia}
 \emph{DBPedia} is crowd-sourced RDF KB, extracted from Wikipedia pages and made
-publicly available\parencite{Lehmann2015}. As of 2017 the English DBPedia contains 4.58 million 
+publicly available\parencite{Lehmann2015}. As of 2017 the English DBPedia 
+contains 4.58 million 
 knowledge pieces, out of which 4.22 million in a consistent ontology, 
 including 1,445,000 persons, 735,000 places, 411,000 creative works
 (123,000 music albums, 87,000 films and 19,000 video games), 
@@ -1029,7 +1036,7 @@ written into an RDF sink, supporting various format such as NTriples, etc.
 \emph{YAGO} is an ontology built automatically from \emph{WordNet} and 
 \emph{Wikipedia}\parencite{Suchanek2008}. Latest version \emph{YAGO3} is built
 from multiple languages and as of 2015 consist of 4,595,906 entities, 
-8,936,324 facts, 15,611,709 taxonimy facts and 1,398,837 labels
+8,936,324 facts, 15,611,709 taxonomy facts and 1,398,837 labels
 \parencite{Mahdisoltani2015}.
 The facts were extracted from Wikipedia category system and info boxes, using
 a combination of rule-based and heuristic methods, and then enriched with 
@@ -1050,7 +1057,7 @@ that before combining meanings from a phrase, the meanings are abstracted
 (generalized) and simplified. For example, abstraction of "a long, dak corridor"
 yields "a corridor". Or "a small office at the end of a long dark corridor" 
 yields "an office". This kind of abstraction, together with weakening of 
-relations into a possibilistic form, starts to represent presumptios about the
+relations into a possibilistic form, starts to represent presumptions about the
 world. 
 The extraction follows five steps:
 \begin{itemize}
@@ -1060,7 +1067,7 @@ The extraction follows five steps:
           using semantic rule patterns
     \item Collect the phrases expected to hold general "possibilistic" 
         propositions
-    \item Formulate the propositiions and output these together with simple
+    \item Formulate the propositions and output these together with simple
         English representations.
 \end{itemize}
 From an example input statement "Blanche knew something must be causing 
@@ -1096,24 +1103,24 @@ doesn't need any external data-sources, but it uses existing knowledge and
 machine inference to automatically infer additional facts from the existing
 knowledge. While deductive reasoning can come with new facts from the premises 
 and rules, the reasoning that has a chance to produce higher value (non obvious)
-findings is inductive and analogical resasoning. Analogical reasoning can find
+findings is inductive and analogical reasoning. Analogical reasoning can find
 new facts of some concept based on properties of similar concepts. On the other
-side, infuctive reasoning can find find new probable rules based on current 
+side, inductive reasoning can find find new probable rules based on current 
 observations of the KB.
 
 \subsection {Cyc Predicate Populator + FOIL}
-With the initial experiments conducted from Labour Rule Acquisition done as part
+With the initial experiments conducted from Labor Rule Acquisition done as part
 of \emph{Factivore} and \emph{Predicate Populator}\parencite{Witbrock2005}, it 
 was found that getting inference rules from crowdsourcing and untrained
 human labour is ineffective and slow. For this reason, inductive logic 
 inference mechanism based on FOIL (First Order Inductive Learner) approach
-\parencite{Quinlan1995} was added to the systen. Experiments were conducted on
+\parencite{Quinlan1995} was added to the system. Experiments were conducted on
 a set of 10 predicates from the KB, which generated 300 new rules. Of these
 rules, 7.5\% were found to be correct and 35\% correct with minor editing to
 make them well formed (assertible to Cyc). This way, rule acquisition was speed
 up for quite a lot, since previous experiments showed that human experts produce
 rules with the rate around three per hour, while with FOIL, they can review
-and double check for correctnes around twenty rules per hour.
+and double check for correctness around twenty rules per hour.
 
 \subsection {Plausible Inference Patterns (PIP)}
 
@@ -1123,7 +1130,7 @@ The main idea of \emph{PIP} system is to learn new plausible inference rules
 reinforcement learning and thus improve the system's question answering
 abilities\parencite{Sharma2010}. It is based on \emph{Cyc} knowledge base,
 especially its predicate hierarchy represented by \emph{\#\$genlPred} predicate, 
-and \emph{PredicateType} which represents second order collection of predicates 
+and \emph{\#\$PredicateType} which represents second order collection of predicates 
 that can be grouped together by some common features. For example
 \emph{(\#\$genlPreds \#\$holds \#\$touches)}, means that each time something is 
 holding something else, it is also touching it. The system scans the KB for rules 
@@ -1142,16 +1149,16 @@ where \emph{\#\$familyRelationsSlot} and \emph{\#\$personalAssociationPredicate}
 are instances of \emph{\#\$PredicateType} and thus collections of other 
 predicates, and \emph{?x,?y,?z} are variables representing other concepts
 \parencite{Sharma2010}. This PIP or inference rule, tells the special inference
-algorithm that two predicates of type \emph{\#\$familyRelationsSlot} cand
-imply \emph{\#\$personalAssociationPredicate}, whent a proper combination
+algorithm that two predicates of type \emph{\#\$familyRelationsSlot} can
+imply \emph{\#\$personalAssociationPredicate}, when a proper combination
 of antecedent bindings on \emph{?x,?y, ?z} is can be proved. Part of the 
 \emph{PIP} system is also an inference algorithm (FPEQ), which can make use of 
 the above rule and come up with the possible solutions. As the first step, it 
 constructs a graph connected to the concepts used in the Q/A query. Then, the
 algorithm searches for the assertions in the graph matching a set of existing
-PIP inference rules. As the last steps, it returns the maches (i.e. filled-in
+PIP inference rules. As the last steps, it returns the matches (i.e. filled-in
 PIPs with specific predicates and concepts) which can answer the query.
-As an additional step, authors introduuced reinforcement learning, where a small
+As an additional step, authors introduced reinforcement learning, where a small
 amount of user feedback (+1 or -1 voting) for final answers, can improve the
 PIP selection and also the level of generalizations when generating PIPs.
 Overall, the experiments showed that the approach increased Q/A recall for 
@@ -1159,7 +1166,7 @@ quite a lot (120\% improvement), while minimally reduced the precision (94\% of
 the baseline)\parencite{Zang2013}.
 
 \subsection{AnalogySpace}
-This system is meant to work over big, but unexact knowledge bases 
+This system is meant to work over big, but inexact knowledge bases 
 (such as OMCS), where the need it to be able to make rough conclusions based
 on similarities, as opposed on hard and absolute logical facts. 
 \emph{AnalogySpace} does just that, by performing analogical closure by
@@ -1167,9 +1174,9 @@ dimensionality reduction of semantic network (KB graph)\parencite{Speer2008}.
 This system tried to represent a new synthesis between a standard symbolic 
 reasoning and statistical methods. For this, a similar technique to Latent
 Semantic Analysis (LSA) is being used, where strong assertions are used as
-opposed to weak semantics of word co-occurences in the document. In the 
+opposed to weak semantics of word co-occurrences in the document. In the 
 LSA matrix, on one axis are concepts from \emph{OMCS}, and on the other
-axis a features of these concepts, which yelds a sparse matrix of very
+axis a features of these concepts, which yields a sparse matrix of very
 high dimension. Then Singular Value Decomposition (SVD) is used on the matrix
 to reduce the dimensionality. This results in \emph{principal components},
 which represent the most important aspects of the knowledge. Then semantic
@@ -1180,7 +1187,7 @@ concept vectors and can thus make generalizations based on these similarities,
 even if original concept didn't have some of the exact assertions that would
 enable inference engine to use it in the inference process and thus come with
 good answer. 
-Results of experminents have shown that more than 70\% of the resulting 
+Results of experiments have shown that more than 70\% of the resulting 
 assertions were marked as true by human validators.
 
 \subsection{Cyc Wiki}
@@ -1189,11 +1196,11 @@ a way to be useful for inference engines directly, it makes sense to either try
 to structure it (as was done with \emph{YAGO}), or link it with some existing
 ontology such as \emph{CycKB}, which was done as part of this research task
 \parencite{Medelyan2008}.
-Authors first filtered out of pootential pool of Cyc concepts all non-common 
+Authors first filtered out of potential pool of Cyc concepts all non-common 
 sense concepts, which ended with 83,897 of them. Then these concepts were
 string matched with Wikipedia concept names based on their name directly,
 or based on \emph{\#\$nameString} predicate. For example, Cyc concept
-\emph{\#\$Virgo-Constellation} would be mathced to Wikipeadia page 
+\emph{\#\$Virgo-Constellation} would be matched to Wikipedia page 
 \emph{Virgo (Constellation)}. After this step, the mappings that have 1 to 1
 relationship with Wikipedia pages and do not point to Wiki disambiguation pages,
 are considered properly aligned. But the mappings that have more than 1 
@@ -1203,7 +1210,7 @@ disambiguation was needed, and precision 93\% and recall 86.3\% with the
 disambiguation part.
 
 
-\section{Acquistion of Geospatial Context}
+\section{Acquisition of Geospatial Context}
 This sub section covers the works and approaches that can relate to our 
 context mining/acquisition implementation. While the approaches themselves are
 more from the data-mining domain, as opposed to knowledge acquisition, in
@@ -1222,20 +1229,20 @@ into more user friendly notion of location - place.\parencite{Kang2005} The main
 idea of the algorithm is to be able to cluster the raw GPS locations into the
 particular places (home, work, specific restaurant, etc.) that user visited. 
 This is achieved with a combination of radius($D_t$) and time-based ($T_t$) 
-clustering tresholds, where a cluster is a set of GPS coordinates that are 
+clustering thresholds, where a cluster is a set of GPS coordinates that are 
 within radius ($dist(loc_1) - dist(loc_n) < D_t$) during a time which is longer 
 than a threshold ($time(loc_n)-time(loc_1) > T_t$). With this approach, it is
 possible to cluster locations based on how long one stays within a region, 
-wihtout knowing the number of clusters in front (as is necessary with more
+without knowing the number of clusters in front (as is necessary with more
 standard clustering approaches). The core of the algorithm has a benefit
 to be really simple and can be easily ran on the phone.
 
-The algorithm pseudocode is shown below (algorithm \ref{alg:spd1}), where $CL$ 
+The algorithm pseudo-code is shown below (algorithm \ref{alg:spd1}), where $CL$ 
 represents currently 
-detecting cluster (staypoint), $VP$ is detected cluster (staypoint or Visit 
+detecting cluster (stay-point), $VP$ is detected cluster (stay-point or Visit 
 Point) and $plocs$ is temporal locations to be discarded or added to cluster
 later. Regarding the thresholds, $T_t$ is Time threshold, $T_d$ is distance 
-treshold.
+threshold.
 
 \begin{algorithm}[htb]
 \caption{Staypoint Detection Algorithm 1 (SPD1)}
@@ -1243,7 +1250,7 @@ treshold.
 
 \vspace{5pt}
 \KwData{raw GPS coordinates}
-\KwResult{cluster representing one staypoint}
+\KwResult{cluster representing one stay-point}
 \vspace{5pt}
 \eIf{distance(CL, loc) < $D_t$}{
     add loc to CL\;
@@ -1269,8 +1276,8 @@ treshold.
 }
 \end{algorithm}
 
-While the above alogorithm robustly detects stay-points, it completely ignores
-paths between. Additional weak-point is that it doesn't hadndle well when more
+While the above algorithm robustly detects stay-points, it completely ignores
+paths between. Additional weak-point is that it doesn't handle well when more
 than one GPS coordinate wrongly jumps due to GPS accuracy. This was fixed by
 the improved algorithm we developed as part of \emph{Curious Cat} system, and
 simultanously, the GPS accuracy part as well by the algorithm described 
@@ -1279,7 +1286,7 @@ below (\autoref{section:SPD2}).
 \subsection{Discovery of Personal Semantic Places based on Trajectory Data 
 Mining}
 \label{section:SPD2}
-This work\parencite{Lv2016}(SPD2), builds on top of the first \emph{SPD} algoritm 
+This work\parencite{Lv2016}(SPD2), builds on top of the first \emph{SPD} algorithm 
 described in \autoref{section:SPD1}. It improves the stay-point detection and 
 incorporates it into the broader system which is able to map particular visits 
 into the exact places (points of interest - POIs) and then additionally able to 
@@ -1297,9 +1304,9 @@ on the distribution of distances between raw GPS points.
 
 The simplified algorithm (removed unnecessary if/else statements) is shown 
 below (algorithm \ref{alg:spd2}), where $CL$
-represents currently detecting cluster (staypoint), $PC$ is previous cluster and
-$VP$ is detected cluster (staypoint or Visit Point). Regarding the thresholds,
-$T_t$ is Time threshold, $T_d$ is distance treshold and $T_{dt}$ is tolerated
+represents currently detecting cluster (stay-point), $PC$ is previous cluster and
+$VP$ is detected cluster (stay-point or Visit Point). Regarding the thresholds,
+$T_t$ is Time threshold, $T_d$ is distance threshold and $T_{dt}$ is tolerated
 distance threshold for later merging.
 
 \begin{algorithm}[htb]
@@ -1308,7 +1315,7 @@ distance threshold for later merging.
 
 \vspace{5pt}
 \KwData{raw GPS coordinates}
-\KwResult{cluster representing one staypoint}
+\KwResult{cluster representing one stay-point}
 \vspace{5pt}
 \uIf{distance(CL, loc) < $T_d$}{
     add loc to CL\;
@@ -1328,7 +1335,7 @@ distance threshold for later merging.
 }
 \end{algorithm}
 
-Similarly as \emph{SPD1}, also \emph{SPD2} has a prblem of ignoring the GPS 
+Similarly as \emph{SPD1}, also \emph{SPD2} has a problem of ignoring the GPS 
 coordinates that are part of paths (or moves) between stay-points.
 
 \subsection{Applying Commonsense Reasoning to Place Identification}
@@ -1337,7 +1344,7 @@ Clustering raw sensor data into locations, paths, activities and travel modes
 is often not enough. Besides knowing the location, time of arrival and duration
 of stay, contextual knowledge benefits from the information about the type of
 place and name, or even the exact ID from some database, where additional 
-information can be looked up. This is part of the \emph{CuriousCat} system, 
+information can be looked up. This is part of the \emph{Curious Cat} system, 
 which was inspired by and is based on the related work of Marco 
 Mamei\parencite{Mamei2010}.
 In this work, the author shows how \emph{Cyc} knowledge base can be used to

@@ -55,7 +55,7 @@ and \ref{tab:conversation2}.
 \end{tabular}
 \end{table}
 
-When the system is convesing with the user, it uses all the knowledge gathered 
+When the system is conversing with the user, it uses all the knowledge gathered 
 in prior conversations, other user's conversations and also this conversation, 
 and is able to use it to further generate new comments and related questions. 
 This is evident in the interaction step number \ref{step:fast} in 
@@ -103,7 +103,7 @@ functionalities which we grouped into logical modules according to
 the problems they are solving (as also defined in \autoref{chapter:background}). 
 This was done in order to minimize the complexity, improve the maintenance 
 costs and allowing switching the implementations of separate sub-modules. 
-Additionally such logical grouping increases the explainability and general
+Additionally such logical grouping increases the explain-ability and general
 understanding of the system.
 
 \begin{figure}[htb]
@@ -116,7 +116,7 @@ understanding of the system.
 
 On \autoref{fig:Architecture} these modules are represented with the boxes,
 and their functionality groups are presented with the colors (see the figure
-legend). Arrows represent the interaction and workflow order and initiation 
+legend). Arrows represent the interaction and work-flow order and initiation 
 (the interaction is initiated/triggered from the origin of the arrow).
 
 We can see that the central core of the
@@ -134,7 +134,7 @@ and letter B. The inference engine needs to be general enough to be able to
 perform over full KB, and should be capable of meta-reasoning (over the 
 meta-knowledge and KA knowledge in the KB) about the KB's internal knowledge
 structures. In cases when the inference engine have some missing functionalities,
-some of these tasks can be supplemented by the \emph{Procdeural Support} 
+some of these tasks can be supplemented by the \emph{Procedural Support} 
 module. In the proposed system, inference engine handles almost all of the 
 core KA operations, which can be separated into the following modules:
 \begin{itemize}
@@ -150,7 +150,7 @@ core KA operations, which can be separated into the following modules:
 \end{itemize}
 
 Tightly integrated with the knowledge base and inference engine is a 
-\emph{Crowdsourcing Module}, which monitors crowd (multipl user's) answers and 
+\emph{Crowdsourcing Module}, which monitors crowd (multiple user's) answers and 
 is able to remove (or move to different contexts) the knowledge from the KB, 
 based on its consistency among multiple users. If some piece of knowledge inside
 the KB is questionable, the module marks it as such and then \emph{Response
@@ -158,9 +158,9 @@ Formulation} module checks with other users whether it's true or not and should
 maybe be removed or only kept in the one user's part of the KB. This module is 
 represented in Green color and letter F.
 
-At the entry and exit point of the system workflow, there are NLP processing  
+At the entry and exit point of the system work-flow, there are NLP processing  
 modules which can convert logic into the natural language and vice versa. These
-modules are used for natural language communication with the users. Tese two
+modules are used for natural language communication with the users. These two
 modules are represented in Blue and letter E.
 
 On the side of the Figure, there is a procedural module (depicted with Orange
@@ -189,7 +189,7 @@ As briefly already mentioned above, besides architecture,
 represented by arrows. Orange arrow (pointing 
 directly from the phone towards the system) represents the automatic interaction
 or triggers that the phone (client) is sending to the system all the time. This
-provides one part of the user context. After the precedural part analyses
+provides one part of the user context. After the procedural part analyses
 the data (as described in \autoref{section:minedContext} and 
 \autoref{section:locationServlet}) and enter findings into the KB as 
 context, this often triggers the system to come up with a new question, or 
@@ -226,7 +226,7 @@ type of interaction which combines multiple users and machine into one
 conversation, while presenting this to the users as a single conversation track
 with the machine. This becomes useful when the system doesn't have enough
 knowledge to be able to answer user's questions, but it has just enough to know
-which other users to ask (i.e. when someone is asking a question about specigic
+which other users to ask (i.e. when someone is asking a question about specific
 place and there is no answer in the KB, \emph{Curious Cat} can ask other users
 that it knows had been there). This type of the interaction can be called
 Machine Mediated Human to Human interaction (MMHHI). This allows the system
@@ -261,13 +261,13 @@ answer this question and thus close the interaction loop (blue arrow marked with
 1b), possibly causing a new one with her answer. 
 
 For easier answering, the KA system can use existing KB to generate a set of 
-possible answers at the qustion generation time. These can be then picked by
-the user instead of writing. The guidance can consis of variations of these:
+possible answers at the question generation time. These can be then picked by
+the user instead of writing. The guidance can consist of variations of these:
 \begin{itemize}
-	\item A fixed set of pre-defined options that user can pick from, generated
+	\item A fixed set of predefined options that user can pick from, generated
 	from the KB.
-	\item A set of pre-defined options with an additional free text field when
-	the set of possible answers is big or inifite. In this cases the text field
+	\item A set of predefined options with an additional free text field when
+	the set of possible answers is big or infinite. In this cases the text field
 	is connected to the KB providing auto-complete options for valid answers.
 	\item Completely free text were user can write anything. This is essentially
 	the same as for the HMI interaction described below (\autoref{section:hmi}).
@@ -276,7 +276,7 @@ the user instead of writing. The guidance can consis of variations of these:
 The example of mediated answer guidance can be seen in \autoref{fig:ccmediated},
 where the system presented a set of possible answers while still allowing a 
 free text 
-which will be autocompleted with the food types that the system knows about. 
+which will be auto-completed with the food types that the system knows about. 
 If the user enters something new, the system will accept that (as shown 
 in the step \ref{step:car} in \autoref{tab:conversation1}).
 
@@ -314,27 +314,28 @@ started by humans (arrow 2a), where machine provides the response (arrow 2b).
 \subsubsection{Machine Mediated Human to Human Interaction (MMHHI)}
 \label{section:mmhhi}
 Both of the interactions described in sections \ref{section:mhi} and 
-\ref{section:hmi} pre-supposes that the receipient of the query, knows how to
+\ref{section:hmi} presupposes that the recipient of the query, knows how to
 answer it, or respond otherwise. In the cases when, let's say machine doesn't
-have any answer (The NL question gets converted into the logical query, which doesn't retrieve any aswers from within the KB). It could respond with 
+have any answer (The NL question gets converted into the logical query, which 
+doesn't retrieve any answers from within the KB). It could respond with 
 "I don't know", which is a valid response.
-Thile this allows for the conversation to continue, it doesn't help the user
+While this allows for the conversation to continue, it doesn't help the user
 to get the answer, also does not benefit to knowledge acquisition. The only 
 thing the system can learn from this, is that user is interested in the object
 of the question. This doesn't have to end there though, since CC has access to
 other users and knowledge about their past and current contexts. Based on the
-topic of interes from the user query, the system can easily find users which
+topic of interest from the user query, the system can easily find users which
 might know the answer (inferred from their past whereabouts, answers, etc.).
-Once such an user is deteced, the original question can simply be forwarded to
+Once such an user is detected, the original question can simply be forwarded to
 him, as it would be asked by CC itself. Once he, or one of the users answers,
 CC can forward it to the original user. On top of that, CC can parse the answer
 the same way as described above for HMI and MHI (sections \ref{section:mhi},
 \ref{section:hmi}), and remember it, placing it into the KB. In the cases when
 the language of the answer is too complex, it can be stored in its original
-format, for later text-mining apporach which can lead to learning of new-patterns
+format, for later text-mining approach which can lead to learning of new-patterns
 as well as the knowledge hiding in the answers. On top of this, CC can also
 remember the question itself, and place it on specific type of concepts, as an
-important quetsion to ask. On \autoref{fig:interaction},
+important question to ask. On \autoref{fig:interaction},
 MMHHI approach is depicted by the outer circle of arrows, where 3a is original 
 user's question, which is forwarded to other users when CC doesn't know how to 
 answer (3b). After one or more of the users answer, the answer is forwarded back
@@ -359,7 +360,7 @@ mining raw mobile sensors (\autoref{section:minedContext}). On
 \autoref{fig:Architecture}, This part of the KB is represented 
 as the left-most KB, sitting between the main KB and the 
 \emph{Procedural Module}.The sensor based context allows the system to 
-proactively target the right users at the right time and thus improve the 
+pro-actively target the right users at the right time and thus improve the 
 efficiency and accuracy and also stickiness of the KA process.
 
 The third KB part, is the meta-knowledge and KA rules that drive the dialog and 
@@ -379,12 +380,12 @@ through the examples given in the \autoref{tab:conversation1} and
 
 The logic examples are given in formal higher order predicate logic, where
 additional to variables given as predicate arguments ($x, y, z$), we sometimes
-use rules, where predicate (i.e. $P$) letter is also treated as avariable. 
+use rules, where predicate (i.e. $P$) letter is also treated as variable. 
 In these cases it is
 obvious that the predicate is a variable as well, because it is used in a
 inference rule (implication $\implies$ or equivalence $\iff$) and marked with
 one of the quantifiers ($\forall$ or $\exists$). When the variables are
-pre-fixed with the $\$$ sign, they are treated as a concept and do not
+prefixed with the $\$$ sign, they are treated as a concept and do not
 represent an unbound variable, but a concept representing the variable which
 can appear also in the rule consequents. This is used to be able to represent
 the logical queries as a consequence of inference.
@@ -414,7 +415,7 @@ S_{Constants} = \{Something, Class, Number, Predicate, subclass, \\
 \end{gathered}
 \end{equation}
 
-In the standard \emph{predicate logic}, $P(x)$ notation tells us that whathever 
+In the standard \emph{predicate logic}, $P(x)$ notation tells us that whatever 
 the $x$ stands for, it has the property defined by the predicate $P$. 
 For example, the following propositional function:
 
@@ -468,7 +469,7 @@ is(is, Predicate)
 \end{equation}
 At the time the above assertion (Assertion \ref{as:is_is}) is asserted
 into the KB, it also becomes valid assertion, since it complies with the
-constraint defined in Definition \autoref{constraint:predicate} and thus our
+constraint defined in Definition \ref{constraint:predicate} and thus our
 Constraint Rule \ref{rule:pred_constraint} is true. After this 
 assertion is in the KB, $ir$ can be used as a predicate because it is an 
 instance of the term $Predicate$ and complies with our constraints. 
@@ -516,14 +517,14 @@ assertions:
 \end{definition}
 
 After we add the above rule (Constraint Rule \ref{rule:arity_constraint}), our 
-KB is not consistant anymore, since all the $is(x,y)$ assertions (Assertions 
+KB is not consistent anymore, since all the $is(x,y)$ assertions (Assertions 
 \ref{as:is_is}, \ref{as:predicates}) violate the constraint. We fix this by 
 adding the following assertion:
 
 \begin{equation}\label{as:arity_is}
 arity(arity,2) \land arity(is,2)
 \end{equation}
-This makes the KB consistant again, because we defined all the arities of
+This makes the KB consistent again, because we defined all the arities of
 predicates $arity$ and $is$, which we have used so far in our KB, as well as 
 defined them with $is(x, Predicate)$ assertions. We can now continue with 
 defining the arities of the rest of the predicates:
@@ -544,7 +545,7 @@ predicate, which handles the hierarchy relations between multiple classes
 \begin{definition}[predicate "$subclass$"]\label{def:pred_subclass}
 Predicate $sublcass(x,y)$ denotes that $x$ is a subclass of $y$. For example, 
 asserting $subclass(Dog, Animal)$, is specifying all dogs, to be a sub-class of
-animals, and $subclass(Terrier,Dog)$ is speficfying that all terriers are 
+animals, and $subclass(Terrier,Dog)$ is specifying that all terriers are 
 sub-class of dogs. At this point we might notice that while it is logical to us
 that terriers are also a sub-class of animals, there is no way for the machine
 inference to figure that out. For this reason we need to introduce a
@@ -555,13 +556,13 @@ inference to figure that out. For this reason we need to introduce a
 \end{gathered}
 \end{equation}
 The rule above is basically saying that if a first thing is a sub-class of a
-the second thing, and then thesecond thing is a subclass of the thirdthing,
+the second thing, and then the second thing is a subclass of the third thing,
 then the third thing is a sub-class of the first thing as well. 
 \end{definition}
 
-Because we want to be able to prevet our system from acquiring incorrect 
+Because we want to be able to prevent our system from acquiring incorrect 
 knowledge, we need to limit the domains and ranges of the predicates 
-(arguments). This could be done by adding a speciic constraint rules
+(arguments). This could be done by adding a specific constraint rules
 (material implication rule without the power to make new assertions). For 
 example, for both $subclass$ arguments, to only allow instances of a $Class$, 
 we could assert:
@@ -576,7 +577,8 @@ the arguments of subclass to be anything else than an instance of a class
 $Class$. It would be hard to construct a large KB, by writing the rule
 like this for each of the thousands potential predicates. To make this easier,
 following Cyc practice\parencite{Lenat1995}, we will introduce $argIs$ 
-predicate (Definition \ref{def:pred_subclass}). To make this definition more understandable, let's
+predicate (Definition \ref{def:pred_subclass}). To make this definition 
+more understandable, let's
 first expand the example (Rule \ref{as:domain_example} above:
 
 \begin{equation}\label{as:domain_ext_example}
@@ -588,7 +590,7 @@ first expand the example (Rule \ref{as:domain_example} above:
 \end{equation}
 This rule above (Rule \ref{as:domain_ext_example} states, that the constraint
 rule (Rule \ref{as:domain_example} can be written as 2 $argIs$ assertions.
-Instead of writing full rule, the constraint for the argunent of $subclass$ can
+Instead of writing full rule, the constraint for the argument of $subclass$ can
 be written simply as $argIs(subclass,1,Class)$. To make this hold for all the
 combinations of predicates (not just $subclass$ from example), we can
 re-phrase the rule to be general, and also define the $argIs$ predicate.
@@ -643,7 +645,7 @@ asserted into a KB as:
 
 This now allows us to use $argIs$ and $argClass$ predicates instead of 
 complicated rules, to define types of arguments inside any predicate used in the
-KB. By using these two newly defined predicates, we can now proceeed to assert 
+KB. By using these two newly defined predicates, we can now proceed to assert 
 the argument limits of the $argIsa$ predicate itself: 
 
 \begin{equation}\label{as:argIs_domain}
@@ -654,11 +656,11 @@ argIs(argIs,1,Predicate) \land argIs(argIs,2,Number) \land argIs(argIs,3,Class)
 We can see that the first argument must be an instance of $Predicate$, which 
 holds in all three cases ($argIs$ is a first argument of the Assertion 
 \ref{as:argIs_domain} above), since it was defined in Assertion 
-\ref{as:predicates}. Similary, the second argument is a valid number, in all 
+\ref{as:predicates}. Similarly, the second argument is a valid number, in all 
 three cases as defined in Definition \ref{def:number}. Also the third arguments
 ($Predicate$, $Number$,$Class$), are all instances of the $Class$ as defined in
 Assertion \ref{as:is_class}, so the assertion \ref{as:argIs_domain} can be asserted
-and it doesn't invalidate itself throigh argument contraint rule (Constraint 
+and it doesn't invalidate itself through argument constraint rule (Constraint 
 \ref{as:domain_isa_constraint}).
 
 Similary, we can now proceed to define the rest of our predicates. Starting with
@@ -702,7 +704,7 @@ see that as a second argument we always have an instance of a $Class$
 for the first argument we can actually put in anything ($is$, $Class$, 
 $Predicate$,  $Number$, $\mathbb{N}$). From instance of a $Class$,
 instance of a $Predicate$, to an instance of a $Number$. For the second argument
-we can imediatelly asert
+we can immediately assert
 
 \begin{equation}\label{as:is_arg2_domain}
 argIs(is,2, Class)
@@ -716,7 +718,7 @@ argument of $is$ predicate:
 \begin{equation}\label{as:is_arg1_domain}
 argIs(is,1, Something)
 \end{equation}
-But this assertion above (\ref{as:is_arg1_domain}), invalidates the correctnes
+But this assertion above (\ref{as:is_arg1_domain}), invalidates the correctness
 of all of our $is$ assertions, since none of the current first arguments are
 instances o $Something$ (see Assertions \ref{as:is_is}, \ref{as:predicates} and 
 \ref{as:numbers}). To fix this, we need to be able at least to say that things 
@@ -746,7 +748,7 @@ A consequence of this assertion is (because of inference rule
 every sub-class of anything that exists in our KB (because we can only use 
 instances of $Class$ in $subclass$ assertions), is a sub-class of $Something$ as
 well. This doesn't yet seem to help us make our 1st $is$ predicate arguments 
-instances of $Something$, but it will, after we address another weaknes in our
+instances of $Something$, but it will, after we address another weakness in our
 current KB. 
 Consider the continuation of the example we started in $subclass$ 
 definition (Definition \ref{def:pred_subclass}, where a terrier is a sub-class
@@ -769,7 +771,7 @@ transitivity inference rule (\ref{rule:subclass_transitivity}), makes everything
  that is instance of a 
 class, or its sub-class (which is everything in our KB), also an instance of
 $Something$, and thus proving the assertion \ref{as:is_arg1_domain} correct and 
-consequently our KB fully consistant again.
+consequently our KB fully consistent again.
 
 At this point our Upper Ontology is defined (it is visually presented on
 \autoref{fig:upperOnto}) and ready to build upon as will be
@@ -782,9 +784,9 @@ formalizations are strongly influenced by Cyc, the approach is general and not
 bound to any particular implementation, and our notation reflects but is not 
 tightly bound to that of Cyc. For example, the usage of $argIs$ and $argClass$
 can be replaced by $domain$ and $range$ when using a RDF schema, such as was 
-done in our RDF prototype implenentation\parencite{Bradesko2012a}, or a 
+done in our RDF prototype implementation\parencite{Bradesko2012a}, or a 
 completely custom constraints can be used in specific ontologies, so this
-upper ontology is more of a guidence and a tool to be able to explain apporach,
+upper ontology is more of a guidance and a tool to be able to explain approach,
 than a fixed ontology that needs to be implemented.
 
 \begin{figure}[H]
@@ -804,9 +806,9 @@ that allows us to explain the system through the examples given in
 As also visible in the Architecture schematic (\autoref{fig:Architecture},
 KB with background knowledge is one of the most crucial elements of proposed 
 approach. It serves both, as the driving force behind the source of the 
-questions, since with the help of contextual knowledge triggers the infrence to
+questions, since with the help of contextual knowledge triggers the inference to
 produce logical queries for the missing parts of the knowledge. At the same time
-it is the drive behind the proactive user interaction, sarting either as a
+it is the drive behind the proactive user interaction, starting either as a
 question or a suggestion. Finally, the background knowledge is also used for 
 validation of answered questions. If the answers are not consistent according
 to the existing KB, users are required to re-formulate, or repeat the answer.
@@ -817,8 +819,8 @@ common sense and background knowledge base. This is far too big (millions of
 assertions), to be explained in any detail here with the general approach (it 
 is explained in more detail in Chapter \ref{chapter:implementation}, 
 Implementation). In this chapter we define only the concepts and predicates 
-and thus construct the minimal example KB that is necessary for explaining the p
-roposed system.
+and thus construct the minimal example KB that is necessary for explaining the
+proposed system.
 
 First we introduce the set of new concepts that we need for the food part
 of the ontology. These concepts are defined on top of the existing Upper 
@@ -952,7 +954,7 @@ menu.Formally it is defined as:
 As we see defined above (assertion \ref{as:pred_menuItem}), this predicate
 constraints allow us to only use instances of class $Restaurant$ for the first
 argument, and sub-classes of class $FoodOrDrink$ for the second. Example of this
-is the following assertion that we use to have an example restauratn instance
+is the following assertion that we use to have an example restaurant instance
 in our KB (to continue the definition of Assertion \ref{as:restaurant1}), saying
 that Restaurant1 has coffee on the menu:
 \begin{equation}
@@ -961,7 +963,7 @@ menuItem(Restaurant1,Coffee)
 
 Besides the 
 items on the menu, to explain our examples, we also need a way to tell that
-a place provides some services and that user ordered something vhile visiting
+a place provides some services and that user ordered something while visiting
 a restaurant.
 
 \begin{definition}[predicate $providesServiceType$]\label{def:serviceType}
@@ -1045,7 +1047,7 @@ the only relations are of $is$ (represented by blue arrows), $subclass$
 \label{section:kakb}
 In the previous two sections we defined the upper ontology
 (Section \ref{section:upperOnto}) and then using its vocabulary to define the 
-pre-existing knowledge (Section \ref{section:existingKB}). This will suffice to
+preexisting knowledge (Section \ref{section:existingKB}). This will suffice to
 support the explanation of the proposed KA approach. Similar as with the other
 parts of the KB, listing full set of 
 \emph{Curious Cat} KA rules would not fit in the paper. Instead we define an 
@@ -1088,12 +1090,14 @@ In a similar fashion as predicate $known$, we define $unknown$ predicate.
 
 \begin{definition}[predicate "$unkknown$"]\label{def:pred_unknown}
 Special meta-predicate $unknown(x)$ denotes that the formula $x$ can 
-\textbf{not} be proven in the KB. This predicate is non-assertible, meaning that it cannot be used to add things into the KB, but it can be used in inference 
+\textbf{not} be proven in the KB. This predicate is non-assertible, meaning that 
+it cannot be used to add things into the KB, but it can be used in inference 
 rules. Building on the example given in the Definition \ref{def:pred_known}
 ($known$ predicate), the query $unkown(is(Something,Class))$ is 
 \textbf{not true}, since the assertion exist an is known. On the other hand,
 $unknown(is(Human,Duck))$ is true, since there is no knowledge in the KB which
-would support the encapsulated $is$ statement. The predicate is formally defined as follows:
+would support the encapsulated $is$ statement. The predicate is formally defined 
+as follows:
 \begin{equation}\label{as:unknown}
 \begin{gathered}
 	is(unknown,Predicate) \land arity(unknown,1) \land argIs(unknown,1,Formula)
@@ -1151,10 +1155,10 @@ ccWantsToAsk(u,P(i_2,\$x))
 \end{equation}
 This rather complicated material implication causes generation of question 
 intents whenever there is an instance of a class that was used in an arity 2 
-predicate, and there is another instance of the same class which doesn’t have 
+predicate, and there is another instance of the same class which does not have 
 any assertion using this predicate. When the antecedent of this rule is true,
 then the consequent is a $ccWantsToAsk$ predicate representing an open
-ended logical query (NL question) asking for the things that can fullfill the
+ended logical query (NL question) asking for the things that can fulfill the
 predicate $P$ for instances of aforementioned class.
 
 If we take our example KB (\autoref{fig:existingKB}) and imagine we assert
@@ -1188,7 +1192,7 @@ $\$$, are treated as normal concepts until they are asserted into the KB or used
 as in the KB as a query. 
 
 The rule \ref{as:generalRule} effectively detects when there is an instance in 
-the KB that doesnt have some kind of information that other instances have, and
+the KB that does not have some kind of information that other instances have, and
 then it causes the system to intend to ask about it, if and when it has a 
 suitable opportunity (e.g. a suitable interaction context). The rule described,
 is an example of the general rule that can produce the apparent curiosity of 
@@ -1256,7 +1260,7 @@ While for this (CC) approach it doesn't matter how exactly the current location
 and other contextual raw data is acquired, since the year 2007 (release of 
 iPhone and Nokia N95) it is the easiest to acquire it from the user's mobile 
 phones\footnote{With the prior user's consent.}. As we hinted already in the
-\autoref{section:SPD1}, we use a modified \emph{staypoint detection} algorithm, 
+\autoref{section:SPD1}, we use a modified \emph{stay-point detection} algorithm, 
 similar to the approach taken by \textcite{Kang2005} (\autoref{alg:spd1}). 
 Here we will describe the mining 
 algorithm only briefly, to be able to explain the approach. It is described in
@@ -1267,7 +1271,7 @@ implemented in our \emph{procedural component}
 This algorithm takes raw GPS readings as input, and clusters them into visits
 (staypoints) and paths (moves between the staypoints), based on two thresholds:
 the time ($T_t$) the user needs to stay
-inside the perimeter ($T_P$), which is the second threshold. The staypoint is 
+inside the perimeter ($T_P$), which is the second threshold. The stay-point is 
 defined with the coordinates (of the users mobile device) that all lay inside a
 given perimeter for at least minimum time: 
 $r(lat,lon)<T_p \land t(lat,lon)>T_t$. The result of this algorithm is one
@@ -1363,7 +1367,7 @@ with orange.}
 
 Now, after we defined the relevant predicates (see \autoref{fig:contextKB}), we 
 can continue building the example.
-Let's say that hte most likely place returned by SPD
+Let's say that the most likely place returned by SPD
 (section \ref{section:locationServlet}), is "Joe's Pizza"
 (our usual example from \autoref{tab:conversation1}). The 
 \emph{Procedural Component} creates a new concepts  $JoesPizza$ and 
@@ -1408,7 +1412,7 @@ with new data:
 These updates (even if just duration of visit seconds) are causing the CC 
 system inference engine to re-evaluate the rules connected to relevant 
 predicates and thus possibly produce new consequents in the shape of new 
-questions or comments, which appears to the users as proactivity, since they 
+questions or comments, which appears to the users as pro-activity, since they 
 get new relevant questions even if not interacting with the system.
 This simple contextual knowledge(presented with Assertions 
 \ref{as:probableContext} and \ref{as:visitContext1}) is enough to be able to 
@@ -1444,7 +1448,7 @@ Predicate $greaterThan(x,y)$ denotes that $x$ has a greater value than $y$.
 Meaning, this predicate is only true when $x > y$. For example, 
 stating $greaterThan(10, 5)$ is true.
 \end{definition}
-This predicate can be then used in rules that react based on some numberic 
+This predicate can be then used in rules that react based on some numeric 
 values like times, number of votes, number of answers, etc.
 
 %subsection
@@ -1500,7 +1504,7 @@ This means that in addition to the knowledge itself the KB should include
 natural language description of the knowledge units, or the natural language 
 generation capabilities must be provided by an external service (the letter is 
 the case in our example with Umko KB \parencite{Bradesko2015} and
-early corwdsourcing approach \parencite{Bradesko2012a}. 
+early crowdsourcing approach \parencite{Bradesko2012a}. 
 
 Because natural language generation and conversion is not the main focus of 
 this paper, we present here only a simplified version which explains the basic 
@@ -1656,8 +1660,8 @@ os able to find the pattern and also names of both of the arguments
 NL representation "L'Ardoise has coffee on the menu.". 
 The engine checks the \emph{arity} of the $menuItem$ predicate, ,
 and verifies whether all of the slots are bound to non variable concepts. When
-this is fullfilled like in the example above, the engine knows that this 
-sentence must be declerative (up to now we only have one declerative pattern), 
+this is fulfilled like in the example above, the engine knows that this 
+sentence must be declarative (up to now we only have one declarative pattern), 
 picks the proper pattern, and also adds the punctuation "." on it's own.
 
 Now, consider, our Logic to NL engine gets the task to convert the formula
@@ -1665,17 +1669,17 @@ Now, consider, our Logic to NL engine gets the task to convert the formula
 \begin{equation}
 menuItem(Restaurant1,x)
 \end{equation}
-where $x$ represnets a variable as in other our 
+where $x$ represents a variable as in other our 
 examples. Our engine again, does the same query \ref{q:nlpattern1}, but because
 the second argument is now a variable, only the first part ($Restaurant$) of 
 the second query \ref{q:names1}. Results for $x_1$ are the same as before,
 but there is no results for $x_2$. Now the engine detects that one of the 
-pattern arguments ($\$2$) is missing, and since it does't have any additional
+pattern arguments ($\$2$) is missing, and since it noes not have any additional
 info on how to convert a statement into an interrogative mode, it simply
 converts it into a KA pattern: "L'Ardoise has \_\_\_ on the menu.".
 
 While these type of patterns is enough to be able to do the simple KA, it
-doesn't yet completely follow the exaples from \autoref{tab:conversation1}. To
+doesn't yet completely follow the examples from \autoref{tab:conversation1}. To
 be able to do properly formed interrogative sentences when necessary, we need
 to add additional assertion, similar as the last part of assertion 
 \ref{as:menuitem1}.
@@ -1718,7 +1722,7 @@ other terms.
 
 The definitions (\autoref{def:predNlPattern}, \autoref{def:predName} and
 \autoref{def:predNamePlural}),
-are simplifified formulations of minimal required NL knowledge to be able to 
+are simplified formulations of minimal required NL knowledge to be able to 
 present our approach. While the implementation of NL generation engine is 
 totally up to the developer of such a system, for this examples (and also 
 our implementation - see section \ref{section:cycnl}), we decided to 
@@ -1728,8 +1732,8 @@ having the NL patterns in some external database or a text file, this approach
 in long term allows the system to ask questions about the language patterns
 themselves, and thus allow it to learn and ask about these as well. For example,
 if instead of strings directly, NL patterns would be constructed from the 
-concepts of words (not part of our KB and not consistant with it, but serves 
-as an hypotetical exaple, and more tightly matches our non-simplified 
+concepts of words (not part of our KB and not consistent with it, but serves 
+as an hypothetical example, and more tightly matches our non-simplified 
 implementation):
 \begin{equation*}
 \begin{gathered}
@@ -1741,7 +1745,7 @@ then the system could notice that its missing the plural version of the word
 for the concept $Pizza$ and ask for it: $namePlural(WordForPizza,x)$ 
 (converted to NL: "What is the plural word for 'pizza'?".
 
-Now we can define some more nlPatterns, to be able to fully cover the
+Now we can define some more NL patterns, to be able to fully cover the
 examples from \autoref{tab:conversation1}. Starting with $userLocation$:
 \begin{equation}\label{as:nl:userLocation}
 \begin{gathered}
@@ -1749,14 +1753,14 @@ examples from \autoref{tab:conversation1}. Starting with $userLocation$:
     nlPattern(userLocation,\text{"Are you at \$2?"}
 \end{gathered}
 \end{equation}
-Which should be enough to prouce conversions required for \autoref{step:where}
+Which should be enough to produce conversions required for \autoref{step:where}
 from \autoref{tab:conversation1}. The argument variable enclosed in "[]" means
-that this pattern should have thiat argument unbound, but it will not be 
-used when generating the NL. Additionally, carful reader can notice that these
+that this pattern should have that argument unbound, but it will not be 
+used when generating the NL. Additionally, careful reader can notice that these
 two NL patterns are fixed to a personal pronoun "you". We did this here in the
 approach for simplicity, but the implementation handles the pronouns properly
 (see \autoref{section:cycnl}). Also, the functions generating NL can be given
-the "adresee", so the system knows when to use person's name, "you" or even
+the addressee, so the system knows when to use person's name, "you" or even
 I, when talking about itself.
 
 Then $is$ predicate NL pattern:
@@ -1824,7 +1828,7 @@ functionality (enough to be able to make our examples from
 
 In the proposed NL engine (described also in section \ref{section:logicNL}
 above), all of the \emph{String} arguments of the predicates $name$, 
-$namePlural$ and $nlPattern$ are indexed and searchable by the system, where
+$namePlural$ and $nlPattern$ are indexed and search-able by the system, where
 the $\$\#$ slots of the $nlPattern$ strings are replaced with asterisks ($*$),
 representing any number of words, in a similar way as chat-bot scripts are
 matching defining their patterns\parencite{Wilcox2011}.
@@ -1836,7 +1840,7 @@ For illustration consider inverting the example \ref{nl:menuItem1} from the
 \end{equation}
 
 Because all the textual representations of the concepts are indexed, the NL
-engine is able to search for the strings appearing in the sentece through
+engine is able to search for the strings appearing in the sentence through
 our NL predicate assertions and finds the following concepts:
 \begin{table}[H]
 \centering
@@ -1876,7 +1880,7 @@ as part of the sentence. In this case the arity is 2 (Assertion
 \ref{as:pred_menuItem}), and we found 2 unique concepts ($Coffee$ and 
 $Restaurant1$).
 \item The concepts that are not filtered out in the previous steps are then 
-checket whether they fullill the the arity constraints of the arguments of the
+checked whether they fulfill the the arity constraints of the arguments of the
 predicates. In our above example, $Coffee$ is a subclass of $FoodOrDrink$, so
 it can be used as argument 2, and $Restaurant1$ is an instance of $Restaurant$,
 so it can be used as argument 1.
@@ -1968,24 +1972,24 @@ argument constraints, even if there are multiple ambiguous predicates or other
 terms matched by the strings.
 
 Also, note that these more complicated patterns are to be used only when the 
-assisted KA doesnt present valid options and user types free text and also, that
-the patterns dont ever specify what should be the systems response (as opposed
-to how chatbots work). Instead the pattern just converts the text to the logic
+assisted KA does not present valid options and user types free text and also, that
+the patterns do not ever specify what should be the systems response (as opposed
+to how chat bots work). Instead the pattern just converts the text to the logic
 and then leaves up to the inference engine what to do next. This is completely 
-different approach from standard chatbot systems where patterns dictate the 
-responses as well. For readers interested in more detailed overwiew of chat-bot
-approaches and patterns please refer to chapter Related Work (subchapters
+different approach from standard chat-bot systems where patterns dictate the 
+responses as well. For readers interested in more detailed overview of chat-bot
+approaches and patterns please refer to chapter Related Work (sub-chapters
 \ref{section:r:aiml} and \ref{section:chatscript}), or related paper
 \parencite{Bradesko2012}.
 
 %subsubsection
 \subsection{Dialog Formulation}
 \label{section:dialog}
-As mentioned before, \emph{Curios Cat} conversation is not pre-defined by the 
+As mentioned before, \emph{Curios Cat} conversation is not predefined by the 
 patterns, but is completely knowledge driven. The knowledge is being inserted
 into the system by its users (section \ref{section:consistency}), and automated
 context (section \ref{section:context}). This is then picked up by the 
-inference engine that generates questions and commens with the help of KA rules
+inference engine that generates questions and comments with the help of KA rules
 (section \ref{section:kakb}). The resulting assertions, which propose the 
 intents like $ccWantsToAsk(x,y)$ (definition \ref{def:pred_ccWantsToAsk}) and
 $ccWantsToComment(x,y)$ (definition \ref{def:pred_ccWantsToComment} below), 
@@ -2035,15 +2039,15 @@ It then presents these questions/comments to the user as they come in. For
 example, when user answers that he is at Joe's Pizza restaurant, the system 
 produces $ccWantsToAsk(User1, menuItem(JoesPizza,x))$, which is showed to the 
 user in NL, as it is the newest formula that appeared and contains the concept 
-of JoesPizza. This simple approach works quite well, since the latest formula 
+of $JoesPizza$. This simple approach works quite well, since the latest formula 
 is always a consequence of the previous user action. Additionally, this can be 
 used for pro-activity, when the question/comment for the user appears as a 
-consequence of some other user's action, or a context change. If the user didnt
+consequence of some other user's action, or a context change. If the user did not
 use the system for a while, we can simply present him with the latest formula 
 when it appears from the inference as a proactive question/comment. In the cases
 when we have a statement, and a question formula, the system presents the 
 comment and then a new question as part of the same response (as also visible
-in example convesation in \autoref{tab:conversation1}).
+in example conversation in \autoref{tab:conversation1}).
 
 For the cases when the system needs more explicit control over the order of 
 the questions, the inference rules can be added using special intent predicates
@@ -2069,7 +2073,7 @@ trigger a new one, or until depleting all of them. If the depletion happens,
 then the topic will traverse all the concepts from the history and thus 
 accidentally trigger additional inference with new topic of interest for the 
 user, which will produce new questions, which will additionally (if answered) 
-produce new follow-up questions/comments. As the final fallback, the system 
+produce new follow-up questions/comments. As the final fullback, the system 
 will randomly pick a concept from its KB and present it to the inference 
 engine as a current interest for the user.
 
@@ -2098,14 +2102,14 @@ this should trigger a "confirm" question:
 \end{equation}
 This rule detects the insertion of $probableUserLocation$, and if it's not
 yet confirmed, it causes the inference to produce a yes/no question (when
-all the variables in the question are boud to something, user can only confirm
+all the variables in the question are bound to something, user can only confirm
 or reject the proposed question. There is nothing to be filled in):
 "Are you at Z?".
 
 Now lets define the rest of rules that are used in our examples 
 from \autoref{tab:conversation1}. and KA dialog formulation.
 
-To be able to ask about the Wi-fi signal, we need a vocabolary for storing this
+To be able to ask about the Wi-fi signal, we need a vocabulary for storing this
 information and also for asking. This is done by introducing the rule which
 generates the questions about the $providesServiceType$ predicate which was
 defined in the assertion \ref{as:providesServiceType}. The rule triggers
@@ -2208,7 +2212,7 @@ is(Restaurant1,Place)
 \end{equation}
 will return $True$.
 
-For ilustration, let us assme that the system finds the following question to
+For illustration, let us assume that the system finds the following question to
 ask 
 \begin{equation*}
 \begin{gathered}
@@ -2236,7 +2240,7 @@ engine the following type of general query:
 \end{gathered}
 \end{equation}
 where we replace the meta variables (marked with $\$$) with our values from 
-the exaple question, where $\$answer$ represents user answer, $\$pred$ 
+the example question, where $\$answer$ represents user answer, $\$pred$ 
 represents the predicate that was used to propose a question, and 
 $\$argPos$ is the position of the variable in the question query. After we
 fill in our values ($\$answer=\text{"Pizza Margherita}, \$pred=menuItem, 
@@ -2270,11 +2274,9 @@ following results:
     \hline
 \end{tabular}
 \end{table}
-Because the inference engine was able to answer this query, we imediatelly
+Because the inference engine was able to answer this query, we immediately
 know that the answer is consistent with the KB and is safe to assert it as 
 $menuItem(JoesPizza,Margherita)$. 
-\hl{Maybe switchh from Joes to
-Lardoise which is for sure in the KB. Check whether worth mentioning Nothing}.
 
 At this point we have seen an example of how to add new knowledge when the
 concept that the user has provided already exists in the KB and the answer is 
@@ -2288,7 +2290,7 @@ concept exists:
 \begin{equation}\label{q:nameCar}
 Q:name(x,\text{"car"})
 \end{equation}
-If it does (i.e. the querly \ref{q:nameCar} above returns the resulting 
+If it does (i.e. the query \ref{q:nameCar} above returns the resulting 
 concepts), then the answer is actually invalid on structural grounds (the term 
 it includes ca not be used a viable answer).
 But, if the concept does not exist yet (nothing returned, as would be the case 
@@ -2302,7 +2304,7 @@ In addition to deciding to add some newly acquired knowledge to the KB, the
 exact location in the "KB graph" is determined by the $argIs$ and $argClass$
 assertions on the question predicate. Consider our example question
 $menuItem(JoesPizza,x)$. Because of the $argClass(menuItem,2,FoodOrDrink)$, the
-answer must be a subclass of $FoodOrDrink$ concept. Let us say the aswer is
+answer must be a subclass of $FoodOrDrink$ concept. Let us say the answer is
 "Pizza Deluxe", as with previous explanations. To insert the knowledge, the 
 system goes through the steps described in the previous section 
 \ref{section:consistency}. Because of $argClass$ assertions $PizzaDeluxe$ 
@@ -2353,9 +2355,9 @@ which, for our example knowledge it returns:
 \end{table}
 This gives us various options.
 \begin{enumerate}
-\item Ask the user, which one of these PizzaDeluxe is (excluding the main 
+\item Ask the user, which one of these $PizzaDeluxe$ is (excluding the main 
 class $FoodOrDrink$). For example: "What describes it in most detail?", or: 
-"Is Pizza Deluxe a drink, coffee, bread, baguette, pizza or margherita"
+"Is Pizza Deluxe a drink, coffee, bread, baguette, pizza or Margherita"
 \item Ask for the first level subclasses first, then for the next level, 
 etc.: 1. "Is Pizza Deluxe a type of drink or food?", 2. "Is Pizza Deluxe a 
 type of pizza?"
@@ -2377,7 +2379,7 @@ place as illustrated in \autoref{fig:kbCorrectPosition}.
 	\label{fig:kbCorrectPosition}
 \end{figure}
 
-For the cases, when this more detailed placement is not done imediatelly after
+For the cases, when this more detailed placement is not done immediately after
 the first entrance of the concept, and cannot be handled by the 
 \emph{Procedural Component}, we can have a special rule which will cause
 the system to ask questions about more detailed positions:
@@ -2413,7 +2415,7 @@ The rule above checks for each instance of some class, what are subclasses of
 that class, and then checks whether the concept can be an instance of any of 
 these (if not already, or strictly asserted that not), then is proposes a
 list of questions for every of the possibilities. For example,
-$ccWantsToAsk(User1,is(JoesPizza,Restaurant))$ which converts to "Is Joes's 
+$ccWantsToAsk(User1,is(JoesPizza,Restaurant))$ which converts to "Is Joe's 
 pizza a restaurant?". This rule works in cooperation with $class$ transitivity
 rule (\ref{rule:subclass_transitivity}), and $is$ transfer rule 
 (\ref{rule:is_transfer}).
@@ -2463,7 +2465,7 @@ knowledge acquired from $User2$ (new, other user). Following our KB structure
 given in \autoref{fig:existingKB} and formal logical definitions, 
 we can see that:
 \begin{itemize}
-\item $WholeWorldKB$ contains the upper ontology and pre-existing knowledge 
+\item $WholeWorldKB$ contains the upper ontology and preexisting knowledge 
 from \autoref{fig:existingKB}.
 \item $CuriousCatBelievesKB$ contains KA assertions and union of assertions 
 acquired from all the users.
@@ -2508,9 +2510,9 @@ decided (due to reasons above) to do our initial experiments
 (described in \autoref{chapter:evaluation}, \autoref{section:resultsvoting}) 
 by using the "voting" option.
 
-Additionally to store the answers of different users in different microtheories,
+Additionally to store the answers of different users in different micro theories,
 the system uses the voting results of users to influence the system's KA 
-behaviour towards these particular users (It is used as part of acquired user 
+behavior towards these particular users (It is used as part of acquired user 
 context, \autoref{section:acquiredContext}). For example, if user states that 
 she agrees with some statement,
 this can be used to produce additional questions, or influence the questions
@@ -2594,7 +2596,7 @@ visit can be seen on \autoref{fig:androidPublic}.
 \begin{figure}[h]
 	\centering
 		\includegraphics[width=0.5\textwidth]{figures/androidPublic.png}
-	\caption{Screenshot of Curious Cat displaying an already public information about Joes Pizza to a visiting user.}
+	\caption{Screenshot of Curious Cat displaying an already public information about Joe's Pizza to a visiting user.}
 	\label{fig:androidPublic}
 \end{figure}
 
@@ -2609,7 +2611,7 @@ both the users KB and the $CuriousCatBelievesKB$.
 Once the assertions are in $CuriousCatBelievesKB$, users will not get the 
 standard questions produced by the KA rules, but will still get occasionally 
 the "crowdsourcing" questions (produced by different rules), which will 
-simply be checking the truth of some existing knowledge: "Is it true that Joes 
+simply be checking the truth of some existing knowledge: "Is it true that Joe's 
 Pizza has Pizza Deluxe on the menu?". These simple yes/no questions allow us to 
 assess the truthfulness of the logical statement and remove it, if it gets 
 more negative answers than positive.
@@ -2625,24 +2627,24 @@ true anymore.
 This section wraps up the approach and brings together the components described
 in \autoref{chapter:approach} into a coherent system, which we try to describe 
 through the example conversation presented in \autoref{tab:conversation1} and
-\autoref{tab:conversation2}. Each subsection below will explain the workflow
+\autoref{tab:conversation2}. Each subsection below will explain the work-flow
 and mechanisms required to produce one of the steps.
 
 \subsection{Step 1, Where are you?}
 \label{section:step1}
 Let's say our example user $User1$ (defined with assertion \ref{as:user1}, see
-\ref{fig:restOntology}) was travelling for a while
+\ref{fig:restOntology}) was traveling for a while
 and now arrived at some restaurant. He is there for 3 minutes and just managed
 to find a table and sit down.
 
 He didn't touch his phone in a while, but the \emph{Curious Cat} periodically 
-wakes up and sendd a GPS coordinate to the \emph{Procedural Component} on the
-server side. While he was travelling, the \emph{SPD} algorithm 
+wakes up and send a GPS coordinate to the \emph{Procedural Component} on the
+server side. While he was traveling, the \emph{SPD} algorithm 
 (\autoref{section:locationServlet}) was only returning data about the route. 
 Now, after the
 raw GPS coordinates were suddenly grouped around stable place, the algorithm 
 detects the cluster and its center, calls the Foursquare API and retrieves the 
-data about the location (restaurant called "Joe's Pizzza").
+data about the location (restaurant called "Joe's Pizza).
 
 Now the \emph{Procedural Component} does the following steps:
 \begin{enumerate}
@@ -2661,7 +2663,7 @@ $probableUserLocation(User1,x)$
 \item It adds a new assertion $probableUserLocation(User1,JoesPizza)$ 
 (see assertion \ref{as:probableContext}).
 \end{enumerate}
-This last step triggers the inference angine (rules \ref{rule:userLoc} and
+This last step triggers the inference engine (rules \ref{rule:userLoc} and
 \ref{rule:userLocConfirm}), to generate $ccWantsToAsk$ questions:
 \begin{itemize}
 \item $userLocation(User1,x)$
@@ -2682,13 +2684,13 @@ asserted into the KB, and $JoesPizza$ set as the current topic. This
 also caused inference engine to retract the 
 questions, since user location is not unknown anymore. At the same time the
 \emph{Procedural Component}  asserts that the place that user visited is
-actually the $JoesPizza$, as aready shown in assertion \ref{as:placeVisit}.
+actually the $JoesPizza$, as already shown in assertion \ref{as:placeVisit}.
 
 %subsection
 \subsection{Step 2. What kind of place this is?}
 \label{section:step2}
 After the $userLocation(User1,JoesPizza)$ got asserted into the KB, the 
-inference engine runs through all the rules that use this preicate in the
+inference engine runs through all the rules that use this predicate in the
 antecedent, which causes the rule \ref{rule:autoIs} (the version with unbound
 variable) to assert $ccWantsToAsk(User1, is(JoesPizza,x))$. This according to
 assertion \ref{as:nl:is} produces the NL text 
@@ -2743,23 +2745,23 @@ Then, it gets converted into NL ("Does Joe's Pizza have Wi-Fi?",
 assertion \ref{as:nl:providesServiceType}), 
 and once user responds with "yes", the assertion 
 ($providesServiceType(JoesPizza,WirelessService)$) goes into the KB under the 
-User1's microtheory.
+User1's micro-theory.
 
 %subsection
 \subsection{Step 4. Is it fast enough to make Skype calls?}
 \label{section:step3}
 Similarly as previous question, this one is triggered after the system knows
-Joe's Pizza has wifi (due to $\land $ constraint in the antecedent of rule 
+Joe's Pizza has Wi-Fi (due to $\land $ constraint in the antecedent of rule 
 \ref{rule:hasGoodWifi}). This rule produces the 
 $ccWantsToAsk(hasGoodWifi(JoesPizza)$, which converted to NL appears as 
 "Is it fast enough to make Skype calls?", as defined in assertion 
 \ref{as:hasGoodWifi} and visible in example step \ref{step:fast} in 
 \autoref{tab:conversation1}. This question is presented to the user before
-otjer possible questions that are there before (such as one from step 
+other possible questions that are there before (such as one from step 
 \ref{step:menu}, because it appeared directly after answering something,
 it has the current topic's concept in its logical representation and is
 thus a question that appear to be most up-to date regarding the current
-coonversation.
+conversation.
 
 After user answers with "I don't know" (\autoref{tab:conversation1}), this is 
 picked up by the \emph{Procedural Component} and asserted into the KB as 
@@ -2769,7 +2771,7 @@ rules.
 %subsection
 \subsection{Step 5. What's on the menu at Joe's Pizza?}
 \label{section:step5}
-When the user answered that the place is a restaurant, simultaniously with
+When the user answered that the place is a restaurant, simultaneously with
 already described rules and questions, also the rule \ref{as:generalRule} was
 triggered (see additional explanatory assertion \ref{as:generalRuleantecedent}
 and \ref{fig:existingKB}). This rule triggered  
@@ -2793,7 +2795,7 @@ As was described in the sections \ref{section:context} and
 client are  waking up periodically to mine the user context and among other 
 things, also assert how long the user is at a particular location. In this case
 (following our example conversation), the place is Joe's Pizza, represented
-by $JoesPizza$ and $Visit1$ concepts. Consequently, erven when user is not
+by $JoesPizza$ and $Visit1$ concepts. Consequently, even when user is not
 using \emph{CC}, the system is updating the assertion 
 $userVisit(User1,Visit1,1505746857, t)$, to reflect the time of stay at 
 particular location (represented by $t$, see assertions \ref{as:visitContext} 
@@ -2802,7 +2804,7 @@ and \ref{as:visitContext1}). Once the user stays at the place for more than
 trigger the \emph{CC} to ask $ccWantsToAsk(User1,userordered(User1,Visit1,x))$
 question, which converted to NL (assertion \ref{as:nl:userOrdered}) appears as 
 "What did you order?". After the user answers with a "car" (maybe trying to 
-test the system), \emph{CC} responds as descirbed in the next subsection 
+test the system), \emph{CC} responds as described in the next subsection 
 (\autoref{section:step7}) below.
 
 %subsection
@@ -2810,7 +2812,7 @@ test the system), \emph{CC} responds as descirbed in the next subsection
 \label{section:step7}
 After the user answers with a "car" to the question in step \ref{step:car}, the
 \emph{consistency check} subsystem of \emph{CC} checks the argument constraints
-of the predicate $userOrdered$ via the query defined in the asseertion 
+of the predicate $userOrdered$ via the query defined in the assertion 
 \ref{q:generalConstraint}. First it modifies this query to reflect the proper
 predicate:
 
@@ -2834,12 +2836,13 @@ so according to the approach described in section \ref{section:consistency},
 the system goes to check whether it knows anything about the concept called 
 'car', as shown in the query \ref{q:nameCar} ($Q:name(x,\text{"car"})$.
 Since this query returns the result (according to our existing KB) $Car$, 
-\emph{CC} KA Engine can know that this answer is actually inconsistant, because
-the previous query (qeury \ref{q:orderedConstraint1}) would otherwise return
+\emph{CC} KA Engine can know that this answer is actually inconsistent, because
+the previous query (query \ref{q:orderedConstraint1}) would otherwise return
 the resulting concept.
 For this reason the \emph{Procedural Component} responds with a double check
 question, making sure that the user really meant the answer: 
-"I've never heard of food or drink called 'car' before. Are you sure it's a type of food or drink?". This question is again constructed from a textual template,
+"I've never heard of food or drink called 'car' before. Are you sure it's a type 
+of food or drink?". This question is again constructed from a textual template,
 and names of the involved classes ($FooOrDrink$, $Car$). When user answers with
 'no', the system abandons the answer and continues with the KA.
 
@@ -2866,12 +2869,12 @@ as described in \autoref{section:step7} above
 query ($name(x,"Pizza Deluxe"$) now also doesn't return the results, so 
 'Pizza Deluxe' is not known to be an inconsistent answer (it can still be), but
 more likely it's a new type of $FoodOrDrink$. For this reason the engine
-responds with "I've never heard of 'Pizza Deluxe' before. Whhat kind of
+responds with "I've never heard of 'Pizza Deluxe' before. What kind of
 food or drink is it?" (step \ref{step:deluxething} in 
 \autoref{tab:conversation1}). Additionally to present the question, it also
 provides the possible answers (all of the subclasses of the concept 
 $FoodOrDrink$, and additional option "it's not a food or drink."). This allows
-the user to imediatelly place the new concept correctly, or reject it and 
+the user to immediately place the new concept correctly, or reject it and 
 thus behave the same as in the step\ref{step:surecar} before. In this case
 user picked the "pizza", which is then asserted into the KB as the 
 following assertions:
@@ -2883,10 +2886,10 @@ userOrdered(User1,Visit1,PizzaDeluxe) \land \\
 menuItem(JoesPizza,PizzaDeluxe)
 \end{gathered}
 \end{equation}
-This way the system learnt about a completely new concept and placed it properly
+This way the system learned about a completely new concept and placed it properly
 into the existing KB hierarchy.
 
-Additionally, after this is inserted, the new knowledge triggers the inferenece
+Additionally, after this is inserted, the new knowledge triggers the inference
 rule (rule \ref{rule:orderedMenu}), and produces an additional piece of 
 knowledge, that the "Pizza Deluxe" which the user just ordered is also on the
 menu in Joe's Restaurant: $menuItem(JoesPizza,PizzaDeluxe)$.
@@ -2896,7 +2899,7 @@ menu in Joe's Restaurant: $menuItem(JoesPizza,PizzaDeluxe)$.
 \label{section:step10}
 Now, to produce this step (step \ref{step:where2}, \autoref{tab:conversation2}),
 \emph{CC} does exactly the same things as for step \ref{step:where}, but now
-for a diffeerent user $User2$. To see how it constructs, and answer this 
+for a different user $User2$. To see how it constructs, and answer this 
 question refer to \autoref{section:step1}. After this visit of $User2$ gets 
 asserted to the KB, \emph{CC} detects that there is already some knowledge
 for this place which has not been verified, and additionally to start asking
@@ -2908,7 +2911,7 @@ questions it also wakes up  the \emph{Crowdsourcing Module}. See next step
 \label{section:step11}
 As mentioned in the previous step (\autoref{section:step10}), \emph{CC} 
 finds unconfirmed knowledge on the same topic as is the topic of $User2$, which
-was provuided by other users. One assertion like this is 
+was provided by other users. One assertion like this is 
 $menuItem(JoesPizza,PizzaDeluxe)$, which it checks with the new user ($User2$),
 by simply stating it in English and adding a prefix "Is it true that" to the
 sentence.
@@ -2916,6 +2919,6 @@ In this case user checks the menu and answers with "yes", which results in the
 additional assertion in the KB: 
 $userAgrees(User2,menuItem(JoesPizza,Pizzadeluxe))$, which can be then used
 by the \emph{Voting Component} to confirm the truth, and also as an additional
-kwnoeldge about the user (what he agrees with) and used by other inference
+knowledge about the user (what he agrees with) and used by other inference
 rules to produce more questions.
 
