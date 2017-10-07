@@ -846,9 +846,29 @@ raised to 60\% while accuracy dropped to 90.8\%.
 
 \subsection{OntoPlus}
 \label{section:r:ontoplus}
-\emph{OntoPlus} is an automated ontology (KB) extension system that uses the 
+\emph{OntoPlus} is semi automatic ontology (KB) extension system that uses the 
 existing ontology structure and natural language textual documents from specific
-domains (tested in finance and fisheries), to extend the knowledge in the KB.
+domains (tested in finance and fisheries domains), to extend the knowledge in 
+the given existing KB\parencite{Novalija2011}. Knowledge mining starts with
+the \emph{Domain Information Module}, which is given a set of domain keywords
+and glossary (by the knowledge engineer user). In the seconf phase, the target
+ontology (NL representation of the concepts) is scanned for the keywords
+appearing in the given list (from the first step) or glossary. This identifies
+a sub-set of the target ontology which will be extended.
+Then in the \emph{Domain Relevant Information Preprocessing} step, KB concepts
+and their KB neighbours (relations, subclasses, instances) and given glossary 
+contents is converted to bag-of-words vectors, which can be then used to
+calculate TF-IDF weights and cosine similarity between them content wise, and
+jaccard similarity for co-occurence metrics (how ofthen keywords of concept and
+related concepts appear together, compared with co-occurences of keywords
+inside one glossary term). The equivalence of the terms is detected by
+using edit distance of their NL denotations, where relations and hierarchical
+structure is detected from comparing similarities of term subclasses versus
+term superclases. The result of this process is a Knowledge Entry (KE) text
+(mentioned also in \autoref{chapter:implementation}), which user can edit and 
+then import into the Cyc KB. The evaluation shows that the approach can provide
+users with correct propositions of hierarchical (subclass) and associative
+releationships for knowledge extension.
 
 \subsection{Never Ending Language Learner (NELL)}
 \label{section:r:nell}
