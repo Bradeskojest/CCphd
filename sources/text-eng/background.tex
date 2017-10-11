@@ -3,10 +3,11 @@
 \chapter{Background and Problem Definition}
 \label{chapter:background}
 %-------------------------------------------------------------------------------
-This chapter describes the challenges and components that Knowledge Acquisition 
-system such is presented in this work (\emph{Curious Cat}) have to address and 
+This chapter describes the challenges and components that a Knowledge
+Acquisition system such as the one presented in this work (\emph{Curious Cat})
+have to address and 
 bring together into an interconnected work-flow in order to be a coherent 
-KA system able to satisfy the goals of general (common) Knowledge Acquisition. 
+KA system able to satisfy the goals of general Knowledge Acquisition. 
 
 \emph{Curious Cat} is a KA system making use of existing knowledge, 
 logical inference, crowd-sourcing and mobile context, to trigger natural language
@@ -15,33 +16,32 @@ into the existing KB. To successfully do this, there are many inter connected
 steps addressing a broad range of as yet not completely solved problems from
 multiple fields of artificial intelligence, machine learning, natural language
 processing and human computer interaction. Additionally to that, given
-that the approach uses crowd-sourcing, there is an additional complexity
-of technical implementation and scalability. 
+that the approach uses crowd-sourcing, there is additional complexity
+of technical implementation and scalability issues. 
 
 For more structured explanation of the approach and challenges involved, this
-section is grouped into sub-sections describing main challenges. Each section
-then references our approach to it (implementation) and also related works that
-gives overview of similar approaches.
+section is grouped into sub-sections describing the main challenges.
 
-\emph{Curious Cat} is knowledge driven, meaning that knowledge is connecting
+The proposed approach that we have implemented in \emph{Curious Cat} is
+knowledge driven, meaning that knowledge is connecting
 all of the components, including the user interaction, and storing of the
 results into the KB (section \ref{section:bg:knowledge}). Its user context is 
 obtained through a mobile sensor mining in a real world application that 
 monitors the user’s activity and location through mobile GPS and accelerometer 
-sensors. This raw data is then corrected, clustered, classified and enriched 
-before inserted into the KB as knowledge (section \ref{section:bg:context}.
+sensors. This raw data is then processed, clustered, classified and enriched 
+before it is inserted into the KB (section \ref{section:bg:context}).
 The newly asserted context can trigger forward chaining operation of the 
 inference engine (section \ref{section:bg:knowledge}) which can results in
 logical representation of a new question (section \ref{section:bg:ka}) or a 
 statement that the system intends to show to the user. The aforementioned  
-logical formula is then converted to natural language (sections 
+logical formula is then converted to natural language (section 
 \ref{section:bg:nlp}) and presented to the user through a mobile application. 
-When the user answers, his NL answer is converted back to logic 
+When the user answers, his natural language (NL) answer is converted to logic 
 (section \ref{section:bg:nlp}), checked by the inference engine against the 
 existing knowledge for consistency, and inserted as new peace of knowledge into 
-the KB (section \ref{section:bg:ka}). After interaction like that, the
-system determines whether to continue the conversational path with the user or
- not. Newly acquired knowledge is then used to check with other users for
+the KB (section \ref{section:bg:ka}). After, the system determines whether to
+continue the conversational path with the user or not. Newly acquired knowledge 
+is then checked with other users for
 validity (section \ref{section:bg:crowdsourcing}) and is then used by the 
 inference to produce new questions/comments/suggestions (section 
 \ref{section:bg:ka}).
@@ -81,7 +81,7 @@ on a 2015-quality smart phone.
 idea with a standard RDF knowledge representation\parencite{Bradesko2012}.
 \end{enumerate}
 
-Requirements and specifics about KB are described in more detail in 
+Requirements and specifics of the KB are described in more detail in 
 \autoref{section:kb} and also in the implementation \autoref{section:cyckb}.
 
 %subsection Inference engine
@@ -123,15 +123,15 @@ minimal upper ontology and vocabulary to support the KA task.
 \label{section:bg:context}
 To be able to ask relevant questions, connected to the user or something that 
 the user is currently doing or knows, and to ask at the right time/place, 
-maintaining and using user context is crucial. Using context and the newly 
+maintaining and using the user context is crucial. Using context and the newly 
 acquired knowledge to drive the KA process, is one of the main contributions 
 of this paper. 
 
 Nowadays, the obvious information source to get to know the user is his or her
 mobile phone, which, with its sensors can provide an extensive and valuable 
-source of information. However, the users need to approve using their phones 
-sensors, and additionally, the raw measurements of sensor data need to be 
-processed and understood to the extent that it is possible to use that 
+source of information. However, the users need to approve access to their
+phones sensors, and additionally, the raw measurements of sensor data need to
+be processed and understood to the extent that it is possible to use that 
 information in some sort of knowledge representation. In our approach, we used 
 two types of the context. One was provided by the users directly via answering 
 questions about themselves (\autoref{section:bg:contextu} below and 
@@ -146,9 +146,9 @@ of the context was mined from the phone sensors as introduced in
 Mining raw sensor measurements and extracting the meaning out of the data is a 
 sub-problem on its own. The proposed KA approach relies on mining mobile phone 
 GPS coordinates and accelerometer sensors to extract the places where the user 
-stays for a while, time of the visit, duration of stay, and the path taken to 
-come there. Additionally, we are enriching these stay points with the name and 
-the type of location. This was done by applying a two pass stay point detect
+stays for a while, time of the visit, duration of the stay, and the path taken
+to come there. Additionally, we are enriching these stay points with the name
+and the type of location. This was done by applying a two pass stay point detect
 (SPD) algorithm (see related work \autoref{section:SPD1} and the Foursquare API. 
 This is described in more detail in sections \ref{section:minedContext} and
 \ref{section:locationServlet}. Additionally, we use accelerometer sensors, 
@@ -242,7 +242,7 @@ already eaten in a restaurant, and not when he or she has just arrived there.
 To be able to use crowdsourcing and address the users in natural language, the 
 KA system needs to be able to convert the logical representation of questions 
 into their natural language representations. Similarly, when getting the users 
-answers, these answers need to be converted back to logic. In addition, to be 
+answers, these answers need to be converted to logic. In addition, to be 
 able to drive a coherent conversation with the user, there needs to be some 
 logic which drives the dialog and the order of the questions and responses.
 

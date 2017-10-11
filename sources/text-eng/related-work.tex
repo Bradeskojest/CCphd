@@ -2,7 +2,7 @@
 \chapter{Related Work}
 \label{chapter:related}
 %------------------------------------------------------------------------------
-In this chapter we will give an overview of approaches and related works on
+In this chapter we give an overview of approaches and related works on
 broader knowledge acquisition research field, information extraction, 
 crowdsourcing and geo-spatial context mining. 
 
@@ -46,8 +46,7 @@ which covers aspects of crowdsourcing.
 
 One of the most similar systems (by functionality and approach) is 
 \emph{Goal Oriented Knowledge Collection (GOKC)} (subsection \ref{section:r:gokc}). 
-Like 
-\emph{Curious Cat}, \emph{GOKC} starts with an initial seed KB which is used 
+Like our system, \emph{GOKC} starts with an initial seed KB which is used 
 to infer new questions that are presented to the user. The GOKC authors first 
 demonstrated that without generating new types of questions, the knowledge in 
 a domain gets saturated. Then they introduced a rule which can infer new 
@@ -160,7 +159,9 @@ sub-sections that follow.
 	    P. Populator+FOIL (Cyc) & Predicate Populator & \parencite{Witbrock2005} & Reasoning & Induction &  CycL & \checkmark & / & / \\
 	    PIP (NU) & Cyc & \parencite{Sharma2010} & Reasoning & Induction &  CycL & \checkmark & / & / \\
 	    AnalogySpace (MIT) & OMCS & \parencite{Speer2008} & Reasoning & Analogy &  ConceptNet & \checkmark & / & / \\
-		\hline	\end{tabular}
+		\hline	
+		Curious Cat (JSI) & Cyc & \parencite{Bradesko2017} & L/I/C/R & Public &  CycL & \checkmark & \checkmark & \checkmark \\
+	\end{tabular}	
 	\end{adjustbox}
 \end{table}
 \end{landscape}
@@ -308,7 +309,7 @@ on externally connected data without even noticing it's external.
 \section{Interaction Acquisition}
 \label{section:r:interaction}
 Similarly as with Labor KA, interaction Acquisition gets the knowledge from 
-human minds, but in this case the acquisition is an intended side effect, while
+humans, but in this case the acquisition is an intended side effect, while
 users are interacting with the software as part of some other activity/task, or
 as part of a motivation scheme, such as knowledge acquisition games. Besides 
 games, the interaction could be some other user interface for solving specific
@@ -385,7 +386,8 @@ of immediately switching the topic (see \autoref{tab:topics} in
 
 \subsubsection{Factivore}
 \label{section:r:factivore} 
-This application was a Java Applet user interface for an extended KRAKEN system,
+\emph{Factivore} application was a Java Applet user interface for an extended
+KRAKEN system,
 meant for quick facts entering \parencite{Witbrock2005}. On the back-end it used
 the same mechanisms and logical templates, while in the front-end it only
 allowed facts entering, as opposed to UIA, which also allowed rules (which
@@ -578,11 +580,11 @@ the evaluation, the results show that the quiz game is an effective way
 to acquire large amounts of knowledge.
 
 While this game shares many similarities with \emph{Curious Cat} (prior 
-knowledge, natural language dialogue, automated "question" formulation,
+knowledge, natural language dialog, automated "question" formulation,
 crowdsourcing), the approach is more or less random (no targeting using context),
 and there is no validation by inference. Also, a minor mistake in the paper,
 authors claim that Quiz game is the first such a system to collect large amount
-of knowledge using dialogue system, which is not true, since they missed our
+of knowledge using dialog system, which is not true, since they missed our
  work, which was published before \parencite{Bradesko2016}.
 
 \subsection{Interactive Natural Language Conversation}
