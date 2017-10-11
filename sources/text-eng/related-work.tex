@@ -45,7 +45,7 @@ natural language questions to multiple users (as eligible by their context),
 which covers aspects of crowdsourcing. 
 
 One of the most similar systems (by functionality and approach) is 
-Goal Oriented Knowledge Collection (GOKC) (subsection \ref{section:r:gokc}). 
+\emph{Goal Oriented Knowledge Collection (GOKC)} (subsection \ref{section:r:gokc}). 
 Like 
 \emph{Curious Cat}, \emph{GOKC} starts with an initial seed KB which is used 
 to infer new questions that are presented to the user. The GOKC authors first 
@@ -160,8 +160,7 @@ sub-sections that follow.
 	    P. Populator+FOIL (Cyc) & Predicate Populator & \parencite{Witbrock2005} & Reasoning & Induction &  CycL & \checkmark & / & / \\
 	    PIP (NU) & Cyc & \parencite{Sharma2010} & Reasoning & Induction &  CycL & \checkmark & / & / \\
 	    AnalogySpace (MIT) & OMCS & \parencite{Speer2008} & Reasoning & Analogy &  ConceptNet & \checkmark & / & / \\
-		\hline
-	\end{tabular}
+		\hline	\end{tabular}
 	\end{adjustbox}
 \end{table}
 \end{landscape}
@@ -228,7 +227,7 @@ As of 2010 it had 115,278 concepts annotated with Chinese representation,
 121,262 concepts with English representation, and 662,877 knowledge base records
 including other concepts and attributes \parencite{Dong2010}. HowNet knowledge 
 is stored in the form of concept relationships and attribute relationships and 
-is formally structured in KDML (Knowledge Database Mark-up Language), consisting
+is formally structured in \emph{Knowledge Database Mark-up Language (KDML)}, consisting
 of concepts (called semens in KDML) and their semantic roles.
  
 \subsection{Open Mind Common Sense (OMCS)}
@@ -259,7 +258,8 @@ part of Linked Open Data (LOD) and maintained as open-source project.
 
 \subsection{GAC/MindPixel}
 \label{section:r:gac}
-Generic Artificial Consciousness was a bold try to make a general AI based on
+\emph{Generic Artificial Consciousness (GAC)} was a bold try to make a general
+AI based on
 the premise that human thinking can be simulated with answering binary yes/no
 questions or decisions\parencite{McKinstry2008}, where humans have a natural 
 bias toward yes answers. With this in mind, McKinstry founded GAC (later renamed
@@ -550,7 +550,8 @@ users to build their own games (short, or long adventure games), which they can
 share with friends who play. While the users are designing a game, they
 also generate knowledge as a side effect when defining screens, interactions
 between the objects and other users. Authors call these knowledge pieces
-\emph{POG triples} (Prerequisite, outcome, goal).
+\emph{POG triples} (Prerequisite, outcome, goal). These triples are then 
+grouped into the KB called \emph{Energy Based Knowledge Representation} (EBKR).
 Approach was tested on 20 students from Singapore Polytechnic, and was evaluated
 to have the accuracy of  85.7\%.
 
@@ -1139,8 +1140,9 @@ observations of the KB.
 With the initial experiments conducted from Labor Rule Acquisition done as part
 of \emph{Factivore} and \emph{Predicate Populator}\parencite{Witbrock2005}, it 
 was found that getting inference rules from crowdsourcing and untrained
-human labour is ineffective and slow. For this reason, inductive logic 
-inference mechanism based on FOIL (First Order Inductive Learner) approach
+human labor is ineffective and slow. For this reason, inductive logic 
+inference mechanism based on \emph{First Order Inductive Learner (FOIL)}
+approach
 \parencite{Quinlan1995} was added to the system. Experiments were conducted on
 a set of 10 predicates from the KB, which generated 300 new rules. Of these
 rules, 7.5\% were found to be correct and 35\% correct with minor editing to
