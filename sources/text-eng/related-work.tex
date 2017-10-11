@@ -233,7 +233,7 @@ of concepts (called semens in KDML) and their semantic roles.
 \subsection{Open Mind Common Sense (OMCS)}
 \label{section:r:omcs}
 A crowdsourcing knowledge acquisition 
-project that started in 1999 at the MIT Media Lab\parencite{Singh2002a}. 
+project that started in 1999 at the \emph{Massachusetts Institute of Technology (MIT)} Media Lab\parencite{Singh2002a}. 
 Together with initial seed and example knowledge, the system was put online with
 a knowledge entry interface, so the entry was crowd-sourced and anyone 
 interested could enter and codify the knowledge. OMCS supported collecting 
@@ -477,7 +477,8 @@ snippets and were not incorporated into any kind of structure or formal KB.
 
 \subsubsection{Rapport}
 \label{section:r:rapport} 
-This is a KA game based on Chinese OMCS questions, but implemented as a 
+\emph{Rapport} was developed at \emph{National Taiwan University (NTU)}. It
+is a KA game based on Chinese OMCS questions, but implemented as a 
 Facebook game to make use of the social connections inside social network. 
 The Game helps users to make new friends or enhance connections with their 
 existing social network by asking and answering questions and matching the 
@@ -543,7 +544,8 @@ otherwise\parencite{Bernstein2009, Bernstein2010}.
 \subsection{GECKA (The Game Engine for Common Sense Knowledge Acquisition)}
 \label{section:r:gecka}
 \emph{GECKA} can be considered as a meta GWAP (Game with a Purpose), as it is
-a GWAP game developing/editing tool. It was inspired by existing GWAP games
+a GWAP game developing/editing tool. It was built at \emph{National University 
+of Singapore (NUS)}, and was inspired by existing GWAP games
 (Virtual Pet, Rapport), trying to overcome their weaknesses, naming sticky 
 factor and un-transferability of the knowledge. This is done by allowing
 users to build their own games (short, or long adventure games), which they can
@@ -557,11 +559,12 @@ to have the accuracy of  85.7\%.
 
 \subsection{Quiz}
 \label{section:r:qiz}
-\emph{Large-Scale Acquisition of Commonsense Knowledge via a Quiz Game on a
-Dialogue System}\parencite{Otani2016} is a GWAP game developed on a 
+Developed at Kyoto University (KU), Large-Scale Acquisition of Commonsense 
+Knowledge via a Quiz Game on a
+Dialogue System \parencite{Otani2016} is a GWAP game developed on a 
 smart-phone as a module inside Yahoo Voice Assist application (which is 
 installed on more than 2.5 million devices), and interacting with the users 
-via natural language dialogue.  Over the course of 8 months, 70,000
+via natural language dialog.  Over the course of 8 months, 70,000
 users contributed 150,000 unique knowledge knowledge pieces, being added on
 top of Japanese \emph{ConceptNet}. Regarding the game mechanics,
 quiz participants are given clues about a certain concept. Then they try to
@@ -910,8 +913,8 @@ have a very high chance of being able to answer a question.
 \subsection{KnowItAll}
 \label{section:r:knowitall}
 KnowItAll\parencite{Etzioni2004} is a domain independent web fact extraction 
-system that s specific search engine queries to find new instances of specific
-classes. It starts it extraction with a small seed of class names and NL patterns
+system developed at \emph{University of Washington (UW)}, that s specific search engine queries to find new instances of specific
+classes. It starts the extraction with a small seed of class names and NL patterns
 like "NP1 such as NP2". The classes and patterns are then used to find instances,
 new classes and also new extraction phrases by analyzing the results of the 
 web search engines. For example, Googling: "Cities such as *", will return 
@@ -937,7 +940,8 @@ targets) knowledge extraction on a web scale.
 
 \subsection{Probase}
 \label{section:r:probase}
-Probase is a probabilistic taxonomy of concepts and instances consisting of
+Probase, started by Microsoft Research (MSR) is a probabilistic taxonomy of 
+concepts and instances consisting of
 2.7 million of concepts extracted from 1.68 billion of web pages
 \parencite{Wu2012}. The main difference between Probase and other KBs is that
 Probase is probabilistic as opposed of "black and white" KB. On the other hand,
@@ -1037,9 +1041,9 @@ and concepts with low PMI score (see abbreviations and glossary).
 
 \subsection{DBPedia}
 \label{section:r:dbpedia}
-\emph{DBPedia} is crowd-sourced RDF KB, extracted from Wikipedia pages and made
-publicly available\parencite{Lehmann2015}. As of 2017 the English DBPedia 
-contains 4.58 million 
+\emph{DBPedia} is crowd-sourced RDF based KB, extracted from Wikipedia pages and made publicly available\parencite{Lehmann2015}. It was developed as a 
+collaboration between \emph{University of Leipzig (UL)} and \emph{University of
+Mannheim (UoM)}. As of 2017 the English DBPedia contains 4.58 million 
 knowledge pieces, out of which 4.22 million in a consistent ontology, 
 including 1,445,000 persons, 735,000 places, 411,000 creative works
 (123,000 music albums, 87,000 films and 19,000 video games), 
@@ -1061,7 +1065,7 @@ written into an RDF sink, supporting various format such as NTriples, etc.
 
 \subsection{YAGO (Yet Another Great Ontology)}
 \label{section:r:yago}
-\emph{YAGO} is an ontology built automatically from \emph{WordNet} and 
+\emph{YAGO} is an ontology built at \emph{Max Planck Institute (MPI)}. It is built automatically from \emph{WordNet} and 
 \emph{Wikipedia}\parencite{Suchanek2008}. Latest version \emph{YAGO3} is built
 from multiple languages and as of 2015 consist of 4,595,906 entities, 
 8,936,324 facts, 15,611,709 taxonomy facts and 1,398,837 labels
@@ -1152,7 +1156,6 @@ rules with the rate around three per hour, while with FOIL, they can review
 and double check for correctness around twenty rules per hour.
 
 \subsection {Plausible Inference Patterns (PIP)}
-
 \label{section:rw_PIP}
 The main idea of \emph{PIP} system is to learn new plausible inference rules 
 (patterns of plausible reasoning) by combining existing knowledge and 
@@ -1201,8 +1204,9 @@ on similarities, as opposed on hard and absolute logical facts.
 \emph{AnalogySpace} does just that, by performing analogical closure by
 dimensionality reduction of semantic network (KB graph)\parencite{Speer2008}. 
 This system tried to represent a new synthesis between a standard symbolic 
-reasoning and statistical methods. For this, a similar technique to Latent
-Semantic Analysis (LSA) is being used, where strong assertions are used as
+reasoning and statistical methods. For this, a similar technique to 
+\emph{Latent Semantic Analysis (LSA)} is being used, where strong assertions
+are used as
 opposed to weak semantics of word co-occurrences in the document. In the 
 LSA matrix, on one axis are concepts from \emph{OMCS}, and on the other
 axis a features of these concepts, which yields a sparse matrix of very
@@ -1219,12 +1223,13 @@ good answer.
 Results of experiments have shown that more than 70\% of the resulting 
 assertions were marked as true by human validators.
 
-\subsection{Cyc Wiki}
+\subsection{Cyc+Wiki}
+\label{section:r:cycwiki}
 Given that Wikipedia contains a lot of knowledge which is not structured in 
 a way to be useful for inference engines directly, it makes sense to either try
 to structure it (as was done with \emph{YAGO}), or link it with some existing
 ontology such as \emph{CycKB}, which was done as part of this research task
-\parencite{Medelyan2008}.
+at \emph{The University of Waikato, New Zealand(TUW)} \parencite{Medelyan2008}.
 Authors first filtered out of potential pool of Cyc concepts all non-common 
 sense concepts, which ended with 83,897 of them. Then these concepts were
 string matched with Wikipedia concept names based on their name directly,
@@ -1239,7 +1244,7 @@ disambiguation was needed, and precision 93\% and recall 86.3\% with the
 disambiguation part.
 
 
-\section{Acquisition of Geospatial Context}
+\section{Acquisition of Geo-spatial Context}
 This sub section covers the works and approaches that can relate to our 
 context mining/acquisition implementation. While the approaches themselves are
 more from the data-mining domain, as opposed to knowledge acquisition, in
