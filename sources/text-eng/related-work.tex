@@ -354,6 +354,7 @@ interest), and also crowdsourcing aspects. Kraken was also missing rules for
 explicit question asking. The questions were all related to the selected concept
 and given as a list of natural language forms.
 
+
 \subsubsection{User Interaction Agenda (UIA)} 
 \label{section:r:uia}
 UIA was a web  based user interface for KRAKEN
@@ -581,11 +582,11 @@ to acquire large amounts of knowledge.
 
 While this game shares many similarities with \emph{Curious Cat} (prior 
 knowledge, natural language dialog, automated "question" formulation,
-crowdsourcing), the approach is more or less random (no targeting using context),
-and there is no validation by inference. Also, a minor mistake in the paper,
-authors claim that Quiz game is the first such a system to collect large amount
-of knowledge using dialog system, which is not true, since they missed our
- work, which was published before \parencite{Bradesko2016}.
+crowdsourcing), the approach is more or less randomly selecting questions
+(no targeting using context),
+and there is no validation by inference. Authors claim that Quiz game is the first such a system to collect large amount
+of knowledge using dialog system, while initial version of our work was already
+published \parencite{Bradesko2016}.
 
 \subsection{Interactive Natural Language Conversation}
 \label{section:r:inlc}
@@ -602,7 +603,7 @@ the intention to maintain an interesting conversation with the users, and have
 to do knowledge acquisition only to remember facts and parts of the past 
 conversations to be able to be smart enough, so users do not lose interest.
 Starting with Eliza\parencite{Weizenbaum1966}, these systems evolved, mostly 
-directed by Turning Tests\parencite{Turing?}, implemented as Loebner 
+directed by Turing Tests, implemented as Loebner 
 competitions, trying to pass it\footnote{http://www.loebner.net}. Through the 
 measure of these tests\parencite{Bradesko2012}, among a few proprietary 
 chat-bots, two technologies evolved (\emph{AIML, ChatScript}) to be general 
@@ -726,7 +727,7 @@ knowledge acquisition which is integral part chat-bot systems. A simple example
 from AIML (\tablename~\ref{tab:aiml_example}) can be re-written in much 
 shorter form as ChatScript rule (\tablename~\ref{tab:chatscript_example}).
 
-\begin{table}[htb]
+\begin{table}[H]
 	\caption{Simple ChatScript example}
 	\label{tab:chatscript_example}
 	\centering
@@ -741,7 +742,7 @@ shorter form as ChatScript rule (\tablename~\ref{tab:chatscript_example}).
 \end{table}
 
 Similarly the example from \tablename~\ref{tab:aiml_ka1} can be written as:
-\begin{table}[htb]
+\begin{table}[H]
 	\caption{Simple ka (remembering) example}
 	\label{tab:chatscript_ka1}
 	\centering
@@ -756,7 +757,7 @@ s: (I am hungry) East another _0?
 	\end{tabular}
 \end{table}
 
-Similarly, example from \tablename~\ref{tab:aiml_ka2} in ChatScript looks like:
+And, example from \tablename~\ref{tab:aiml_ka2} in ChatScript looks like:
 
 \begin{table}[H]
 	\caption{Simple ChatScript question/answer/remember example}
@@ -800,7 +801,7 @@ This category of KA systems try to make use of big text corpus-es
 available online or otherwise on some digital media. Because the core idea of 
 writing is to share information, there is a lot of knowledge in the texts that 
 can be extracted and converted into a structured knowledge that can later be used 
-by computers. Due to wast size and availability of the data on the Internet,
+by computers. Due to vast size and availability of the data on the Internet,
 mining is most often done on the web resources. Since most of the data format
 from these corpuses is text, these techniques are particularly strong in the
 using various NLP techniques, which are often combined with existing knowledge
@@ -808,16 +809,16 @@ to correct mistakes and check consistency.
 
 \subsection{Populating Cyc from the Web (PCW)}
 \label{section:r:pcw}
-Since whole idea of Cyc system is to gain enough knowledge through manual work,
-to be able to learn on itself after some point, the Cyc team is looking int into 
-other means of knowledge acquisition which can automatize or speed-up the KA 
-process. One of the approaches is by mining facts from the Internet by issuing 
-appropriate search engine queries\parencite{Matuszek2004}. Because Cyc KB is 
-really big, the first step of this approach is to select appropriate part of 
-the kb (concepts and related queries) which are in the interest of the system.
-For initial experiments  a set of 134 binary predicates was selected. These 
-predicates were then used to scan the KB and find the missing knowledge, which 
-was converted to CycL queries. 
+Since the whole idea of Cyc system is to gain enough knowledge through manual
+work, to be able to learn on itself after some point, the Cyc team is looking
+into other means of knowledge acquisition which can automatize or speed-up the
+KA process. One of the approaches is by mining facts from the Internet by
+issuing appropriate search engine queries\parencite{Matuszek2004}. Because Cyc
+KB is really big, the first step of this approach is to select appropriate part
+of the KB (concepts and related queries) which are in the interest of the 
+system. For initial experiments  a set of 134 binary predicates was selected.
+These predicates were then used to scan the KB and find the missing knowledge,
+which was converted to CycL queries. 
 These queries were then converted to NL and queried on a web search engine. 
 The results are then converted back to CycL through NL to logic engine of Cyc. 
 After the conversion these are converted back to NL and re-searched on the web,
@@ -846,7 +847,7 @@ this prototype system is that it includes question answering mechanism, which
 can be used by evaluators to check what the system learned. This same mechanism
 is also used to try to generate new facts (elaborate) and also questions based
 on newly acquired knowledge. The experiment on 62 written stories improved the
-recall from 10\% to 37\% and kept the accuracy as 99.7\% compared to original 
+recall from 10\% to 37\% and kept the accuracy at 99.7\% compared to original 
 100\%. By using additional inference and conjecture based inference, the recall
 raised to 60\% while accuracy dropped to 90.8\%.
 
@@ -897,7 +898,7 @@ combines results of learning tasks. The potentially useful knowledge gets
 asserted into the KB as candidates, where the assertions are checked by knowledge
 integrator module which integrates the assertions into the KB, or rejects them.
 
-After some initial initial KB had been gathered, the CMU text-mining knowledge 
+After some initial KB had been gathered, the CMU text-mining KA system 
 NELL also started to apply a crowdsourcing approach\parencite{Pedro2012a},
 using natural language questions to validate its KB. In a similar
 fashion as Curious Cat, NELL can use newly acquired knowledge, to 
@@ -1247,12 +1248,12 @@ disambiguation part.
 
 
 \section{Acquisition of Geo-spatial Context}
-This sub section covers the works and approaches that can relate to our 
+Here we describe approaches that can relate to our 
 context mining/acquisition implementation. While the approaches themselves are
 more from the data-mining domain, as opposed to knowledge acquisition, in
 \emph{Curious Cat}, the results are converted in the knowledge and asserted 
 directly as a contextual knowledge about the users. For this reason, this
-related work is in its own subsection. In the \tablename~\ref{tab:related}, the 
+related work is in its own subsection. In \tablename~\ref{tab:related}, the 
 approaches here are not listed, since they don't count as a knowledge
 acquisition, but more a custom data-mining solutions which support our
 proposed KA approach.
@@ -1260,7 +1261,7 @@ proposed KA approach.
 \subsection{Extracting Places from Traces of Locations}
 \label{section:SPD1}
 This algorithm (we refer to it as SPD1 - Staypoint Detection), is one of the 
-first papers/approaches that started to mine the raw GPS data
+first approaches that started to mine the raw GPS data
 into more user friendly notion of location - place.\parencite{Kang2005} The main
 idea of the algorithm is to be able to cluster the raw GPS locations into the
 particular places (home, work, specific restaurant, etc.) that user visited. 
@@ -1273,7 +1274,7 @@ without knowing the number of clusters in front (as is necessary with more
 standard clustering approaches). The core of the algorithm has a benefit
 to be really simple and can be easily ran on the phone.
 
-The algorithm pseudo-code is shown below (algorithm \ref{alg:spd1}), where $CL$ 
+The algorithm pseudo-code is shown (Algorithm \ref{alg:spd1}), where $CL$ 
 represents currently 
 detecting cluster (stay-point), $VP$ is detected cluster (stay-point or Visit 
 Point) and $plocs$ is temporal locations to be discarded or added to cluster
