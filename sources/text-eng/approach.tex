@@ -85,7 +85,7 @@ This is explained in more detail in \autoref{section:crowdsourcing}.
 \end{table}
 
 The resulting implementation (described at the end in 
-\autoref{chapter:implementation}) of the described approach, named Curious Cat 
+\autoref{chapter:implementation}) of the described approach,	 
 has a multi objective goal, KA is the primary goal, while having an intelligent 
 assistant and a conversational agent are secondary goals. The aim is to perform
 knowledge acquisition effortlessly and accurately as a side effect, while having
@@ -114,7 +114,7 @@ understanding of the system.
 	\label{fig:Architecture}
 \end{figure}
 
-On \autoref{fig:Architecture} these modules are represented with the boxes,
+In \autoref{fig:Architecture} these modules are represented with the boxes,
 and their functionality groups are presented with the colors (see the figure
 legend). Arrows represent the interaction and work-flow order and initiation 
 (the interaction is initiated/triggered from the origin of the arrow).
@@ -237,7 +237,8 @@ interaction types are also presented on \autoref{fig:interaction}.
 
 \subsubsection{Machine to Human Interaction (MHI)}
 \label{section:mhi}
-The most basic form of interaction between the CC system and the user, which
+The most basic form of interaction between the \emph{Curious Cat} system and
+the user, which
 we also use the most, is when something triggers a change in the KB and 
 CC decides it's the time to ask or tell something. On the 
 \autoref{fig:interaction}, this is represented by the most inner loop (MHI). 
@@ -260,8 +261,8 @@ can be in a written form, or through the text-to-speech interface. User can then
 answer this question and thus close the interaction loop (blue arrow marked with
 1b), possibly causing a new one with her answer. 
 
-For easier answering, the KA system can use existing KB to generate a set of 
-possible answers at the question generation time. These can be then picked by
+For easier answering, the KA system can use the existing KB to generate a set
+of possible answers at the question generation time. These can be then picked by
 the user instead of writing. The guidance can consist of variations of these:
 \begin{itemize}
 	\item A fixed set of predefined options that user can pick from, generated
@@ -288,7 +289,7 @@ the main research topic of this thesis.
 
 \subsubsection{Human to Machine Interaction (HMI)}
 \label{section:hmi}
-The second type of interaction is, when user initiates the conversation. 
+The second type of interaction is, when the user initiates the conversation. 
 If this is done at some point as the answer to an old question, the process is 
 the same as described above in subsection \ref{section:mhi}. But users can 
 also enter a 
@@ -297,8 +298,8 @@ through the NL to Logic conversion (section \ref{section:NLLogic} and section
 \ref{section:locationServlet}) which tries to convert the
 text into logical query or assertion. The complexity of converting NL into logic 
 is a lot higher than in the opposite direction, since the language is not
-as exact. In CC implementation (section \ref{section:locationServlet}), we 
-handled this to
+as exact. In \emph{Curious Cat} implementation 
+(section \ref{section:locationServlet}), we handled this to
 some extent by using SCG system \parencite{Schneider2015}, where the text
 is matched to NL patterns which are linked to appropriate logical structures.
 This would be used for example, when user, instead of simple "Pizza Deluxe" 
@@ -773,9 +774,9 @@ class, or its sub-class (which is everything in our KB), also an instance of
 $Something$, and thus proving the assertion \ref{as:is_arg1_domain} correct and 
 consequently our KB fully consistent again.
 
-At this point our Upper Ontology is defined (it is visually presented on
+At this point our Upper Ontology is defined (it is visually presented in
 \autoref{fig:upperOnto}) and ready to build upon as will be
-described in the next chapters. Since Curious Cat main implementation is based
+described in the next chapters. Since Curious Cat is based
 on Cyc, and it was inspired by the way Cyc ontology is constructed and being 
 used, this upper ontology reflects the main part of Cyc upper ontology 
 (see Chapter \ref{chapter:implementation}, implementation on how this 
@@ -1950,7 +1951,7 @@ For the most complicated NL conversions, similar approach to a standard
 ChatScript or AIML patterns\parencite{Wilcox2011,Wallace2013} is taken, just 
 that the patterns are not matched to textual response patterns directly, but 
 to the logical statements instead. Consider the example answer given as step 
-\ref{step:menu} in \autocite{tab:conversation1}, when user would, instead of 
+\ref{step:menu} in \autoref{tab:conversation1}, when user would, instead of 
 simple "pizzas", answer something like "They sell pizzas", or "They have 
 pizzas on the menu". In this case the simple approach described at the 
 beginning of this chapter would not find anything and thus the system needs 
