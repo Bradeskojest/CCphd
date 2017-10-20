@@ -63,16 +63,19 @@ contributions to knowledge acquisition and also conversational agents:
 	the AI assistant implementation, there were two more implementations, 
 	emphasizing the generality of the approach (Please refer to \nameref{chapter:implementation}).
 
-	\item \emph{An insight into new paradigm of constructing conversational agents,	shifting from natural language patterns to first order logic rules as part of knowledge driven conversation construction.} The side effect of KA process with its arrangement of the acquisition tasks into topics and follow up reposes to user answers, is that it gives an appearance of  intelligent	chat-bot. That it is perceived as one, was also visible from some user's answers, where instead of answering questions they were
-	responding with "chatty" responses like "Hi, I am X. What is your name?".
-	In the current setting responses like that get filtered out, but using 
-	a huge preexisting KB (CycKB) still covers enough aspects of common sense knowledge to be able to discuss about quite a lot of topics and give some feeling of understanding to the users. Since the patterns that our system
+	\item \emph{An insight into new paradigm of constructing conversational agents,	shifting from natural language patterns to first order logic rules as part of knowledge driven conversation construction.} 
+	The side effect of KA process with its arrangement of the acquisition tasks into topics and follow up reposes to user answers, is that it gives an appearance of  intelligent	chat-bot. That it is perceived as one, was also visible from some user's answers, where instead of answering questions they were responding with "chatty" responses like "Hi, I am X. What is your name?".
+	As described in this work, the main difference and improvement compared to existing chat-bot technologies is, that in our approach, a big preexisting logical KB with	inference rules replaces linguistic patterns of stimuli and response combinations. Also, at the same time as doing conversation, 
+	our system does the KA all the time. By using the preexisting KB we were able to	filter out almost all of wrong
+	or answers that our system couldn't properly parse. For 143 days
+	of data we used for the evaluation, our system rejected 563 answers out of 22,980 given (\autoref{tab:resultsconsistencycheck}), keeping only logically valid. Later manual analysis (\autoref{tab:validity}) showed that a out of 100 of valid answers, almost all were also true (96).
+	
+	On the other side, using	a big preexisting KB (CycKB) covers enough aspects of common sense knowledge for the system to be able to discuss about quite a lot of topics and give some feeling of understanding to the users. Since the patterns that our system
 	can parse are converted to the logic, where are semantically connected 
 	in a meaningful way, consequently the responses it can generate reflect a "real understanding". While this approach has the same problems as a standard chat-bots, that it needs a lot of patterns to be able to respond
 	in a meaningful way, it is still an improvement, since when the pattern is
 	parsed, it guarantees that the response will be logically valid. Regardless of the fact that the chat bot aspect of our approach was a side effect, it
-	is interesting enough that we regard as worth exploring in some more detail
-	in the future research. 
+	is interesting enough that we think it is worth exploring this direction in some more detail in the future research. 
 \end{enumerate}
 
 %section
