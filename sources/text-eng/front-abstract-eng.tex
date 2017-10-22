@@ -3,37 +3,27 @@
 \chapter*{Abstract}
 \pdfbookmark[0]{Abstract}{Abstract}
 %-------------------------------------------------------------------------------
-Acquisition of high quality structured knowledge has been one of the 
-longstanding goals of the Artificial Intelligence (AI) research, among the reasons
-that having such structured knowledge of a high quality, helps to 
-advance other research activities in the AI field. With the recent advances 
-in crowdsourcing, the sheer number of Internet users and the commercial 
-availability of crowdsourcing and knowledge acquisition platforms have come a 
-new set of tools to tackle this problem. Although numerous systems and methods 
-for crowd-sourced knowledge acquisition had been developed and solve the problem
-of manpower, the issues of high financial costs, task preparation, finding 
-the right crowd, consistency, and quality of the acquired knowledge, seem to 
-persist. 
+%1. Knowledge acquisition is an important part of Artificial Intelligence. It is a difficult task that has been attempted for several decades through hand-annotation and structuring by human experts. In recent years, there have been attempts to scale this type of approach through crowdsourcing.
 
-This thesis address this deficit by formalizing and implementing an approach
-to lower the costs and increase the quality of acquired knowledge. The approach
-exploits an existing knowledge base to drive the crowd-sourced Knowledge
-Acquisition (KA) process, 
-user context to communicate with the right people, and again the existing
-knowledge, to check for consistency of the user-provided answers. 
-The proposed approach can be incorporated into modern natural language
-human-computer Interaction (HCI) interfaces doing the KA tasks in the background
-as a part of its standard interaction (primary goal) operations, making the KA
-process a side-goal while not hindering the main interaction. 
+%2. Crowdsourcing high quality knowledge is expensive and noisy (despite recent advances in technology, and a broad availability of manpower).
 
-We also implemented the proposed approach as a part of the publicly available 
-mobile assistant application, acting as a client of the proposed KA platform and 
-supporting context acquisition algorithms.
+%3. Through a novel set of knowledge acquisition tools, natural language user interaction, and a rich background knowledge base, you propose a system that can significantly reduce the cost of acquiring knowledge, and increase the quality of knowledge--creating a virtuous cycle. STATE HOW MUCH YOU REDUCE THE COST, AND HOW MUCH YOU INCREASE THE QUALITY.
 
-We tested the viability of the approach in experiments through multiple years,
-using our platform with real users around the world, and an existing large 
-source of common sense background knowledge. These experiments show that the 
-approach is allowing some previously not possible angles 
-toward crowd-sourced knowledge acquisition and yielding a high quality of the 
-knowledge, as a side effect of trying to act as an assistant and a companion 
-to its users.
+%4. You propose a concrete implementation of the proposed system that has been tested over multiple years with thousands of users, yielding very promising results. STATE HOW WELL THIS SYSTEM WORKS QUANTITATIVELY.
+
+Knowledge Acquisition is an important part of Artificial Intelligence. Having 
+a high quality structured knowledge helps to advance other research activities from the Artificial Intelligence field. It is a difficult task and has been attempted for several decades through hand-annotation and structuring by human experts. In recent years, there have been attempts to scale this type of approach through crowdsourcing. 
+
+Although numerous systems and methods for crowd-sourced knowledge acquisition had been developed and solve the problem of manpower, the issues of high financial costs, task preparation, finding the right crowd, consistency, and quality of the acquired knowledge, seem to persist. 
+
+This thesis address the deficit by formalizing and implementing an approach
+that significantly reduces the costs and increases the quality of acquired knowledge through a novel set of knowledge acquisition tools, natural language user interaction and a rich background knowledge base which includes current user context. The approach uses the context to pick the right users at the right time, and the existing knowledge, to check for consistency of the user-provided answers. The newly acquired knowledge is incorporated into the
+existing knowledge base and thus creating a virtuous circle, where the knowledge acquisition
+process and the acquired knowledge are constantly getting better through time.
+The proposed approach can be incorporated into a modern natural language
+human-computer Interaction (HCI) interfaces doing the knowledge acquisition as
+a side effect of its primary goal interaction. 
+
+As part of this thesis we also propose a concrete implementation of the 
+system that has been tested over multiple years with thousands of users, yielding very promising results. During the test run, this approach collected
+over 57,978 answers resulting in 386,980 new knowledge facts. The evaluation shows the facts to be true and useful 95\% of the time. Using the context to pro-actively drive the knowledge acquisition increased engagement and effectiveness (the number of new assertions/day/user increased for 175\%).
