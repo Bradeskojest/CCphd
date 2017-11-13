@@ -11,8 +11,8 @@ researchers in Artificial Intelligence over decades, starting already in 1970
 as a sub-discipline of AI research, and since then resulting in a big number of 
 types and implementations of approaches and technologies/algorithms. The 
 difficulty of acquiring and maintaining the knowledge was soon noticed and was 
-Goined as \emph{Knowledge Acquisition Bottleneck} in 
-1977\parencite{Feigenbaum1977}. In more recent survey of KA approaches 
+coined as \emph{Knowledge Acquisition Bottleneck} in 
+1977 \parencite{Feigenbaum1977}. In more recent survey of KA approaches 
 \parencite{Zang2013}, authors categorize all of the KA approaches into four main
 groups, regarding the source of the data and the way knowledge is acquired:
 \begin{itemize}
@@ -36,7 +36,7 @@ classification when structuring our related work, focusing more on closely
 related approaches and extending where necessary. According to this 
 classification, the work presented in this dissertation fits into a hybrid 
 approach combining all four groups, with the main focus on interaction and 
-reasoning. As already hinted at the beginning of \autoref{chapter:background},
+reasoning. As already hinted at the beginning of Chapter \ref{chapter:background},
 we address the problem by combining the labor and interaction acquisition, 
 adding unique features of using user context and existing knowledge in a 
 combination with machine reasoning to produce practically unlimited number of 
@@ -45,7 +45,7 @@ natural language questions to multiple users (as eligible by their context),
 which covers aspects of crowdsourcing. 
 
 One of the most similar systems (by functionality and approach) is 
-\emph{Goal Oriented Knowledge Collection (GOKC)} (subsection \ref{section:r:gokc}). 
+\emph{Goal Oriented Knowledge Collection (GOKC)} (Subsection \ref{section:r:gokc}). 
 Like our system, \emph{GOKC} starts with an initial seed KB which is used 
 to infer new questions that are presented to the user. The GOKC authors first 
 demonstrated that without generating new types of questions, the knowledge in 
@@ -57,16 +57,15 @@ specific domain and accepts all user answers, which are then filtered only by
 voting.
 
 Another related system, which is a predecessor of \emph{Curious Cat} in some 
-aspects, is \emph{Cyc CURE} KA system (\autoref{section:r:cure} which is 
-available as part of \emph{Cyc}, for making the internal KA easier. While 
+aspects, is \emph{Cyc CURE} KA system (Subsubsection \ref{section:r:cure} which is available as part of \emph{Cyc}, for making the internal KA easier. While 
 \emph{CURE} can use inference rules to produce new questions and is able to
-check for consistency of the answers, it doesn't use any context, conversation
+check for consistency of the answers, it does not use any context, conversation
 or crowdsourcing. It simply lists a set of questions when \emph{Cyc} user clicks
 on the concept inside Cyc's internal web-GUI.
 
 After an initial KB, extracted from Internet textual content had been gathered, 
 the CMU text-mining knowledge acquisition system NELL 
-(\autoref{section:r:nell}), started to apply a crowdsourcing approach
+(Subsection \ref{section:r:nell}), started to apply a crowdsourcing approach
 \parencite{Pedro2013}, using natural language questions to validate its KB. 
 In the same fashion, as \emph{Curious Cat}, NELL can use newly acquired 
 knowledge, to formulate new representations and learning tasks. There are, 
@@ -82,11 +81,11 @@ users who have a very high chance of being able to answer a question.
 On the other end of the spectrum lie conversational agents (chat-bots) with a 
 vast number of hand-scripted NL patterns and responses.
 Recently, some successful chat-bots have started to employ an internal KB, in
-addition to just scripted requests and response (subsections 
+addition to just scripted requests and response (Subsections 
 \ref{section:r:aiml} and \ref{section:chatscript}). It is used to remember facts 
 from the conversation for later use. In this way, the chat system is actually 
-doing sort of targeted knowledge acquisition. There has also been an attempt to 
-extend AIML scripts with Cyc knowledge (subsection \ref{section:r:cyn}) by 
+doing sort of a targeted knowledge acquisition. There has also been an attempt to 
+extend AIML scripts with Cyc knowledge (Subsection \ref{section:r:cyn}) by 
 using NL patterns to match to particular logical queries, enabling a bot to 
 answer questions from Cyc KB. Unlike responses generated due to NL pattern 
 matches as with chat-bots, \emph{Curious Cat} generates NL responses based on 
@@ -96,7 +95,7 @@ approaches that attempts to bridge the gap between maintaining the NL
 conversation of chat-bots and actually understanding its content.
 
 Something similar (converting NL to Prolog logic, answering the question and
-returning the result) had been tried to some extent before\parencite{Baral2007},
+returning the result) had been tried to some extent before \parencite{Baral2007},
 but just as a proof of concept example covering 4 use-cases, without doing 
 anything else.
 
@@ -178,7 +177,7 @@ preexisting knowledge to be able to check the consistency of the newly acquired
 knowledge. Labor Acquisition is often present in other KA types, even if not 
 explicitly mentioned, since it is implicitly done when defining internal 
 workings and structures of other KA processes. While we checked other well 
-known systems that are result of Labor Acquisition, Cyc (mentioned below) is 
+known systems that are a result of Labor Acquisition, Cyc (mentioned below) is 
 the most comprehensive of them and was picked as a starting point and main 
 background knowledge and implementation base for this work.
 
@@ -200,20 +199,20 @@ human years which resulted in 7 million assertions connecting 500,000 terms and
 sub-theories (Microtheories) and connected to the Cyc Inference engine and 
 Natural Language generation. Since the implementation of our approach is based
 on Cyc, we give a more detailed description of the KB and its connected systems
-in \autoref{section:Cyc} on page \pageref{section:Cyc}. Cyc Project is still 
-work in progress and continues to live and expand through various research and
+in Section \ref{section:Cyc} on page \pageref{section:Cyc}. Cyc Project is still 
+a work in progress and continues to live and expand through various research and
 commercial projects.
 
 \subsection{ThoughtTreasure}
 \label{section:r:thought}
- Approximately at the same time(1994) as Cyc Inc. 
+ Approximately at the same time (1994) as Cyc Inc. 
 company was formed, Eric Mueller started to work on a similar system, which was
 inspired by Cyc and is similar in having a combination of common sense knowledge
 concepts connected to their natural language presentations. The main 
 differentiator from Cyc is, that it tries to use simpler representation compared
 to first-order logic as is used in Cyc. Additionally, some parts of 
 \emph{ThoughtTreasure} knowledge can be presented also with finite automata, 
-grids and scripts\parencite{Mueller1999,Mueller2003}. In 2003 the knowledge of
+grids and scripts \parencite{Mueller1999,Mueller2003}. In 2003 the knowledge of
 this system consisted of 25,000 concepts and 50,000 assertions. ThoughtTreasure 
 was not so successful as Cyc and ceased all developments in 2000 and was 
 open-sourced on GitHub in 2015\footnote{https://github.com/eriktmueller/
@@ -234,7 +233,7 @@ of concepts (called semens in KDML) and their semantic roles.
 \subsection{Open Mind Common Sense (OMCS)}
 \label{section:r:omcs}
 A crowdsourcing knowledge acquisition 
-project that started in 1999 at the \emph{Massachusetts Institute of Technology (MIT)} Media Lab\parencite{Singh2002a}. 
+project that started in 1999 at the \emph{Massachusetts Institute of Technology (MIT)} Media Lab \parencite{Singh2002a}. 
 Together with initial seed and example knowledge, the system was put online with
 a knowledge entry interface, so the entry was crowd-sourced and anyone 
 interested could enter and codify the knowledge. OMCS supported collecting 
@@ -242,7 +241,7 @@ knowledge in multiple languages. It's main difference from the systems described
 above (Cyc, HowNet, ThoughtTreasure) is, that it used deliberate crowdsourcing
 and that it's knowledge base and representation is not strictly formal logic, 
 but rather inter-connected pieces of natural language statements. As of 2013 
-\parencite{Zang2013}, OMCS produced second biggest KB after Cyc, consisting of 
+\parencite{Zang2013}, OMCS produced the second biggest KB after Cyc, consisting of 
 English (1,040,067 statements), Chinese (356,277), Portuguese (233,514), 
 Korean (14,955), Japanese (14,546), Dutch (5,066), etc. Initial collection was
 done by specifying 25 human activities, where each activity got it's own user 
@@ -250,7 +249,7 @@ interface for free form natural language entry and also predefined patterns
 like "A hammer is for \underline{\hspace{1.0cm}}", where participants can enter
 the knowledge. Although OMCS started to build KB from scratch it shares a 
 similarity to our CC system in a sense that it is using crowd-sourcing and also
-natural language patterns with empty slots to fill in missing parts. OMCS was
+natural language patterns with empty slots to fill in the missing parts. OMCS was
 later used in many other KA approaches as a prior knowledge, similar way as we 
 use Cyc. After a few versions, OMCS was taken from public access and merged with
 multiple KBs and KA approaches into an ConceptNet 
@@ -262,12 +261,12 @@ part of Linked Open Data (LOD) and maintained as open-source project.
 \emph{Generic Artificial Consciousness (GAC)} was a bold try to make a general
 AI based on
 the premise that human thinking can be simulated with answering binary yes/no
-questions or decisions\parencite{McKinstry2008}, where humans have a natural 
+questions or decisions \parencite{McKinstry2008}, where humans have a natural 
 bias toward yes answers. With this in mind, McKinstry founded GAC (later renamed
 to MindPixel), where Internet crowd would answer yes/no questions for shares
 in the company which would commercially exploit the GAC AI. Initially, one such
 answer which contributed to GAC knowledge base was called MindPixel, but after
-a while this became name for the whole system. With this idea, McKinstry's
+a while this became the name for the whole system. With this idea, McKinstry's
 MindPixel was one of the first crowd-sourced efforts for collaborative KB
 building. While MindPixel shut down after McKinstry stopped working on it,
 it inspired \emph{OMCS, later OpenMind} and started the crowdsourcing and
@@ -279,20 +278,20 @@ YES/NO crowdsourcing system lives under the name
 \label{section:r:sksi}
 No matter how big the underlying knowledge base is, there will always be some
 missing knowledge, that exists somewhere else. While with knowledge acquisition
-it is possible to add these missing peaces, sometimes it makes more sense to
+it is possible to add these missing pieces, sometimes it makes more sense to
 keep this knowledge externally and only link it properly so it can be used.
 This is especially true for fast changing data such as stock values, weather
 forecast information, real-time measurements of traffic/ production line, etc.
 In such cases it is beneficial if one can link and address this data in the 
 same way as it would have been included in the original KB. This is the goal
-of \emph{SKS}\parencite{Masters2007}
+of \emph{SKS} \parencite{Masters2007}.
 In order to connect the external source, a "wrapper" knowledge needs to be
-defined in \emph{Cyc} KB, which describes which concepts and instances external
+defined in \emph{Cyc} KB, which describes which concepts and instances the external
 source represents, and how to access them (HTTP request, SQL Query, etc.).
 
-In \emph{SKS} system, this "wrapper" knowledge is asserted as normal \emph{CycL}
+In the \emph{SKS} system, this "wrapper" knowledge is asserted as normal \emph{CycL}
 assertions using special predicates and concepts. The descriptions are 
-structured into three layers, where first (access layer) describes 
+structured into three layers, where the first (access layer) describes 
 how to access the data (ie. how to connect, send queries and retrieve the 
 content). Then the second (physical schema layer), describes how the data is
 structured inside the original source. The third layer (logical schema) 
@@ -320,33 +319,33 @@ while discussing various topics (concepts). It uses the conversation to set up
 the context and acquire (remember) user's responses and places them properly in
 to the KB. Sometimes the acquired knowledge is paraphrased and presented back to
 user to show the 'understanding', which was first tried in OMCS 
-(\autoref{section:r:omcs}, \textcite{Singh2002b}), but there only in
-non-conversational way as part of the input forms.
+(Subsection \ref{section:r:omcs}, \textcite{Singh2002b}), but there only in
+a non-conversational way as part of the input forms.
  
 \subsection{Interactive User Interfaces}
 \label{section:r:interactive}
 Interactive user interfaces are the most common representation of interaction 
-acquisition, where the user interface is constructed in a way to help user enter
+acquisition, where the user interface is constructed in a way to help the user enter
 the data and thus make the acquisition much faster and cheaper. Historically, 
 these systems were developed to help the labor acquisition systems, or on top
 of them, after parent systems reached some sort of maturity and initial 
 knowledge stability. This is the reason why all of these systems rely or are 
-build on top of labor acquisition (\autoref{section:labouracquisition}) or 
-mining acquisition (\autoref{section:r:miningacq}) systems.
+built on top of labor acquisition (Section \ref{section:labouracquisition}) or 
+mining acquisition (Section \ref{section:r:miningacq}) systems.
 
 \subsubsection{KRAKEN}
 \label{section:r:kraken}
 This system was a knowledge entry tool which allows domain experts to
 make meaningful additions to CYC knowledge base, without the training in the 
 areas of artificial intelligence, ontology development, or knowledge
-representation\parencite{Panton2002a}. It was developed as part of DARPA's
+representation \parencite{Panton2002a}. It was developed as part of DARPA's
 Rapid Knowledge Formation (RKF) project in 2000. As its goal was to allow
 knowledge entry to non-trained experts, it started to use natural language 
 entry and is as this, a first precursor to Curious Cat system and a seed idea
 for it. It consists of creators, selectors, modifiers of Cyc KB building blocks,
 tools for consistency checks and tools for using existing knowledge to infer new
-things to ask. This tool, together with it's derived solutions was later 
-re-written and integrated into Cyc as CURE system (see below). While KRAKEN and
+things to ask. This tool, together with it's derived solutions, was later 
+re-written and integrated into Cyc as a CURE system (see below). While KRAKEN and
 later CURE already used Natural Language generation and parsing, and started 
 with the idea of natural language dialogue for doing the KA, the interaction, it
 was missing user context (user's had to select or search the concept of 
@@ -357,33 +356,33 @@ and given as a list of natural language forms.
 
 \subsubsection{User Interaction Agenda (UIA)} 
 \label{section:r:uia}
-UIA was a web  based user interface for KRAKEN
-KA tool\parencite{Panton2002a,Witbrock2003UIA}. It worked inside a browser and 
-it worked as responsive web-application (in 2001) by automatically triggering refresh 
-functionality of the browser. It consisted of a menu of tools that is organized
+UIA was a web-based user interface for KRAKEN
+KA tool \parencite{Panton2002a,Witbrock2003UIA}. It worked inside a browser and 
+it worked as a responsive web-application (in 2001) by automatically triggering refresh 
+functionality of the browser. It consisted of a menu of tools which is organized
 according to the recommended steps of the KE process, text entry box (query, 
 answer, statement), center screen for the main interaction with the current 
-tool, and a summary with a set of colored steps needed to complete current 
+tool, and a summary with a set of colored steps needed to complete the current 
 interaction. Similarly as KRAKEN itself, this interface was later improved
 and integrated into main Cyc system as part of CURE tool. 
 
-\subsubsection{Content Understanding, Review, or Entry(CURE)}
+\subsubsection{Content Understanding, Review, or Entry (CURE)}
 \label{section:r:cure}
-As mentioned above (sections \ref{section:r:kraken} and \ref{section:r:uia}),
+As mentioned above (Sections \ref{section:r:kraken} and \ref{section:r:uia}),
 \emph{CURE}\parencite{Witbrock2010} is an improved version of \emph{KRAKEN} 
 system with improved
 \emph{UIA} User Interface, which is integrated directly into \emph{Cyc}. 
 Additional to the knowledge entry mechanisms mentioned in previous two tools,
 \emph{CURE} also has a web-browser plug-in that can read current web-pages,
 or also free text, and annotate it with possible Cyc concepts, which are
-click-able and they cause the knowledge entry process for clicked concept.
+click-able and they cause the knowledge entry process for the clicked concept.
 As already mentioned, \emph{Curious Cat} was inspired by \emph{CURE}, and
 could be considered a \emph{CURE} improvement with more precise control over the
 KA process, crowdsourcing component, user context and conversational ability.
 In the cases when \emph{Curious Cat} mechanisms run out of responses,
 our system falls back to \emph{CURE}, showing its questions to the user, instead
 of immediately switching the topic (see \autoref{tab:topics} in 
-\autoref{section:mainServlet}).
+Subsection \ref{section:mainServlet}).
 
 \subsubsection{Factivore}
 \label{section:r:factivore} 
@@ -410,8 +409,8 @@ pre-cursor idea for crowd-sourced voting mechanisms that we used in Curious Cat.
 
 \subsubsection{Freebase}
 \label{section:r:freebase}
-\emph{Freebase} started in 2007\parencite{Bollacker2008} and was a large (mostly
-instance based) crowd-sourced graph database for structured general human 
+\emph{Freebase} started in 2007 \parencite{Bollacker2008} and was a large (mostly
+instance-based) crowd-sourced graph database for structured general human 
 knowledge. Initially it was acquired from multiple public sources, mostly 
 Wikipedia. The initial seed was then constantly updated and corrected by the 
 community. On the user interface side, Freebase provides an AJAX/Web based 
@@ -425,35 +424,35 @@ Wikidata platform and shut down by Google and is no longer maintained.
 \label{section:r:omc}
 This system is an interactive interface to OMCS which
 can respond with a feedback to user answers and maintain dialogue 
-\parencite{Speer2007}. This is similar approach as we do with Curious Cat and
+\parencite{Speer2007}. This is a similar approach as we do with Curious Cat and
 shows understanding of the knowledge users enter. The mechanisms behind is
 by using inference engine to make analogical inferences based on the existing 
 knowledge and new entry. Then it generates some relevant questions and asks 
-user to confirm them. For example, as given from the original paper, 
+the user to confirm them. For example, as given from the original paper, 
 \emph{OMCommons} asks: "A bicycle would be found on the street. Is this common 
 sense?". This is then displayed to the user with the justification for the 
 question: "A bicycle is similar to a car. I have been told that a car would 
 be found on the street". Users then click on "Yes/No" buttons to confirm or
 reject the inferred statement. The interactive interface also allows its users 
 to refine the knowledge entered by other users and see the ratings. Users can 
-also explore what new inferences are result of their new contributions.
+also explore what new inferences are aresult of their new contributions.
 
 \subsection{Games}
 \label{section:r:games}
 Games are a specific sub-section of interaction acquisition, where the actual
-acquisition is hidden or transformed into much more enjoyable process, 
+acquisition is hidden or transformed into a much more enjoyable process, 
 maximizing the entertainment of the users. This type of KA was first 
 officially introduced by Luis von Ahn in 2006 \parencite{VonAhn2006,
 VonAhn2008} under the name 'Games with Purpose' paradigm.
 
 \subsubsection{20Q (20 Questions)}
 \label{section:r:20q}
-This is a game with intentional knowledge acquisition task
-which focuses to the most salient properties of concepts. The game itself is
+This is a game with an intentional knowledge acquisition task
+which focuses on the most salient properties of concepts. The game itself is
 a standard 20 questions game which aims to make one player figure out the 
 concept of discussion by asking yes/no questions and then infer from the 
 answers what the concept could be. The only difference is that the player which
-is asking is a computer based on OMCS knowledge base. It generates questions in
+is asking is a computer based on the OMCS knowledge base. It generates questions in
 NL, and according to what a player answers, it attempts to guess the concept.
 To decide what questions to ask, it uses statistical classification methods
 \parencite{Speer2009}, to discover the most informative attributes of concepts
@@ -465,7 +464,7 @@ to proper cluster and thus the characteristics of the object are learned.
 \label{section:r:verbosity}
 Similarly as Q20 above, Verbosity is a spoken game for two 
 persons randomly selected online. It was inspired by Taboo board 
-game\parencite{TabooGame} which required players to state common sense facts
+game \parencite{TabooGame} which required players to state common sense facts
 without mentioning the secret concept. While having similar game-play as 
 aforementioned board game, Verbosity was developed with the intent to collect
 common sense knowledge \parencite{VonAhn2006a}. One player (narrator), gets
@@ -493,7 +492,7 @@ evaluation, the answers where multiple users answered the same were considered
 valid. This game had a similarity with Curious Cat in a sense that it employed
 the voting mechanism for the same answers, and the repetitive questioning of
 the same question to multiple users. Authors found out that the agreement 
-between same answers of the repetitive question and voting is 80\% or more 
+between the same answers of the repetitive question and voting is 80\% or more 
 after at least 2 repetitions of the same question. In 6 months, \emph{Rapport}
 collected 14,001 unique statements from 1,700 users. Normalized, this is
 8.2 answers per user.
@@ -501,16 +500,16 @@ collected 14,001 unique statements from 1,700 users. Normalized, this is
 \subsubsection{Virtual Pet}
 \label{section:r:virtualpet} 
 This is a similar game as \emph{Rapport} in a sense that it
-uses \emph{OMCS} patterns, is in Chinese and is developed by the same authors
-\parencite{Kuo2009}. Instead of Facebook platform, \emph{Virtual Pet} uses
+uses \emph{OMCS} patterns, it is in Chinese and is developed by the same authors
+\parencite{Kuo2009}. Instead of the Facebook platform, \emph{Virtual Pet} uses
 PTT (Taiwanese bulleting board system in Chinese language). Instead of direct
-interaction between the users themselves, users interact with virtual pet and
+interaction between the users themselves, users interact with a virtual pet and
 can ask it questions and answer it's questions. In the back-end, the questions
 the pet asks, are actually questions from other users. This game in 6 months 
 collected 511,734 unique pieces of knowledge from 6,899 users. Normalized this
 is 74,1 answers per user. While this game attracted much more answers than 
 \emph{Rapport}, the quality of the answers was slightly lower. Authors
-argue that the reasons behind both is, that users didn't interact directly,
+argue that the reasons behind both is, that users did not interact directly,
 but through the virtual pet, so they were less careful whether answers are
 correct or not.
 
@@ -523,17 +522,17 @@ is to try and actually make use of the new knowledge inside a given domain
 the authors tried to fix a drawback of \emph{Virtual Pet}, that through
 time, the questions and answers become saturated, and the number of new
 questions and answers falls exponentially through time, with respect
-to the number of already collected knowledge peaces.
+to the number of already collected knowledge pieces.
 This approach is also aligned with the CC approach, which uses existing+
-context and new knowledge, to drive the questions. First part of the \emph{GOKC}
-paper describes analysis of the knowledge collected by \emph{Virtual Pet} game. 
+context and new knowledge, to drive the questions. The first part of the \emph{GOKC}
+paper describes the analysis of the knowledge collected by \emph{Virtual Pet} game. 
 The second part is a description and evaluation of  GOKC KA approach, where 
-authors did 1 week experiment to show that the approach works. During that 
+authors did a 1 week experiment to show that the approach works. During that 
 week the system inferred created 755 new questions, out of which, 12 were
 reported as bad. Out of these questions 10,572 answers were collected where
-9,734 were voted as good. This results in the 92,07\% precision. Compared
+9,734 were voted as good. This results in the 92.07\% precision. Compared
 to the game without question expansion (\emph{Virtual Pet}), which has
-precision of 80.58\%, this is an improvement.
+a precision of 80.58\%, this is an improvement.
 
 \subsubsection{Collabio (Collaborative Biography)}
 \label{section:r:collabio}
@@ -542,12 +541,12 @@ collect user's tags. While the gathered knowledge is more a set of person's
 tags than knowledge, it served as an inspiration to \emph{Rapport} and 
 \emph{Virtual Pet}. During the experiment, \emph{Collabio} users tagged
 3,800 persons with accurate tags with information that cannot be found 
-otherwise\parencite{Bernstein2009, Bernstein2010}.
+otherwise \parencite{Bernstein2009, Bernstein2010}.
 
 \subsection{GECKA (The Game Engine for Common Sense Knowledge Acquisition)}
 \label{section:r:gecka}
 \emph{GECKA} can be considered as a meta GWAP (Game with a Purpose), as it is
-a GWAP game developing/editing tool. It was built at \emph{National University 
+a GWAP game developing/editing tool. It was built at the \emph{National University 
 of Singapore (NUS)}, and was inspired by existing GWAP games
 (Virtual Pet, Rapport), trying to overcome their weaknesses, naming sticky 
 factor and un-transferability of the knowledge. This is done by allowing
@@ -557,7 +556,7 @@ also generate knowledge as a side effect when defining screens, interactions
 between the objects and other users. Authors call these knowledge pieces
 \emph{POG triples} (Prerequisite, outcome, goal). These triples are then 
 grouped into the KB called \emph{Energy Based Knowledge Representation} (EBKR).
-Approach was tested on 20 students from Singapore Polytechnic, and was evaluated
+The approach was tested on 20 students from Singapore Polytechnic, and was evaluated
 to have the accuracy of  85.7\%.
 
 \subsection{Quiz}
@@ -568,15 +567,15 @@ Dialogue System \parencite{Otani2016} is a GWAP game developed on a
 smart-phone as a module inside Yahoo Voice Assist application (which is 
 installed on more than 2.5 million devices), and interacting with the users 
 via natural language dialog.  Over the course of 8 months, 70,000
-users contributed 150,000 unique knowledge knowledge pieces, being added on
-top of Japanese \emph{ConceptNet}. Regarding the game mechanics,
+users contributed 150,000 unique knowledge pieces, being added on
+top of the Japanese \emph{ConceptNet}. Regarding the game mechanics,
 quiz participants are given clues about a certain concept. Then they try to
 figure it out, but from their incorrect guesses, the game can obtain knowledge 
 about the clues. For example, a hint "this is made of milk" is given to a 
 player. The expected answer is "a cake", but we can learn that "cheese is made 
 of milk" when the player answers "cheese" in response to the hint.
-To double check the facts, the system uses similar crowdsourcing approach as 
-\emph{Curious Cat}, described in \autoref{section:crowdRepetition}. After
+To double check the facts, the system uses a similar crowdsourcing approach as 
+\emph{Curious Cat}, described in Subsection \ref{section:crowdRepetition}. After
 the evaluation, the results show that the quiz game is an effective way
 to acquire large amounts of knowledge.
 
@@ -584,28 +583,28 @@ While this game shares many similarities with \emph{Curious Cat} (prior
 knowledge, natural language dialog, automated "question" formulation,
 crowdsourcing), the approach is more or less randomly selecting questions
 (no targeting using context),
-and there is no validation by inference. Authors claim that Quiz game is the first such a system to collect large amount
-of knowledge using dialog system, while initial version of our work was already
+and there is no validation by inference. Authors claim that Quiz game is the first such a system to collect a large amount
+of knowledge using a dialog system, while the initial version of our work was already
 published \parencite{Bradesko2016}.
 
 \subsection{Interactive Natural Language Conversation}
 \label{section:r:inlc}
-Natural Language Knowledge Acquisition methods are special case of Interaction 
+Natural Language Knowledge Acquisition methods are a special case of Interaction 
 Acquisition systems. While almost all of the approaches already described above
 (under Interactive User Interfaces and Games subsections) use natural language 
-to some extent, the language processing used is based on relatively small amount
-of textual patterns, or statements which are not necessary connected into a 
-conversation. Common denominator of these systems is that they intentionally try
+to some extent, the language processing used is based on a relatively small amount
+of textual patterns, or statements which are not necessarily connected into a 
+conversation. A common denominator of these systems is that they intentionally try
 to acquire knowledge and then use natural language statements to do this. As a 
-side effect and as motivation for users, sometimes consequent questions and 
+side effect and as a motivation for users, sometimes consequent questions and 
 answers give a feeling of conversation. On the other side chat-bots, start with
 the intention to maintain an interesting conversation with the users, and have 
 to do knowledge acquisition only to remember facts and parts of the past 
 conversations to be able to be smart enough, so users do not lose interest.
-Starting with Eliza\parencite{Weizenbaum1966}, these systems evolved, mostly 
+Starting with Eliza \parencite{Weizenbaum1966}, these systems evolved, mostly 
 directed by Turing Tests, implemented as Loebner 
 competitions, trying to pass it\footnote{http://www.loebner.net}. Through the 
-measure of these tests\parencite{Bradesko2012}, among a few proprietary 
+measure of these tests \parencite{Bradesko2012}, among a few proprietary 
 chat-bots, two technologies evolved (\emph{AIML, ChatScript}) to be general 
 enough and can be used for conversational engine (chat-bot) construction and 
 also NL knowledge acquisition.
@@ -625,7 +624,7 @@ detects user's questions like "Do you have something on the menu?" and responds
 with "We have everything on the menu."
 
 \begin{table}[htb]
-\caption{AIML example}
+\caption{AIML example.}
 \label{tab:aiml_example}
 \centering
 \begin{tabular}{l}
@@ -652,7 +651,7 @@ store
 information for later. 
 
 \begin{table}[htb]
-	\caption{AIML example of saving info to variables}
+	\caption{AIML example of saving info to variables.}
 	\label{tab:aiml_ka1}
 	\centering
 	\begin{tabular}{l}
@@ -676,17 +675,17 @@ information for later.
 	\end{tabular}
 \end{table}
 
-The AIML example on \tablename~\ref{tab:aiml_ka1} can remember keywords
+The AIML example in \tablename~\ref{tab:aiml_ka1} can remember keywords
 following "I just ate" pattern, like "I just ate pizza". If user at some point 
 later says "I am hungry", the bot is able to respond with "Eat another pizza". 
 In a combination with "<that>" tag, which matches previous computer's response, 
 AIML can be used to construct specific knowledge acquisition questions 
 (\tablename~\ref{tab:aiml_ka2}).  The given example is using AIML 1.0, which
-was later improved with AIML2.0\parencite{Wallace2013} which introduced the
+was later improved with AIML2.0 \parencite{Wallace2013} which introduced the
 \emph{<Learn>} tag, but mechanism stayed mostly the same.
 
 \begin{table}[htb]
-	\caption{AIML example of remembering answers on specific questions}
+	\caption{AIML example of remembering answers on specific questions.}
 	\label{tab:aiml_ka2}
 	\centering
 	\begin{tabular}{l}
@@ -723,12 +722,12 @@ the system is to pass the Turing Test as measured by Loebner's competitions,
 \emph{ChatScript} surpassed \emph{AIML},
 and is its successor, since both systems are open sourced. It was designed 
 purposely to be simpler to use and have more powerful tools for NLP and 
-knowledge acquisition which is integral part chat-bot systems. A simple example
+knowledge acquisition which is an integral part of the chat-bot systems. A simple example
 from AIML (\tablename~\ref{tab:aiml_example}) can be re-written in much 
 shorter form as ChatScript rule (\tablename~\ref{tab:chatscript_example}).
 
 \begin{table}[H]
-	\caption{Simple ChatScript example}
+	\caption{Simple ChatScript example.}
 	\label{tab:chatscript_example}
 	\centering
 	\begin{tabular}{l}
@@ -743,7 +742,7 @@ shorter form as ChatScript rule (\tablename~\ref{tab:chatscript_example}).
 
 Similarly the example from \tablename~\ref{tab:aiml_ka1} can be written as:
 \begin{table}[H]
-	\caption{Simple ka (remembering) example}
+	\caption{Simple ka (remembering) example.}
 	\label{tab:chatscript_ka1}
 	\centering
 	\begin{tabular}{l}
@@ -760,7 +759,7 @@ s: (I am hungry) East another _0?
 And, example from \tablename~\ref{tab:aiml_ka2} in ChatScript looks like:
 
 \begin{table}[H]
-	\caption{Simple ChatScript question/answer/remember example}
+	\caption{Simple ChatScript question/answer/remember example.}
 	\label{tab:chatscript_ka2}
 	\centering
 	\begin{tabular}{l}
@@ -776,14 +775,14 @@ t: What did you order?
 
 While the above examples repeats the functionality of AIML, ChatScript is more 
 powerful and can remember facts in the shape of (subject verb object) and act on
-them. This is done with using \emph{\^createfact} and \emph{\^findfact} 
+them. This is done by using \emph{\^createfact} and \emph{\^findfact} 
 functions.
 
 \subsection {CyN} 
 \label{section:r:cyn}
 CyN is an AIML interpreter implementation with additional functionality
 to be able to access Cyc inference engine and KB for both, storing the knowledge 
-and also for querying\parencite{Coursey2004}. This was done by introduction of new 
+and also for querying \parencite{Coursey2004}. This was done by introduction of new 
 AIML tags:
 \begin{itemize}
 	\item \emph{<cycterm>} Translates an English word/phrase into a Cyc symbol.
@@ -797,11 +796,11 @@ AIML tags:
 
 \section{Mining Acquisition}
 \label{section:r:miningacq}
-This category of KA systems try to make use of big text corpus-es 
+This category of KA systems tries to make use of big text corpus-es 
 available online or otherwise on some digital media. Because the core idea of 
 writing is to share information, there is a lot of knowledge in the texts that 
 can be extracted and converted into a structured knowledge that can later be used 
-by computers. Due to vast size and availability of the data on the Internet,
+by computers. Due to the vast size and availability of the data on the Internet,
 mining is most often done on the web resources. Since most of the data format
 from these corpuses is text, these techniques are particularly strong in the
 using various NLP techniques, which are often combined with existing knowledge
@@ -809,11 +808,11 @@ to correct mistakes and check consistency.
 
 \subsection{Populating Cyc from the Web (PCW)}
 \label{section:r:pcw}
-Since the whole idea of Cyc system is to gain enough knowledge through manual
+Since the whole idea of the Cyc system is to gain enough knowledge through manual
 work, to be able to learn on itself after some point, the Cyc team is looking
 into other means of knowledge acquisition which can automatize or speed-up the
 KA process. One of the approaches is by mining facts from the Internet by
-issuing appropriate search engine queries\parencite{Matuszek2004}. Because Cyc
+issuing appropriate search engine queries \parencite{Matuszek2004}. Because Cyc
 KB is really big, the first step of this approach is to select appropriate part
 of the KB (concepts and related queries) which are in the interest of the 
 system. For initial experiments  a set of 134 binary predicates was selected.
@@ -833,46 +832,46 @@ actually correct.
 
 \subsection{Learning Reader}
 \label{section:r:lr}
-Learning Reader\parencite{Forbus2007} is a prototype knowledge mining system
+Learning Reader \parencite{Forbus2007} is a prototype knowledge mining system
 that combines NLP, large KB (CycKB) and analogical inference into an automated 
 knowledge extraction system that works on simplified language texts. The system
 uses Direct Memory Access Parsing (DMAP\parencite{Martin1986}) to parse text
 and convert it into CycL concepts which are then checked by the inference engine
 whether they can form correct CycL statements. The prototype consisted of
-30,000 NDAP patterns (a quick approximation would be to imagine CyN patterns-
-chapter \ref{section:r:cyn}). After parsing and syntax checks, found CycL 
+30,000 NDAP patterns (a quick approximation would be to imagine CyN patterns
+Chapter \ref{section:r:cyn}). After parsing and syntax checks, found CycL 
 sentences were checked by the inference within CycKB, whether knowledge is new
 or not. Only new logical statements were then asserted. Additional feature of
-this prototype system is that it includes question answering mechanism, which 
+this prototype system is that it includes a question answering mechanism, which 
 can be used by evaluators to check what the system learned. This same mechanism
 is also used to try to generate new facts (elaborate) and also questions based
 on newly acquired knowledge. The experiment on 62 written stories improved the
-recall from 10\% to 37\% and kept the accuracy at 99.7\% compared to original 
+recall from 10\% to 37\% and kept the accuracy at 99.7\% compared to the original 
 100\%. By using additional inference and conjecture based inference, the recall
 raised to 60\% while accuracy dropped to 90.8\%.
 
 \subsection{OntoPlus}
 \label{section:r:ontoplus}
-\emph{OntoPlus} is semi automatic ontology (KB) extension system that uses the 
+\emph{OntoPlus} is semi-automatic ontology (KB) extension system that uses the 
 existing ontology structure and natural language textual documents from specific
 domains (tested in finance and fisheries domains), to extend the knowledge in 
-the given existing KB\parencite{Novalija2011}. Knowledge mining starts with
+the given existing KB \parencite{Novalija2011}. Knowledge mining starts with
 the \emph{Domain Information Module}, which is given a set of domain keywords
-and glossary (by the knowledge engineer user). In the seconf phase, the target
+and glossary (by the knowledge engineer user). In the second phase, the target
 ontology (NL representation of the concepts) is scanned for the keywords
 appearing in the given list (from the first step) or glossary. This identifies
 a sub-set of the target ontology which will be extended.
 Then in the \emph{Domain Relevant Information Preprocessing} step, KB concepts
 and their KB neighbours (relations, subclasses, instances) and given glossary 
-contents is converted to bag-of-words vectors, which can be then used to
+contents are converted to bag-of-words vectors, which can be then used to
 calculate TF-IDF weights and cosine similarity between them content wise, and
-jaccard similarity for co-occurence metrics (how ofthen keywords of concept and
-related concepts appear together, compared with co-occurences of keywords
+jaccard similarity for co-occurrence metrics (how ofthen keywords of concept and
+related concepts appear together, compared with co-occurrences of keywords
 inside one glossary term). The equivalence of the terms is detected by
 using edit distance of their NL denotations, where relations and hierarchical
 structure is detected from comparing similarities of term subclasses versus
-term superclases. The result of this process is a Knowledge Entry (KE) text
-(mentioned also in \autoref{chapter:implementation}), which user can edit and 
+term superclasses. The result of this process is a Knowledge Entry (KE) text
+(mentioned also in Chatpter \ref{chapter:implementation}), which user can edit and 
 then import into the Cyc KB. The evaluation shows that the approach can provide
 users with correct propositions of hierarchical (subclass) and associative
 releationships for knowledge extension.
