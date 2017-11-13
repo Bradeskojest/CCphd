@@ -9,9 +9,9 @@ knowledge-driven AI systems which constitute a significant fraction of general
 AI research. For these applications, getting and formalizing the knowledge that
 can be trusted is crucial, but not yet straight forward to achieve on scale 
 within accessible cost boundaries. Even in the case if it happens that future 
-research will prove the knowledge based systems to be the dead end in the
+research will prove the knowledge-based systems to be the dead end in the
 evolution of AI, solving the Knowledge Acquisition 
-Bottleneck\parencite{Wagner2006} will be one of the required and critical 
+Bottleneck \parencite{Wagner2006} will be one of the required and critical 
 stepping stones that will need to be involved.
 
 Such knowledge needs to be acquired by some sort of Knowledge Acquisition (KA) 
@@ -22,7 +22,7 @@ increasingly obvious, with the rise of chat-bots and other conversational
 agents and AI assistants that became popular throughout the last few years. 
 The most developed of these (Siri, Cortana, Google Now, Alexa, Bixby), are 
 all backed by huge financial support from their producing companies, and the 
-lesser-known ones are still result of 7 or more person-years of efforts by
+lesser-known ones are still a result of 7 or more person-years of efforts by
 individuals \parencite{Wilcox2011, Wallace2013}, or smaller companies (e.g.,
 Josh AI\footnote{www.josh.ai}). Even while these systems may use statistical
 and machine learning (e.g. deep learning) approaches, a substantial 
@@ -30,8 +30,8 @@ portion of their production effort lies in knowledge acquisition, which is
 sometimes hidden in (hand) coded rules for request/response patterns, execution
 work-flow constructions and corresponding actions.
 
-Independently of the far goal of AI research (human like intelligence), which
-is reflected through latest instances of AI assistants, there are countless 
+Independently of the far goal of AI research (human-like intelligence), which
+is reflected through the latest instances of AI assistants, there are countless 
 expert systems, databases and other software solutions that need maintenance
 and additional semantics, and all suffer from the KA bottleneck. This is making
 the solutions expensive, or unable to fully utilize the idea that they 
@@ -44,10 +44,10 @@ This dissertation deals with the KA bottleneck problem by developing a novel
 approach to automated knowledge acquisition, using existing knowledge,
 contextual crowdsourcing and natural language, to make the KA a side effect of
 effortless interaction of users with the computer. The thesis aims to develop,
-implement and evaluate the approach and do a step closer towards removing the
+implement and evaluate the approach and make a step closer towards removing the
 bottleneck part from the knowledge acquisition.
 
-The approach implementation resulted in a real world mobile assistant 
+The approach implementation resulted in a real-world mobile assistant 
 application (called Curious Cat), which is able to use existing knowledge to 
 automatically infer 
 what knowledge is missing and then ask users for the answers, check for
@@ -71,23 +71,23 @@ thesis to the knowledge acquisition approaches.
 \subsection{Novel Approach Towards Knowledge Acquisition}
 Traditionally KA approach focuses on one type of 
 acquisition process, which can be either Labor, Interaction, Mining or 
-Reasoning\parencite{Zang2013}. In this thesis we propose a novel, previously 
+Reasoning \parencite{Zang2013}. In this thesis we propose a novel, previously 
 untried approach that intervenes all aforementioned types with current user 
 context and crowdsourcing into a coherent, collaborative and autonomous 
-KA system. It uses existing knowledge and user context, to automatically 
-deduce and detect missing or unconfirmed knowledge(\emph{reasoning}) and uses 
+KA system. It uses existing knowledge and user context to automatically 
+deduce and detect missing or unconfirmed knowledge (\emph{reasoning}) and uses 
 this info to generate crowdsourcing tasks for the right audience at the right 
-time(\emph{labor}). These "KA tasks" are presented to users in natural language
+time (\emph{labor}). These "KA tasks" are presented to users in natural language
 (NL) as part of the contextual conversation (\emph{interaction}) and the 
 answers are parsed (\emph{mining}) and placed into the KB after consistency 
-checks(\emph{reasoning}). The approach contribution can be summed up as
+checks (\emph{reasoning}). The approach contribution can be summed up as
 
 \begin{enumerate}
 \item definition of the framework for autonomous and collaborative knowledge 
 acquisition with the help of contextual knowledge and preexisting ontology 
-(\autoref{chapter:approach}), 
+(Chapter \ref{chapter:approach}), 
 \item demonstrate and evaluate the contributions of contextual knowledge and 
-approach in general (chapters \ref{chapter:implementation} and 
+approach in general (Chapters \ref{chapter:implementation} and 
 \ref{chapter:evaluation}).
 \end{enumerate}
 
@@ -100,25 +100,24 @@ sensor data, natural language, inference engine, huge preexisting knowledge
 base (Cyc\footnote{Cyc is a registered
 trademark of Cycorp, Inc.}), textual patterns 
 and crowdsourcing mechanisms are connected and interlinked into a coherent 
-interactive application (\autoref{chapter:implementation}).
+interactive application (Chapter \ref{chapter:implementation}).
 
 \subsection{A Shift From NL Patterns to Logical Knowledge Representation in 
 Conversational Agents}
 Besides the main contributions presented above, one aspect of the approach 
 introduces a shift in the way how conversational agents are being developed. 
 Normally the approach is to use textual patterns and the corresponding textual 
-responses, sometimes based on some variables, and thus encode the rules for 
+responses, sometimes based on some variables, and thus encodes the rules for 
 conversation. As a consequence of natural language interaction, the proposed 
 KA framework is in some sense a conversational agent which is driven by the 
 knowledge and inference rules and uses patterns only for conversion from 
-NL to logic. This shows promise as an alternative approach to building non 
-scripted conversational engines (\autoref{chapter:approach}, 
-\autoref{section:dialog}).
+NL to logic. This shows promise as an alternative approach to building non-scripted conversational engines (Chapter \ref{chapter:approach}, Subsection
+\ref{section:dialog}).
 
 %section
-\section{Thesis structure}
+\section{Thesis Structure}
 The thesis starts with a short introduction with a motivation of the thesis,
-its main contributions and short description of the knowledge acquisition topic
+its main contributions and a short description of the knowledge acquisition topic
 it covers. Chapter \ref{chapter:background} presents the challenges that have
 to be addressed by this work, and individual components required to construct
 the working approach.
@@ -128,15 +127,15 @@ similar approaches from the area of knowledge acquisition.
 
 Chapter \ref{chapter:approach} describes the general, implementation agnostic
 knowledge acquisition approach, one of the main contributions of the dissertation.
-The chapter starts with the overall architecture and then works it's way through
+The chapter starts with the overall architecture and then works its way through
 sections, explaining the approach and addressing problems highlighted in
-\autoref{chapter:background}. Each section defines required minimal logical
+Chapter \ref{chapter:background}. Each section defines required minimal logical
 structures to be able to explain the approach. Definitions from the sections
 build on top of each-other, ending in an explanatory knowledge base, and
 a last section which shows through the concrete example, how the separate 
 modules work together as a coherent KA platform.
 
-Chapter \ref{chapter:implementation} presents our real world implementation of 
+Chapter \ref{chapter:implementation} presents our real-world implementation of 
 the proposed approach. It describes which tools and algorithms we used for 
 particular components of the whole approach.
 

@@ -2,13 +2,13 @@
 % 
 \chapter{Glossary}
 %-------------------------------------------------------------------------------
-\emph{Antecedent (predicate logic)} is a first half of the hypothetical 
+\emph{Antecedent (predicate logic)} is first half of the hypothetical 
 proposition. It is a $p$ part of the implies statement (see symbol $\implies$ in
-Chapter Symbols for explanation. In an implication $p \implies q$, $p$ is an
+chapter Symbols for explanation. In an implication $p \implies q$, $p$ is an
 antecedent.\\
 
 \emph{Arity (predicate logic)} is a property of predicate that defines the 
-number of parameters or operands that predicate can operate with. For example,
+number of parameters or operands that the predicate can operate with. For example,
 if a predicate $P$ has \emph{arity} of 2, valid statements using this predicate
 can only be the ones with exactly 2 operands ($P(x,y), P(a,b),...$). Statement
 $P(x)$ is in this case not a valid statement, since it uses the predicate with
@@ -16,7 +16,7 @@ only one parameter.\\
 
 \emph{AST (Abstract Syntax Tree)} is an abstract representation of Wikipedia 
 page as parsed from DBPedia parser. Something like DOM tree for Wikipedia 
-instead for pure HTML\\
+instead of pure HTML.\\
 
 \emph{Atomic Formula} (predicate logic). If the predicate $P$ has arity $n$,
 then $P$ followed by $n$ constants and variables is an atomic formula. Examples:
@@ -25,28 +25,27 @@ $P(a), P(x), P(x,y) D(a,x)$.\\
 \emph{Backward Chaining} or backward reasoning is the opposite of the 
 \emph{forward chaining}. It also uses \emph{modus ponens}, but instead of 
 starting from the data, it starts with a list of goals and scans all the 
-consequents of the implication rules in the KB, check if they holds and then
+consequents of the implication rules in the KB, checks if they hold and then
 tries to find whether antecedents supporting these consequents hold as well.
-The inference engine will continue to do the inference iterations until it will
-find an assertion or rule which has a consequent that matches a desired goal.\\
+The inference engine will continue to do the inference iterations until it finds an assertion or rule which has a consequent that matches a desired goal.\\
 
-\emph{Consequent (predicate logic)} is a second half of the hypothetical 
+\emph{Consequent (predicate logic)} is second half of the hypothetical 
 proposition. It is a $q$ part of the implies statement (see symbol $\implies$ in
-Chapter Symbols for explanation. In an implication $p \implies q$, $q$ is a
+chapter Symbols for explanation. In an implication $p \implies q$, $q$ is a
 consequent or apodosis.\\
 
 \emph{Constant} (predicate logic) is besides \emph{variables}, 
 \emph{predicates}, and \emph{quantifiers} one of the atomic parts of the 
 \emph{predicate logic} sentences. For example, in a sentence $P(a,x)$, $a$ 
 serves as a constant. Constants are usually marked with the letters from the
-beginning of the alphabet. In this thesis, also predicate is a constant and
+beginning of the alphabet. In this thesis, predicate is also constant and
 all constants are written either with letters or their $Names$.\\
 
 \emph{Existential Quantifier ($\exists$)}. For explanation see the symbol
 $\exists$ in the chapter Symbols.\\
 
 \emph {First order logic} can also be called \emph{Predicate logic}. See this
-term for more refined definition\\
+term for a more refined definition.\\
 
 \emph{Forward Chaining} or forward reasoning is a repeated application of
 \emph{modus ponens} inference rule. It starts with the available knowledge in 
@@ -58,14 +57,14 @@ knowledge during the last iteration.\\
 \emph{Knowledge Acquisition Bottleneck} is the slow process involved with
 the programmatic acquisition of the knowledge to be able to use it in software.
 It is considered a "bottleneck" because usually other parts of the software
-modules involved in knowledge based application (GUI, inference engine), are
+modules involved in knowledge-based application (GUI, inference engine), are
 relatively fast to implement.\\
 
 \emph{Material Equivalence ($\iff$)}. For explanation see the symbol $\iff$ in the
 chapter Symbols.\\
 
 \emph{Material implication ($\implies$)}. For explanation, see $\implies$ in the
-Chapter Symbols.\\
+chapter Symbols.\\
 
 \emph{Modus Ponens} is a logical inference rule stating that if an antecedent
 of the logical implication holds, then also the consequent holds and can be
@@ -84,7 +83,7 @@ can infer that this person is not a programmer. \\
 \emph{OIE (Open Information Extraction} is a paradigm introduced by Oren Etzioni
 in his TextRunner system. The main idea of this paradigm is that the knowledge 
 acquisition system is not predetermined to extract some specific facts, 
-patterns, etc, but is open-ended, extracting large set of relational tuples 
+patterns, etc., but is open-ended, extracting a large set of relational tuples 
 without any human input.\\
 
 \emph{PMI (Point-wise Mutual Information} is a measure which captures 
@@ -94,29 +93,29 @@ co-occurrence relationship between terms in a big corpus.\\
 template that describes properties of objects, or relationships between multiple
 objects.\\
 
-\emph{Predicate logic}, called also \emph{First order logic} is a formal system
+\emph{Predicate logic}, called also \emph{First order logic}, is a formal system
 that uses quantification over variables. This makes this logic more expressive
 than the \emph{Propositional logic}. In some limited sense, 
 \emph{Predicate logic} could be defined as \emph{Propositional logic} with 
 quantifiers.\\
 
-\emph{proposition}. This term is often synonym for a logical \emph{statement},
-but can also mean more abstract meaning that two different statements with the
+\emph{Proposition}. This term is often synonym for a logical \emph{statement},
+but it can also mean a more abstract meaning that two different statements with the
 same meaning represent. In \emph{Propositional logic}, a proposition is the
 smallest syntactic unit. On the other hand, in \emph{Predicate logic}, 
 statements/sentences are broken into \emph{constants, variables, predicates}
 and \emph{quantifiers}.\\
 
-\emph{Propositional function}, is an atomic function in from the 
+\emph{Propositional function} is an atomic function from the 
 \emph{Predicate logic} which is open ended (missing quantifiers) and thus
-cannot count as proposition. For example, $P(x)$ is a propositional function,
+cannot count as a proposition. For example, $P(x)$ is a propositional function,
 while $\forall x P(x)$ is a proposition.\\
 
 \emph{Propositional logic}, also known as \emph{sentential} or 
 \emph{statement logic}, is the branch of logic that operates with entire
 propositions/statements/sentences to form more complicated 
 propositions/statements/sentences, and also logical relationships and properties
-derived from combining  or altering this statements.\\
+derived from combining  or altering statements.\\
 
 \emph{Quantifier} (logical). Quantifiers in \emph{Predicate logic} convert
 propositional functions (open ended) into proper propositions which can be true

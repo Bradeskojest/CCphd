@@ -5,7 +5,7 @@
 %-------------------------------------------------------------------------------
 This chapter describes the challenges and components that a Knowledge
 Acquisition system such as the one presented in this work (\emph{Curious Cat})
-have to address and 
+has to address and 
 bring together into an interconnected work-flow in order to be a coherent 
 KA system able to satisfy the goals of general Knowledge Acquisition. 
 
@@ -19,37 +19,37 @@ processing and human computer interaction. Additionally to that, given
 that the approach uses crowd-sourcing, there is additional complexity
 of technical implementation and scalability issues. 
 
-For more structured explanation of the approach and challenges involved, this
+For a more structured explanation of the approach and challenges involved, this
 section is grouped into sub-sections describing the main challenges.
 
 The proposed approach that we have implemented in \emph{Curious Cat} is
 knowledge driven, meaning that knowledge is connecting
 all of the components, including the user interaction, and storing of the
-results into the KB (section \ref{section:bg:knowledge}). Its user context is 
-obtained through a mobile sensor mining in a real world application that 
+results into the KB (Section \ref{section:bg:knowledge}). Its user context is 
+obtained through a mobile sensor mining in a real-world application that 
 monitors the user’s activity and location through mobile GPS and accelerometer 
 sensors. This raw data is then processed, clustered, classified and enriched 
-before it is inserted into the KB (section \ref{section:bg:context}).
+before it is inserted into the KB (Section \ref{section:bg:context}).
 The newly asserted context can trigger forward chaining operation of the 
-inference engine (section \ref{section:bg:knowledge}) which can results in
-logical representation of a new question (section \ref{section:bg:ka}) or a 
+inference engine (Section \ref{section:bg:knowledge}) which can result in a
+logical representation of a new question (Section \ref{section:bg:ka}) or a 
 statement that the system intends to show to the user. The aforementioned  
-logical formula is then converted to natural language (section 
+logical formula is then converted to natural language (Section 
 \ref{section:bg:nlp}) and presented to the user through a mobile application. 
 When the user answers, his natural language (NL) answer is converted to logic 
-(section \ref{section:bg:nlp}), checked by the inference engine against the 
-existing knowledge for consistency, and inserted as new peace of knowledge into 
-the KB (section \ref{section:bg:ka}). After, the system determines whether to
+(Section \ref{section:bg:nlp}), checked by the inference engine against the 
+existing knowledge for consistency, and inserted as a new piece of knowledge into 
+the KB (Section \ref{section:bg:ka}). Then, the system determines whether to
 continue the conversational path with the user or not. Newly acquired knowledge 
 is then checked with other users for
-validity (section \ref{section:bg:crowdsourcing}) and is then used by the 
-inference to produce new questions/comments/suggestions (section 
+validity (Section \ref{section:bg:crowdsourcing}) and is then used by the 
+inference to produce new questions/comments/suggestions (Section 
 \ref{section:bg:ka}).
 
 \section{Knowledge Representation, Engineering and Inference}
 \label{section:bg:knowledge}
 The proposed Knowledge Acquisition (KA) approach described in 
-\autoref{chapter:approach} is completely knowledge driven. One of the main 
+Chapter \ref{chapter:approach} is completely knowledge driven. One of the main 
 building blocks of our system is its knowledge base, which must be based on a 
 representation language expressive enough to support the knowledge structures 
 required to drive the behavior of the system, and to represent the wide variety 
@@ -69,6 +69,7 @@ specific characteristics, which need to be taken into consideration when
 representing and storing the acquired knowledge. As a part of this research we 
 have considered three knowledge bases and the appropriateness of their 
 knowledge representations.
+
 \begin{enumerate}
 \item The main system reported here was built based on the Cyc KB
 \parencite{Lenat1995}, in a form similar to Research Cyc. 
@@ -77,24 +78,24 @@ knowledge base and inference engine, Umko, designed to be as simple as possible
 while still supporting several of the typical use-cases presented here. 
 Because of its simplicity, the approach built around Umko can run in totality 
 on a 2015-quality smart phone.
-\item Additionally, to test the generality of the approach, we used similar 
-idea with a standard RDF knowledge representation\parencite{Bradesko2012}.
+\item Additionally, to test the generality of the approach, we used a similar 
+idea with a standard RDF knowledge representation \parencite{Bradesko2012}.
 \end{enumerate}
 
 Requirements and specifics of the KB are described in more detail in 
-\autoref{section:kb} and also in the implementation \autoref{section:cyckb}.
+Section \ref{section:kb} and also in the implementation Subsection \ref{section:cyckb}.
 
 %subsection Inference engine
 \subsection{Inference Engine}
 \label{section:bg:inference}
-In addition to the KB, a second most crucial part of the proposed system is an 
+In addition to the KB, the second most crucial part of the proposed system is an 
 inference engine (marked in red in \autoref{fig:Architecture}) that can reason 
 over the knowledge stored in the KB. The inference engine is used to detect 
 the missing knowledge and infer what to ask and when, based on the context 
 that is asserted as a part of the knowledge. Similarly to the knowledge base, 
 the inference engine influences the speed and complexity of the approach. Our 
 approach was again twofold. The main experiments were based on the Cyc 
-inference engine (see \autoref{section:cycinference}) which is tightly linked 
+inference engine (see Subsection \ref{section:cycinference}) which is tightly linked 
 to the Cyc KB and thus able to apply inference over the biggest existing 
 common sense KB. Additionally, we developed the inference capabilities 
 (forward and backward chaining) inside our custom developed inference 
@@ -110,8 +111,8 @@ completely solved. The proposed approach relies on the Knowledge Representation
 (KR) which is powerful 
 enough to describe the real world we live in. Additionally, it needs to cover 
 knowledge about the knowledge itself (meta-knowledge), enabling inference over 
-internal knowledge structures, questions and answers (see \autoref{section:kakb}
-for approach and \autoref{section:cyckb} for the implementation). 
+internal knowledge structures, questions and answers (see Subsection \ref{section:kakb}
+for approach and Subsection \ref{section:cyckb} for the implementation). 
 This inference is used to 
 produce statements and questions and interactions between them as part of a 
 dialogue used to communicate with the user in the process of knowledge 
@@ -128,16 +129,16 @@ acquired knowledge to drive the KA process, is one of the main contributions
 of this paper. 
 
 Nowadays, the obvious information source to get to know the user is his or her
-mobile phone, which, with its sensors can provide an extensive and valuable 
+mobile phone, which, with its sensors, can provide an extensive and valuable 
 source of information. However, the users need to approve access to their
 phones sensors, and additionally, the raw measurements of sensor data need to
 be processed and understood to the extent that it is possible to use that 
 information in some sort of knowledge representation. In our approach, we used 
 two types of the context. One was provided by the users directly via answering 
-questions about themselves (\autoref{section:bg:contextu} below and 
-\autoref{section:acquiredContext}). Another part 
+questions about themselves (Subsection \ref{section:bg:contextu} below and 
+Subsection \ref{section:acquiredContext}). Another part 
 of the context was mined from the phone sensors as introduced in 
-\autoref{section:bg:contextm} and described in sections 
+Subsection \ref{section:bg:contextm} and described in Sections 
 \ref{section:minedContext} and \ref{section:locationServlet}.
 
 %subsection
@@ -149,8 +150,8 @@ GPS coordinates and accelerometer sensors to extract the places where the user
 stays for a while, time of the visit, duration of the stay, and the path taken
 to come there. Additionally, we are enriching these stay points with the name
 and the type of location. This was done by applying a two pass stay point detect
-(SPD) algorithm (see related work \autoref{section:SPD1} and the Foursquare API. 
-This is described in more detail in sections \ref{section:minedContext} and
+(SPD) algorithm (see related work Subsection \ref{section:SPD1} and the Foursquare API. 
+This is described in more detail in Sections \ref{section:minedContext} and
 \ref{section:locationServlet}. Additionally, we use accelerometer sensors, 
 to detect user activity (walking, running, cycling, driving, still), which is 
 provided by Google as a part of the standard Android API. The resulting 
@@ -169,10 +170,10 @@ more questions that the user can answer. Using context knowledge can make
 the questions more interesting for the user (e.g., asking the user if an 
 already stored wireless password is still valid for a particular location that 
 the user is currently at). In addition to specific hand crafted questions 
-targeted at users personal information, context acquisition can use gained 
+targeted at users' personal information, context acquisition can use gained 
 knowledge to ask even more questions. Wherever there is some part of knowledge 
 in the KB that can be connected to the person, the system constructs a 
-personal question for each user. Refer to \autoref{section:acquiredContext} for
+personal question for each user. Refer to Subsection \ref{section:acquiredContext} for
 the approach explanation.
 
 \section{Knowledge Acquisition}
@@ -180,10 +181,10 @@ the approach explanation.
 The main scientific contribution of this paper is a new approach to tackling 
 the knowledge acquisition problem. The proposed approach combines natural 
 language crowdsourcing, usage of prior knowledge, context and newly acquired 
-knowledge. For this, we had to address many sub-problems of knowledge driven 
+knowledge. For this, we had to address many sub-problems of knowledge-driven 
 KA as described in this section. The KA logic is all encoded as meta-knowledge 
 in the KB and driven by inference. This is represented in red (B) and purple 
-(A) in the architectural diagram \autoref{fig:Architecture}.
+(A) in the architectural diagram in \autoref{fig:Architecture}.
 
 \subsection{Question and Statement Formulation Logic} 
 To be able to generate questions and other statements from a KB using an 
@@ -194,13 +195,11 @@ able to address assertions and other logical formulas and variables. After this
 is in place, the approach needs logical rules that are used by the inference
 engine to produce new logical queries or statements. As part of this research, 
 we extended the existing Cyc vocabulary with supporting meta-structures and 
-knowledge acquisition rules. This logic is described in \autoref{section:kakb}
-and \autoref{section:dialog}.
+knowledge acquisition rules. This logic is described in Subsection \ref{section:kakb} and Subsection \ref{section:dialog}.
 
-\subsection{Answer Consistency and KB Placement}. 
+\subsection{Answer Consistency and KB Placement}
 The logical queries and statements generated by the inference engine are 
-converted to natural language (\autoref{section:consistency}) and presented to 
-the user. The users answer is converted to logic (\autoref{section:NLLogic}). 
+converted to natural language (Section \ref{section:consistency}) and presented to the user. The user's answer is converted to logic (Subsection \ref{section:NLLogic}). 
 Then the system checks whether the answer is coherent and consistent with the 
 existing KB. This is crucial to avoid corrupting the KB over time as more new 
 knowledge is added through the KA process. This check is performed with the 
@@ -209,7 +208,7 @@ new knowledge and detects inconsistencies when or before an attempt to
 assert the answer into the KB is made. This process needs to be supported by a 
 suitable knowledge representation, providing a suitable logical vocabulary. 
 Our implementation addressing this problem is described in detail in 
-\autoref{section:cycnl}
+Subsection \ref{section:cycnl}.
 
 \subsection{Maximizing Knowledge Gain} 
 As we are generating questions and incorporating the answers into the KB, it 
