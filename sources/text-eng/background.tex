@@ -213,22 +213,22 @@ Subsection \ref{section:cycnl}.
 \subsection{Maximizing Knowledge Gain} 
 As we are generating questions and incorporating the answers into the KB, it 
 is obvious that some questions are more worthy of being asked than others. 
-This details depend on the specific task of the knowledge acquisition, but 
-regardless the task, some questions and answers are more valuable than the 
+These details depend on the specific task of the knowledge acquisition, but 
+regardless of the task, some questions and answers are more valuable than the 
 other. While this problem was not the main focus of this work, we addressed it 
-partially by introducing vocabulary that allows us to control the order and 
+partially by introducing a vocabulary that allows us to control the order and 
 priority of the questions, and also a mechanism to always show interesting
-and user connected questions as described in \autoref{section:mainServlet}.
+and user-connected questions as described in Subsection \ref{section:mainServlet}.
 
-\subsection{Maximizing the chance of getting an answer}
+\subsection{Maximizing the Chance of Getting an Answer}
 Finding the right timing, location and other context to present the question
-to the user. In the KA process, we want to maximize knowledge gain. A part of 
+to the user. In the KA process, we want to maximize the knowledge gain. A part of 
 that is maximizing the chance of getting any answer from the user. The KA 
-process thus become a multi-objective optimization, where we need to optimize 
-multiple parameters to obtain as many answers as possible, while maintaining 
+process thus becomes a multi-objective optimization, where we need to optimize 
+multiple parameters to obtain as many answers as possible, while maintaining the
 quality of the answers and keeping the user engaged at the right level (not 
 bored and not overwhelmed). This is where the context helps the most as we can 
-ask questions which are related to the users current situation. In particular, 
+ask questions which are related to the user's current situation. In particular, 
 the user location, user activity and time of the day helps the inference 
 engine to decide when and what to ask. This allows the system to be aware that 
 the user is in a restaurant and not for example in a church, which would 
@@ -240,20 +240,20 @@ already eaten in a restaurant, and not when he or she has just arrived there.
 \label{section:bg:nlp}
 To be able to use crowdsourcing and address the users in natural language, the 
 KA system needs to be able to convert the logical representation of questions 
-into their natural language representations. Similarly, when getting the users 
+into their natural language representations. Similarly, when getting the user's 
 answers, these answers need to be converted to logic. In addition, to be 
 able to drive a coherent conversation with the user, there needs to be some 
 logic which drives the dialog and the order of the questions and responses.
 
 \subsection{Logic to Natural Language Conversion}
 Being able to convert logic that the system uses to natural language that the 
-user can understand is crucial part of the presented KA approach. While this is 
+user can understand is a crucial part of the presented KA approach. While this is 
 in general a hard problem and still not completely solved, it is often easy to 
 solve simple examples of natural language generation. In our approach, we have 
 investigated two scenarios. One is using preexisting Cyc natural language 
 capabilities; the other is a simple scenario that is a scaled down problem 
 using Umko. Cyc has more than 90 concepts which can be applied to create 
-natural language generation rules\parencite{Baxter2005}, and most of the 
+natural language generation rules \parencite{Baxter2005}, and most of the 
 predicates and concepts in the KB are annotated with the rules that instruct 
 the system on how to convert them to natural language. For the missing NL 
 rules and also for the new vocabulary, we extended the Cyc KB.
@@ -262,23 +262,20 @@ rules and also for the new vocabulary, we extended the Cyc KB.
 \label{section:bg:nlToLogic}
 Due to language ambiguity, 
 NL to logic conversion is a harder problem than the logic to NL
-\parencite{Schneider2015} (sections \ref{section:nl} and \ref{section:cycnl}). 
+\parencite{Schneider2015} (Sections \ref{section:nl} and \ref{section:cycnl}). 
 Similarly, the problem is not completely solved yet, but to some extent, it is 
-possible to do the simple conversion using textual patterns such us the 
-ChatScript (\autoref{section:chatscript} or AIML (\autoref{section:r:aiml}). 
-For our implementation, we used SCG system based on Cyc, which additionally to 
-textual patterns uses 
-inference to check whether the conversions make sense and is to some extent 
-being able to disambiguate ambiguous conversions\parencite{Schneider2015}.
-The idea behind this is explained in sections \ref{section:NLLogic} and
-\ref{section:cycnl}
+possible to do the simple conversion using textual patterns such as the 
+ChatScript ( Subsection \ref{section:chatscript} or AIML (Subsection \ref{section:r:aiml}). 
+For our implementation, we used the SCG system based on Cyc, which additionally to textual patterns uses inference to check whether the conversions make sense and is to some extent being able to disambiguate ambiguous conversions \parencite{Schneider2015}.
+The idea behind this is explained in Sections \ref{section:NLLogic} and
+\ref{section:cycnl}.
 
 \subsection{Dialog Formulation Logic}
 Maintaining a coherent dialog while asking and answering user questions is 
 almost as important as the language generation itself. Without it, the user 
 quickly loses focus, is unsure about what the question refers to, etc. 
 While this is mostly the domain of purely conversational agents such as 
-chat-bots\parencite{Bradesko2012}, our approach still needs to address this to 
+chat-bots \parencite{Bradesko2012}, our approach still needs to address this to 
 some extent. In contrast to other approaches which use text patterns to encode 
 the dialog request and responses, our dialogs are triggered by knowledge. 
 This means that the system actually "understands" the request and response and 
@@ -292,7 +289,7 @@ very different from the current state of the art solutions.
 While the proposed KA approach works with even a single user, it shows its 
 full potential when used in the crowd-sourced setting. Crowdsourcing allows 
 the system to get better knowledge coverage including specifics that only a 
-subset users can provide. Additionally, it allows to double-check the answers 
+subset user can provide. Additionally, it allows to double-check the answers 
 entered by the user against the answers of other users. In order for the system 
 to use crowdsourcing, it needs to be able to address the problems that come 
 with that, which are mostly related to different opinions, deliberately entering 
@@ -307,7 +304,7 @@ KA purposes, we address quality control on two levels. First, the inference
 engine uses the existing knowledge to check whether the answers are consistent. 
 Then, after the answers come through this first filter, we have two mechanisms 
 that can forward the newly acquired knowledge to other users able to assess it. 
-This is described in more detail in \autoref{section:crowdsourcing}.
+This is described in more detail in Section \ref{section:crowdsourcing}.
 
 \subsection{Handling Different Opinions}
 In addition to mistakes and wrong answers, users can simply have different 
@@ -315,14 +312,14 @@ opinions about something. Since our KA system also behaves as an assistant and
 needs to be consistent towards the user, it also must handle different opinions. 
 For this reason, we allow the users to have their own beliefs about the world, 
 which do not affect the common knowledge base, if inconsistent with it. In this w
-ay if the users lie or have different opinion about something, it will only 
+ay if the users lie or have a different opinion about something, it will only 
 affect themselves and not the rest of the users. This capability is achieved by 
 arranging knowledge in a tree-like structure of contexts, where the upper 
 context is not aware of the lower ones, and the knowledge in the lower tree 
 levels overrides the knowledge in the upper levels. In Cyc this is a kind of 
 mechanism implemented through Micro Theories (aka micro-theories, MTs)
 \parencite{Kleer2013}. For the explanation of the solution refer to 
-\autoref{section:crowdsourcing}. 
+Section \ref{section:crowdsourcing}. 
 
 \subsection{Handling Temporal Knowledge and Changing Knowledge}
 On top of different opinions, and deliberate and accidental mistakes in the 
@@ -334,16 +331,16 @@ capture that the change happened and data previously valid may become invalid.
 For the approach using Cyc we use the fact that Cyc supports time dependent 
 knowledge through special micro-theories where the always micro-theory is the 
 top-most one and the time dependent ones are connected to the top one through 
-a hierarchical micro-theory structure (see section \ref{section:crowdsourcing}). 
+a hierarchical micro-theory structure (see Section \ref{section:crowdsourcing}). 
 
-\section{Work-flow and Scalability}
+\section{Work-Flow and Scalability}
 Besides the scientific challenges, we have described related to the proposed 
 KA approach, in order to be able to work on a broader level, technical issues 
 and scalability had to be addressed as well. The knowledge base and inference 
-engine if used for common sense knowledge, tend to be quite large and resource 
+engine, if used for common sense knowledge, tend to be quite large and resource 
 hungry. Our experiments were concluded using three Cyc instances, running on 
 two machines and a transcript server which is used for KB syncing on a remote 
-EC2 Amazon instance. One main machine was running two instances each having 
+EC2 Amazon instance. One main machine was running two instances, each having 
 16GB of memory. The additional machine was used mostly for testing and 
 evaluation. All the three Cyc instances were synced over the EC2 
 transcript server.
