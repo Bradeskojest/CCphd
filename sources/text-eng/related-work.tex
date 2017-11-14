@@ -882,9 +882,8 @@ NELL\parencite{Mitchell2015} is a text mining KA system running 24/7 with the
 goal to extract knowledge, use this knowledge to improve itself and extract
 more knowledge. NELL was started in January 2010 and as of 2015 acquired
 80 million confidence weighted new beliefs. NELL consists of many different
-learning tasks (for different types of knowledge), where each task also consist
-of the performance metrics, so the system can asses itself and check if the 
-learning task itself is also improving through time. In 2015 it consisted of
+learning tasks (for different types of knowledge), where each task also consists of the performance metrics, so the system can assess itself and check if the 
+learning task itself is also improving through time. In 2015, it consisted of
 2500 learning tasks. Some of learning task examples:
 \begin{itemize}
 	\item Category Classification
@@ -892,15 +891,15 @@ learning task itself is also improving through time. In 2015 it consisted of
 	\item Entity Resolution
 	\item Inference Rules among belief triples
 \end{itemize}
-After learning tasks, there is a \emph{Coupling Constrains} component, which
+After learning tasks, there is a \emph{Coupling Constraints} component, which
 combines results of learning tasks. The potentially useful knowledge gets
 asserted into the KB as candidates, where the assertions are checked by knowledge
 integrator module which integrates the assertions into the KB, or rejects them.
 
 After some initial KB had been gathered, the CMU text-mining KA system 
-NELL also started to apply a crowdsourcing approach\parencite{Pedro2012a},
+NELL also started to apply a crowdsourcing approach \parencite{Pedro2012a},
 using natural language questions to validate its KB. In a similar
-fashion as Curious Cat, NELL can use newly acquired knowledge, to 
+fashion as Curious Cat, NELL can use the newly acquired knowledge, to 
 formulate new representations and learning tasks. There is, however, a 
 distinct difference between the approaches of NELL and Curious Cat. 
 NELL uses information extraction to populate its KB from the web, 
@@ -914,10 +913,8 @@ have a very high chance of being able to answer a question.
 
 \subsection{KnowItAll}
 \label{section:r:knowitall}
-KnowItAll\parencite{Etzioni2004} is a domain independent web fact extraction 
-system developed at \emph{University of Washington (UW)}, that s specific search engine queries to find new instances of specific
-classes. It starts the extraction with a small seed of class names and NL patterns
-like "NP1 such as NP2". The classes and patterns are then used to find instances,
+KnowItAll \parencite{Etzioni2004} is a domain independent web fact extraction 
+system developed at the \emph{University of Washington (UW)}. Its core mechanism is using linguistic patterns as web search engine queries to find new instances of specific classes. It starts the extraction with a small seed of class names and NL patterns like "NP1 such as NP2". The classes and patterns are then used to find instances,
 new classes and also new extraction phrases by analyzing the results of the 
 web search engines. For example, Googling: "Cities such as *", will return 
 a lot of statements with instances of cities. After these cities are extracted,
@@ -925,18 +922,16 @@ the names can be used for further Googling and by analyzing the phrases in which
 these cities appear, new patterns can be found, and so on. As part of the
 experiment, KnowItAll ran for 5 days and extracted over 50,000 instances of
 cities, states, countries, actors and films.
-To asses the correctness of the extractions, the system can fill-in the instances
-into the various patterns and check the hit-count returned by the search engine./
-This then compares by the hit-count of the instance itself and uses this to
+To assess the correctness of the extractions, the system can fill-in the instances into the various patterns and check the hit-count returned by the search engine. This then compares by the hit-count of the instance itself and uses this to
 asses the probability of the instance really belonging to the detected class.
 For example: comparing the hit-count of "Ljubljana", "Cities such as Ljubljana"
-and "Planets such us Ljubljana", the system can figure out that Ljubljana is
+and "Planets such as Ljubljana", the system can figure out that Ljubljana is
 most likely indeed an instance of the class city.
 
 KnowItAll was the first of the systems that inspired an \emph{Open Information
-Extraction (Open IE)} paradigm\parencite{Etzioni2011} which resulted in many 
-other IE systems such us TextRunner, ReVerb and R2A2. The main idea of this
-paradigm is to avoid hand labeled examples and domain specific verbs and nouns
+Extraction (Open IE)} paradigm \parencite{Etzioni2011} which resulted in many 
+other IE systems such as TextRunner, ReVerb and R2A2. The main idea of this
+paradigm is to avoid hand-labeled examples and domain-specific verbs and nouns
 when approaching textual patterns which can lead to open (without specifying the
 targets) knowledge extraction on a web scale.
 
@@ -946,7 +941,7 @@ Probase, started by Microsoft Research (MSR) is a probabilistic taxonomy of
 concepts and instances consisting of
 2.7 million of concepts extracted from 1.68 billion of web pages
 \parencite{Wu2012}. The main difference between Probase and other KBs is that
-Probase is probabilistic as opposed of "black and white" KB. On the other hand,
+Probase is probabilistic as opposed to "black and white" KB. On the other hand,
 even if it has much more concepts, it is sparse in the knowledge, since it only
 uses $isA$ relation (taxonomy). Probase was compared to other taxonomies such as
 WordNet, YAGO and Freebase in the sense of recall and precision of $isA$ 
@@ -960,12 +955,11 @@ API\footnote{https://concept.research.microsoft.com} which in 2017 consists of
 \subsection {TextRunner}
 \label{section:r:textrunner}
 TextRunner is a successor of KnowItAll system \parencite{Soderland2007} and is
-the first to introduce Open Information Extraction (OIE) paradigm, which's main
-idea is that it is open-ended and can extract information autonomously without
+the first to introduce the Open Information Extraction (OIE) paradigm, whose main idea is that it is open-ended and can extract information autonomously without
 any human intervention which would fix the system to some specific domain or set
 of concepts/relations.
 \emph{TextRunner} was ran through over 9 million of web pages, and compared to
-\emph{KnowItAll} reduced the error rate for 33\% on comparable set of 
+\emph{KnowItAll} reduced the error rate for 33\% on a comparable set of 
 extractions. Throughout the experiments, \emph{TextRunner} collected 11 million
 of high probability tuples and 1 million concrete facts. \emph{TextRunner} 
 consists of three components.
@@ -987,14 +981,13 @@ each retained tuple, based on the probabilistic model or redundancy
 \label{section:r:reverb}
 With  the experiments done with \emph{TextRunner} and \emph{WAE}, it became
 obvious that OIE systems have a lot of noise and inconsistencies in the results.
-For this reason two syntactical and lexical constraints were introduced in
-\emph{ReVerb} OIE system\parencite{Fader2011}. This helps with removing
+For this reason two syntactical and lexical constraints were introduced in the \emph{ReVerb} OIE system \parencite{Fader2011}. This helps with removing
 the incoherent extractions such as "recalled began" which was extracted from
 sentence "They recalled that Nungesser began his career as precinct leader", or
 uninformative extractions like "Faust, made a deal" extracted from "Faust
-made a deal with the devil".\parencite{Fader2011}.
+made a deal with the devil" \parencite{Fader2011}.
 When started, \emph{ReVerb} first identifies relation phrases that match the
-constraints, then if finds appropriate pair of appropriate noun phrase arguments
+constraints, then it finds an appropriate pair of appropriate noun phrase arguments
 for each identified phrase. The resulting extractions are then given a 
 confidence score using logistic regression classifier.
 
@@ -1004,7 +997,7 @@ R2A2 is another improvement in OIE paradigm, since previous systems assumed that
 relation arguments are only simple noun phrases. Analysis of \emph{ReVerb}
 errors showed that 65\% of errors is on the arguments side (the relation was ok).
 To fix this, \emph{R2A2} system goes somehow into the direction of kb based
-KA systems like Curious Cat with argument constrains.\parencite{Etzioni2011}. 
+KA systems like Curious Cat with argument constraints \parencite{Etzioni2011}. 
 The difference is that 
 \emph{R2A2} is not using hard logic and inference, but rather statistical
 classifier to detects class constraints (bounds) of the arguments. Compared to
@@ -1013,7 +1006,7 @@ classifier to detects class constraints (bounds) of the arguments. Compared to
 \subsection{ConceptMiner}
 \label{section:r:conceptminer}
 \emph{ConceptMiner} is a KA system built by Ian Scott Eslick as part of his
-master thesis\parencite{Eslick2006}, with the main hypothesis that the seed
+master thesis \parencite{Eslick2006}, with the main hypothesis that the seed
 knowledge collected from volunteers can be then used to bootstrap automatic 
 knowledge acquisition. \emph{ConceptMiner} specifically focuses on binary
 semantic relationships such as cause, effect, intent and time. The system relies
@@ -1033,7 +1026,7 @@ patterns for aforementioned relations. For example an existing knowledge
 \end{itemize}
 
 While not all of the patterns are of the same quality, with the sheer number of
-repetitions, it is possible to extract more probable ones. This then results
+repetitions, it is possible to extract the more probable ones. This then results
 in general patterns such as \emph{<X>/NN loves/VBZ <Y>/NN}. These can be then
 used to issue a lot of search queries with various combinations of words, to 
 extract instances of 'who desires what'. These potential instances then go
@@ -1043,52 +1036,50 @@ and concepts with low PMI score (see abbreviations and glossary).
 
 \subsection{DBPedia}
 \label{section:r:dbpedia}
-\emph{DBPedia} is crowd-sourced RDF based KB, extracted from Wikipedia pages and made publicly available\parencite{Lehmann2015}. It was developed as a 
+\emph{DBPedia} is crowd-sourced RDF based KB, extracted from Wikipedia pages and made publicly available \parencite{Lehmann2015}. It was developed as a 
 collaboration between \emph{University of Leipzig (UL)} and \emph{University of
-Mannheim (UoM)}. As of 2017 the English DBPedia contains 4.58 million 
+Mannheim (UoM)}. As of 2017, the English DBPedia contains 4.58 million 
 knowledge pieces, out of which 4.22 million in a consistent ontology, 
 including 1,445,000 persons, 735,000 places, 411,000 creative works
 (123,000 music albums, 87,000 films and 19,000 video games), 
 241,000 organizations (58,000 companies, 49,000 educational institutions), 
 251,000 species and 6,000 diseases\footnote{http://wiki.dbpedia.org/about}.
-\emph{DBPedia} is also localized into 125 languages, so all-together it 
+\emph{DBPedia} is also localized into 125 languages, so altogether it 
 consists of 38.3 million knowledge pieces. It is also linked to YAGO categories.
 
 Acquisition mechanism is automatic and consists of the following steps:
 \begin{itemize}
 \item Wikipedia pages are downloaded from dumps or through API and parsed into
-an Abstract Syntax Tree (AST)
+an Abstract Syntax Tree (AST).
 \item  AST is forwarded to various extractor modules. For example, extractor
 module can find labels, coordinates, etc. Each of the extractor modules can
 convert it's part of AST into RDF triples.
 \item The collection of RDF statements as returned from the extractors is 
-written into an RDF sink, supporting various format such as NTriples, etc.
+written into an RDF sink, supporting various formats such as NTriples, etc.
 \end{itemize}
 
 \subsection{YAGO (Yet Another Great Ontology)}
 \label{section:r:yago}
 \emph{YAGO} is an ontology built at \emph{Max Planck Institute (MPI)}. It is built automatically from \emph{WordNet} and 
-\emph{Wikipedia}\parencite{Suchanek2008}. Latest version \emph{YAGO3} is built
-from multiple languages and as of 2015 consist of 4,595,906 entities, 
+\emph{Wikipedia} \parencite{Suchanek2008}. The latest version \emph{YAGO3} is built
+from multiple languages and as of 2015 consists of 4,595,906 entities, 
 8,936,324 facts, 15,611,709 taxonomy facts and 1,398,837 labels
 \parencite{Mahdisoltani2015}.
 The facts were extracted from Wikipedia category system and info boxes, using
 a combination of rule-based and heuristic methods, and then enriched with 
 hierarchy (taxonomic) relations taken from WordNet. Since building
-YAGO is automatized, each next run of the script can use existing knowledge
+YAGO is automatized, each next run of the script can use the existing knowledge
 for type and consistency checking. This kind of type checking helps YAGO to
-maintain its precision at 95\%\parencite{Suchanek2008}. As of the summer 2017
-YAGO3\parencite{Rebele2016} was released as open source project on 
+maintain its precision at 95\% \parencite{Suchanek2008}. As of summer 2017
+YAGO3 \parencite{Rebele2016} was released as open source project on 
 GitHub\footnote{https://github.com/yago-naga/yago3}.
 
 \subsection{KNEXT}
 \label{section:r:knext}
 With the premise that there is a lot of general knowledge available in texts,
-which lays beneath explicit assertional content, Schubert build \emph{KNEXT} KA
-system\parencite{Schubert2002} which extracts \emph{general "possibilistic"
-propositions} from text. The main difference towards other KA mining systems is
+which lays beneath explicit assertional content, Schubert build the \emph{KNEXT} KA system \parencite{Schubert2002} which extracts \emph{general "possibilistic" propositions} from text. The main difference towards other KA mining systems is
 that before combining meanings from a phrase, the meanings are abstracted
-(generalized) and simplified. For example, abstraction of "a long, dak corridor"
+(generalized) and simplified. For example, abstraction of "a long, dark corridor"
 yields "a corridor". Or "a small office at the end of a long dark corridor" 
 yields "an office". This kind of abstraction, together with weakening of 
 relations into a possibilistic form, starts to represent presumptions about the
@@ -1133,7 +1124,7 @@ propositions marked as "reasonable general claims"\parencite{Schubert2003}.
 \section{Reasoning Acquisition}
 \label{section:r:reasoningacq}
 Compared to other types of KA, \emph{Reasoning Acquisition} in its essence,
-doesn't need any external data-sources, but it uses existing knowledge and
+does not need any external data-sources, but it uses existing knowledge and
 machine inference to automatically infer additional facts from the existing
 knowledge. While deductive reasoning can come with new facts from the premises 
 and rules, the reasoning that has a chance to produce higher value (non obvious)
@@ -1144,7 +1135,7 @@ observations of the KB.
 
 \subsection {Cyc Predicate Populator + FOIL}
 With the initial experiments conducted from Labor Rule Acquisition done as part
-of \emph{Factivore} and \emph{Predicate Populator}\parencite{Witbrock2005}, it 
+of \emph{Factivore} and \emph{Predicate Populator} \parencite{Witbrock2005}, it 
 was found that getting inference rules from crowdsourcing and untrained
 human labor is ineffective and slow. For this reason, inductive logic 
 inference mechanism based on \emph{First Order Inductive Learner (FOIL)}
@@ -1162,7 +1153,7 @@ and double check for correctness around twenty rules per hour.
 The main idea of \emph{PIP} system is to learn new plausible inference rules 
 (patterns of plausible reasoning) by combining existing knowledge and 
 reinforcement learning and thus improve the system's question answering
-abilities\parencite{Sharma2010}. It is based on \emph{Cyc} knowledge base,
+abilities \parencite{Sharma2010}. It is based on \emph{Cyc} knowledge base,
 especially its predicate hierarchy represented by \emph{\#\$genlPred} predicate, 
 and \emph{\#\$PredicateType} which represents second order collection of predicates 
 that can be grouped together by some common features. For example
@@ -1197,12 +1188,11 @@ amount of user feedback (+1 or -1 voting) for final answers, can improve the
 PIP selection and also the level of generalizations when generating PIPs.
 Overall, the experiments showed that the approach increased Q/A recall for 
 quite a lot (120\% improvement), while minimally reduced the precision (94\% of
-the baseline)\parencite{Zang2013}.
+the baseline) \parencite{Zang2013}.
 
 \subsection{AnalogySpace}
-This system is meant to work over big, but inexact knowledge bases 
-(such as OMCS), where the need it to be able to make rough conclusions based
-on similarities, as opposed on hard and absolute logical facts. 
+This system is meant to work over big, but inexact knowledge bases (such as OMCS), where the need is to be able to make rough conclusions based
+on similarities, as opposed to hard and absolute logical facts. 
 \emph{AnalogySpace} does just that, by performing analogical closure by
 dimensionality reduction of semantic network (KB graph)\parencite{Speer2008}. 
 This system tried to represent a new synthesis between a standard symbolic 
@@ -1219,8 +1209,7 @@ similarity can be determined using linear operations over the resulting vectors.
 In a sense, this dimensionality reduction is acting as a generalization process
 for the kb. This way it is easier to calculate similarities between resulting
 concept vectors and can thus make generalizations based on these similarities,
-even if original concept didn't have some of the exact assertions that would
-enable inference engine to use it in the inference process and thus come with
+even if the original concept did not have some of the exact assertions that would enable the inference engine to use it in the inference process and thus come with
 good answer. 
 Results of experiments have shown that more than 70\% of the resulting 
 assertions were marked as true by human validators.
@@ -1231,7 +1220,7 @@ Given that Wikipedia contains a lot of knowledge which is not structured in
 a way to be useful for inference engines directly, it makes sense to either try
 to structure it (as was done with \emph{YAGO}), or link it with some existing
 ontology such as \emph{CycKB}, which was done as part of this research task
-at \emph{The University of Waikato, New Zealand(TUW)} \parencite{Medelyan2008}.
+at \emph{The University of Waikato, New Zealand (TUW)} \parencite{Medelyan2008}.
 Authors first filtered out of potential pool of Cyc concepts all non-common 
 sense concepts, which ended with 83,897 of them. Then these concepts were
 string matched with Wikipedia concept names based on their name directly,
@@ -1246,25 +1235,24 @@ disambiguation was needed, and precision 93\% and recall 86.3\% with the
 disambiguation part.
 
 
-\section{Acquisition of Geo-spatial Context}
+\section{Acquisition of Geo-Spatial Context}
 Here we describe approaches that can relate to our 
 context mining/acquisition implementation. While the approaches themselves are
 more from the data-mining domain, as opposed to knowledge acquisition, in
 \emph{Curious Cat}, the results are converted in the knowledge and asserted 
 directly as a contextual knowledge about the users. For this reason, this
 related work is in its own subsection. In \tablename~\ref{tab:related}, the 
-approaches here are not listed, since they don't count as a knowledge
+approaches here are not listed, since they do not count as a knowledge
 acquisition, but more a custom data-mining solutions which support our
 proposed KA approach.
 
 \subsection{Extracting Places from Traces of Locations}
 \label{section:SPD1}
 This algorithm (we refer to it as SPD1 - Staypoint Detection), is one of the 
-first approaches that started to mine the raw GPS data
-into more user friendly notion of location - place.\parencite{Kang2005} The main
+first approaches that started to mine the raw GPS data into a more user friendly notion of location - place \parencite{Kang2005}. The main
 idea of the algorithm is to be able to cluster the raw GPS locations into the
-particular places (home, work, specific restaurant, etc.) that user visited. 
-This is achieved with a combination of radius($D_t$) and time-based ($T_t$) 
+particular places (home, work, specific restaurant, etc.) that the user visited. 
+This is achieved with a combination of radius ($D_t$) and time-based ($T_t$) 
 clustering thresholds, where a cluster is a set of GPS coordinates that are 
 within radius ($dist(loc_1) - dist(loc_n) < D_t$) during a time which is longer 
 than a threshold ($time(loc_n)-time(loc_1) > T_t$). With this approach, it is
@@ -1274,9 +1262,7 @@ standard clustering approaches). The core of the algorithm has a benefit
 to be really simple and can be easily ran on the phone.
 
 The algorithm pseudo-code is shown (Algorithm \ref{alg:spd1}), where $CL$ 
-represents currently 
-detecting cluster (stay-point), $VP$ is detected cluster (stay-point or Visit 
-Point) and $plocs$ is temporal locations to be discarded or added to cluster
+represents the currently detecting cluster (stay-point), $VP$ is the detected cluster (stay-point or Visit Point) and $plocs$ are temporal locations to be discarded or added to cluster
 later. Regarding the thresholds, $T_t$ is Time threshold, $T_d$ is distance 
 threshold.
 
@@ -1313,36 +1299,27 @@ threshold.
 \end{algorithm}
 
 While the above algorithm robustly detects stay-points, it completely ignores
-paths between. Additional weak-point is that it doesn't handle well when more
-than one GPS coordinate wrongly jumps due to GPS accuracy. This was fixed by
-the improved algorithm we developed as part of \emph{Curious Cat} system, and
-simultanously, the GPS accuracy part as well by the algorithm described 
-below (\autoref{section:SPD2}).
+the paths between. Additional weak-point is that it does not handle well when more than one GPS coordinate wrongly jumps due to GPS accuracy. This was fixed by the improved algorithm we developed as part of the \emph{Curious Cat} system, and simultaneously, the GPS accuracy part as well by the algorithm described below (Subsection \ref{section:SPD2}).
 
 \subsection{Discovery of Personal Semantic Places based on Trajectory Data 
 Mining}
 \label{section:SPD2}
-This work\parencite{Lv2016}(SPD2), builds on top of the first \emph{SPD} algorithm 
-described in \autoref{section:SPD1}. It improves the stay-point detection and 
+This work \parencite{Lv2016}(SPD2), builds on top of the first \emph{SPD} algorithm 
+described in Subsection \ref{section:SPD1}. It improves the stay-point detection and 
 incorporates it into the broader system which is able to map particular visits 
 into the exact places (points of interest - POIs) and then additionally able to 
 predict next locations of tracked users. With this functionality (especially 
 mapping to exact points of interest), this approach shares a lot of similarities
 with the context mining approach that is employed within the \emph{Curious Cat} 
 system. 
-The main improvement of this algorithm, is that it takes into the account the
-discontinuous characteristics of phone GPS signal (it gets lost inside buildings,
-its accuracy drops under the trees). This is done by introducing a second
-$T_{dt}$ threshold, which is must be higher than $T_d$, and sets a tolerated
+The main improvement of this algorithm is that it takes into account the
+discontinuous characteristics of phone GPS signal (it gets lost inside buildings, its accuracy drops under the trees). This is done by introducing a second $T_{dt}$ threshold, which must be higher than $T_d$, and sets a tolerated
 distance between two consequent stay-points to be merged on the fly. 
 Additionally, these thresholds are not fixed, but dynamically calculated based
 on the distribution of distances between raw GPS points. 
 
 The simplified algorithm (removed unnecessary if/else statements) is shown 
-below (algorithm \ref{alg:spd2}), where $CL$
-represents currently detecting cluster (stay-point), $PC$ is previous cluster and
-$VP$ is detected cluster (stay-point or Visit Point). Regarding the thresholds,
-$T_t$ is Time threshold, $T_d$ is distance threshold and $T_{dt}$ is tolerated
+below (Algorithm \ref{alg:spd2}), where $CL$ represents currently detecting cluster (stay-point), $PC$ is previous cluster and $VP$ is detected cluster (stay-point or Visit Point). Regarding the thresholds, $T_t$ is time threshold, $T_d$ is distance threshold and $T_{dt}$ is tolerated
 distance threshold for later merging.
 
 \begin{algorithm}[htb]
@@ -1382,12 +1359,11 @@ of stay, contextual knowledge benefits from the information about the type of
 place and name, or even the exact ID from some database, where additional 
 information can be looked up. This is part of the \emph{Curious Cat} system, 
 which was inspired by and is based on the related work of Marco 
-Mamei\parencite{Mamei2010}.
-In this work, the author shows how \emph{Cyc} knowledge base can be used to
+Mamei \parencite{Mamei2010}. In this work, the author shows how \emph{Cyc} knowledge base can be used to
 improve automatic place identification. The approach is using probabilistic
-ranking the list of candidates (retrieved from \emph{Foursquare} in consideration
+ranking of the list of candidates (retrieved from \emph{Foursquare} in consideration
 of the common sense likelihood, which is based on the user profile, features of
-the day (exact time, noon, afternoon, morning, midday,...), previous visits
+the day (exact time, noon, afternoon, morning, midday), previous visits
 and type of probable place. The approach was validated and given that the
 GPS accuracy of N95 phones (used in the experiment) is worse than that of phones
-in 2017, it achieved the accuracy of 75\% for business type of places.
+in 2017, it achieved the accuracy of 75\% for the business type of places.
