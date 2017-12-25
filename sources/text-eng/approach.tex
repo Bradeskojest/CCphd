@@ -862,7 +862,7 @@ of our \emph{Existing Knowledge} consists of the following terms:
 \begin{equation}\label{set:otherTerms}
 \begin{gathered}
 S_{Rest} = \{Service,WirelessService,Vehicle,Car,Animal,Duck,\\
-	Human,User,User1\}
+	Human,User\}
 \end{gathered}
 \end{equation}
 Where each of these terms is also an instance of a $Class$:
@@ -1047,14 +1047,15 @@ true. The predicate is formally defined as follows:
 
 In a similar fashion as predicate $known$, we define $unknown$ predicate.
 
-\begin{definition}[predicate "$unkknown$"]\label{def:pred_unknown}
-Special meta-predicate $unknown(x)$ denotes that the formula $x$ can 
-\textbf{not} be proven in the KB. This predicate is non-assertible, meaning that 
+\begin{definition}[predicate "$unknown$"]\label{def:pred_unknown}
+Special meta-predicate $unknown(x)$ denotes that the formula $x$ cannot be 
+proven given the KB and inference settings (resource limited proof attempt). 
+This predicate is non-assertible, meaning that 
 it cannot be used to add things into the KB, but it can be used in inference 
 rules. Building on the example given in Definition \ref{def:pred_known}
 ($known$ predicate), the query $unkown(is(Something,Class))$ is 
 \textbf{not true}, since the assertion exists and is known. On the other hand,
-$unknown(is(Human,Duck))$ is true, since there is no knowledge in the KB which
+$unknown(is(Human1,Duck))$ is true, since there is no knowledge in the KB which
 would support the encapsulated $is$ statement. The predicate is formally defined 
 as follows:
 \begin{equation}\label{as:unknown}
@@ -1153,7 +1154,7 @@ The rule \ref{as:generalRule} effectively detects when there is an instance in
 the KB that does not have some kind of information that other instances have, and
 then it causes the system to intend to ask about it, if and when it has a 
 suitable opportunity (e.g. a suitable interaction context). The rule described,
-is an example of the general rule that can produce the apparent curiosity of 
+is an example of the general rule that can produce the apparent couriosity of 
 the system using nothing but the existing background or newly acquired 
 knowledge, whatever that may be.
 
@@ -1185,7 +1186,7 @@ not, it would always ask more. But only for $menuItems$, as the rule is not
 general and would never come out of new type of questions as does rule 
 \ref{as:generalRule}.
 
-We can see now that the KA or "curiosity rules" can span from very general, to 
+We can see now that the KA or "couriosity rules" can span from very general, to 
 very specific. General rules can automatically trigger on almost any newly 
 asserted knowledge, while specific ones can be added to fine-control the 
 responses and knowledge we want to acquire. How specific or general the rule 
@@ -1640,7 +1641,7 @@ to add additional assertion, similar as the last part of Assertion
 
 \begin{equation}\label{as:menuitem2}
 \begin{gathered}
-	nlPattern(menuItem, \text{"What is on the menu in \$1"})
+	nlPattern(menuItem, \text{"What is on the menu at \$1"})
 \end{gathered}
 \end{equation}
 Now the the query \ref{q:nlpattern1}, if issued again will return more
@@ -1656,7 +1657,7 @@ assertions for the predicate $menuItem$.}
     \hline
     "\$1 has \$2 on the menu" \\
     \hline
-	"What is on the menu in \$1" \\
+	"What is on the menu at \$1" \\
 	\hline
 \end{tabular}
 \end{table}
@@ -1664,7 +1665,7 @@ Now, considering that we are still converting $menuItem(Restaurant1,x)$, the
 engine will among two options pick a second one, because it has a better match
 against given arguments (only argument 1 is present), and thus instead of
 "L'Ardoise has \_\_\_ on the menu." convert into 
-"What is on the menu in L'Ardoise?"
+"What is on the menu at L'Ardoise?"
 
 Careful reader might notice that the results for plural versions of concept 
 names ($namePlural$) were always empty. For the concept $Coffee$, the plural
@@ -2017,7 +2018,7 @@ trigger a new one, or until depleting all of them. If the depletion happens,
 then the topic will traverse all the concepts from the history and thus 
 accidentally trigger additional inference with a new topic of interest for the 
 user, which will produce new questions, which will additionally (if answered) 
-produce new follow-up questions/comments. As the final fullback, the system 
+produce new follow-up questions/comments. As the final fallback, the system 
 will randomly pick a concept from its KB and present it to the inference 
 engine as a current interest for the user.
 
