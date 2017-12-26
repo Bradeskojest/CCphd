@@ -106,6 +106,24 @@ by the name in capital ($?PERSON$). For example, query asking the inference
 engine, what is on the menu at Joe's Pizza is represented as: 
 $(\#\$menuItem\quad\#\$JoesPizza\quad?ITEMS)$, where the name of the variable
 "ITEMS", can be arbitrary.
+\item Logical functions which are special unary ($arity\quad?x\quad1$) 
+predicates that can be defined to take a specific instance of class of terms 
+and convert them into some other term. These function allow for a faster 
+construction of the KB and also easier understanding. For example, to define
+that something is a fruit of a specific tree, instead of defining all of the
+fruits for all of the trees specifically, we can define a $\$\#FruitFn$ which 
+takes as an argument a specialization of the $\#\$Tree$ class and returns as a 
+result a specialization of the $\#\$Fruit$ class. This way we can simply define
+$(\#\$FruitFn\quad\#\$AppleTree)$ and we have a definition of an apple which we know
+it grows on an apple three. The same function can be re-used for all of the other
+tree/fruit combinations. Besides (describing the apple example) 
+$(\#\$resultGenls\quad\#\$AppleFn\quad\#\$Fruit)$ and 
+$(\#\$argGenls\quad1\quad\#\$Tree)$, the
+functions can have also specific predicated that can get filled in when the
+function is used. Function names always end with "Fn" postfix, and functions can
+be used in logical formulas in the same way as other terms. Examples of function
+usage from the implementation can be seen on \autoref{fig:kaRuleImpl} and
+\autoref{fig:nlAssertion}
 \item Rules in \emph{CycKB} are represented by assertions using predicate 
 $\#\$implies$, where the first argument is then it's antecedent and the second
 argument a consequent (see CycL rule \ref{as:cycrule} below, which represents
