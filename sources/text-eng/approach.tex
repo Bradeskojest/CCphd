@@ -1020,12 +1020,12 @@ All logical formulas (assertions, queries) are instances of the class $Formula$.
 Formally, this can be represented as:
 \begin{equation}\label{as:formulas}
 \begin{gathered}
-	\forall P\forall x_{1...n}:is(P(x_1,...,x_n),Formula)
+	\forall P\forall x_{1...n}:is("P(x_1,...,x_n)",Formula)
 \end{gathered}
 \end{equation}
 Basically all of the content of the KB and queries are instances of $Formula$.
 For example, assertion $userLocation(User1,Ljubljana)$ is an instance of 
-$Formula$ and consequentially the statement $is(userLocation(User1,Ljubljana),
+$Formula$ and consequentially the statement $is("userLocation(User1,Ljubljana)",
 Formula)$ is true.
 \end{definition}
 
